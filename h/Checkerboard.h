@@ -1,0 +1,95 @@
+//
+// Academic License - for use in teaching, academic research, and meeting
+// course requirements at degree granting institutions only.  Not for
+// government, commercial, or other organizational use.
+// File: Checkerboard.h
+//
+// MATLAB Coder version            : 5.2
+// C/C++ source code generated on  : 08-Aug-2021 21:29:01
+//
+
+#ifndef CHECKERBOARD_H
+#define CHECKERBOARD_H
+
+// Include Files
+#include "rtwtypes.h"
+#include "coder_array.h"
+#include "omp.h"
+#include <cstddef>
+#include <cstdlib>
+
+// Type Definitions
+namespace coder {
+namespace vision {
+namespace internal {
+namespace calibration {
+namespace checkerboard {
+class Checkerboard {
+public:
+  void initialize(double seedIdx, const ::coder::array<float, 2U> &points,
+                  const float v1[2], const float v2[2]);
+  void expandBoardDirectionally(double direction);
+  static void arrayFind(const ::coder::array<boolean_T, 2U> &arr,
+                        const double pattern[3],
+                        ::coder::array<double, 2U> &matchedIdx);
+
+private:
+  double findNeighbor(const ::coder::array<float, 2U> &pointVectors,
+                      const ::coder::array<float, 1U> &euclideanDists,
+                      const float v[2]) const;
+  double findNeighbor(const ::coder::array<float, 2U> &pointVectors,
+                      const ::coder::array<float, 1U> &euclideanDists,
+                      const ::coder::array<float, 2U> &v) const;
+  void fitPolynomialIndices(::coder::array<double, 2U> &newIndices) const;
+  void findClosestOnCurve(const double predictedPoint[2], double radius,
+                          const ::coder::array<double, 2U> &curve,
+                          const double coordsToUse[2],
+                          const ::coder::array<double, 2U> &removedIdx,
+                          ::coder::array<double, 2U> &idx) const;
+  void findClosestIndices(const ::coder::array<double, 2U> &predictedPoints,
+                          ::coder::array<double, 2U> &indices) const;
+  void expandBoardUp(const ::coder::array<double, 2U> &indices,
+                     ::coder::array<double, 2U> &newBoard,
+                     ::coder::array<double, 3U> &newBoardCoords) const;
+  float computeNewEnergyVertical(float oldEnergy) const;
+  void fitPolynomialIndices(const ::coder::array<double, 2U> &idx,
+                            ::coder::array<double, 2U> &newIndices) const;
+  float computeNewEnergyVertical(const ::coder::array<double, 2U> &idx,
+                                 float oldEnergy) const;
+  void b_fitPolynomialIndices(::coder::array<double, 2U> &newIndices) const;
+  void expandBoardLeft(const ::coder::array<double, 2U> &indices,
+                       ::coder::array<double, 2U> &newBoard,
+                       ::coder::array<double, 3U> &newBoardCoords) const;
+  float computeNewEnergyHorizontal(float oldEnergy) const;
+  void b_fitPolynomialIndices(const ::coder::array<double, 2U> &idx,
+                              ::coder::array<double, 2U> &newIndices) const;
+  void expandBoardRight(const ::coder::array<double, 2U> &indices,
+                        ::coder::array<double, 2U> &newBoard,
+                        ::coder::array<double, 3U> &newBoardCoords) const;
+  float computeNewEnergyHorizontal(const ::coder::array<double, 2U> &idx,
+                                   float oldEnergy) const;
+
+public:
+  boolean_T isValid;
+  float Energy;
+  array<double, 3U> BoardCoords;
+  array<double, 2U> BoardIdx;
+  array<float, 2U> Points;
+  boolean_T IsDirectionBad[4];
+  double LastExpandDirection;
+  float PreviousEnergy;
+  boolean_T IsDistortionHigh;
+};
+
+} // namespace checkerboard
+} // namespace calibration
+} // namespace internal
+} // namespace vision
+} // namespace coder
+
+#endif
+//
+// File trailer for Checkerboard.h
+//
+// [EOF]
+//
