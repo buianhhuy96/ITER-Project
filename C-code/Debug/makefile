@@ -54,7 +54,8 @@ all: Intel-Linux64.exe
 Intel-Linux64.exe: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cygwin C++ Linker'
-	g++ -L"C:\Users\buian\eclipse-workspace\Intel-Linux64\lib" -fopenmp -o "Intel-Linux64.exe" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++ -L".\lib" -fopenmp -o "Intel-Linux64.exe" $(OBJS) $(USER_OBJS) $(LIBS)	
+	g++ -L".\lib" -fopenmp -o "Intel-Linux64" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
