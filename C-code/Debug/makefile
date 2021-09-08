@@ -61,7 +61,7 @@ Intel-Linux64.exe: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS
 	#else
 		@echo 'Building target: $@'
 		@echo 'Invoking: Cygwin C++ Linker'
-		g++ -L".\lib\Linux" -fopenmp -o "Intel-Linux64" $(OBJS) $(USER_OBJS) $(LIBS)
+		g++ -L"..\lib\Linux" -fopenmp -o "Intel-Linux64" $(OBJS) $(USER_OBJS) $(LIBS)
 		@echo 'Finished building target: $@'
 	#endif
 
