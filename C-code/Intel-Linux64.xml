@@ -1,0 +1,36 @@
+<testsuites>
+	<testsuite name="AllTests" tests="20">
+		<testcase classname="AllTests" name="testReadRobotPoses"/>
+		<testcase classname="AllTests" name="testComputeCamExtrinsics"/>
+		<testcase classname="AllTests" name="testHandeyeShah"/>
+		<testcase classname="AllTests" name="testComputeErrors"/>
+		<testcase classname="AllTests" name="testReadRobotPoses"/>
+		<testcase classname="AllTests" name="testComputeCamExtrinsics"/>
+		<testcase classname="AllTests" name="testHandeyeShah"/>
+		<testcase classname="AllTests" name="testComputeErrors"/>
+		<testcase classname="AllTests" name="testReadRobotPoses"/>
+		<testcase classname="AllTests" name="testComputeCamExtrinsics"/>
+		<testcase classname="AllTests" name="testHandeyeShah">
+			<failure message="../Test.cpp:559 operator(): ERROR: Trace back TestData/testcase_03/: Failed at: hand_eye_HT[0][0] expected:	-0.0657425	but was:	0.986879	">
+operator(): ERROR: Trace back TestData/testcase_03/: Failed at: hand_eye_HT[0][0] expected:	-0.0657425	but was:	0.986879	
+			</failure>
+		</testcase>
+		<testcase classname="AllTests" name="testComputeErrors"/>
+		<testcase classname="AllTests" name="testReadRobotPoses"/>
+		<testcase classname="AllTests" name="testComputeCamExtrinsics"/>
+		<testcase classname="AllTests" name="testHandeyeShah">
+			<failure message="../Test.cpp:559 operator(): ERROR: Trace back TestData/testcase_04/: Failed at: hand_eye_HT[0][0] expected:	0.996343	but was:	-0.956885	">
+operator(): ERROR: Trace back TestData/testcase_04/: Failed at: hand_eye_HT[0][0] expected:	0.996343	but was:	-0.956885	
+			</failure>
+		</testcase>
+		<testcase classname="AllTests" name="testComputeErrors"/>
+		<testcase classname="AllTests" name="testReadRobotPoses"/>
+		<testcase classname="AllTests" name="testComputeCamExtrinsics"/>
+		<testcase classname="AllTests" name="testHandeyeShah">
+			<failure message="../Test.cpp:559 operator(): ERROR: Trace back TestData/testcase_05/: Failed at: hand_eye_HT[0][0] expected:	0.955721	but was:	0.948511	">
+operator(): ERROR: Trace back TestData/testcase_05/: Failed at: hand_eye_HT[0][0] expected:	0.955721	but was:	0.948511	
+			</failure>
+		</testcase>
+		<testcase classname="AllTests" name="testComputeErrors"/>
+	</testsuite>
+</testsuites>
