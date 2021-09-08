@@ -52,18 +52,18 @@ all: Intel-Linux64.exe
 
 # Tool invocations
 Intel-Linux64.exe: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
-	ifeq ($(OS),Windows_NT) 
-		@echo 'Building target: $@'
-		@echo 'Invoking: Cygwin C++ Linker'
-		g++ -L".\lib\Windows" -fopenmp -o "Intel-Linux64.exe" $(OBJS) $(USER_OBJS) $(LIBS)
-		@echo 'Finished building target: $@'
-		@echo ' '
-	else
+	#ifeq ($(OS),Windows_NT) 
+	#	@echo 'Building target: $@'
+	#	@echo 'Invoking: Cygwin C++ Linker'
+	#	g++ -L".\lib\Windows" -fopenmp -o "Intel-Linux64.exe" $(OBJS) $(USER_OBJS) $(LIBS)
+	#	@echo 'Finished building target: $@'
+	#	@echo ' '
+	#else
 		@echo 'Building target: $@'
 		@echo 'Invoking: Cygwin C++ Linker'
 		g++ -L".\lib\Linux" -fopenmp -o "Intel-Linux64" $(OBJS) $(USER_OBJS) $(LIBS)
 		@echo 'Finished building target: $@'
-	endif
+	#endif
 
 # Other Targets
 clean:
