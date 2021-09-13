@@ -219,14 +219,14 @@ C_DEPS += \
 %.o: ../%.cpp subdir.mk
 	@echo 'Building file: $<'
 	@echo 'Invoking: Cygwin C++ Compiler'
-	g++ -std=c++1z -I"C:\Users\buian\eclipse-workspace\Intel-Linux64\cute" -O3 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -fopenmp -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	g++ -std=c++1z -I"..\cute" -O3 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -fopenmp -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
 %.o: ../%.c subdir.mk
 	@echo 'Building file: $<'
 	@echo 'Invoking: Cygwin C Compiler'
-	gcc -I"C:\Users\buian\eclipse-workspace\Intel-Linux64\cute" -O3 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	gcc -I"..\cute" -O3 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
