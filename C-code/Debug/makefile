@@ -56,7 +56,7 @@ Handeye_Calibrate: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS
 		@echo 'Building target: $@'
 		@echo 'Invoking: Cygwin C++ Linker'
 		@echo 'Set library path'
-		export LD_LIBRARY_PATH=../lib/Linux/runtime/glnxa64:../lib/Linux/bin/glnxa64:../lib/Linux/sys/os/glnxa64:../lib/Linux/extern/bin/glnxa64 g++ -L"../lib/Linux/bin/glnxa64" -fopenmp -o ../Handeye_Calibrate $(OBJS) $(USER_OBJS) $(LIBS) -Wl,-rpath=..\lib\Linux\bin\glnxa64
+		LD_LIBRARY_PATH=../lib/Linux/runtime/glnxa64:../lib/Linux/bin/glnxa64:../lib/Linux/sys/os/glnxa64:../lib/Linux/extern/bin/glnxa64 g++ -L"../lib/Linux/bin/glnxa64" -fopenmp -o ../Handeye_Calibrate $(OBJS) $(USER_OBJS) $(LIBS) -Wl,-rpath=..\lib\Linux\bin\glnxa64
 		@echo 'Finished building target: $@'
 
 # Other Targets
