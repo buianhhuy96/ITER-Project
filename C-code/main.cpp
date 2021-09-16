@@ -141,7 +141,12 @@ bool runAllTests(int argc, char const *argv[]) {
 int main(int argc, char const *argv[]) {
 
 	std::cout << "Test starts" << std::endl;
-    return runAllTests(argc, argv) ? EXIT_SUCCESS : EXIT_FAILURE;
+	if(runAllTests(argc, argv)) 
+		std::cout << "Test succeeded" << std::endl;
+	else 
+		std::cout << "Test ended with failure" << std::endl;
+	
+    return EXIT_SUCCESS;
 }
 
 #else
