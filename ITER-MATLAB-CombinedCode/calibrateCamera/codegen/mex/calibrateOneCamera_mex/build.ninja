@@ -1,0 +1,132 @@
+# CompilerName=msvcpp160
+# Mode=optim
+ninja_required_version = 1.3
+
+# Basic folders
+root = .
+builddir = $root\build\win64
+matlabdir = C:\Program Files\MATLAB\R2021a
+startdir = D:\TUT_Research\Gitlab\f4e-grt\ITER-SW-CameraCalibration\Matlab-code-V2
+
+# Toolchain information
+cc = cl
+cxx = cl
+linker = link
+linkerxx = link
+
+cflags =  /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I "$root" /I "$startdir" /I "$matlabdir\extern\include" /I "$root\interface" /I "." -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_mex -DMW_NEEDS_VERSION_H /openmp /wd4101 /wd4251 
+
+cxxflags =   /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I "$root" /I "$startdir" /I "$matlabdir\extern\include" /I "$root\interface" /I "." -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_mex -DMW_NEEDS_VERSION_H /openmp /wd4101 /wd4251 
+
+ldflags =  /nologo /manifest   /DLL /LIBPATH:"$matlabdir\extern\lib\win64\microsoft" libmx.lib libmex.lib libmat.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib libMatlabDataArray.lib libMatlabEngine.lib  /out:"calibrateOneCamera_mex.mexw64" /LIBPATH:"$matlabdir\extern\lib\win64\microsoft" libmwblas.lib libmwlapack.lib libemlrt.lib libcovrt.lib libut.lib libmwmathutil.lib libiomp5md.lib /nodefaultlib:vcomp /LIBPATH:"$matlabdir\bin\win64" "$matlabdir\extern\lib\win64\microsoft\libmwippfilter.lib" "$matlabdir\extern\lib\win64\microsoft\libmwbwlookup_tbb.lib" "$matlabdir\extern\lib\win64\microsoft\libmwrgb2gray_tbb.lib" "$matlabdir\extern\lib\win64\microsoft\libmwimfilter.lib" "$matlabdir\extern\lib\win64\microsoft\libmwimregionalmax.lib"
+
+# Build Rules
+rule cc
+    command = $cc $cflags $in /Fo$out
+
+rule cxx
+    command = $cxx $cxxflags $in /Fo$out
+
+rule link
+    command = $linker @$out.rsp $ldflags
+    rspfile = $out.rsp
+    rspfile_content = $in
+
+rule linkxx
+    command = $linkerxx $in $ldflags
+
+# Build
+build $builddir\calibrateOneCamera_mex_data.obj : cxx $root\calibrateOneCamera_mex_data.cpp
+build $builddir\rt_nonfinite.obj : cxx $root\rt_nonfinite.cpp
+build $builddir\calibrateOneCamera_mex_initialize.obj : cxx $root\calibrateOneCamera_mex_initialize.cpp
+build $builddir\calibrateOneCamera_mex_terminate.obj : cxx $root\calibrateOneCamera_mex_terminate.cpp
+build $builddir\calibrateOneCamera.obj : cxx $root\calibrateOneCamera.cpp
+build $builddir\generateCheckerboardPoints.obj : cxx $root\generateCheckerboardPoints.cpp
+build $builddir\detectCheckerboardPoints.obj : cxx $root\detectCheckerboardPoints.cpp
+build $builddir\detectCheckerboard.obj : cxx $root\detectCheckerboard.cpp
+build $builddir\imfilter.obj : cxx $root\imfilter.cpp
+build $builddir\abs.obj : cxx $root\abs.cpp
+build $builddir\power.obj : cxx $root\power.cpp
+build $builddir\find_peaks.obj : cxx $root\find_peaks.cpp
+build $builddir\find.obj : cxx $root\find.cpp
+build $builddir\indexShapeCheck.obj : cxx $root\indexShapeCheck.cpp
+build $builddir\warning.obj : cxx $root\warning.cpp
+build $builddir\sub2ind.obj : cxx $root\sub2ind.cpp
+build $builddir\hypot.obj : cxx $root\hypot.cpp
+build $builddir\any1.obj : cxx $root\any1.cpp
+build $builddir\all.obj : cxx $root\all.cpp
+build $builddir\mean.obj : cxx $root\mean.cpp
+build $builddir\sumMatrixIncludeNaN.obj : cxx $root\sumMatrixIncludeNaN.cpp
+build $builddir\polyfit.obj : cxx $root\polyfit.cpp
+build $builddir\qrsolve.obj : cxx $root\qrsolve.cpp
+build $builddir\infocheck.obj : cxx $root\infocheck.cpp
+build $builddir\eml_setop.obj : cxx $root\eml_setop.cpp
+build $builddir\sortIdx.obj : cxx $root\sortIdx.cpp
+build $builddir\bsxfun.obj : cxx $root\bsxfun.cpp
+build $builddir\colon.obj : cxx $root\colon.cpp
+build $builddir\polyval.obj : cxx $root\polyval.cpp
+build $builddir\repmat.obj : cxx $root\repmat.cpp
+build $builddir\sum.obj : cxx $root\sum.cpp
+build $builddir\squeeze.obj : cxx $root\squeeze.cpp
+build $builddir\ismember.obj : cxx $root\ismember.cpp
+build $builddir\rot90.obj : cxx $root\rot90.cpp
+build $builddir\cat.obj : cxx $root\cat.cpp
+build $builddir\ifWhileCond.obj : cxx $root\ifWhileCond.cpp
+build $builddir\isequal.obj : cxx $root\isequal.cpp
+build $builddir\svd.obj : cxx $root\svd.cpp
+build $builddir\combineVectorElements.obj : cxx $root\combineVectorElements.cpp
+build $builddir\computeInitialParameterEstimate.obj : cxx $root\computeInitialParameterEstimate.cpp
+build $builddir\fitgeotrans.obj : cxx $root\fitgeotrans.cpp
+build $builddir\normalizeControlPoints.obj : cxx $root\normalizeControlPoints.cpp
+build $builddir\rank.obj : cxx $root\rank.cpp
+build $builddir\mldivide.obj : cxx $root\mldivide.cpp
+build $builddir\inv.obj : cxx $root\inv.cpp
+build $builddir\det.obj : cxx $root\det.cpp
+build $builddir\svd1.obj : cxx $root\svd1.cpp
+build $builddir\rodriguesMatrixToVector.obj : cxx $root\rodriguesMatrixToVector.cpp
+build $builddir\xzsvdc.obj : cxx $root\xzsvdc.cpp
+build $builddir\xnrm2.obj : cxx $root\xnrm2.cpp
+build $builddir\xdotc.obj : cxx $root\xdotc.cpp
+build $builddir\rodriguesVectorToMatrix.obj : cxx $root\rodriguesVectorToMatrix.cpp
+build $builddir\serializeCalib.obj : cxx $root\serializeCalib.cpp
+build $builddir\driver.obj : cxx $root\driver.cpp
+build $builddir\CalculateCost.obj : cxx $root\CalculateCost.cpp
+build $builddir\unserializeCalib.obj : cxx $root\unserializeCalib.cpp
+build $builddir\distortPoints.obj : cxx $root\distortPoints.cpp
+build $builddir\xdot.obj : cxx $root\xdot.cpp
+build $builddir\factoryConstruct.obj : cxx $root\factoryConstruct.cpp
+build $builddir\validateattributes.obj : cxx $root\validateattributes.cpp
+build $builddir\nanmean.obj : cxx $root\nanmean.cpp
+build $builddir\preprocessImages.obj : cxx $root\preprocessImages.cpp
+build $builddir\subPixelLocation.obj : cxx $root\subPixelLocation.cpp
+build $builddir\_coder_calibrateOneCamera_mex_api.obj : cxx $root\interface\_coder_calibrateOneCamera_mex_api.cpp
+build $builddir\_coder_calibrateOneCamera_mex_mex.obj : cxx $root\interface\_coder_calibrateOneCamera_mex_mex.cpp
+build $builddir\eml_int_forloop_overflow_check.obj : cxx $root\eml_int_forloop_overflow_check.cpp
+build $builddir\checkStoppingCriteria.obj : cxx $root\checkStoppingCriteria.cpp
+build $builddir\algbwmorph.obj : cxx $root\algbwmorph.cpp
+build $builddir\sort.obj : cxx $root\sort.cpp
+build $builddir\xunormqr.obj : cxx $root\xunormqr.cpp
+build $builddir\flip.obj : cxx $root\flip.cpp
+build $builddir\xscal.obj : cxx $root\xscal.cpp
+build $builddir\xaxpy.obj : cxx $root\xaxpy.cpp
+build $builddir\xrot.obj : cxx $root\xrot.cpp
+build $builddir\xswap.obj : cxx $root\xswap.cpp
+build $builddir\lsqnonlin.obj : cxx $root\lsqnonlin.cpp
+build $builddir\checkFinite.obj : cxx $root\checkFinite.cpp
+build $builddir\jacobianFiniteDifference.obj : cxx $root\jacobianFiniteDifference.cpp
+build $builddir\computeFiniteDifferences.obj : cxx $root\computeFiniteDifferences.cpp
+build $builddir\xgemv.obj : cxx $root\xgemv.cpp
+build $builddir\projectBox.obj : cxx $root\projectBox.cpp
+build $builddir\xcopy.obj : cxx $root\xcopy.cpp
+build $builddir\linearLeastSquares.obj : cxx $root\linearLeastSquares.cpp
+build $builddir\finDiffEvalAndChkErr.obj : cxx $root\finDiffEvalAndChkErr.cpp
+build $builddir\unsafeSxfun.obj : cxx $root\unsafeSxfun.cpp
+build $builddir\eps.obj : cxx $root\eps.cpp
+build $builddir\Checkerboard.obj : cxx $root\Checkerboard.cpp
+build $builddir\cameraParameters.obj : cxx $root\cameraParameters.cpp
+build $builddir\calibrateOneCamera_mex_mexutil.obj : cxx $root\calibrateOneCamera_mex_mexutil.cpp
+build $builddir\_coder_calibrateOneCamera_mex_info.obj : cxx $root\interface\_coder_calibrateOneCamera_mex_info.cpp
+build $builddir\cpp_mexapi_version.obj : cxx $matlabdir\extern\version\cpp_mexapi_version.cpp
+
+# Link
+build $root\calibrateOneCamera_mex.mexw64 : linkxx $builddir\calibrateOneCamera_mex_data.obj $builddir\rt_nonfinite.obj $builddir\calibrateOneCamera_mex_initialize.obj $builddir\calibrateOneCamera_mex_terminate.obj $builddir\calibrateOneCamera.obj $builddir\generateCheckerboardPoints.obj $builddir\detectCheckerboardPoints.obj $builddir\detectCheckerboard.obj $builddir\imfilter.obj $builddir\abs.obj $builddir\power.obj $builddir\find_peaks.obj $builddir\find.obj $builddir\indexShapeCheck.obj $builddir\warning.obj $builddir\sub2ind.obj $builddir\hypot.obj $builddir\any1.obj $builddir\all.obj $builddir\mean.obj $builddir\sumMatrixIncludeNaN.obj $builddir\polyfit.obj $builddir\qrsolve.obj $builddir\infocheck.obj $builddir\eml_setop.obj $builddir\sortIdx.obj $builddir\bsxfun.obj $builddir\colon.obj $builddir\polyval.obj $builddir\repmat.obj $builddir\sum.obj $builddir\squeeze.obj $builddir\ismember.obj $builddir\rot90.obj $builddir\cat.obj $builddir\ifWhileCond.obj $builddir\isequal.obj $builddir\svd.obj $builddir\combineVectorElements.obj $builddir\computeInitialParameterEstimate.obj $builddir\fitgeotrans.obj $builddir\normalizeControlPoints.obj $builddir\rank.obj $builddir\mldivide.obj $builddir\inv.obj $builddir\det.obj $builddir\svd1.obj $builddir\rodriguesMatrixToVector.obj $builddir\xzsvdc.obj $builddir\xnrm2.obj $builddir\xdotc.obj $builddir\rodriguesVectorToMatrix.obj $builddir\serializeCalib.obj $builddir\driver.obj $builddir\CalculateCost.obj $builddir\unserializeCalib.obj $builddir\distortPoints.obj $builddir\xdot.obj $builddir\factoryConstruct.obj $builddir\validateattributes.obj $builddir\nanmean.obj $builddir\preprocessImages.obj $builddir\subPixelLocation.obj $builddir\_coder_calibrateOneCamera_mex_api.obj $builddir\_coder_calibrateOneCamera_mex_mex.obj $builddir\eml_int_forloop_overflow_check.obj $builddir\checkStoppingCriteria.obj $builddir\algbwmorph.obj $builddir\sort.obj $builddir\xunormqr.obj $builddir\flip.obj $builddir\xscal.obj $builddir\xaxpy.obj $builddir\xrot.obj $builddir\xswap.obj $builddir\lsqnonlin.obj $builddir\checkFinite.obj $builddir\jacobianFiniteDifference.obj $builddir\computeFiniteDifferences.obj $builddir\xgemv.obj $builddir\projectBox.obj $builddir\xcopy.obj $builddir\linearLeastSquares.obj $builddir\finDiffEvalAndChkErr.obj $builddir\unsafeSxfun.obj $builddir\eps.obj $builddir\Checkerboard.obj $builddir\cameraParameters.obj $builddir\calibrateOneCamera_mex_mexutil.obj $builddir\_coder_calibrateOneCamera_mex_info.obj $builddir\cpp_mexapi_version.obj 

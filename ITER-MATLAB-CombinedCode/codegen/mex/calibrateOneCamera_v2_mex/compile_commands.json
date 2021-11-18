@@ -1,0 +1,644 @@
+[
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  calibrateOneCamera_v2_mex_data.cpp /Fobuild\\win64\\calibrateOneCamera_v2_mex_data.obj",
+    "file": "calibrateOneCamera_v2_mex_data.cpp",
+    "output": "build/win64/calibrateOneCamera_v2_mex_data.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  rt_nonfinite.cpp /Fobuild\\win64\\rt_nonfinite.obj",
+    "file": "rt_nonfinite.cpp",
+    "output": "build/win64/rt_nonfinite.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  calibrateOneCamera_v2_mex_initialize.cpp /Fobuild\\win64\\calibrateOneCamera_v2_mex_initialize.obj",
+    "file": "calibrateOneCamera_v2_mex_initialize.cpp",
+    "output": "build/win64/calibrateOneCamera_v2_mex_initialize.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  calibrateOneCamera_v2_mex_terminate.cpp /Fobuild\\win64\\calibrateOneCamera_v2_mex_terminate.obj",
+    "file": "calibrateOneCamera_v2_mex_terminate.cpp",
+    "output": "build/win64/calibrateOneCamera_v2_mex_terminate.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  calibrateOneCamera_v2.cpp /Fobuild\\win64\\calibrateOneCamera_v2.obj",
+    "file": "calibrateOneCamera_v2.cpp",
+    "output": "build/win64/calibrateOneCamera_v2.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  isequal.cpp /Fobuild\\win64\\isequal.obj",
+    "file": "isequal.cpp",
+    "output": "build/win64/isequal.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  any1.cpp /Fobuild\\win64\\any1.obj",
+    "file": "any1.cpp",
+    "output": "build/win64/any1.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  mod.cpp /Fobuild\\win64\\mod.obj",
+    "file": "mod.cpp",
+    "output": "build/win64/mod.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  detectCheckerboardPoints.cpp /Fobuild\\win64\\detectCheckerboardPoints.obj",
+    "file": "detectCheckerboardPoints.cpp",
+    "output": "build/win64/detectCheckerboardPoints.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  detectCheckerboard.cpp /Fobuild\\win64\\detectCheckerboard.obj",
+    "file": "detectCheckerboard.cpp",
+    "output": "build/win64/detectCheckerboard.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  imfilter.cpp /Fobuild\\win64\\imfilter.obj",
+    "file": "imfilter.cpp",
+    "output": "build/win64/imfilter.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  assertValidSizeArg.cpp /Fobuild\\win64\\assertValidSizeArg.obj",
+    "file": "assertValidSizeArg.cpp",
+    "output": "build/win64/assertValidSizeArg.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  abs.cpp /Fobuild\\win64\\abs.obj",
+    "file": "abs.cpp",
+    "output": "build/win64/abs.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  power.cpp /Fobuild\\win64\\power.obj",
+    "file": "power.cpp",
+    "output": "build/win64/power.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  find_peaks.cpp /Fobuild\\win64\\find_peaks.obj",
+    "file": "find_peaks.cpp",
+    "output": "build/win64/find_peaks.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  find.cpp /Fobuild\\win64\\find.obj",
+    "file": "find.cpp",
+    "output": "build/win64/find.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  indexShapeCheck.cpp /Fobuild\\win64\\indexShapeCheck.obj",
+    "file": "indexShapeCheck.cpp",
+    "output": "build/win64/indexShapeCheck.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  warning.cpp /Fobuild\\win64\\warning.obj",
+    "file": "warning.cpp",
+    "output": "build/win64/warning.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  sub2ind.cpp /Fobuild\\win64\\sub2ind.obj",
+    "file": "sub2ind.cpp",
+    "output": "build/win64/sub2ind.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  hypot.cpp /Fobuild\\win64\\hypot.obj",
+    "file": "hypot.cpp",
+    "output": "build/win64/hypot.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  all.cpp /Fobuild\\win64\\all.obj",
+    "file": "all.cpp",
+    "output": "build/win64/all.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  mean.cpp /Fobuild\\win64\\mean.obj",
+    "file": "mean.cpp",
+    "output": "build/win64/mean.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  sumMatrixIncludeNaN.cpp /Fobuild\\win64\\sumMatrixIncludeNaN.obj",
+    "file": "sumMatrixIncludeNaN.cpp",
+    "output": "build/win64/sumMatrixIncludeNaN.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  polyfit.cpp /Fobuild\\win64\\polyfit.obj",
+    "file": "polyfit.cpp",
+    "output": "build/win64/polyfit.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  qrsolve.cpp /Fobuild\\win64\\qrsolve.obj",
+    "file": "qrsolve.cpp",
+    "output": "build/win64/qrsolve.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  infocheck.cpp /Fobuild\\win64\\infocheck.obj",
+    "file": "infocheck.cpp",
+    "output": "build/win64/infocheck.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  eml_setop.cpp /Fobuild\\win64\\eml_setop.obj",
+    "file": "eml_setop.cpp",
+    "output": "build/win64/eml_setop.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  sortIdx.cpp /Fobuild\\win64\\sortIdx.obj",
+    "file": "sortIdx.cpp",
+    "output": "build/win64/sortIdx.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  bsxfun.cpp /Fobuild\\win64\\bsxfun.obj",
+    "file": "bsxfun.cpp",
+    "output": "build/win64/bsxfun.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  colon.cpp /Fobuild\\win64\\colon.obj",
+    "file": "colon.cpp",
+    "output": "build/win64/colon.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  polyval.cpp /Fobuild\\win64\\polyval.obj",
+    "file": "polyval.cpp",
+    "output": "build/win64/polyval.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  repmat.cpp /Fobuild\\win64\\repmat.obj",
+    "file": "repmat.cpp",
+    "output": "build/win64/repmat.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  sum.cpp /Fobuild\\win64\\sum.obj",
+    "file": "sum.cpp",
+    "output": "build/win64/sum.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  squeeze.cpp /Fobuild\\win64\\squeeze.obj",
+    "file": "squeeze.cpp",
+    "output": "build/win64/squeeze.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  ismember.cpp /Fobuild\\win64\\ismember.obj",
+    "file": "ismember.cpp",
+    "output": "build/win64/ismember.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  norm.cpp /Fobuild\\win64\\norm.obj",
+    "file": "norm.cpp",
+    "output": "build/win64/norm.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  rot90.cpp /Fobuild\\win64\\rot90.obj",
+    "file": "rot90.cpp",
+    "output": "build/win64/rot90.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  cat.cpp /Fobuild\\win64\\cat.obj",
+    "file": "cat.cpp",
+    "output": "build/win64/cat.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  ifWhileCond.cpp /Fobuild\\win64\\ifWhileCond.obj",
+    "file": "ifWhileCond.cpp",
+    "output": "build/win64/ifWhileCond.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  svd.cpp /Fobuild\\win64\\svd.obj",
+    "file": "svd.cpp",
+    "output": "build/win64/svd.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  combineVectorElements.cpp /Fobuild\\win64\\combineVectorElements.obj",
+    "file": "combineVectorElements.cpp",
+    "output": "build/win64/combineVectorElements.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  generateCheckerboardPoints.cpp /Fobuild\\win64\\generateCheckerboardPoints.obj",
+    "file": "generateCheckerboardPoints.cpp",
+    "output": "build/win64/generateCheckerboardPoints.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  computeInitialParameterEstimate.cpp /Fobuild\\win64\\computeInitialParameterEstimate.obj",
+    "file": "computeInitialParameterEstimate.cpp",
+    "output": "build/win64/computeInitialParameterEstimate.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  fitgeotrans.cpp /Fobuild\\win64\\fitgeotrans.obj",
+    "file": "fitgeotrans.cpp",
+    "output": "build/win64/fitgeotrans.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  all1.cpp /Fobuild\\win64\\all1.obj",
+    "file": "all1.cpp",
+    "output": "build/win64/all1.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  normalizeControlPoints.cpp /Fobuild\\win64\\normalizeControlPoints.obj",
+    "file": "normalizeControlPoints.cpp",
+    "output": "build/win64/normalizeControlPoints.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  rank.cpp /Fobuild\\win64\\rank.obj",
+    "file": "rank.cpp",
+    "output": "build/win64/rank.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  mldivide.cpp /Fobuild\\win64\\mldivide.obj",
+    "file": "mldivide.cpp",
+    "output": "build/win64/mldivide.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  inv.cpp /Fobuild\\win64\\inv.obj",
+    "file": "inv.cpp",
+    "output": "build/win64/inv.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  det.cpp /Fobuild\\win64\\det.obj",
+    "file": "det.cpp",
+    "output": "build/win64/det.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  svd1.cpp /Fobuild\\win64\\svd1.obj",
+    "file": "svd1.cpp",
+    "output": "build/win64/svd1.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  rodriguesMatrixToVector.cpp /Fobuild\\win64\\rodriguesMatrixToVector.obj",
+    "file": "rodriguesMatrixToVector.cpp",
+    "output": "build/win64/rodriguesMatrixToVector.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  xzsvdc.cpp /Fobuild\\win64\\xzsvdc.obj",
+    "file": "xzsvdc.cpp",
+    "output": "build/win64/xzsvdc.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  xnrm2.cpp /Fobuild\\win64\\xnrm2.obj",
+    "file": "xnrm2.cpp",
+    "output": "build/win64/xnrm2.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  xdotc.cpp /Fobuild\\win64\\xdotc.obj",
+    "file": "xdotc.cpp",
+    "output": "build/win64/xdotc.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  driver.cpp /Fobuild\\win64\\driver.obj",
+    "file": "driver.cpp",
+    "output": "build/win64/driver.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  worldToImage.cpp /Fobuild\\win64\\worldToImage.obj",
+    "file": "worldToImage.cpp",
+    "output": "build/win64/worldToImage.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  validateRotationMatrix.cpp /Fobuild\\win64\\validateRotationMatrix.obj",
+    "file": "validateRotationMatrix.cpp",
+    "output": "build/win64/validateRotationMatrix.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  distortPoints.cpp /Fobuild\\win64\\distortPoints.obj",
+    "file": "distortPoints.cpp",
+    "output": "build/win64/distortPoints.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  xdot.cpp /Fobuild\\win64\\xdot.obj",
+    "file": "xdot.cpp",
+    "output": "build/win64/xdot.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  strcmp.cpp /Fobuild\\win64\\strcmp.obj",
+    "file": "strcmp.cpp",
+    "output": "build/win64/strcmp.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  validateattributes.cpp /Fobuild\\win64\\validateattributes.obj",
+    "file": "validateattributes.cpp",
+    "output": "build/win64/validateattributes.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  nanmean.cpp /Fobuild\\win64\\nanmean.obj",
+    "file": "nanmean.cpp",
+    "output": "build/win64/nanmean.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  ComputeCamExtrinsics.cpp /Fobuild\\win64\\ComputeCamExtrinsics.obj",
+    "file": "ComputeCamExtrinsics.cpp",
+    "output": "build/win64/ComputeCamExtrinsics.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  computeErrors.cpp /Fobuild\\win64\\computeErrors.obj",
+    "file": "computeErrors.cpp",
+    "output": "build/win64/computeErrors.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  rotm2axang.cpp /Fobuild\\win64\\rotm2axang.obj",
+    "file": "rotm2axang.cpp",
+    "output": "build/win64/rotm2axang.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  HandeyeShah.cpp /Fobuild\\win64\\HandeyeShah.obj",
+    "file": "HandeyeShah.cpp",
+    "output": "build/win64/HandeyeShah.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  preprocessImages.cpp /Fobuild\\win64\\preprocessImages.obj",
+    "file": "preprocessImages.cpp",
+    "output": "build/win64/preprocessImages.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  meshgrid.cpp /Fobuild\\win64\\meshgrid.obj",
+    "file": "meshgrid.cpp",
+    "output": "build/win64/meshgrid.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  readRobotPoses.cpp /Fobuild\\win64\\readRobotPoses.obj",
+    "file": "readRobotPoses.cpp",
+    "output": "build/win64/readRobotPoses.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  subPixelLocation.cpp /Fobuild\\win64\\subPixelLocation.obj",
+    "file": "subPixelLocation.cpp",
+    "output": "build/win64/subPixelLocation.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  interface\\_coder_calibrateOneCamera_v2_mex_api.cpp /Fobuild\\win64\\_coder_calibrateOneCamera_v2_mex_api.obj",
+    "file": "interface/_coder_calibrateOneCamera_v2_mex_api.cpp",
+    "output": "build/win64/_coder_calibrateOneCamera_v2_mex_api.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  interface\\_coder_calibrateOneCamera_v2_mex_mex.cpp /Fobuild\\win64\\_coder_calibrateOneCamera_v2_mex_mex.obj",
+    "file": "interface/_coder_calibrateOneCamera_v2_mex_mex.cpp",
+    "output": "build/win64/_coder_calibrateOneCamera_v2_mex_mex.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  xrotg.cpp /Fobuild\\win64\\xrotg.obj",
+    "file": "xrotg.cpp",
+    "output": "build/win64/xrotg.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  bwmorph.cpp /Fobuild\\win64\\bwmorph.obj",
+    "file": "bwmorph.cpp",
+    "output": "build/win64/bwmorph.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  algbwmorph.cpp /Fobuild\\win64\\algbwmorph.obj",
+    "file": "algbwmorph.cpp",
+    "output": "build/win64/algbwmorph.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  sort.cpp /Fobuild\\win64\\sort.obj",
+    "file": "sort.cpp",
+    "output": "build/win64/sort.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  xgeqp3.cpp /Fobuild\\win64\\xgeqp3.obj",
+    "file": "xgeqp3.cpp",
+    "output": "build/win64/xgeqp3.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  xunormqr.cpp /Fobuild\\win64\\xunormqr.obj",
+    "file": "xunormqr.cpp",
+    "output": "build/win64/xunormqr.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  flip.cpp /Fobuild\\win64\\flip.obj",
+    "file": "flip.cpp",
+    "output": "build/win64/flip.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  xscal.cpp /Fobuild\\win64\\xscal.obj",
+    "file": "xscal.cpp",
+    "output": "build/win64/xscal.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  xaxpy.cpp /Fobuild\\win64\\xaxpy.obj",
+    "file": "xaxpy.cpp",
+    "output": "build/win64/xaxpy.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  xrot.cpp /Fobuild\\win64\\xrot.obj",
+    "file": "xrot.cpp",
+    "output": "build/win64/xrot.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  xswap.cpp /Fobuild\\win64\\xswap.obj",
+    "file": "xswap.cpp",
+    "output": "build/win64/xswap.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  lsqnonlin.cpp /Fobuild\\win64\\lsqnonlin.obj",
+    "file": "lsqnonlin.cpp",
+    "output": "build/win64/lsqnonlin.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  projectBox.cpp /Fobuild\\win64\\projectBox.obj",
+    "file": "projectBox.cpp",
+    "output": "build/win64/projectBox.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  sqrt.cpp /Fobuild\\win64\\sqrt.obj",
+    "file": "sqrt.cpp",
+    "output": "build/win64/sqrt.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  checkFinite.cpp /Fobuild\\win64\\checkFinite.obj",
+    "file": "checkFinite.cpp",
+    "output": "build/win64/checkFinite.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  xcopy.cpp /Fobuild\\win64\\xcopy.obj",
+    "file": "xcopy.cpp",
+    "output": "build/win64/xcopy.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  xgemv.cpp /Fobuild\\win64\\xgemv.obj",
+    "file": "xgemv.cpp",
+    "output": "build/win64/xgemv.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  linearLeastSquares.cpp /Fobuild\\win64\\linearLeastSquares.obj",
+    "file": "linearLeastSquares.cpp",
+    "output": "build/win64/linearLeastSquares.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  sqrt1.cpp /Fobuild\\win64\\sqrt1.obj",
+    "file": "sqrt1.cpp",
+    "output": "build/win64/sqrt1.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  unsafeSxfun.cpp /Fobuild\\win64\\unsafeSxfun.obj",
+    "file": "unsafeSxfun.cpp",
+    "output": "build/win64/unsafeSxfun.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  eml_int_forloop_overflow_check.cpp /Fobuild\\win64\\eml_int_forloop_overflow_check.obj",
+    "file": "eml_int_forloop_overflow_check.cpp",
+    "output": "build/win64/eml_int_forloop_overflow_check.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  factoryConstruct.cpp /Fobuild\\win64\\factoryConstruct.obj",
+    "file": "factoryConstruct.cpp",
+    "output": "build/win64/factoryConstruct.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  jacobianFiniteDifference.cpp /Fobuild\\win64\\jacobianFiniteDifference.obj",
+    "file": "jacobianFiniteDifference.cpp",
+    "output": "build/win64/jacobianFiniteDifference.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  checkStoppingCriteria.cpp /Fobuild\\win64\\checkStoppingCriteria.obj",
+    "file": "checkStoppingCriteria.cpp",
+    "output": "build/win64/checkStoppingCriteria.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  hasFiniteBounds.cpp /Fobuild\\win64\\hasFiniteBounds.obj",
+    "file": "hasFiniteBounds.cpp",
+    "output": "build/win64/hasFiniteBounds.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  computeFiniteDifferences.cpp /Fobuild\\win64\\computeFiniteDifferences.obj",
+    "file": "computeFiniteDifferences.cpp",
+    "output": "build/win64/computeFiniteDifferences.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  computeCentralDifferences.cpp /Fobuild\\win64\\computeCentralDifferences.obj",
+    "file": "computeCentralDifferences.cpp",
+    "output": "build/win64/computeCentralDifferences.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  finDiffEvalAndChkErr.cpp /Fobuild\\win64\\finDiffEvalAndChkErr.obj",
+    "file": "finDiffEvalAndChkErr.cpp",
+    "output": "build/win64/finDiffEvalAndChkErr.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  ImageTransformer.cpp /Fobuild\\win64\\ImageTransformer.obj",
+    "file": "ImageTransformer.cpp",
+    "output": "build/win64/ImageTransformer.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  cameraParameters.cpp /Fobuild\\win64\\cameraParameters.obj",
+    "file": "cameraParameters.cpp",
+    "output": "build/win64/cameraParameters.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  Checkerboard.cpp /Fobuild\\win64\\Checkerboard.obj",
+    "file": "Checkerboard.cpp",
+    "output": "build/win64/Checkerboard.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  calibrateOneCamera_v2_mex_mexutil.cpp /Fobuild\\win64\\calibrateOneCamera_v2_mex_mexutil.obj",
+    "file": "calibrateOneCamera_v2_mex_mexutil.cpp",
+    "output": "build/win64/calibrateOneCamera_v2_mex_mexutil.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  interface\\_coder_calibrateOneCamera_v2_mex_info.cpp /Fobuild\\win64\\_coder_calibrateOneCamera_v2_mex_info.obj",
+    "file": "interface/_coder_calibrateOneCamera_v2_mex_info.cpp",
+    "output": "build/win64/_coder_calibrateOneCamera_v2_mex_info.obj"
+  },
+  {
+    "directory": "D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\\codegen\\mex\\calibrateOneCamera_v2_mex",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /source-charset:utf-8 /I \".\" /I \"D:\\TUT_Research\\Gitlab\\f4e-grt\\ITER-MATLAB-CombinedCode\" /I \"C:\\Program Files\\MATLAB\\R2021a\\extern\\include\" /I \".\\interface\" /I \".\" -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=calibrateOneCamera_v2_mex -DMW_NEEDS_VERSION_H /wd4251  \"C:\\Program Files\\MATLAB\\R2021a\\extern\\version\\cpp_mexapi_version.cpp\" /Fobuild\\win64\\cpp_mexapi_version.obj",
+    "file": "C:/Program Files/MATLAB/R2021a/extern/version/cpp_mexapi_version.cpp",
+    "output": "build/win64/cpp_mexapi_version.obj"
+  }
+]

@@ -1,0 +1,190 @@
+%% Multiple Camera Calibration Toolbox - V1
+% Laura Ribeiro, Tampere University, Finland
+% (laura.goncalvesribeiro@tuni.fi)
+%% Step 1
+% Calibrates each camera independently using Matlab Camera Calibrator Application
+% Calculates extrinsic parameters between camera N and camera 1
+% Inputs: directory of calibration images, squareSize, boardSize
+% Follow the naming convetion for calibration images: PositionXXX_CameraXX
+%% Step 2
+% Overall Optimization
+% Options:
+% Re-estimate all: [1, 1, 1 ,1];
+% Fixed Intrinsics: [1, 1, 0 ,0];
+% Fixed lens distortions: [0, 1, 0 ,0];
+% Default: Fixed intrinsics.
+%{
+%% ITER API ALGORITHM IMPLEMENTATION STARTS HERE
+%% Calibrate One Camera
+function [CameraParameters,errorOptimized, calculation_err, err] = calibrateOneCamera(images, squareSize, boardSize)
+
+% Generate world coordinates of the checkerboard keypoints
+worldPoints = generateCheckerboardPoints(boardSize, squareSize);
+
+% REPLACE WITH FOR LOOP OF SINGLE detectCheckerBoardPoints
+[ImagePoints, boardSizeDetected , checkFound] = detectCheckerboardPoints(imageFileNames(:)); % detect checkerboard for every position of camera i
+
+disp(boardSize == boardSizeDetected);
+
+
+% Estimate without using estimateCameraParameters
+%If want different values of EstimateSkew, EstimateTangentialDistortion, NumRadialDistortionCoefficients unserializeCalib fuction needs be changed
+cameraModel.EstimateSkew = false; 
+cameraModel.EstimateTangentialDistortion = false;
+cameraModel.NumRadialDistortionCoefficients =3;
+
+[initialParams, imagesUsed] = computeInitialParameterEstimate(...
+    worldPoints, ImagePoints, [], cameraModel, 'millimeters', [], []);
+
+%% Convert Extrinsics to my way
+clear RTc1pn
+tempR= initialParams.RotationMatrices(:,:,imagesUsed);
+tempt= initialParams.TranslationVectors(imagesUsed,:);
+for i=1:size(tempR,3)
+    RTc1pn{i} = RTtoTransform(tempR(:,:,i),tempt(i,:));
+end
+%% Crete Calibration Struct
+calibration.CameraParameters = initialParams;
+calibration.PatternPositions = RTc1pn;
+calibration.ImagePoints = ImagePoints;
+%% Minimization options
+% Default options give better outcome
+% minimization_options=optimset('LargeScale','on',...
+%     'Algorithm','levenberg-marquardt',...
+%     'TolFun',1e-10,...
+%     'Display','on',...
+%     'TolX',1e-10,...
+%     'MaxFunEvals',200000,...
+%     'MaxIter',10000,...
+%     'UseParallel', false);
+
+% Optimization options: fixedK, fixedDistortions, fixedRTpnc1
+options = [0,0,0];
+%World and Image Points
+genPoints = [worldPoints, ones(size(worldPoints,1),1)];
+detPoints = calibration.ImagePoints;
+%% Convert initial estimate
+serialCalib = serializeCalib(calibration, options);
+
+[calibrationConverted] = unserializeCalib(serialCalib, options, calibration);
+errorInitial = CalculateCost(serialCalib, options, calibration, genPoints, detPoints);
+tmp = errorInitial; tmp(tmp<0.000001)=NaN; 
+MREi = mean(tmp(~isnan(tmp(:))));
+disp (['Mean Reprojection Error - Before Optimization: ', num2str(MREi)]);
+%% Optimization
+h = waitbar(0, 'Running global Optimization...','Name', 'Global Optimization');
+
+[optimizedSerialCalib,~,residual,~,~,~,jacobian] = lsqnonlin(@(x) CalculateCost(x, options, calibration, genPoints, detPoints),serialCalib, [],[]);
+
+delete(h);
+
+serialCI = nlparci(optimizedSerialCalib,residual,'jacobian',jacobian);
+CI(:,1) = unserializeCalib(serialCI(:,1)', options, calibration);
+CI(:,2) = unserializeCalib(serialCI(:,2)', options, calibration);
+
+errorOptimized = CalculateCost(optimizedSerialCalib, options, calibration, genPoints, detPoints);
+tmp = errorOptimized; tmp(tmp<0.000001)=NaN; MREf = nanmean(tmp(:));
+disp (['Mean Reprojection Error - After Optimization: ', num2str(MREf)]);
+
+[calibrationOptimized] = unserializeCalib(optimizedSerialCalib, options, calibration);
+
+calibrationOptimized.OptimizationOptions = options;
+calibrationOptimized.Jacobian = jacobian;
+calibrationOptimized.Error = errorOptimized;
+calibrationOptimized.CI = CI;
+
+end
+%}
+
+function [cameraParams, errorOptimized, calculation_err, valid_idx, err] = calibrateOneCamera(images, squareSize, boardSize)
+
+% Retrieve useful information
+image_size = [size(images,1) size(images,2) ];
+
+% Initalize error flag
+err = int32(0);
+cameraParams = toStruct(cameraParameters('ImageSize', image_size));
+errorOptimized = zeros(0,1);
+calculation_err = inf;
+
+coder.varsize('errorOptimized');
+[image_points, valid_idx, world_points, err] = extractCheckerboardPoint(images, squareSize, boardSize);
+
+if (err ~= 0)
+    return;
+end
+
+% Estimate without using estimateCameraParameters
+%If want different values of EstimateSkew, EstimateTangentialDistortion, NumRadialDistortionCoefficients unserializeCalib fuction needs be changed
+cameraModel.EstimateSkew = false; 
+cameraModel.EstimateTangentialDistortion = false;
+cameraModel.NumRadialDistortionCoefficients =3;
+
+[initialParams, imagesUsed, err] = computeInitialParameterEstimate(...
+    world_points, image_points, image_size, cameraModel, 'm', [], []);
+
+if (err ~= 0)
+    return;
+end
+
+%% Convert Extrinsics to my way
+
+RotationMatrices = zeros(3, 3, size(image_points,3));
+for i = 1:size(image_points,3)
+    v = initialParams.RotationVectors(i, :);
+    RotationMatrices(:, :, i) = vision.internal.calibration.rodriguesVectorToMatrix(v)';
+end
+
+tempR= RotationMatrices(:,:,imagesUsed);
+tempt= initialParams.TranslationVectors(imagesUsed,:);
+RTc1pn = cell(1,size(tempR,3));
+for i=1:size(tempR,3)
+    RTc1pn{i} = RTtoTransform(tempR(:,:,i),tempt(i,:));
+end
+%% Crete Calibration Struct
+calibration.CameraParameters = initialParams;
+calibration.PatternPositions = RTc1pn;
+calibration.ImagePoints = image_points;
+%% Minimization options
+% Default options give better outcome
+% minimization_options=optimset('LargeScale','on',...
+%     'Algorithm','levenberg-marquardt',...
+%     'TolFun',1e-10,...
+%     'Display','on',...
+%     'TolX',1e-10,...
+%     'MaxFunEvals',200000,...
+%     'MaxIter',10000,...
+%     'UseParallel', false);
+
+% Optimization options: fixedK, fixedDistortions, fixedRTpnc1
+options = [0,0,0];
+
+%World and Image Points
+genPoints = [world_points, ones(size(world_points,1),1)];
+detPoints = calibration.ImagePoints;
+%% Convert initial estimate
+serialCalib = serializeCalib(calibration, options);
+
+errorInitial = CalculateCost(serialCalib, options, calibration, genPoints, detPoints);
+tmp = errorInitial; tmp(tmp<0.000001)=NaN; 
+MREi = mean(tmp(~isnan(tmp(:))));
+if (MREi > 10)
+    % Error a
+    err = int32(-1);
+    return;
+end
+%% Optimization
+Opt = (optimoptions(@lsqnonlin,'Algorithm','levenberg-marquardt'));
+lb = [];
+ub = [];
+[optimizedSerialCalib,~,residual,~,~,~,jacobian] = ...
+    lsqnonlin(@(x) CalculateCost(x, options, calibration, genPoints, detPoints),serialCalib, lb,ub, Opt);
+
+errorOptimized = CalculateCost(optimizedSerialCalib, options, calibration, genPoints, detPoints);
+tmp = errorOptimized; tmp(tmp<0.000001)=NaN; MREf = nanmean(tmp(:));
+
+[cameraParams,~] = unserializeCalib(optimizedSerialCalib, options, calibration);
+calculation_err = MREf;
+end
+
+% ITER API ALGORITHM IMPLEMENTATION ENDS HERE

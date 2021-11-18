@@ -1,0 +1,255 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+# Add inputs and outputs from these tool invocations to the build variables 
+CPP_SRCS += \
+../ITER_API/library/Checkerboard.cpp \
+../ITER_API/library/ComputeCamExtrinsics.cpp \
+../ITER_API/library/HandeyeShah.cpp \
+../ITER_API/library/ITER_API_data.cpp \
+../ITER_API/library/ITER_API_initialize.cpp \
+../ITER_API/library/ITER_API_rtwutil.cpp \
+../ITER_API/library/ITER_API_terminate.cpp \
+../ITER_API/library/ImageTransformer.cpp \
+../ITER_API/library/NeighborhoodProcessor.cpp \
+../ITER_API/library/algbwmorph.cpp \
+../ITER_API/library/bsearch.cpp \
+../ITER_API/library/bwlookup.cpp \
+../ITER_API/library/calibrateOneCamera_v2.cpp \
+../ITER_API/library/cameraParameters.cpp \
+../ITER_API/library/cat.cpp \
+../ITER_API/library/checkStoppingCriteria.cpp \
+../ITER_API/library/colon.cpp \
+../ITER_API/library/combineVectorElements.cpp \
+../ITER_API/library/computeCentralDifferences.cpp \
+../ITER_API/library/computeErrors.cpp \
+../ITER_API/library/computeFiniteDifferences.cpp \
+../ITER_API/library/computeInitialParameterEstimate.cpp \
+../ITER_API/library/conv2AXPYValidCMP.cpp \
+../ITER_API/library/det.cpp \
+../ITER_API/library/detectCheckerboard.cpp \
+../ITER_API/library/detectCheckerboardPoints.cpp \
+../ITER_API/library/driver.cpp \
+../ITER_API/library/eml_setop.cpp \
+../ITER_API/library/factoryConstruct.cpp \
+../ITER_API/library/finDiffEvalAndChkErr.cpp \
+../ITER_API/library/find.cpp \
+../ITER_API/library/find_peaks.cpp \
+../ITER_API/library/fitgeotrans.cpp \
+../ITER_API/library/flip.cpp \
+../ITER_API/library/imfilter.cpp \
+../ITER_API/library/interp2.cpp \
+../ITER_API/library/inv.cpp \
+../ITER_API/library/isequal.cpp \
+../ITER_API/library/ismember.cpp \
+../ITER_API/library/jacobianFiniteDifference.cpp \
+../ITER_API/library/linearLeastSquares.cpp \
+../ITER_API/library/lsqnonlin.cpp \
+../ITER_API/library/mean.cpp \
+../ITER_API/library/minOrMax.cpp \
+../ITER_API/library/mldivide.cpp \
+../ITER_API/library/mod.cpp \
+../ITER_API/library/norm.cpp \
+../ITER_API/library/normalizeControlPoints.cpp \
+../ITER_API/library/polyfit.cpp \
+../ITER_API/library/preprocessImages.cpp \
+../ITER_API/library/qrsolve.cpp \
+../ITER_API/library/readRobotPoses.cpp \
+../ITER_API/library/rgb2gray.cpp \
+../ITER_API/library/rot90.cpp \
+../ITER_API/library/rotm2axang.cpp \
+../ITER_API/library/rtGetInf.cpp \
+../ITER_API/library/rtGetNaN.cpp \
+../ITER_API/library/rt_nonfinite.cpp \
+../ITER_API/library/sort.cpp \
+../ITER_API/library/sortIdx.cpp \
+../ITER_API/library/sqrt.cpp \
+../ITER_API/library/squeeze.cpp \
+../ITER_API/library/subPixelLocation.cpp \
+../ITER_API/library/sum.cpp \
+../ITER_API/library/svd.cpp \
+../ITER_API/library/svd1.cpp \
+../ITER_API/library/unsafeSxfun.cpp \
+../ITER_API/library/xaxpy.cpp \
+../ITER_API/library/xdotc.cpp \
+../ITER_API/library/xgemv.cpp \
+../ITER_API/library/xgeqp3.cpp \
+../ITER_API/library/xnrm2.cpp \
+../ITER_API/library/xrot.cpp \
+../ITER_API/library/xrotg.cpp \
+../ITER_API/library/xswap.cpp \
+../ITER_API/library/xunormqr.cpp \
+../ITER_API/library/xzlarf.cpp \
+../ITER_API/library/xzlarfg.cpp 
+
+OBJS += \
+./ITER_API/library/Checkerboard.o \
+./ITER_API/library/ComputeCamExtrinsics.o \
+./ITER_API/library/HandeyeShah.o \
+./ITER_API/library/ITER_API_data.o \
+./ITER_API/library/ITER_API_initialize.o \
+./ITER_API/library/ITER_API_rtwutil.o \
+./ITER_API/library/ITER_API_terminate.o \
+./ITER_API/library/ImageTransformer.o \
+./ITER_API/library/NeighborhoodProcessor.o \
+./ITER_API/library/algbwmorph.o \
+./ITER_API/library/bsearch.o \
+./ITER_API/library/bwlookup.o \
+./ITER_API/library/calibrateOneCamera_v2.o \
+./ITER_API/library/cameraParameters.o \
+./ITER_API/library/cat.o \
+./ITER_API/library/checkStoppingCriteria.o \
+./ITER_API/library/colon.o \
+./ITER_API/library/combineVectorElements.o \
+./ITER_API/library/computeCentralDifferences.o \
+./ITER_API/library/computeErrors.o \
+./ITER_API/library/computeFiniteDifferences.o \
+./ITER_API/library/computeInitialParameterEstimate.o \
+./ITER_API/library/conv2AXPYValidCMP.o \
+./ITER_API/library/det.o \
+./ITER_API/library/detectCheckerboard.o \
+./ITER_API/library/detectCheckerboardPoints.o \
+./ITER_API/library/driver.o \
+./ITER_API/library/eml_setop.o \
+./ITER_API/library/factoryConstruct.o \
+./ITER_API/library/finDiffEvalAndChkErr.o \
+./ITER_API/library/find.o \
+./ITER_API/library/find_peaks.o \
+./ITER_API/library/fitgeotrans.o \
+./ITER_API/library/flip.o \
+./ITER_API/library/imfilter.o \
+./ITER_API/library/interp2.o \
+./ITER_API/library/inv.o \
+./ITER_API/library/isequal.o \
+./ITER_API/library/ismember.o \
+./ITER_API/library/jacobianFiniteDifference.o \
+./ITER_API/library/linearLeastSquares.o \
+./ITER_API/library/lsqnonlin.o \
+./ITER_API/library/mean.o \
+./ITER_API/library/minOrMax.o \
+./ITER_API/library/mldivide.o \
+./ITER_API/library/mod.o \
+./ITER_API/library/norm.o \
+./ITER_API/library/normalizeControlPoints.o \
+./ITER_API/library/polyfit.o \
+./ITER_API/library/preprocessImages.o \
+./ITER_API/library/qrsolve.o \
+./ITER_API/library/readRobotPoses.o \
+./ITER_API/library/rgb2gray.o \
+./ITER_API/library/rot90.o \
+./ITER_API/library/rotm2axang.o \
+./ITER_API/library/rtGetInf.o \
+./ITER_API/library/rtGetNaN.o \
+./ITER_API/library/rt_nonfinite.o \
+./ITER_API/library/sort.o \
+./ITER_API/library/sortIdx.o \
+./ITER_API/library/sqrt.o \
+./ITER_API/library/squeeze.o \
+./ITER_API/library/subPixelLocation.o \
+./ITER_API/library/sum.o \
+./ITER_API/library/svd.o \
+./ITER_API/library/svd1.o \
+./ITER_API/library/unsafeSxfun.o \
+./ITER_API/library/xaxpy.o \
+./ITER_API/library/xdotc.o \
+./ITER_API/library/xgemv.o \
+./ITER_API/library/xgeqp3.o \
+./ITER_API/library/xnrm2.o \
+./ITER_API/library/xrot.o \
+./ITER_API/library/xrotg.o \
+./ITER_API/library/xswap.o \
+./ITER_API/library/xunormqr.o \
+./ITER_API/library/xzlarf.o \
+./ITER_API/library/xzlarfg.o 
+
+CPP_DEPS += \
+./ITER_API/library/Checkerboard.d \
+./ITER_API/library/ComputeCamExtrinsics.d \
+./ITER_API/library/HandeyeShah.d \
+./ITER_API/library/ITER_API_data.d \
+./ITER_API/library/ITER_API_initialize.d \
+./ITER_API/library/ITER_API_rtwutil.d \
+./ITER_API/library/ITER_API_terminate.d \
+./ITER_API/library/ImageTransformer.d \
+./ITER_API/library/NeighborhoodProcessor.d \
+./ITER_API/library/algbwmorph.d \
+./ITER_API/library/bsearch.d \
+./ITER_API/library/bwlookup.d \
+./ITER_API/library/calibrateOneCamera_v2.d \
+./ITER_API/library/cameraParameters.d \
+./ITER_API/library/cat.d \
+./ITER_API/library/checkStoppingCriteria.d \
+./ITER_API/library/colon.d \
+./ITER_API/library/combineVectorElements.d \
+./ITER_API/library/computeCentralDifferences.d \
+./ITER_API/library/computeErrors.d \
+./ITER_API/library/computeFiniteDifferences.d \
+./ITER_API/library/computeInitialParameterEstimate.d \
+./ITER_API/library/conv2AXPYValidCMP.d \
+./ITER_API/library/det.d \
+./ITER_API/library/detectCheckerboard.d \
+./ITER_API/library/detectCheckerboardPoints.d \
+./ITER_API/library/driver.d \
+./ITER_API/library/eml_setop.d \
+./ITER_API/library/factoryConstruct.d \
+./ITER_API/library/finDiffEvalAndChkErr.d \
+./ITER_API/library/find.d \
+./ITER_API/library/find_peaks.d \
+./ITER_API/library/fitgeotrans.d \
+./ITER_API/library/flip.d \
+./ITER_API/library/imfilter.d \
+./ITER_API/library/interp2.d \
+./ITER_API/library/inv.d \
+./ITER_API/library/isequal.d \
+./ITER_API/library/ismember.d \
+./ITER_API/library/jacobianFiniteDifference.d \
+./ITER_API/library/linearLeastSquares.d \
+./ITER_API/library/lsqnonlin.d \
+./ITER_API/library/mean.d \
+./ITER_API/library/minOrMax.d \
+./ITER_API/library/mldivide.d \
+./ITER_API/library/mod.d \
+./ITER_API/library/norm.d \
+./ITER_API/library/normalizeControlPoints.d \
+./ITER_API/library/polyfit.d \
+./ITER_API/library/preprocessImages.d \
+./ITER_API/library/qrsolve.d \
+./ITER_API/library/readRobotPoses.d \
+./ITER_API/library/rgb2gray.d \
+./ITER_API/library/rot90.d \
+./ITER_API/library/rotm2axang.d \
+./ITER_API/library/rtGetInf.d \
+./ITER_API/library/rtGetNaN.d \
+./ITER_API/library/rt_nonfinite.d \
+./ITER_API/library/sort.d \
+./ITER_API/library/sortIdx.d \
+./ITER_API/library/sqrt.d \
+./ITER_API/library/squeeze.d \
+./ITER_API/library/subPixelLocation.d \
+./ITER_API/library/sum.d \
+./ITER_API/library/svd.d \
+./ITER_API/library/svd1.d \
+./ITER_API/library/unsafeSxfun.d \
+./ITER_API/library/xaxpy.d \
+./ITER_API/library/xdotc.d \
+./ITER_API/library/xgemv.d \
+./ITER_API/library/xgeqp3.d \
+./ITER_API/library/xnrm2.d \
+./ITER_API/library/xrot.d \
+./ITER_API/library/xrotg.d \
+./ITER_API/library/xswap.d \
+./ITER_API/library/xunormqr.d \
+./ITER_API/library/xzlarf.d \
+./ITER_API/library/xzlarfg.d 
+
+
+# Each subdirectory must supply rules for building sources it contributes
+ITER_API/library/%.o: ../ITER_API/library/%.cpp ITER_API/library/subdir.mk
+	@echo 'Building file: $<'
+	@echo 'Invoking: Cygwin C++ Compiler'
+	g++ -std=c++1z -I"D:\eclipse-workspace\Handeye_Calibration_2.0\cute" -O3 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -fopenmp -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+

@@ -1,0 +1,58 @@
+function [image_points, valid_idx, world_points, err] = extractCheckerboardPoint(images, square_size, board_size) 
+
+err = int32(0);
+
+board_size_valid = zeros(1,2); 
+image_point_valid = [];
+num_of_images = size(images,4);  valid_idx = false(num_of_images,1);
+board_points = cell(1,num_of_images); 
+% perform checkerboards detection in each image
+for i=1:num_of_images 	    
+    current_image=images(:,:,:,i);     
+    [current_board_points, board_size_detected] = detectCheckerboardPoints(current_image, 'PartialDetections', false);
+    % mark if checkerboards is detected or not  
+    if (isequal(board_size_detected, [0 0]) || ...
+            (~isempty(board_size) && ~isequal(board_size_detected,board_size) ))     
+        valid_idx(i)=false;    
+    else  
+        if (isequal(board_size_valid, [0 0]))
+            board_size_valid = board_size_detected;
+            image_point_valid = current_board_points;
+        elseif (~isequal(board_size_valid, board_size_detected))            
+              err = int32(-1);              
+        end
+        valid_idx(i)=true;      
+    end         
+    
+       
+    board_points{i} = current_board_points;
+end 
+
+if (err ~=0)
+    %err = "No detect of checkerboard in all images"; 
+    image_points = [];
+    world_points = [];
+    return;
+end 
+
+if ~all(valid_idx)   
+    %err = "No detect of checkerboard in all images";  
+    err = int32(-1);
+    image_points = [];
+    world_points = [];
+    return;
+end 
+
+num_of_valid_images = sum(valid_idx(:) == true);
+image_points = zeros([size(image_point_valid) num_of_valid_images]);
+for i=1:num_of_images
+    if valid_idx(i)
+        image_points(:,:,i) = board_points{i};
+    end
+end
+
+
+% Generate world coordinates of the corners of the squares in meters
+world_points = generateCheckerboardPoints(board_size_valid, square_size);
+
+end
