@@ -90,14 +90,14 @@ void calibrateCamera(const std::vector<imageWrap> &calibrationImages,
 {
 	// Definition of interal variables
 	coder::array<uint8_T, 4U> images_array;	
-	cam_struct_t camera_params_in;
+	ITER::cam_struct_t camera_params_in;
 	
 	coder::array<uint8_T, 4U> gray_images;
 	
 	double squareSize;
 	int boardSize[2];
 	
-	struct0_T camera_params;
+	ITER::struct0_T camera_params;
 	coder::array<double, 1U> errorOptimized;
 	double MRef;
 	coder::array<bool, 1U> valid_idx;
@@ -112,14 +112,14 @@ void calibrateCamera(const std::vector<imageWrap> &calibrationImages,
 								
 	ITER::convertDataType4Images(calibrationImages, images_array);
 
-	preprocessImages(images_array, &camera_params_in, false, gray_images);
+	ITER::preprocessImages(images_array, &camera_params_in, false, gray_images);
 
 	// calibrateOneCamera
-	calibrateOneCamera(gray_images, squareSize, boardSize, &camera_params,
+	ITER::calibrateOneCamera(gray_images, squareSize, boardSize, &camera_params,
 			errorOptimized, &MRef, valid_idx, &err);
 
 	if (err != ITER::NO_ERROR) {
-		ITER_API_terminate();
+		ITER::ITER_API_terminate();
 		throw std::runtime_error(calibrateCamera_ns::API_error_codes.at(-err));
 	}
 
@@ -145,7 +145,7 @@ void calibrateCamera(const std::vector<imageWrap> &calibrationImages,
 			|| std::isnan(camera_params.TangentialDistortion[0])
 			|| std::isnan(camera_params.TangentialDistortion[1])
 			|| std::isnan(MRef)) {
-		ITER_API_terminate();
+		ITER::ITER_API_terminate();
 		throw std::runtime_error(
 				calibrateCamera_ns::API_error_codes.at(6));
 	}
@@ -170,5 +170,5 @@ void calibrateCamera(const std::vector<imageWrap> &calibrationImages,
 	}
 	camParam.numUsedImages = counter;
 	
-	ITER_API_terminate();
+	ITER::ITER_API_terminate();
 }

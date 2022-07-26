@@ -5,7 +5,7 @@
 // File: RemoveDependentIneq_.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -21,18 +21,19 @@
 
 // Function Definitions
 //
-// Arguments    : j_struct_T *d_workingset
+// Arguments    : o_struct_T *d_workingset
 //                struct_T *c_qrmanager
 //                b_struct_T *memspace
 //                double tolfactor
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace qpactiveset {
 namespace initialize {
-void RemoveDependentIneq_(j_struct_T *d_workingset, struct_T *c_qrmanager,
+void RemoveDependentIneq_(o_struct_T *d_workingset, struct_T *c_qrmanager,
                           b_struct_T *memspace, double tolfactor)
 {
   int nActiveConstr;
@@ -147,6 +148,7 @@ void RemoveDependentIneq_(j_struct_T *d_workingset, struct_T *c_qrmanager,
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for RemoveDependentIneq_.cpp

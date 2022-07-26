@@ -5,7 +5,7 @@
 // File: HandeyeShah.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -24,25 +24,26 @@
 
 // Function Definitions
 //
-// Arguments    : const coder::array<double, 3U> &As
-//                const coder::array<double, 3U> &b_Bs
+// Arguments    : const ::coder::array<double, 3U> &As
+//                const ::coder::array<double, 3U> &b_Bs
 //                double d_X[4][4]
 //                double g_Y[4][4]
 //                int *err
 // Return Type  : void
 //
-void HandeyeShah(const coder::array<double, 3U> &As,
-                 const coder::array<double, 3U> &b_Bs, double d_X[4][4],
+namespace ITER {
+void HandeyeShah(const ::coder::array<double, 3U> &As,
+                 const ::coder::array<double, 3U> &b_Bs, double d_X[4][4],
                  double g_Y[4][4], int *err)
 {
-  static const signed char iv1[4]{0, 0, 0, 1};
-  coder::array<double, 2U> A;
-  coder::array<double, 1U> b;
-  coder::array<double, 1U> b_t;
-  coder::array<signed char, 1U> r;
+  static const signed char b_iv1[4]{0, 0, 0, 1};
+  ::coder::array<double, 2U> A;
+  ::coder::array<double, 1U> b;
+  ::coder::array<double, 1U> b_t;
+  ::coder::array<signed char, 1U> r;
   double T[9][9];
-  double b_v[9][9];
   double c_u[9][9];
+  double e_v[9][9];
   double f_K[9][9];
   double d_a[9][3];
   double b_As[6][3];
@@ -89,7 +90,7 @@ void HandeyeShah(const coder::array<double, 3U> &As,
   int y;
   signed char o_I[3][3];
   bool b_x[81];
-  bool g_x[9];
+  bool e_x[9];
   bool p;
   if (!isInitialized_ITER_API) {
     ITER_API_initialize();
@@ -167,18 +168,18 @@ void HandeyeShah(const coder::array<double, 3U> &As,
     }
   }
   if (p) {
-    coder::internal::e_svd(T, c_u, s, b_v);
+    coder::internal::h_svd(T, c_u, s, e_v);
   } else {
 #pragma omp parallel for num_threads(omp_get_max_threads()) private(b_i8)
 
     for (int i7 = 0; i7 < 9; i7++) {
       for (b_i8 = 0; b_i8 < 9; b_i8++) {
         c_u[i7][b_i8] = rtNaN;
-        b_v[i7][b_i8] = rtNaN;
+        e_v[i7][b_i8] = rtNaN;
       }
     }
   }
-  x_tmp = coder::det(*((double(*)[3][3])(&b_v[0][0])));
+  x_tmp = coder::det(*((double(*)[3][3])(&e_v[0][0])));
   if (x_tmp < 0.0) {
     b_x_tmp = -1.0;
   } else if (x_tmp > 0.0) {
@@ -192,7 +193,7 @@ void HandeyeShah(const coder::array<double, 3U> &As,
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
   for (int i9 = 0; i9 < 9; i9++) {
-    f_v[i9] = b_v[0][i9];
+    f_v[i9] = e_v[0][i9];
   }
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
@@ -205,16 +206,16 @@ void HandeyeShah(const coder::array<double, 3U> &As,
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
   for (int i11 = 0; i11 < 9; i11++) {
-    g_x[i11] = std::isnan((&x1[0][0])[i11]);
+    e_x[i11] = std::isnan((&x1[0][0])[i11]);
   }
-  b_y = static_cast<int>(g_x[0]);
+  b_y = static_cast<int>(e_x[0]);
   for (int d_k{0}; d_k < 8; d_k++) {
-    b_y += static_cast<int>(g_x[d_k + 1]);
+    b_y += static_cast<int>(e_x[d_k + 1]);
   }
   if (b_y != 0) {
     *err = -201;
   }
-  coder::svd(x1, d_u, *((double(*)[3][3])(&s[0])), g_v);
+  coder::b_svd(x1, d_u, *((double(*)[3][3])(&s[0])), g_v);
   c_x_tmp = coder::det(*((double(*)[3][3])(&c_u[0][0])));
   if (c_x_tmp < 0.0) {
     d_x_tmp = -1.0;
@@ -242,16 +243,16 @@ void HandeyeShah(const coder::array<double, 3U> &As,
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
   for (int i14 = 0; i14 < 9; i14++) {
-    g_x[i14] = std::isnan((&b_y1[0][0])[i14]);
+    e_x[i14] = std::isnan((&b_y1[0][0])[i14]);
   }
-  c_y = static_cast<int>(g_x[0]);
+  c_y = static_cast<int>(e_x[0]);
   for (int e_k{0}; e_k < 8; e_k++) {
-    c_y += static_cast<int>(g_x[e_k + 1]);
+    c_y += static_cast<int>(e_x[e_k + 1]);
   }
   if (c_y != 0) {
     *err = -201;
   }
-  coder::svd(b_y1, f_u, *((double(*)[3][3])(&s[0])), h_v);
+  coder::b_svd(b_y1, f_u, *((double(*)[3][3])(&s[0])), h_v);
 #pragma omp parallel for num_threads(omp_get_max_threads()) private(           \
     b_d1, i17, d2, d3, d4)
 
@@ -378,7 +379,7 @@ void HandeyeShah(const coder::array<double, 3U> &As,
     d_X[3][i23] = b_t[i23];
   }
   for (int i24{0}; i24 < 4; i24++) {
-    d_X[i24][3] = static_cast<double>(iv1[i24]);
+    d_X[i24][3] = static_cast<double>(b_iv1[i24]);
   }
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
@@ -389,9 +390,11 @@ void HandeyeShah(const coder::array<double, 3U> &As,
     g_Y[3][i26] = b_t[i26 + 3];
   }
   for (int i29{0}; i29 < 4; i29++) {
-    g_Y[i29][3] = static_cast<double>(iv1[i29]);
+    g_Y[i29][3] = static_cast<double>(b_iv1[i29]);
   }
 }
+
+} // namespace ITER
 
 //
 // File trailer for HandeyeShah.cpp

@@ -5,7 +5,7 @@
 // File: compute_deltax.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef COMPUTE_DELTAX_H
@@ -13,35 +13,42 @@
 
 // Include Files
 #include "rtwtypes.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Type Declarations
-struct i_struct_T;
+namespace ITER {
+struct m_struct_T;
 
 struct b_struct_T;
 
 struct struct_T;
 
-struct s_struct_T;
+struct y_struct_T;
 
-struct r_struct_T;
+struct x_struct_T;
+
+} // namespace ITER
 
 // Function Declarations
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace qpactiveset {
-void compute_deltax(const double H[7][7], i_struct_T *solution,
+void compute_deltax(const double H[7][7], m_struct_T *solution,
                     b_struct_T *memspace, const struct_T *c_qrmanager,
-                    s_struct_T *c_cholmanager, const r_struct_T *b_objective,
+                    y_struct_T *c_cholmanager, const x_struct_T *b_objective,
                     bool alwaysPositiveDef);
 
 }
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 #endif
 //

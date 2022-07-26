@@ -5,7 +5,7 @@
 // File: linearForm_.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -23,6 +23,7 @@
 //                const double b_x[8]
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
@@ -48,8 +49,8 @@ void linearForm_(bool obj_hasLinear, int obj_nvar, double workspace[8][15],
     beta1 = 1;
   }
   if (obj_nvar != 0) {
-    int b_ix;
     int c_i;
+    int c_ix;
     int iac;
     if (beta1 != 1) {
       if ((static_cast<int>(obj_nvar < 4)) != 0) {
@@ -64,21 +65,21 @@ void linearForm_(bool obj_hasLinear, int obj_nvar, double workspace[8][15],
         }
       }
     }
-    b_ix = 0;
+    c_ix = 0;
     c_i = (obj_nvar * (obj_nvar - 1)) + 1;
     iac = 1;
     while (((obj_nvar > 0) && (iac <= c_i)) ||
            ((obj_nvar < 0) && (iac >= c_i))) {
       double c;
       int i1;
-      c = 0.5 * b_x[b_ix];
+      c = 0.5 * b_x[c_ix];
       i1 = (iac + obj_nvar) - 1;
       for (int ia{iac}; ia <= i1; ia++) {
         int i2;
         i2 = ia - iac;
         (&workspace[0][0])[i2] += (&H[0][0])[ia - 1] * c;
       }
-      b_ix++;
+      c_ix++;
       iac += obj_nvar;
     }
   }
@@ -89,6 +90,7 @@ void linearForm_(bool obj_hasLinear, int obj_nvar, double workspace[8][15],
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for linearForm_.cpp

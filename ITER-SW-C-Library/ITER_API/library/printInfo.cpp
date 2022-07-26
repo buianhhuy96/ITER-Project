@@ -5,7 +5,7 @@
 // File: printInfo.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -33,6 +33,7 @@
 //                int b_workingset_nActiveConstr
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
@@ -146,6 +147,7 @@ void printInfo(bool newBlocking, int PROBLEM_TYPE, double alpha,
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for printInfo.cpp

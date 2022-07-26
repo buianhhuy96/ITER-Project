@@ -5,7 +5,7 @@
 // File: maxConstraintViolation.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef MAXCONSTRAINTVIOLATION_H
@@ -13,22 +13,28 @@
 
 // Include Files
 #include "rtwtypes.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Type Declarations
-struct j_struct_T;
+namespace ITER {
+struct o_struct_T;
+
+}
 
 // Function Declarations
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace qpactiveset {
 namespace WorkingSet {
-double b_maxConstraintViolation(const j_struct_T *obj, const double b_x[8]);
+double b_maxConstraintViolation(const o_struct_T *obj, const double b_x[8]);
 
-double maxConstraintViolation(const j_struct_T *obj, const double b_x[8][15],
+double maxConstraintViolation(const o_struct_T *obj, const double b_x[8][15],
                               int ix0);
 
 } // namespace WorkingSet
@@ -36,6 +42,7 @@ double maxConstraintViolation(const j_struct_T *obj, const double b_x[8][15],
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 #endif
 //

@@ -5,23 +5,25 @@
 // File: rotm2axang.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
 #include "rotm2axang.h"
 #include "ITER_API_rtwutil.h"
-#include "mod.h"
 #include "rt_nonfinite.h"
 #include "sqrt.h"
-#include "svd1.h"
+#include "svd.h"
 #include "coder_array.h"
 #include "rt_defines.h"
 #include <cmath>
 #include <string.h>
 
 // Function Declarations
+namespace ITER {
 static double rt_atan2d_snf(double u0, double b_u1);
+
+}
 
 // Function Definitions
 //
@@ -29,6 +31,7 @@ static double rt_atan2d_snf(double u0, double b_u1);
 //                double b_u1
 // Return Type  : double
 //
+namespace ITER {
 static double rt_atan2d_snf(double u0, double b_u1)
 {
   double y;
@@ -63,16 +66,16 @@ static double rt_atan2d_snf(double u0, double b_u1)
 }
 
 //
-// Arguments    : const double c_R[3][3]
+// Arguments    : const double b_R[3][3]
 //                double axang[4]
 // Return Type  : void
 //
 namespace coder {
-void rotm2axang(const double c_R[3][3], double axang[4])
+void rotm2axang(const double b_R[3][3], double axang[4])
 {
-  array<double, 2U> vspecial;
-  creal_T b_v;
+  ::coder::array<double, 2U> vspecial;
   creal_T c_u;
+  creal_T e_v;
   double V[3][3];
   double a__1[3][3];
   double a__2[3][3];
@@ -80,32 +83,57 @@ void rotm2axang(const double c_R[3][3], double axang[4])
   double f_v[3];
   double b_a;
   double b_b;
+  double r;
   double x_re;
   int k;
-  int nz;
+  int nz_tmp;
   signed char o_I[3][3];
   bool b;
   bool b_b1;
   bool exitg1;
-  x_re = 0.5 * (((c_R[0][0] + c_R[1][1]) + c_R[2][2]) - 1.0);
+  x_re = 0.5 * (((b_R[0][0] + b_R[1][1]) + b_R[2][2]) - 1.0);
   if (!(std::abs(x_re) > 1.0)) {
     double d;
     d = x_re;
     x_re = std::acos(d);
   } else {
-    b_v.re = x_re + 1.0;
-    b_v.im = 0.0;
-    internal::scalar::b_sqrt(&b_v);
+    e_v.re = x_re + 1.0;
+    e_v.im = 0.0;
+    internal::scalar::b_sqrt(&e_v);
     c_u.re = 1.0 - x_re;
     c_u.im = 0.0;
     internal::scalar::b_sqrt(&c_u);
-    x_re = 2.0 * rt_atan2d_snf(c_u.re, b_v.re);
+    x_re = 2.0 * rt_atan2d_snf(c_u.re, e_v.re);
   }
   b_a = 2.0 * std::sin(x_re);
-  f_v[0] = (c_R[1][2] - c_R[2][1]) / b_a;
-  f_v[1] = (c_R[2][0] - c_R[0][2]) / b_a;
-  f_v[2] = (c_R[0][1] - c_R[1][0]) / b_a;
-  b = (b_mod(x_re, 3.1415926535897931) == 0.0);
+  f_v[0] = (b_R[1][2] - b_R[2][1]) / b_a;
+  f_v[1] = (b_R[2][0] - b_R[0][2]) / b_a;
+  f_v[2] = (b_R[0][1] - b_R[1][0]) / b_a;
+  if (std::isnan(x_re)) {
+    r = rtNaN;
+  } else if (std::isinf(x_re)) {
+    r = rtNaN;
+  } else if (x_re == 0.0) {
+    r = 0.0;
+  } else {
+    bool rEQ0;
+    r = std::fmod(x_re, 3.1415926535897931);
+    rEQ0 = (r == 0.0);
+    if (!rEQ0) {
+      double b_q;
+      b_q = std::abs(x_re / 3.1415926535897931);
+      rEQ0 = !(std::abs(b_q - std::floor(b_q + 0.5)) >
+               (2.2204460492503131E-16 * b_q));
+    }
+    if (rEQ0) {
+      r = 0.0;
+    } else if (x_re < 0.0) {
+      r += 3.1415926535897931;
+    } else {
+      /* no actions */
+    }
+  }
+  b = (r == 0.0);
   b_b1 = true;
   k = 0;
   exitg1 = false;
@@ -117,32 +145,30 @@ void rotm2axang(const double c_R[3][3], double axang[4])
       k++;
     }
   }
-  nz = static_cast<int>(b || b_b1);
+  nz_tmp = static_cast<int>(b || b_b1);
   if (b || b_b1) {
-    int i1;
     int trueCount;
-    vspecial.set_size(3, nz);
-    for (int b_i{0}; b_i < nz; b_i++) {
+    vspecial.set_size(3, nz_tmp);
+    for (int b_i{0}; b_i < nz_tmp; b_i++) {
       vspecial[0] = 0.0;
       vspecial[1] = 0.0;
       vspecial[2] = 0.0;
     }
-    i1 = static_cast<int>(b || b_b1);
-    for (int c_i{0}; c_i < i1; c_i++) {
-      for (int i2{0}; i2 < 3; i2++) {
-        o_I[i2][0] = 0;
-        o_I[i2][1] = 0;
-        o_I[i2][2] = 0;
+    for (int c_i{0}; c_i < nz_tmp; c_i++) {
+      for (int i1{0}; i1 < 3; i1++) {
+        o_I[i1][0] = 0;
+        o_I[i1][1] = 0;
+        o_I[i1][2] = 0;
       }
       o_I[0][0] = 1;
       o_I[1][1] = 1;
       o_I[2][2] = 1;
-      for (int i3{0}; i3 < 3; i3++) {
-        p_I[i3][0] = (static_cast<double>(o_I[i3][0])) - c_R[i3][0];
-        p_I[i3][1] = (static_cast<double>(o_I[i3][1])) - c_R[i3][1];
-        p_I[i3][2] = (static_cast<double>(o_I[i3][2])) - c_R[i3][2];
+      for (int i2{0}; i2 < 3; i2++) {
+        p_I[i2][0] = (static_cast<double>(o_I[i2][0])) - b_R[i2][0];
+        p_I[i2][1] = (static_cast<double>(o_I[i2][1])) - b_R[i2][1];
+        p_I[i2][2] = (static_cast<double>(o_I[i2][2])) - b_R[i2][2];
       }
-      svd(p_I, a__1, a__2, V);
+      b_svd(p_I, a__1, a__2, V);
       vspecial[0] = V[2][0];
       vspecial[1] = V[2][1];
       vspecial[2] = V[2][2];
@@ -166,6 +192,7 @@ void rotm2axang(const double c_R[3][3], double axang[4])
 }
 
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for rotm2axang.cpp

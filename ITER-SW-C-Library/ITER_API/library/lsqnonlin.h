@@ -5,7 +5,7 @@
 // File: lsqnonlin.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef LSQNONLIN_H
@@ -14,19 +14,24 @@
 // Include Files
 #include "rtwtypes.h"
 #include "coder_array.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Type Declarations
+namespace ITER {
 namespace coder {
-class b_anonymous_function;
+class d_anonymous_function;
 
 }
+} // namespace ITER
 
 // Function Declarations
+namespace ITER {
 namespace coder {
-void lsqnonlin(const b_anonymous_function *fun,
+void lsqnonlin(const d_anonymous_function *fun,
                ::coder::array<double, 1U> &xCurrent,
                const ::coder::array<double, 1U> &lb,
                const ::coder::array<double, 1U> &ub, double *resnorm,
@@ -39,6 +44,7 @@ void lsqnonlin(const b_anonymous_function *fun,
                ::coder::array<double, 2U> &jacob);
 
 }
+} // namespace ITER
 
 #endif
 //

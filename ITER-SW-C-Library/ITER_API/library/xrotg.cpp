@@ -5,7 +5,7 @@
 // File: xrotg.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -22,6 +22,7 @@
 //                double *s
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace internal {
 namespace blas {
@@ -29,8 +30,8 @@ void xrotg(double *b_a, double *b, double *c, double *s)
 {
   double absa;
   double absb;
+  double b_c;
   double b_s;
-  double c_c;
   double roe;
   double scale;
   roe = *b;
@@ -42,7 +43,7 @@ void xrotg(double *b_a, double *b, double *c, double *s)
   scale = absa + absb;
   if (scale == 0.0) {
     b_s = 0.0;
-    c_c = 1.0;
+    b_c = 1.0;
     *b_a = 0.0;
     *b = 0.0;
   } else {
@@ -55,24 +56,25 @@ void xrotg(double *b_a, double *b, double *c, double *s)
     if (roe < 0.0) {
       r = -r;
     }
-    c_c = (*b_a) / r;
+    b_c = (*b_a) / r;
     b_s = (*b) / r;
     if (absa > absb) {
       *b = b_s;
-    } else if (c_c != 0.0) {
-      *b = 1.0 / c_c;
+    } else if (b_c != 0.0) {
+      *b = 1.0 / b_c;
     } else {
       *b = 1.0;
     }
     *b_a = r;
   }
-  *c = c_c;
+  *c = b_c;
   *s = b_s;
 }
 
 } // namespace blas
 } // namespace internal
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for xrotg.cpp

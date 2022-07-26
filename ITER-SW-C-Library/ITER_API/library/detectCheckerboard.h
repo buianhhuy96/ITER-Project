@@ -5,7 +5,7 @@
 // File: detectCheckerboard.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef DETECTCHECKERBOARD_H
@@ -14,11 +14,14 @@
 // Include Files
 #include "rtwtypes.h"
 #include "coder_array.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Type Declarations
+namespace ITER {
 namespace coder {
 namespace vision {
 namespace internal {
@@ -31,8 +34,10 @@ class b_Checkerboard;
 } // namespace internal
 } // namespace vision
 } // namespace coder
+} // namespace ITER
 
 // Function Declarations
+namespace ITER {
 namespace coder {
 namespace vision {
 namespace internal {
@@ -63,6 +68,7 @@ void toPoints(const b_Checkerboard *b_this,
 } // namespace internal
 } // namespace vision
 } // namespace coder
+} // namespace ITER
 
 #endif
 //

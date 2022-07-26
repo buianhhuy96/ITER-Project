@@ -174,7 +174,7 @@ void calibrateHandEye(const std::vector<imageWrap> &images,
 	coder::array<double, 3U> cam_extrinsics;
 	coder::array<double, 3U> camera_poses;
 	coder::array<double, 2U> world_points;
-	cam_struct_t camera_params;
+	ITER::cam_struct_t camera_params;
 	int err = ITER::NO_ERROR;
 
 	double base2grid[4][4];
@@ -200,33 +200,33 @@ void calibrateHandEye(const std::vector<imageWrap> &images,
 	KM[3][1] = 0;
 	KM[3][2] = 0;
 
-	preprocessImages(images_array, &camera_params, true, gray_images);
+	ITER::preprocessImages(images_array, &camera_params, true, gray_images);
 
 	// Load robot poses
-	readRobotPoses(robotPoses, Poses, Extrinsics);
+	ITER::readRobotPoses(robotPoses, Poses, Extrinsics);
 
 	// Compute Camera extrinsics
-	ComputeCamExtrinsics(gray_images, square_size, &camera_params, image_points,
+	ITER::ComputeCamExtrinsics(gray_images, square_size, &camera_params, image_points,
 			valid_idx, cam_extrinsics, camera_poses, world_points, &err);
 
 	if (err != ITER::NO_ERROR) {
-		ITER_API_terminate();
+		ITER::ITER_API_terminate();
 		throw std::runtime_error(calibrateHandEye_ns::API_error_codes.at(-err));
 	}
 
 	// Compute hand-eye- transformation (AX=ZB)
 	// Handeye Shah
-	HandeyeShah(Extrinsics, cam_extrinsics, base2grid, handEyeHT, &err);
+	ITER::HandeyeShah(Extrinsics, cam_extrinsics, base2grid, handEyeHT, &err);
 
 	if (err != ITER::NO_ERROR) {
-		ITER_API_terminate();
+		ITER::ITER_API_terminate();
 		throw std::runtime_error(calibrateHandEye_ns::API_error_codes.at(-err));
 	}
 	// This should be reduced to only errors which can be computed without
 	// ground truth
 
 	// Computing Errors
-	computeErrors(Extrinsics, handEyeHT, base2grid, cam_extrinsics,
+	ITER::computeErrors(Extrinsics, handEyeHT, base2grid, cam_extrinsics,
 			image_points, world_points, KM, errors);
 
 	//  Output conversion
@@ -238,7 +238,7 @@ void calibrateHandEye(const std::vector<imageWrap> &images,
 		for (int i0 = 0; i0 < 4; i0++) {
 			if (std::isinf(handEyeHT[i1][i0])
 					|| std::isnan(handEyeHT[i1][i0])) {
-				ITER_API_terminate();
+				ITER::ITER_API_terminate();
 				throw std::runtime_error(
 						calibrateHandEye_ns::API_error_codes.at(8));
 			}
@@ -253,6 +253,6 @@ void calibrateHandEye(const std::vector<imageWrap> &images,
 		}
 	}
 	usedImages = img_counter;
-	ITER_API_terminate();
+	ITER::ITER_API_terminate();
 
 }

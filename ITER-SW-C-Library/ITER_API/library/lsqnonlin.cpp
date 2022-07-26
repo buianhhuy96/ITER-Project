@@ -5,11 +5,12 @@
 // File: lsqnonlin.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
 #include "lsqnonlin.h"
+#include "ITER_API_data.h"
 #include "ITER_API_internal_types.h"
 #include "ITER_API_internal_types1.h"
 #include "ITER_API_internal_types11.h"
@@ -35,7 +36,7 @@
 
 // Function Definitions
 //
-// Arguments    : const b_anonymous_function *fun
+// Arguments    : const d_anonymous_function *fun
 //                ::coder::array<double, 1U> &xCurrent
 //                const ::coder::array<double, 1U> &lb
 //                const ::coder::array<double, 1U> &ub
@@ -52,9 +53,10 @@
 //                ::coder::array<double, 2U> &jacob
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 void lsqnonlin(
-    const b_anonymous_function *fun, ::coder::array<double, 1U> &xCurrent,
+    const d_anonymous_function *fun, ::coder::array<double, 1U> &xCurrent,
     const ::coder::array<double, 1U> &lb, const ::coder::array<double, 1U> &ub,
     double *resnorm, ::coder::array<double, 1U> &fval, double *exitflag,
     double *output_iterations, double *output_funcCount,
@@ -62,34 +64,33 @@ void lsqnonlin(
     char output_algorithm[19], ::coder::array<double, 1U> &lambda_lower,
     ::coder::array<double, 1U> &lambda_upper, ::coder::array<double, 2U> &jacob)
 {
-  static const char b_cv[19]{'l', 'e', 'v', 'e', 'n', 'b', 'e', 'r', 'g', '-',
-                             'm', 'a', 'r', 'q', 'u', 'a', 'r', 'd', 't'};
-  static const char t7_FiniteDifferenceType[7]{'f', 'o', 'r', 'w',
+  static const char t8_FiniteDifferenceType[7]{'f', 'o', 'r', 'w',
                                                'a', 'r', 'd'};
-  c_anonymous_function b_this;
-  array<double, 2U> augJacobian;
-  array<double, 1U> a__2;
-  array<double, 1U> a__3;
-  array<double, 1U> a__4;
-  array<double, 1U> b_dx;
-  array<double, 1U> b_ub;
-  array<double, 1U> c_a__5;
-  array<double, 1U> fNew;
-  array<double, 1U> f_temp;
-  array<double, 1U> finiteDifferenceRunTimeOptions_FiniteDifferenceStepSize;
-  array<double, 1U> finiteDifferenceRunTimeOptions_TypicalX;
-  array<double, 1U> g_x;
-  array<double, 1U> gradf;
-  array<double, 1U> maxval;
-  array<double, 1U> r;
-  array<double, 1U> rhs;
-  array<double, 1U> scaleFactors;
-  array<double, 1U> varargin_2;
-  array<double, 1U> xp;
-  array<bool, 1U> hasLB;
-  array<bool, 1U> hasUB;
-  array<bool, 1U> indActive;
-  t_struct_T FiniteDifferences;
+  e_anonymous_function b_this;
+  ::coder::array<double, 2U> augJacobian;
+  ::coder::array<double, 1U> a__2;
+  ::coder::array<double, 1U> a__3;
+  ::coder::array<double, 1U> a__4;
+  ::coder::array<double, 1U> b_dx;
+  ::coder::array<double, 1U> b_ub;
+  ::coder::array<double, 1U> c_a__5;
+  ::coder::array<double, 1U> e_x;
+  ::coder::array<double, 1U> fNew;
+  ::coder::array<double, 1U> f_temp;
+  ::coder::array<double, 1U>
+      finiteDifferenceRunTimeOptions_FiniteDifferenceStepSize;
+  ::coder::array<double, 1U> finiteDifferenceRunTimeOptions_TypicalX;
+  ::coder::array<double, 1U> gradf;
+  ::coder::array<double, 1U> maxval;
+  ::coder::array<double, 1U> r;
+  ::coder::array<double, 1U> rhs;
+  ::coder::array<double, 1U> scaleFactors;
+  ::coder::array<double, 1U> varargin_2;
+  ::coder::array<double, 1U> xp;
+  ::coder::array<bool, 1U> hasLB;
+  ::coder::array<bool, 1U> hasUB;
+  ::coder::array<bool, 1U> indActive;
+  ab_struct_T FiniteDifferences;
   double b_gamma;
   double b_output_firstorderopt;
   double b_output_stepsize;
@@ -103,8 +104,8 @@ void lsqnonlin(
   double tolActive;
   int b_exitflag;
   int b_funcCount;
+  int b_iter;
   int b_loop_ub;
-  int b_m;
   int b_output_funcCount;
   int b_output_iterations;
   int c_exitflag;
@@ -116,9 +117,9 @@ void lsqnonlin(
   int h_n;
   int i6;
   int i_loop_ub;
-  int iter;
   int j_loop_ub;
   int loop_ub;
+  int m;
   int m_loop_ub;
   int m_temp;
   int options_MaxFunctionEvaluations;
@@ -178,7 +179,7 @@ void lsqnonlin(
       scaleFactors[i2] = 1.0;
     }
   }
-  iter = 0;
+  b_iter = 0;
   options_MaxFunctionEvaluations = 200 * xCurrent.size(0);
   if (lb.size(0) != 0) {
     if (ub.size(0) != 0) {
@@ -196,7 +197,7 @@ void lsqnonlin(
           b_ub[i3] = ub[i3] - lb[i3];
         }
       }
-      minWidth = internal::c_minimum(b_ub);
+      minWidth = internal::d_minimum(b_ub);
     } else {
       minWidth = rtInf;
     }
@@ -205,8 +206,8 @@ void lsqnonlin(
   }
   hasLB.set_size(xCurrent.size(0));
   hasUB.set_size(xCurrent.size(0));
-  hasFiniteBounds = optim::coder::utils::hasFiniteBounds(xCurrent.size(0),
-                                                         hasLB, hasUB, lb, ub);
+  hasFiniteBounds = optim::coder::utils::b_hasFiniteBounds(
+      xCurrent.size(0), hasLB, hasUB, lb, ub);
   if (hasFiniteBounds && (!(minWidth < 0.0))) {
     int e_loop_ub;
     r.set_size(static_cast<int>(unnamed_idx_0));
@@ -230,17 +231,17 @@ void lsqnonlin(
                    f_temp);
   m_temp = f_temp.size(0);
   jacob.set_size(f_temp.size(0), x0_size_idx_0);
-  b_m = f_temp.size(0) - 1;
+  m = f_temp.size(0) - 1;
   fval.set_size(f_temp.size(0));
   fNew.set_size(f_temp.size(0));
   if ((static_cast<int>(f_temp.size(0) < 4)) != 0) {
-    for (int c_i{0}; c_i <= b_m; c_i++) {
+    for (int c_i{0}; c_i <= m; c_i++) {
       fval[c_i] = f_temp[c_i];
     }
   } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
-    for (int c_i = 0; c_i <= b_m; c_i++) {
+    for (int c_i = 0; c_i <= m; c_i++) {
       fval[c_i] = f_temp[c_i];
     }
   }
@@ -267,7 +268,7 @@ void lsqnonlin(
   }
   b_this.workspace.fun = *fun;
   optim::coder::utils::FiniteDifferences::factoryConstruct(
-      &b_this, x0_size_idx_0, f_temp.size(0), lb, ub, t7_FiniteDifferenceType,
+      &b_this, x0_size_idx_0, f_temp.size(0), lb, ub, t8_FiniteDifferenceType,
       &FiniteDifferences);
   finiteDifferenceRunTimeOptions_TypicalX.set_size(x0_size_idx_0);
   h_loop_ub = x0_size_idx_0;
@@ -299,7 +300,7 @@ void lsqnonlin(
     }
   }
   optim::coder::levenbergMarquardt::jacobianFiniteDifference(
-      augJacobian, fval, xCurrent, lb, ub, t7_FiniteDifferenceType,
+      augJacobian, fval, xCurrent, lb, ub, t8_FiniteDifferenceType,
       &FiniteDifferences, finiteDifferenceRunTimeOptions_TypicalX,
       finiteDifferenceRunTimeOptions_FiniteDifferenceStepSize, &funcCount,
       &a__1);
@@ -318,12 +319,12 @@ void lsqnonlin(
     augJacobian[(m_temp + d_i) + (augJacobian.size(0) * d_i)] = 0.1;
     ix0 = iy0_tmp * d_i;
     b_iy0 = m_temp * d_i;
-    for (int c_k{0}; c_k <= b_m; c_k++) {
+    for (int c_k{0}; c_k <= m; c_k++) {
       jacob[b_iy0 + c_k] = augJacobian[ix0 + c_k];
     }
   }
-  internal::blas::xgemv(f_temp.size(0), x0_size_idx_0, jacob, f_temp.size(0),
-                        fval, gradf);
+  internal::blas::b_xgemv(f_temp.size(0), x0_size_idx_0, jacob, f_temp.size(0),
+                          fval, gradf);
   a__2.set_size(gradf.size(0));
   j_loop_ub = gradf.size(0);
   if ((static_cast<int>(gradf.size(0) < 4)) != 0) {
@@ -347,7 +348,7 @@ void lsqnonlin(
   if (minWidth < 0.0) {
     b_exitflag = -2;
   } else {
-    b_exitflag = optim::coder::levenbergMarquardt::b_checkStoppingCriteria(
+    b_exitflag = optim::coder::levenbergMarquardt::d_checkStoppingCriteria(
         static_cast<double>(options_MaxFunctionEvaluations), gradf, relFactor,
         xCurrent, b_dx, funcCount, projSteepestDescentInfNorm, hasFiniteBounds);
   }
@@ -357,24 +358,24 @@ void lsqnonlin(
     int k_loop_ub;
     bool evalOK;
     bool guard1{false};
-    g_x.set_size(fval.size(0));
+    e_x.set_size(fval.size(0));
     k_loop_ub = fval.size(0);
     for (int i10{0}; i10 < k_loop_ub; i10++) {
-      g_x[i10] = -fval[i10];
+      e_x[i10] = -fval[i10];
     }
-    for (int d_k{0}; d_k <= b_m; d_k++) {
-      rhs[d_k] = g_x[d_k];
+    for (int d_k{0}; d_k <= m; d_k++) {
+      rhs[d_k] = e_x[d_k];
     }
     for (int e_k{0}; e_k < h_n; e_k++) {
-      rhs[(b_m + e_k) + 1] = 0.0;
+      rhs[(m + e_k) + 1] = 0.0;
     }
     if (hasFiniteBounds) {
-      int k_N;
+      int i_N;
       int r_loop_ub;
       power(scaleFactors, varargin_2);
       maxval.set_size(varargin_2.size(0));
-      k_N = varargin_2.size(0);
-      for (int g_k{0}; g_k < k_N; g_k++) {
+      i_N = varargin_2.size(0);
+      for (int g_k{0}; g_k < i_N; g_k++) {
         maxval[g_k] = std::fmax(2.2204460492503131E-16, varargin_2[g_k]);
       }
       a__3.set_size(gradf.size(0));
@@ -416,7 +417,7 @@ void lsqnonlin(
         if (indActive[h_i]) {
           int c_iy0;
           c_iy0 = (m_temp + h_n) * h_i;
-          for (int j_k{0}; j_k <= b_m; j_k++) {
+          for (int j_k{0}; j_k <= m; j_k++) {
             augJacobian[c_iy0 + j_k] = 0.0;
           }
         }
@@ -448,21 +449,21 @@ void lsqnonlin(
     reprojectWrapper(xp, &fun->workspace.initialParams,
                      fun->workspace.b_world_points, fun->workspace.image_points,
                      f_temp);
-    for (int g_i{0}; g_i <= b_m; g_i++) {
+    for (int g_i{0}; g_i <= m; g_i++) {
       fNew[g_i] = f_temp[g_i];
     }
     resnormNew = 0.0;
     if (m_temp >= 1) {
-      for (int h_k{0}; h_k <= b_m; h_k++) {
+      for (int h_k{0}; h_k <= m; h_k++) {
         resnormNew += fNew[h_k] * fNew[h_k];
       }
     }
     evalOK = true;
     for (int k_i{0}; k_i < m_temp; k_i++) {
       if (evalOK) {
-        double j_x;
-        j_x = fNew[k_i];
-        if ((std::isinf(j_x)) || (std::isnan(j_x))) {
+        double g_x;
+        g_x = fNew[k_i];
+        if ((std::isinf(g_x)) || (std::isnan(g_x))) {
           evalOK = false;
         }
       } else {
@@ -474,7 +475,7 @@ void lsqnonlin(
     if ((resnormNew < b_resnorm) && evalOK) {
       int u_loop_ub;
       bool b_evalOK;
-      iter++;
+      b_iter++;
       funDiff = std::abs(resnormNew - b_resnorm) / b_resnorm;
       b_resnorm = resnormNew;
       fval.set_size(fNew.size(0));
@@ -483,7 +484,7 @@ void lsqnonlin(
         fval[i19] = fNew[i19];
       }
       b_evalOK = optim::coder::levenbergMarquardt::b_jacobianFiniteDifference(
-          augJacobian, fval, &b_funcCount, xp, lb, ub, t7_FiniteDifferenceType,
+          augJacobian, fval, &b_funcCount, xp, lb, ub, t8_FiniteDifferenceType,
           &FiniteDifferences, finiteDifferenceRunTimeOptions_TypicalX,
           finiteDifferenceRunTimeOptions_FiniteDifferenceStepSize);
       for (int q_i{0}; q_i < h_n; q_i++) {
@@ -491,7 +492,7 @@ void lsqnonlin(
         int e_iy0;
         b_ix0 = (m_temp + h_n) * q_i;
         e_iy0 = m_temp * q_i;
-        for (int m_k{0}; m_k <= b_m; m_k++) {
+        for (int m_k{0}; m_k <= m; m_k++) {
           jacob[e_iy0 + m_k] = augJacobian[b_ix0 + m_k];
         }
       }
@@ -508,17 +509,17 @@ void lsqnonlin(
         stepSuccessful = true;
         guard1 = true;
       } else {
-        int i_n;
+        int p_n;
         b_exitflag = 2;
-        i_n = m_temp * h_n;
-        if ((static_cast<int>(i_n < 4)) != 0) {
-          for (int o_k{0}; o_k < i_n; o_k++) {
+        p_n = m_temp * h_n;
+        if ((static_cast<int>(p_n < 4)) != 0) {
+          for (int o_k{0}; o_k < p_n; o_k++) {
             jacob[o_k] = rtNaN;
           }
         } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
-          for (int o_k = 0; o_k < i_n; o_k++) {
+          for (int o_k = 0; o_k < p_n; o_k++) {
             jacob[o_k] = rtNaN;
           }
         }
@@ -552,7 +553,7 @@ void lsqnonlin(
         }
         augJacobian[(m_temp + t_i) + (augJacobian.size(0) * t_i)] = sqrtGamma;
       }
-      internal::blas::xgemv(m_temp, h_n, jacob, m_temp, fval, gradf);
+      internal::blas::b_xgemv(m_temp, h_n, jacob, m_temp, fval, gradf);
       a__4.set_size(gradf.size(0));
       x_loop_ub = gradf.size(0);
       for (int i22{0}; i22 < x_loop_ub; i22++) {
@@ -563,9 +564,9 @@ void lsqnonlin(
           optim::coder::levenbergMarquardt::b_projectBox(xCurrent, a__4, lb, ub,
                                                          hasLB, hasUB);
       b_projSteepestDescentInfNorm = d_projSteepestDescentInfNorm;
-      d_exitflag = optim::coder::levenbergMarquardt::checkStoppingCriteria(
+      d_exitflag = optim::coder::levenbergMarquardt::c_checkStoppingCriteria(
           static_cast<double>(options_MaxFunctionEvaluations), gradf, relFactor,
-          funDiff, xCurrent, b_dx, b_funcCount, stepSuccessful, &iter,
+          funDiff, xCurrent, b_dx, b_funcCount, stepSuccessful, &b_iter,
           d_projSteepestDescentInfNorm, hasFiniteBounds);
       b_exitflag = d_exitflag;
       if (d_exitflag != -5) {
@@ -577,13 +578,13 @@ void lsqnonlin(
   b_output_firstorderopt =
       optim::coder::levenbergMarquardt::computeFirstOrderOpt(
           gradf, hasFiniteBounds, &b_projSteepestDescentInfNorm);
-  b_output_iterations = iter;
+  b_output_iterations = b_iter;
   b_output_funcCount = b_funcCount;
   b_output_stepsize = b_norm(b_dx);
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
   for (int i11 = 0; i11 < 19; i11++) {
-    output_algorithm[i11] = b_cv[i11];
+    output_algorithm[i11] = cv[i11];
   }
   lambda_lower.set_size(x0_size_idx_0);
   m_loop_ub = x0_size_idx_0;
@@ -613,20 +614,20 @@ void lsqnonlin(
   }
   if (hasFiniteBounds) {
     double c_gamma;
-    double k_x;
-    int m_N;
+    double i_x;
+    int k_N;
     int s_loop_ub;
     power(scaleFactors, varargin_2);
     maxval.set_size(varargin_2.size(0));
-    m_N = varargin_2.size(0);
+    k_N = varargin_2.size(0);
     if ((static_cast<int>(varargin_2.size(0) < 4)) != 0) {
-      for (int i_k{0}; i_k < m_N; i_k++) {
+      for (int i_k{0}; i_k < k_N; i_k++) {
         maxval[i_k] = std::fmax(2.2204460492503131E-16, varargin_2[i_k]);
       }
     } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
-      for (int i_k = 0; i_k < m_N; i_k++) {
+      for (int i_k = 0; i_k < k_N; i_k++) {
         maxval[i_k] = std::fmax(2.2204460492503131E-16, varargin_2[i_k]);
       }
     }
@@ -644,9 +645,9 @@ void lsqnonlin(
         c_a__5[i17] = ((-gradf[i17]) / c_gamma) / maxval[i17];
       }
     }
-    k_x = optim::coder::levenbergMarquardt::b_projectBox(xCurrent, c_a__5, lb,
+    i_x = optim::coder::levenbergMarquardt::b_projectBox(xCurrent, c_a__5, lb,
                                                          ub, hasLB, hasUB);
-    tolActive = std::fmin(k_x, minWidth / 2.0);
+    tolActive = std::fmin(i_x, minWidth / 2.0);
     if ((static_cast<int>(h_n < 4)) != 0) {
       for (int m_i{0}; m_i < h_n; m_i++) {
         if (hasLB[m_i]) {
@@ -694,6 +695,7 @@ void lsqnonlin(
 }
 
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for lsqnonlin.cpp

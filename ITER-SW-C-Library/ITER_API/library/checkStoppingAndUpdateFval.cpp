@@ -5,7 +5,7 @@
 // File: checkStoppingAndUpdateFval.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -22,10 +22,10 @@
 //
 // Arguments    : int *activeSetChangeID
 //                const double f[8]
-//                i_struct_T *solution
+//                m_struct_T *solution
 //                b_struct_T *memspace
-//                const r_struct_T *b_objective
-//                const j_struct_T *d_workingset
+//                const x_struct_T *b_objective
+//                const o_struct_T *d_workingset
 //                struct_T *c_qrmanager
 //                double options_ConstraintTolerance
 //                double options_ObjectiveLimit
@@ -35,15 +35,16 @@
 //                bool updateFval
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace qpactiveset {
 namespace stopping {
 void checkStoppingAndUpdateFval(
-    int *activeSetChangeID, const double f[8], i_struct_T *solution,
-    b_struct_T *memspace, const r_struct_T *b_objective,
-    const j_struct_T *d_workingset, struct_T *c_qrmanager,
+    int *activeSetChangeID, const double f[8], m_struct_T *solution,
+    b_struct_T *memspace, const x_struct_T *b_objective,
+    const o_struct_T *d_workingset, struct_T *c_qrmanager,
     double options_ConstraintTolerance, double options_ObjectiveLimit,
     bool options_IterDisplayQP, int runTimeOptions_MaxIterations,
     double runTimeOptions_ConstrRelTolFactor, bool updateFval)
@@ -127,6 +128,7 @@ void checkStoppingAndUpdateFval(
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for checkStoppingAndUpdateFval.cpp

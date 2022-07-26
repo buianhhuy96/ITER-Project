@@ -5,7 +5,7 @@
 // File: driver2.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef DRIVER2_H
@@ -13,44 +13,51 @@
 
 // Include Files
 #include "rtwtypes.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Type Declarations
-struct i_struct_T;
+namespace ITER {
+struct m_struct_T;
 
-struct p_struct_T;
+struct u_struct_T;
 
-struct k_struct_T;
+struct q_struct_T;
 
-struct o_struct_T;
+struct t_struct_T;
 
 struct b_struct_T;
 
-struct j_struct_T;
+struct o_struct_T;
 
 struct struct_T;
 
-struct s_struct_T;
+struct y_struct_T;
 
-struct r_struct_T;
+struct x_struct_T;
+
+} // namespace ITER
 
 // Function Declarations
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace fminconsqp {
-void driver(i_struct_T *TrialState, p_struct_T *MeritFunction,
-            const k_struct_T *FcnEvaluator, o_struct_T *FiniteDifferences,
-            b_struct_T *memspace, j_struct_T *WorkingSet, double Hessian[7][7],
-            struct_T *b_QRManager, s_struct_T *b_CholManager,
-            r_struct_T *QPObjective);
+void driver(m_struct_T *TrialState, u_struct_T *MeritFunction,
+            const q_struct_T *FcnEvaluator, t_struct_T *FiniteDifferences,
+            b_struct_T *memspace, o_struct_T *WorkingSet, double Hessian[7][7],
+            struct_T *b_QRManager, y_struct_T *b_CholManager,
+            x_struct_T *QPObjective);
 
 }
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 #endif
 //

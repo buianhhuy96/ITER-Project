@@ -5,7 +5,7 @@
 // File: squeeze.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -20,6 +20,7 @@
 //                ::coder::array<double, 2U> &b
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 void b_squeeze(const ::coder::array<double, 3U> &b_a,
                ::coder::array<double, 2U> &b)
@@ -97,6 +98,7 @@ void squeeze(const ::coder::array<double, 3U> &b_a,
 }
 
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for squeeze.cpp

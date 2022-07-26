@@ -5,7 +5,7 @@
 // File: xnrm2.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -22,6 +22,7 @@
 //                int ix0
 // Return Type  : double
 //
+namespace ITER {
 namespace coder {
 namespace internal {
 namespace blas {
@@ -34,10 +35,86 @@ double b_xnrm2(int h_n, const ::coder::array<double, 2U> &b_x, int ix0)
       y = std::abs(b_x[ix0 - 1]);
     } else {
       double scale;
-      int b_kend;
+      int kend;
       scale = 3.3121686421112381E-170;
-      b_kend = (ix0 + h_n) - 1;
-      for (int k{ix0}; k <= b_kend; k++) {
+      kend = (ix0 + h_n) - 1;
+      for (int k{ix0}; k <= kend; k++) {
+        double absxk;
+        absxk = std::abs(b_x[k - 1]);
+        if (absxk > scale) {
+          double b_t;
+          b_t = scale / absxk;
+          y = ((y * b_t) * b_t) + 1.0;
+          scale = absxk;
+        } else {
+          double b_t;
+          b_t = absxk / scale;
+          y += b_t * b_t;
+        }
+      }
+      y = scale * std::sqrt(y);
+    }
+  }
+  return y;
+}
+
+//
+// Arguments    : int h_n
+//                const double b_x[29][29]
+//                int ix0
+// Return Type  : double
+//
+double c_xnrm2(int h_n, const double b_x[29][29], int ix0)
+{
+  double y;
+  y = 0.0;
+  if (h_n >= 1) {
+    if (h_n == 1) {
+      y = std::abs((&b_x[0][0])[ix0 - 1]);
+    } else {
+      double scale;
+      int kend;
+      scale = 3.3121686421112381E-170;
+      kend = (ix0 + h_n) - 1;
+      for (int k{ix0}; k <= kend; k++) {
+        double absxk;
+        absxk = std::abs((&b_x[0][0])[k - 1]);
+        if (absxk > scale) {
+          double b_t;
+          b_t = scale / absxk;
+          y = ((y * b_t) * b_t) + 1.0;
+          scale = absxk;
+        } else {
+          double b_t;
+          b_t = absxk / scale;
+          y += b_t * b_t;
+        }
+      }
+      y = scale * std::sqrt(y);
+    }
+  }
+  return y;
+}
+
+//
+// Arguments    : int h_n
+//                const double b_x[29]
+//                int ix0
+// Return Type  : double
+//
+double d_xnrm2(int h_n, const double b_x[29], int ix0)
+{
+  double y;
+  y = 0.0;
+  if (h_n >= 1) {
+    if (h_n == 1) {
+      y = std::abs(b_x[ix0 - 1]);
+    } else {
+      double scale;
+      int kend;
+      scale = 3.3121686421112381E-170;
+      kend = (ix0 + h_n) - 1;
+      for (int k{ix0}; k <= kend; k++) {
         double absxk;
         absxk = std::abs(b_x[k - 1]);
         if (absxk > scale) {
@@ -63,7 +140,7 @@ double b_xnrm2(int h_n, const ::coder::array<double, 2U> &b_x, int ix0)
 //                int ix0
 // Return Type  : double
 //
-double c_xnrm2(int h_n, const double b_x[8], int ix0)
+double e_xnrm2(int h_n, const double b_x[8], int ix0)
 {
   double y;
   y = 0.0;
@@ -72,10 +149,10 @@ double c_xnrm2(int h_n, const double b_x[8], int ix0)
       y = std::abs(b_x[ix0 - 1]);
     } else {
       double scale;
-      int b_kend;
+      int kend;
       scale = 3.3121686421112381E-170;
-      b_kend = (ix0 + h_n) - 1;
-      for (int k{ix0}; k <= b_kend; k++) {
+      kend = (ix0 + h_n) - 1;
+      for (int k{ix0}; k <= kend; k++) {
         double absxk;
         absxk = std::abs(b_x[k - 1]);
         if (absxk > scale) {
@@ -101,7 +178,7 @@ double c_xnrm2(int h_n, const double b_x[8], int ix0)
 //                int ix0
 // Return Type  : double
 //
-double d_xnrm2(int h_n, const double b_x[6], int ix0)
+double f_xnrm2(int h_n, const double b_x[6], int ix0)
 {
   double y;
   y = 0.0;
@@ -110,10 +187,10 @@ double d_xnrm2(int h_n, const double b_x[6], int ix0)
       y = std::abs(b_x[ix0 - 1]);
     } else {
       double scale;
-      int b_kend;
+      int kend;
       scale = 3.3121686421112381E-170;
-      b_kend = (ix0 + h_n) - 1;
-      for (int k{ix0}; k <= b_kend; k++) {
+      kend = (ix0 + h_n) - 1;
+      for (int k{ix0}; k <= kend; k++) {
         double absxk;
         absxk = std::abs(b_x[k - 1]);
         if (absxk > scale) {
@@ -139,7 +216,7 @@ double d_xnrm2(int h_n, const double b_x[6], int ix0)
 //                int ix0
 // Return Type  : double
 //
-double e_xnrm2(int h_n, const double b_x[3][3], int ix0)
+double g_xnrm2(int h_n, const double b_x[3][3], int ix0)
 {
   double y;
   y = 0.0;
@@ -148,48 +225,10 @@ double e_xnrm2(int h_n, const double b_x[3][3], int ix0)
       y = std::abs((&b_x[0][0])[ix0 - 1]);
     } else {
       double scale;
-      int b_kend;
+      int kend;
       scale = 3.3121686421112381E-170;
-      b_kend = (ix0 + h_n) - 1;
-      for (int k{ix0}; k <= b_kend; k++) {
-        double absxk;
-        absxk = std::abs((&b_x[0][0])[k - 1]);
-        if (absxk > scale) {
-          double b_t;
-          b_t = scale / absxk;
-          y = ((y * b_t) * b_t) + 1.0;
-          scale = absxk;
-        } else {
-          double b_t;
-          b_t = absxk / scale;
-          y += b_t * b_t;
-        }
-      }
-      y = scale * std::sqrt(y);
-    }
-  }
-  return y;
-}
-
-//
-// Arguments    : int h_n
-//                const double b_x[4][4]
-//                int ix0
-// Return Type  : double
-//
-double f_xnrm2(int h_n, const double b_x[4][4], int ix0)
-{
-  double y;
-  y = 0.0;
-  if (h_n >= 1) {
-    if (h_n == 1) {
-      y = std::abs((&b_x[0][0])[ix0 - 1]);
-    } else {
-      double scale;
-      int b_kend;
-      scale = 3.3121686421112381E-170;
-      b_kend = (ix0 + h_n) - 1;
-      for (int k{ix0}; k <= b_kend; k++) {
+      kend = (ix0 + h_n) - 1;
+      for (int k{ix0}; k <= kend; k++) {
         double absxk;
         absxk = std::abs((&b_x[0][0])[k - 1]);
         if (absxk > scale) {
@@ -214,7 +253,7 @@ double f_xnrm2(int h_n, const double b_x[4][4], int ix0)
 //                const double b_x[3]
 // Return Type  : double
 //
-double g_xnrm2(int h_n, const double b_x[3])
+double h_xnrm2(int h_n, const double b_x[3])
 {
   double y;
   y = 0.0;
@@ -223,12 +262,50 @@ double g_xnrm2(int h_n, const double b_x[3])
       y = std::abs(b_x[1]);
     } else {
       double scale;
-      int b_kend;
+      int kend;
       scale = 3.3121686421112381E-170;
-      b_kend = h_n + 1;
-      for (int k{2}; k <= b_kend; k++) {
+      kend = h_n + 1;
+      for (int k{2}; k <= kend; k++) {
         double absxk;
         absxk = std::abs(b_x[k - 1]);
+        if (absxk > scale) {
+          double b_t;
+          b_t = scale / absxk;
+          y = ((y * b_t) * b_t) + 1.0;
+          scale = absxk;
+        } else {
+          double b_t;
+          b_t = absxk / scale;
+          y += b_t * b_t;
+        }
+      }
+      y = scale * std::sqrt(y);
+    }
+  }
+  return y;
+}
+
+//
+// Arguments    : int h_n
+//                const double b_x[4][4]
+//                int ix0
+// Return Type  : double
+//
+double i_xnrm2(int h_n, const double b_x[4][4], int ix0)
+{
+  double y;
+  y = 0.0;
+  if (h_n >= 1) {
+    if (h_n == 1) {
+      y = std::abs((&b_x[0][0])[ix0 - 1]);
+    } else {
+      double scale;
+      int kend;
+      scale = 3.3121686421112381E-170;
+      kend = (ix0 + h_n) - 1;
+      for (int k{ix0}; k <= kend; k++) {
+        double absxk;
+        absxk = std::abs((&b_x[0][0])[k - 1]);
         if (absxk > scale) {
           double b_t;
           b_t = scale / absxk;
@@ -251,7 +328,7 @@ double g_xnrm2(int h_n, const double b_x[3])
 //                const double b_x[8]
 // Return Type  : double
 //
-double h_xnrm2(int h_n, const double b_x[8])
+double j_xnrm2(int h_n, const double b_x[8])
 {
   double y;
   y = 0.0;
@@ -287,7 +364,7 @@ double h_xnrm2(int h_n, const double b_x[8])
 //                int ix0
 // Return Type  : double
 //
-double i_xnrm2(int h_n, const double b_x[9][9], int ix0)
+double k_xnrm2(int h_n, const double b_x[9][9], int ix0)
 {
   double y;
   y = 0.0;
@@ -296,10 +373,10 @@ double i_xnrm2(int h_n, const double b_x[9][9], int ix0)
       y = std::abs((&b_x[0][0])[ix0 - 1]);
     } else {
       double scale;
-      int b_kend;
+      int kend;
       scale = 3.3121686421112381E-170;
-      b_kend = (ix0 + h_n) - 1;
-      for (int k{ix0}; k <= b_kend; k++) {
+      kend = (ix0 + h_n) - 1;
+      for (int k{ix0}; k <= kend; k++) {
         double absxk;
         absxk = std::abs((&b_x[0][0])[k - 1]);
         if (absxk > scale) {
@@ -325,7 +402,7 @@ double i_xnrm2(int h_n, const double b_x[9][9], int ix0)
 //                int ix0
 // Return Type  : double
 //
-double j_xnrm2(int h_n, const double b_x[9], int ix0)
+double m_xnrm2(int h_n, const double b_x[9], int ix0)
 {
   double y;
   y = 0.0;
@@ -334,10 +411,10 @@ double j_xnrm2(int h_n, const double b_x[9], int ix0)
       y = std::abs(b_x[ix0 - 1]);
     } else {
       double scale;
-      int b_kend;
+      int kend;
       scale = 3.3121686421112381E-170;
-      b_kend = (ix0 + h_n) - 1;
-      for (int k{ix0}; k <= b_kend; k++) {
+      kend = (ix0 + h_n) - 1;
+      for (int k{ix0}; k <= kend; k++) {
         double absxk;
         absxk = std::abs(b_x[k - 1]);
         if (absxk > scale) {
@@ -361,7 +438,7 @@ double j_xnrm2(int h_n, const double b_x[9], int ix0)
 // Arguments    : const double b_x[3]
 // Return Type  : double
 //
-double k_xnrm2(const double b_x[3])
+double o_xnrm2(const double b_x[3])
 {
   double scale;
   double y;
@@ -399,10 +476,10 @@ double xnrm2(int h_n, const double b_x[15][15], int ix0)
       y = std::abs((&b_x[0][0])[ix0 - 1]);
     } else {
       double scale;
-      int b_kend;
+      int kend;
       scale = 3.3121686421112381E-170;
-      b_kend = (ix0 + h_n) - 1;
-      for (int k{ix0}; k <= b_kend; k++) {
+      kend = (ix0 + h_n) - 1;
+      for (int k{ix0}; k <= kend; k++) {
         double absxk;
         absxk = std::abs((&b_x[0][0])[k - 1]);
         if (absxk > scale) {
@@ -425,6 +502,7 @@ double xnrm2(int h_n, const double b_x[15][15], int ix0)
 } // namespace blas
 } // namespace internal
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for xnrm2.cpp

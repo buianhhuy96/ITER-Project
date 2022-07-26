@@ -5,7 +5,7 @@
 // File: solve1.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -16,19 +16,20 @@
 
 // Function Definitions
 //
-// Arguments    : const s_struct_T *obj
+// Arguments    : const y_struct_T *obj
 //                double rhs[8]
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace DynamicRegCholManager {
-void solve(const s_struct_T *obj, double rhs[8])
+void solve(const y_struct_T *obj, double rhs[8])
 {
   int b_i;
   int h_n;
-  int i_n;
+  int p_n;
   h_n = obj->ndims - 2;
   if (obj->ndims != 0) {
     for (int j{0}; j <= (h_n + 1); j++) {
@@ -37,9 +38,9 @@ void solve(const s_struct_T *obj, double rhs[8])
       jjA = j + (j * obj->ldm);
       i1 = h_n - j;
       for (int c_i{0}; c_i <= i1; c_i++) {
-        int b_ix;
-        b_ix = (j + c_i) + 1;
-        rhs[b_ix] -= rhs[j] * (&obj->FMat[0][0])[(jjA + c_i) + 1];
+        int c_ix;
+        c_ix = (j + c_i) + 1;
+        rhs[c_ix] -= rhs[j] * (&obj->FMat[0][0])[(jjA + c_i) + 1];
       }
     }
   }
@@ -47,17 +48,17 @@ void solve(const s_struct_T *obj, double rhs[8])
   for (int idx{0}; idx < b_i; idx++) {
     rhs[idx] /= (&obj->FMat[0][0])[idx + (obj->ldm * idx)];
   }
-  i_n = obj->ndims;
+  p_n = obj->ndims;
   if (obj->ndims != 0) {
-    for (int b_j{i_n}; b_j >= 1; b_j--) {
+    for (int b_j{p_n}; b_j >= 1; b_j--) {
       double temp;
+      int b_jA;
       int i2;
-      int jA;
-      jA = (b_j - 1) * obj->ldm;
+      b_jA = (b_j - 1) * obj->ldm;
       temp = rhs[b_j - 1];
       i2 = b_j + 1;
-      for (int d_i{i_n}; d_i >= i2; d_i--) {
-        temp -= (&obj->FMat[0][0])[(jA + d_i) - 1] * rhs[d_i - 1];
+      for (int d_i{p_n}; d_i >= i2; d_i--) {
+        temp -= (&obj->FMat[0][0])[(b_jA + d_i) - 1] * rhs[d_i - 1];
       }
       rhs[b_j - 1] = temp;
     }
@@ -68,6 +69,7 @@ void solve(const s_struct_T *obj, double rhs[8])
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for solve1.cpp

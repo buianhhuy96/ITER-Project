@@ -5,7 +5,7 @@
 // File: xswap.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -15,15 +15,36 @@
 
 // Function Definitions
 //
+// Arguments    : double b_x[6][6]
+//                int ix0
+//                int iy0
+// Return Type  : void
+//
+namespace ITER {
+namespace coder {
+namespace internal {
+namespace blas {
+void b_xswap(double b_x[6][6], int ix0, int iy0)
+{
+  for (int k{0}; k < 6; k++) {
+    double temp;
+    int b_i;
+    int temp_tmp;
+    temp_tmp = (ix0 + k) - 1;
+    temp = (&b_x[0][0])[temp_tmp];
+    b_i = (iy0 + k) - 1;
+    (&b_x[0][0])[temp_tmp] = (&b_x[0][0])[b_i];
+    (&b_x[0][0])[b_i] = temp;
+  }
+}
+
+//
 // Arguments    : double b_x[3][3]
 //                int ix0
 //                int iy0
 // Return Type  : void
 //
-namespace coder {
-namespace internal {
-namespace blas {
-void b_xswap(double b_x[3][3], int ix0, int iy0)
+void c_xswap(double b_x[3][3], int ix0, int iy0)
 {
   double temp;
   temp = (&b_x[0][0])[ix0 - 1];
@@ -43,7 +64,7 @@ void b_xswap(double b_x[3][3], int ix0, int iy0)
 //                int iy0
 // Return Type  : void
 //
-void c_xswap(double b_x[9][9], int ix0, int iy0)
+void d_xswap(double b_x[9][9], int ix0, int iy0)
 {
   for (int k{0}; k < 9; k++) {
     double temp;
@@ -58,14 +79,14 @@ void c_xswap(double b_x[9][9], int ix0, int iy0)
 }
 
 //
-// Arguments    : double b_x[6][6]
+// Arguments    : double b_x[29][29]
 //                int ix0
 //                int iy0
 // Return Type  : void
 //
-void xswap(double b_x[6][6], int ix0, int iy0)
+void xswap(double b_x[29][29], int ix0, int iy0)
 {
-  for (int k{0}; k < 6; k++) {
+  for (int k{0}; k < 29; k++) {
     double temp;
     int b_i;
     int temp_tmp;
@@ -80,6 +101,7 @@ void xswap(double b_x[6][6], int ix0, int iy0)
 } // namespace blas
 } // namespace internal
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for xswap.cpp

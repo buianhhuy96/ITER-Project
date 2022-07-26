@@ -5,7 +5,7 @@
 // File: cat.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -21,13 +21,14 @@
 //                ::coder::array<double, 3U> &y
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 void cat(const ::coder::array<double, 2U> &varargin_1,
          const ::coder::array<double, 2U> &varargin_2,
          ::coder::array<double, 3U> &y)
 {
-  array<double, 2U> c_f1;
-  array<double, 2U> f1;
+  ::coder::array<double, 2U> c_f1;
+  ::coder::array<double, 2U> f1;
   int c_loop_ub;
   int i3;
   int i5;
@@ -79,6 +80,7 @@ void cat(const ::coder::array<double, 2U> &varargin_1,
 }
 
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for cat.cpp

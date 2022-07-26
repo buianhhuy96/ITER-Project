@@ -5,7 +5,7 @@
 // File: linearLeastSquares.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef LINEARLEASTSQUARES_H
@@ -14,23 +14,31 @@
 // Include Files
 #include "rtwtypes.h"
 #include "coder_array.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Function Declarations
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace levenbergMarquardt {
+void b_linearLeastSquares(::coder::array<double, 2U> &lhs,
+                          ::coder::array<double, 1U> &rhs, double b_dx[6],
+                          int m);
+
 void linearLeastSquares(::coder::array<double, 2U> &lhs,
                         ::coder::array<double, 1U> &rhs,
-                        ::coder::array<double, 1U> &b_dx, int b_m, int h_n);
+                        ::coder::array<double, 1U> &b_dx, int m, int h_n);
 
-}
+} // namespace levenbergMarquardt
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 #endif
 //

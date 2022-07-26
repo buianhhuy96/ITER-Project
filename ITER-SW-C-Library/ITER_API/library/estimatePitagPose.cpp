@@ -5,7 +5,7 @@
 // File: estimatePitagPose.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -24,7 +24,7 @@
 #include "rank.h"
 #include "rotm2quat.h"
 #include "rt_nonfinite.h"
-#include "svd1.h"
+#include "svd.h"
 #include "coder_array.h"
 #include <cmath>
 #include <string.h>
@@ -33,41 +33,42 @@
 //
 // initialize
 //
-// Arguments    : const coder::array<double, 2U> &b_imagePoints
-//                const double robotpose[4][4]
-//                const coder::array<double, 2U> &b_worldpts
+// Arguments    : const ::coder::array<double, 2U> &b_imagePoints
+//                const double b_robotpose[4][4]
+//                const ::coder::array<double, 2U> &b_worldpts
 //                const double handeye[4][4]
 //                const struct1_T *cameraParams
 //                double poseCamera[4][4]
 //                double poseRobot[4][4]
 // Return Type  : void
 //
-void estimatePitagPose(const coder::array<double, 2U> &b_imagePoints,
-                       const double robotpose[4][4],
-                       const coder::array<double, 2U> &b_worldpts,
+namespace ITER {
+void estimatePitagPose(const ::coder::array<double, 2U> &b_imagePoints,
+                       const double b_robotpose[4][4],
+                       const ::coder::array<double, 2U> &b_worldpts,
                        const double handeye[4][4],
                        const struct1_T *cameraParams, double poseCamera[4][4],
                        double poseRobot[4][4])
 {
   static const signed char b_iv[4]{0, 0, 0, 1};
-  coder::anonymous_function b_cF1;
+  coder::b_anonymous_function b_cF1;
   coder::cameraParameters b_cameraParams;
-  coder::array<double, 2U> d_X;
-  coder::array<double, 2U> uv;
-  coder::array<double, 2U> validWorldPoints;
-  coder::array<double, 2U> xy;
-  coder::array<double, 1U> b_v;
-  coder::array<double, 1U> b_x;
-  coder::array<double, 1U> c_u;
-  coder::array<double, 1U> d_u;
-  coder::array<double, 1U> r2;
-  coder::array<double, 1U> r3;
-  coder::array<double, 1U> y;
-  coder::array<int, 1U> r;
-  coder::array<int, 1U> r1;
-  coder::array<signed char, 2U> varargin_2;
-  coder::array<bool, 1U> validPoints;
-  double b_robotpose[4][4];
+  ::coder::array<double, 2U> d_X;
+  ::coder::array<double, 2U> uv;
+  ::coder::array<double, 2U> validWorldPoints;
+  ::coder::array<double, 2U> xy;
+  ::coder::array<double, 1U> b_x;
+  ::coder::array<double, 1U> c_u;
+  ::coder::array<double, 1U> d_u;
+  ::coder::array<double, 1U> e_v;
+  ::coder::array<double, 1U> r2;
+  ::coder::array<double, 1U> r3;
+  ::coder::array<double, 1U> y;
+  ::coder::array<int, 1U> r;
+  ::coder::array<int, 1U> r1;
+  ::coder::array<signed char, 2U> varargin_2;
+  ::coder::array<bool, 1U> validPoints;
+  double c_robotpose[4][4];
   double init[4][4];
   double A[3][3];
   double H[3][3];
@@ -78,10 +79,10 @@ void estimatePitagPose(const coder::array<double, 2U> &b_imagePoints,
   double a__1[3][3];
   double b_Tvec[3][3];
   double b_U[3][3];
+  double b_dv[3][3];
+  double b_dv1[3][3];
   double b_init[3][3];
   double c_r1[3][3];
-  double dv[3][3];
-  double dv1[3][3];
   double f_K[3][3];
   double intrinsics[3][3];
   double normMatrix1[3][3];
@@ -89,15 +90,16 @@ void estimatePitagPose(const coder::array<double, 2U> &b_imagePoints,
   double x0[7];
   double x1[7];
   double dv3[4];
+  double b_dv2[3];
   double b_lambda[3];
   double b_r1[3];
   double b_r2[3];
-  double dv2[3];
-  double g_x[3];
+  double e_x[3];
   double absxk;
   double b_d1;
   double b_t;
   double b_y;
+  double c_T;
   double d;
   double d2;
   double d3;
@@ -107,7 +109,6 @@ void estimatePitagPose(const coder::array<double, 2U> &b_imagePoints,
   double d7;
   double d8;
   double d9;
-  double e_T;
   double lambda;
   double scale;
   int ab_loop_ub;
@@ -119,10 +120,10 @@ void estimatePitagPose(const coder::array<double, 2U> &b_imagePoints,
   int b_xy_idx_0;
   int bb_loop_ub;
   int c_loop_ub;
-  int c_t;
   int c_xy_idx_0;
   int cb_loop_ub;
   int d_loop_ub;
+  int d_t;
   int d_xy_idx_0;
   int db_loop_ub;
   int e_loop_ub;
@@ -329,17 +330,17 @@ void estimatePitagPose(const coder::array<double, 2U> &b_imagePoints,
     }
   }
   j_loop_ub = uv.size(0);
-  b_v.set_size(uv.size(0));
+  e_v.set_size(uv.size(0));
   k_loop_ub = uv.size(0);
   if ((static_cast<int>(uv.size(0) < 4)) != 0) {
     for (int i10{0}; i10 < j_loop_ub; i10++) {
-      b_v[i10] = uv[i10 + uv.size(0)];
+      e_v[i10] = uv[i10 + uv.size(0)];
     }
   } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
     for (int i10 = 0; i10 < k_loop_ub; i10++) {
-      b_v[i10] = uv[i10 + uv.size(0)];
+      e_v[i10] = uv[i10 + uv.size(0)];
     }
   }
   r2.set_size(c_u.size(0));
@@ -355,17 +356,17 @@ void estimatePitagPose(const coder::array<double, 2U> &b_imagePoints,
       r2[i11] = -c_u[i11];
     }
   }
-  r3.set_size(b_v.size(0));
-  o_loop_ub = b_v.size(0);
-  if ((static_cast<int>(b_v.size(0) < 4)) != 0) {
+  r3.set_size(e_v.size(0));
+  o_loop_ub = e_v.size(0);
+  if ((static_cast<int>(e_v.size(0) < 4)) != 0) {
     for (int i12{0}; i12 < o_loop_ub; i12++) {
-      r3[i12] = -b_v[i12];
+      r3[i12] = -e_v[i12];
     }
   } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
     for (int i12 = 0; i12 < o_loop_ub; i12++) {
-      r3[i12] = -b_v[i12];
+      r3[i12] = -e_v[i12];
     }
   }
   xy_idx_0 = xy.size(0);
@@ -570,7 +571,7 @@ void estimatePitagPose(const coder::array<double, 2U> &b_imagePoints,
     }
   }
   (void)coder::local_rank(d_X);
-  d_u.set_size(c_u.size(0) + b_v.size(0));
+  d_u.set_size(c_u.size(0) + e_v.size(0));
   gb_loop_ub = c_u.size(0);
   if ((static_cast<int>(c_u.size(0) < 4)) != 0) {
     for (int i29{0}; i29 < gb_loop_ub; i29++) {
@@ -583,16 +584,16 @@ void estimatePitagPose(const coder::array<double, 2U> &b_imagePoints,
       d_u[i29] = c_u[i29];
     }
   }
-  hb_loop_ub = b_v.size(0);
-  if ((static_cast<int>(b_v.size(0) < 4)) != 0) {
+  hb_loop_ub = e_v.size(0);
+  if ((static_cast<int>(e_v.size(0) < 4)) != 0) {
     for (int i30{0}; i30 < hb_loop_ub; i30++) {
-      d_u[i30 + c_u.size(0)] = b_v[i30];
+      d_u[i30 + c_u.size(0)] = e_v[i30];
     }
   } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
     for (int i30 = 0; i30 < hb_loop_ub; i30++) {
-      d_u[i30 + c_u.size(0)] = b_v[i30];
+      d_u[i30 + c_u.size(0)] = e_v[i30];
     }
   }
   coder::mldivide(d_X, d_u, r2);
@@ -615,15 +616,15 @@ void estimatePitagPose(const coder::array<double, 2U> &b_imagePoints,
       b_Tvec[i34][i32] = d;
     }
   }
-  coder::b_mldivide(normMatrix2, b_Tvec, dv);
-  coder::inv(dv, T);
-  e_T = T[2][2];
+  coder::b_mldivide(normMatrix2, b_Tvec, b_dv);
+  coder::inv(b_dv, T);
+  c_T = T[2][2];
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
   for (int i33 = 0; i33 < 3; i33++) {
-    T[i33][0] /= e_T;
-    T[i33][1] /= e_T;
-    T[i33][2] /= e_T;
+    T[i33][0] /= c_T;
+    T[i33][1] /= c_T;
+    T[i33][2] /= c_T;
   }
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
@@ -632,9 +633,9 @@ void estimatePitagPose(const coder::array<double, 2U> &b_imagePoints,
     H[i35][1] = T[1][i35];
     H[i35][2] = T[2][i35];
   }
-  coder::c_mldivide(A, *((double(*)[3])(&H[0][0])), g_x);
+  coder::c_mldivide(A, *((double(*)[3])(&H[0][0])), e_x);
   scale = 3.3121686421112381E-170;
-  absxk = std::abs(g_x[0]);
+  absxk = std::abs(e_x[0]);
   if (absxk > 3.3121686421112381E-170) {
     b_y = 1.0;
     scale = absxk;
@@ -642,7 +643,7 @@ void estimatePitagPose(const coder::array<double, 2U> &b_imagePoints,
     b_t = absxk / 3.3121686421112381E-170;
     b_y = b_t * b_t;
   }
-  absxk = std::abs(g_x[1]);
+  absxk = std::abs(e_x[1]);
   if (absxk > scale) {
     b_t = scale / absxk;
     b_y = ((b_y * b_t) * b_t) + 1.0;
@@ -651,7 +652,7 @@ void estimatePitagPose(const coder::array<double, 2U> &b_imagePoints,
     b_t = absxk / scale;
     b_y += b_t * b_t;
   }
-  absxk = std::abs(g_x[2]);
+  absxk = std::abs(e_x[2]);
   if (absxk > scale) {
     b_t = scale / absxk;
     b_y = ((b_y * b_t) * b_t) + 1.0;
@@ -679,7 +680,7 @@ void estimatePitagPose(const coder::array<double, 2U> &b_imagePoints,
   c_r1[0][2] = (b_r1[1] * b_r2[2]) - (b_r2[1] * b_r1[2]);
   c_r1[1][2] = (b_r2[0] * b_r1[2]) - (b_r1[0] * b_r2[2]);
   c_r1[2][2] = (b_r1[0] * b_r2[1]) - (b_r2[0] * b_r1[1]);
-  coder::svd(c_r1, U, a__1, V);
+  coder::b_svd(c_r1, U, a__1, V);
   //  Optimize the extrinsic
   // RT2TR Convert rotation and translation to homogeneous transform
   // NOTE:  RT"TR change to createHT
@@ -726,18 +727,18 @@ void estimatePitagPose(const coder::array<double, 2U> &b_imagePoints,
       b_U[i37][i36] = d4;
     }
   }
-  coder::inv(b_U, dv1);
+  coder::inv(b_U, b_dv1);
   b_lambda[0] = lambda * H[2][0];
   b_lambda[1] = lambda * H[2][1];
   b_lambda[2] = lambda * H[2][2];
-  coder::c_mldivide(A, b_lambda, dv2);
+  coder::c_mldivide(A, b_lambda, b_dv2);
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
   for (int i38 = 0; i38 < 3; i38++) {
-    init[i38][0] = dv1[i38][0];
-    init[i38][1] = dv1[i38][1];
-    init[i38][2] = dv1[i38][2];
-    init[3][i38] = dv2[i38];
+    init[i38][0] = b_dv1[i38][0];
+    init[i38][1] = b_dv1[i38][1];
+    init[i38][2] = b_dv1[i38][2];
+    init[3][i38] = b_dv2[i38];
   }
   for (int i39{0}; i39 < 4; i39++) {
     init[i39][3] = static_cast<double>(b_iv[i39]);
@@ -761,17 +762,17 @@ void estimatePitagPose(const coder::array<double, 2U> &b_imagePoints,
     i42 = r1.size(0) - 1;
     if ((static_cast<int>((r1.size(0) * 2) < 4)) != 0) {
       for (int c_k{0}; c_k < 2; c_k++) {
-        for (c_t = 0; c_t <= i42; c_t++) {
-          varargin_2[c_t + (varargin_2.size(0) * c_k)] =
+        for (d_t = 0; d_t <= i42; d_t++) {
+          varargin_2[d_t + (varargin_2.size(0) * c_k)] =
               static_cast<signed char>(c_k);
         }
       }
     } else {
-#pragma omp parallel for num_threads(omp_get_max_threads()) private(c_t)
+#pragma omp parallel for num_threads(omp_get_max_threads()) private(d_t)
 
       for (int c_k = 0; c_k < 2; c_k++) {
-        for (c_t = 0; c_t <= i42; c_t++) {
-          varargin_2[c_t + (varargin_2.size(0) * c_k)] =
+        for (d_t = 0; d_t <= i42; d_t++) {
+          varargin_2[d_t + (varargin_2.size(0) * c_k)] =
               static_cast<signed char>(c_k);
         }
       }
@@ -873,13 +874,13 @@ void estimatePitagPose(const coder::array<double, 2U> &b_imagePoints,
   //  along with RTB.  If not, see <http://www.gnu.org/licenses/>.
   //
   //  http://www.petercorke.com
-  coder::quat2rotm(*((double(*)[4])(&x1[0])), dv1);
+  coder::quat2rotm(*((double(*)[4])(&x1[0])), b_dv1);
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
   for (int i49 = 0; i49 < 3; i49++) {
-    poseCamera[i49][0] = dv1[i49][0];
-    poseCamera[i49][1] = dv1[i49][1];
-    poseCamera[i49][2] = dv1[i49][2];
+    poseCamera[i49][0] = b_dv1[i49][0];
+    poseCamera[i49][1] = b_dv1[i49][1];
+    poseCamera[i49][2] = b_dv1[i49][2];
     poseCamera[3][i49] = x1[i49 + 4];
   }
 #pragma omp parallel for num_threads(omp_get_max_threads()) private(i52, d8,   \
@@ -890,9 +891,9 @@ void estimatePitagPose(const coder::array<double, 2U> &b_imagePoints,
     for (i54 = 0; i54 < 4; i54++) {
       d8 = 0.0;
       for (i52 = 0; i52 < 4; i52++) {
-        d8 += robotpose[i52][i50] * handeye[i54][i52];
+        d8 += b_robotpose[i52][i50] * handeye[i54][i52];
       }
-      b_robotpose[i54][i50] = d8;
+      c_robotpose[i54][i50] = d8;
     }
   }
 #pragma omp parallel for num_threads(omp_get_max_threads()) private(i53, d9,   \
@@ -902,12 +903,14 @@ void estimatePitagPose(const coder::array<double, 2U> &b_imagePoints,
     for (i55 = 0; i55 < 4; i55++) {
       d9 = 0.0;
       for (i53 = 0; i53 < 4; i53++) {
-        d9 += b_robotpose[i53][i51] * poseCamera[i55][i53];
+        d9 += c_robotpose[i53][i51] * poseCamera[i55][i53];
       }
       poseRobot[i55][i51] = d9;
     }
   }
 }
+
+} // namespace ITER
 
 //
 // File trailer for estimatePitagPose.cpp

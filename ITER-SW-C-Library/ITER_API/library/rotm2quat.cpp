@@ -5,7 +5,7 @@
 // File: rotm2quat.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -20,12 +20,13 @@
 
 // Function Definitions
 //
-// Arguments    : const double c_R[3][3]
+// Arguments    : const double b_R[3][3]
 //                double quat[4]
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
-void rotm2quat(const double c_R[3][3], double quat[4])
+void rotm2quat(const double b_R[3][3], double quat[4])
 {
   static creal_T dc{
       0.0, // re
@@ -38,8 +39,8 @@ void rotm2quat(const double c_R[3][3], double quat[4])
   creal_T beta1[4];
   double T[4][4];
   double U[4][4];
-  double e_V[4][4];
   double f_K[4][4];
+  double j_V[4][4];
   double varargin_1[4];
   double K12;
   double K13;
@@ -57,28 +58,28 @@ void rotm2quat(const double c_R[3][3], double quat[4])
   bool exitg2;
   bool p;
   dc.re = rtGetNaN();
-  K12 = c_R[1][0] + c_R[0][1];
-  K13 = c_R[2][0] + c_R[0][2];
-  K14 = c_R[1][2] - c_R[2][1];
-  K23 = c_R[2][1] + c_R[1][2];
-  K24 = c_R[2][0] - c_R[0][2];
-  K34 = c_R[0][1] - c_R[1][0];
-  f_K[0][0] = ((c_R[0][0] - c_R[1][1]) - c_R[2][2]) / 3.0;
+  K12 = b_R[1][0] + b_R[0][1];
+  K13 = b_R[2][0] + b_R[0][2];
+  K14 = b_R[1][2] - b_R[2][1];
+  K23 = b_R[2][1] + b_R[1][2];
+  K24 = b_R[2][0] - b_R[0][2];
+  K34 = b_R[0][1] - b_R[1][0];
+  f_K[0][0] = ((b_R[0][0] - b_R[1][1]) - b_R[2][2]) / 3.0;
   f_K[1][0] = K12 / 3.0;
   f_K[2][0] = K13 / 3.0;
   f_K[3][0] = K14 / 3.0;
   f_K[0][1] = K12 / 3.0;
-  f_K[1][1] = ((c_R[1][1] - c_R[0][0]) - c_R[2][2]) / 3.0;
+  f_K[1][1] = ((b_R[1][1] - b_R[0][0]) - b_R[2][2]) / 3.0;
   f_K[2][1] = K23 / 3.0;
   f_K[3][1] = K24 / 3.0;
   f_K[0][2] = K13 / 3.0;
   f_K[1][2] = K23 / 3.0;
-  f_K[2][2] = ((c_R[2][2] - c_R[0][0]) - c_R[1][1]) / 3.0;
+  f_K[2][2] = ((b_R[2][2] - b_R[0][0]) - b_R[1][1]) / 3.0;
   f_K[3][2] = K34 / 3.0;
   f_K[0][3] = K14 / 3.0;
   f_K[1][3] = K24 / 3.0;
   f_K[2][3] = K34 / 3.0;
-  f_K[3][3] = ((c_R[0][0] + c_R[1][1]) + c_R[2][2]) / 3.0;
+  f_K[3][3] = ((b_R[0][0] + b_R[1][1]) + b_R[2][2]) / 3.0;
   p = true;
   for (int k{0}; k < 4; k++) {
     for (int b_k{0}; b_k < 4; b_k++) {
@@ -129,12 +130,12 @@ void rotm2quat(const double c_R[3][3], double quat[4])
       }
     }
     if (b_p) {
-      schur(f_K, e_V, T);
+      b_schur(f_K, j_V, T);
 #pragma omp parallel for num_threads(omp_get_max_threads()) private(i1)
 
       for (int c_k = 0; c_k < 4; c_k++) {
         for (i1 = 0; i1 < 4; i1++) {
-          V[c_k][i1].re = e_V[c_k][i1];
+          V[c_k][i1].re = j_V[c_k][i1];
           V[c_k][i1].im = 0.0;
         }
         b_D[c_k].re = T[c_k][c_k];
@@ -170,7 +171,7 @@ void rotm2quat(const double c_R[3][3], double quat[4])
       if (c_p) {
         int c_j;
         int h_i;
-        schur(f_K, U, T);
+        b_schur(f_K, U, T);
         h_i = 1;
         do {
           exitg1 = 0;
@@ -222,18 +223,18 @@ void rotm2quat(const double c_R[3][3], double quat[4])
             }
             for (int m_i{0}; m_i < 4; m_i++) {
               double ar_tmp;
-              double e_ai;
+              double d_ai;
               ar_tmp = V[c_j - 1][m_i].re;
-              e_ai = (static_cast<double>(sgn)) * V[c_j][m_i].re;
-              if (e_ai == 0.0) {
+              d_ai = (static_cast<double>(sgn)) * V[c_j][m_i].re;
+              if (d_ai == 0.0) {
                 V[c_j - 1][m_i].re = ar_tmp / 1.4142135623730951;
                 V[c_j - 1][m_i].im = 0.0;
               } else if (ar_tmp == 0.0) {
                 V[c_j - 1][m_i].re = 0.0;
-                V[c_j - 1][m_i].im = e_ai / 1.4142135623730951;
+                V[c_j - 1][m_i].im = d_ai / 1.4142135623730951;
               } else {
                 V[c_j - 1][m_i].re = ar_tmp / 1.4142135623730951;
-                V[c_j - 1][m_i].im = e_ai / 1.4142135623730951;
+                V[c_j - 1][m_i].im = d_ai / 1.4142135623730951;
               }
               V[c_j][m_i].re = V[c_j - 1][m_i].re;
               V[c_j][m_i].im = -V[c_j - 1][m_i].im;
@@ -285,20 +286,20 @@ void rotm2quat(const double c_R[3][3], double quat[4])
           colnorm = scale * std::sqrt(colnorm);
           for (int d_j{coltop + 1}; d_j <= kend_tmp; d_j++) {
             double b_ar;
-            double d_ai;
+            double c_ai;
             double im;
             double re;
             b_ar = (&V[0][0])[d_j - 1].re;
-            d_ai = (&V[0][0])[d_j - 1].im;
-            if (d_ai == 0.0) {
+            c_ai = (&V[0][0])[d_j - 1].im;
+            if (c_ai == 0.0) {
               re = b_ar / colnorm;
               im = 0.0;
             } else if (b_ar == 0.0) {
               re = 0.0;
-              im = d_ai / colnorm;
+              im = c_ai / colnorm;
             } else {
               re = b_ar / colnorm;
-              im = d_ai / colnorm;
+              im = c_ai / colnorm;
             }
             (&V[0][0])[d_j - 1].re = re;
             (&V[0][0])[d_j - 1].im = im;
@@ -306,33 +307,33 @@ void rotm2quat(const double c_R[3][3], double quat[4])
         }
         for (int k_i{0}; k_i < 4; k_i++) {
           double ar;
+          double b_ai;
           double b_br;
-          double c_ai;
           double c_bi;
           ar = alpha1[k_i].re;
-          c_ai = alpha1[k_i].im;
+          b_ai = alpha1[k_i].im;
           b_br = beta1[k_i].re;
           c_bi = beta1[k_i].im;
           if (c_bi == 0.0) {
-            if (c_ai == 0.0) {
+            if (b_ai == 0.0) {
               b_D[k_i].re = ar / b_br;
               b_D[k_i].im = 0.0;
             } else if (ar == 0.0) {
               b_D[k_i].re = 0.0;
-              b_D[k_i].im = c_ai / b_br;
+              b_D[k_i].im = b_ai / b_br;
             } else {
               b_D[k_i].re = ar / b_br;
-              b_D[k_i].im = c_ai / b_br;
+              b_D[k_i].im = b_ai / b_br;
             }
           } else if (b_br == 0.0) {
             if (ar == 0.0) {
-              b_D[k_i].re = c_ai / c_bi;
+              b_D[k_i].re = b_ai / c_bi;
               b_D[k_i].im = 0.0;
-            } else if (c_ai == 0.0) {
+            } else if (b_ai == 0.0) {
               b_D[k_i].re = 0.0;
               b_D[k_i].im = -(ar / c_bi);
             } else {
-              b_D[k_i].re = c_ai / c_bi;
+              b_D[k_i].re = b_ai / c_bi;
               b_D[k_i].im = -(ar / c_bi);
             }
           } else {
@@ -345,8 +346,8 @@ void rotm2quat(const double c_R[3][3], double quat[4])
               double s;
               s = c_bi / b_br;
               c_d = b_br + (s * c_bi);
-              b_D[k_i].re = (ar + (s * c_ai)) / c_d;
-              b_D[k_i].im = (c_ai - (s * ar)) / c_d;
+              b_D[k_i].re = (ar + (s * b_ai)) / c_d;
+              b_D[k_i].im = (b_ai - (s * ar)) / c_d;
             } else if (bim == brm) {
               double sgnbi;
               double sgnbr;
@@ -360,15 +361,15 @@ void rotm2quat(const double c_R[3][3], double quat[4])
               } else {
                 sgnbi = -0.5;
               }
-              b_D[k_i].re = ((ar * sgnbr) + (c_ai * sgnbi)) / brm;
-              b_D[k_i].im = ((c_ai * sgnbr) - (ar * sgnbi)) / brm;
+              b_D[k_i].re = ((ar * sgnbr) + (b_ai * sgnbi)) / brm;
+              b_D[k_i].im = ((b_ai * sgnbr) - (ar * sgnbi)) / brm;
             } else {
               double c_d;
               double s;
               s = b_br / c_bi;
               c_d = c_bi + (s * b_br);
-              b_D[k_i].re = ((s * ar) + c_ai) / c_d;
-              b_D[k_i].im = ((s * c_ai) - ar) / c_d;
+              b_D[k_i].re = ((s * ar) + b_ai) / c_d;
+              b_D[k_i].im = ((s * b_ai) - ar) / c_d;
             }
           }
         }
@@ -397,16 +398,16 @@ void rotm2quat(const double c_R[3][3], double quat[4])
   if (idx == 0) {
     iindx = 0;
   } else {
-    double ex;
+    double b_ex;
     int i2;
-    ex = varargin_1[idx - 1];
+    b_ex = varargin_1[idx - 1];
     iindx = idx - 1;
     i2 = idx + 1;
     for (int e_k{i2}; e_k < 5; e_k++) {
       double d;
       d = varargin_1[e_k - 1];
-      if (ex < d) {
-        ex = d;
+      if (b_ex < d) {
+        b_ex = d;
         iindx = e_k - 1;
       }
     }
@@ -423,6 +424,7 @@ void rotm2quat(const double c_R[3][3], double quat[4])
 }
 
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for rotm2quat.cpp

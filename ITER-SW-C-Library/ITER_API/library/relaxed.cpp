@@ -5,7 +5,7 @@
 // File: relaxed.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -23,30 +23,31 @@
 //
 // Arguments    : const double Hessian[7][7]
 //                const double grad[8]
-//                i_struct_T *TrialState
-//                p_struct_T *MeritFunction
+//                m_struct_T *TrialState
+//                u_struct_T *MeritFunction
 //                b_struct_T *memspace
-//                j_struct_T *WorkingSet
+//                o_struct_T *WorkingSet
 //                struct_T *b_QRManager
-//                s_struct_T *b_CholManager
-//                r_struct_T *QPObjective
-//                d_struct_T *qpoptions
+//                y_struct_T *b_CholManager
+//                x_struct_T *QPObjective
+//                e_struct_T *qpoptions
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace fminconsqp {
 namespace step {
 void relaxed(const double Hessian[7][7], const double grad[8],
-             i_struct_T *TrialState, p_struct_T *MeritFunction,
-             b_struct_T *memspace, j_struct_T *WorkingSet,
-             struct_T *b_QRManager, s_struct_T *b_CholManager,
-             r_struct_T *QPObjective, d_struct_T *qpoptions)
+             m_struct_T *TrialState, u_struct_T *MeritFunction,
+             b_struct_T *memspace, o_struct_T *WorkingSet,
+             struct_T *b_QRManager, y_struct_T *b_CholManager,
+             x_struct_T *QPObjective, e_struct_T *qpoptions)
 {
-  d_struct_T b_qpoptions;
-  j_struct_T b_WorkingSet;
-  j_struct_T c_WorkingSet;
+  e_struct_T b_qpoptions;
+  o_struct_T b_WorkingSet;
+  o_struct_T c_WorkingSet;
   double beta;
   double rho;
   int b_mEq;
@@ -73,8 +74,8 @@ void relaxed(const double Hessian[7][7], const double grad[8],
   beta /= static_cast<double>(WorkingSet->nVar);
   if (TrialState->sqpIterations <= 1) {
     int b_idx_max;
-    int i_n;
-    i_n = QPObjective->b_nvar;
+    int p_n;
+    p_n = QPObjective->b_nvar;
     if (QPObjective->b_nvar < 1) {
       b_idx_max = 0;
     } else {
@@ -82,7 +83,7 @@ void relaxed(const double Hessian[7][7], const double grad[8],
       if (QPObjective->b_nvar > 1) {
         double b_smax;
         b_smax = std::abs(grad[0]);
-        for (int b_k{2}; b_k <= i_n; b_k++) {
+        for (int b_k{2}; b_k <= p_n; b_k++) {
           double b_s;
           b_s = std::abs(grad[b_k - 1]);
           if (b_s > b_smax) {
@@ -165,7 +166,7 @@ void relaxed(const double Hessian[7][7], const double grad[8],
   qpoptions->MaxIterations =
       (qpoptions->MaxIterations + b_WorkingSet.nVar) - WorkingSet->nVar;
   b_qpoptions = *qpoptions;
-  ::coder::optim::coder::qpactiveset::driver(
+  ::ITER::coder::optim::coder::qpactiveset::driver(
       Hessian, grad, TrialState, memspace, &b_WorkingSet, b_QRManager,
       b_CholManager, QPObjective, qpoptions, &b_qpoptions);
   qpoptions->MaxIterations = temp;
@@ -211,37 +212,37 @@ void relaxed(const double Hessian[7][7], const double grad[8],
     int iIneq0;
     int iIneqEnd;
     int ix0_tmp;
-    int u_n;
+    int q_n;
     b_nArtificial = (b_WorkingSet.nVarMax - WorkingSet->nVar) - 1;
     ix0_tmp = WorkingSet->nVar + 1;
     qpfvalLinearExcess = 0.0;
     qpfvalQuadExcess = 0.0;
     if (b_nArtificial >= 1) {
-      int b_kend;
-      b_kend = WorkingSet->nVar + b_nArtificial;
-      for (int c_k{ix0_tmp}; c_k <= b_kend; c_k++) {
+      int kend;
+      kend = WorkingSet->nVar + b_nArtificial;
+      for (int c_k{ix0_tmp}; c_k <= kend; c_k++) {
         qpfvalLinearExcess += std::abs(TrialState->xstar[c_k - 1]);
       }
     }
     if (b_nArtificial >= 1) {
-      int b_ix;
       int b_iy;
-      b_ix = WorkingSet->nVar;
+      int c_ix;
+      c_ix = WorkingSet->nVar;
       b_iy = WorkingSet->nVar;
       for (int d_k{0}; d_k < b_nArtificial; d_k++) {
         qpfvalQuadExcess +=
-            TrialState->xstar[b_ix + d_k] * TrialState->xstar[b_iy + d_k];
+            TrialState->xstar[c_ix + d_k] * TrialState->xstar[b_iy + d_k];
       }
     }
     qpval = (TrialState->fstar - (rho * qpfvalLinearExcess)) -
             ((beta / 2.0) * qpfvalQuadExcess);
-    u_n = (WorkingSet->nVarMax - WorkingSet->nVar) - 1;
+    q_n = (WorkingSet->nVarMax - WorkingSet->nVar) - 1;
     penaltyParamTrial = MeritFunction->penaltyParam;
     linearizedConstrViolPrev = MeritFunction->linearizedConstrViol;
     y = 0.0;
-    if (u_n >= 1) {
+    if (q_n >= 1) {
       int c_kend;
-      c_kend = WorkingSet->nVar + u_n;
+      c_kend = WorkingSet->nVar + q_n;
       for (int e_k{ix0_tmp}; e_k <= c_kend; e_k++) {
         y += std::abs(TrialState->xstar[e_k - 1]);
       }
@@ -375,6 +376,7 @@ void relaxed(const double Hessian[7][7], const double grad[8],
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for relaxed.cpp

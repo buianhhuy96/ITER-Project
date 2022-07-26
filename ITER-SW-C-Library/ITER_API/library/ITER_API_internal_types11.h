@@ -5,7 +5,7 @@
 // File: ITER_API_internal_types11.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef ITER_API_INTERNAL_TYPES11_H
@@ -15,16 +15,35 @@
 #include "ITER_API_types.h"
 #include "rtwtypes.h"
 #include "coder_array.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
+// Type Declarations
+namespace ITER {
+namespace coder {
+class cameraParameters;
+
+}
+} // namespace ITER
+
 // Type Definitions
-struct m_struct_T {
-  h_struct_T initialParams;
-  coder::array<double, 2U> b_world_points;
-  coder::array<double, 3U> image_points;
+namespace ITER {
+struct p_struct_T {
+  ::coder::array<double, 2U> imagePointsTmp;
+  ::coder::array<double, 2U> worldPointsTmp;
+  coder::cameraParameters *cameraParams;
 };
+
+struct s_struct_T {
+  k_struct_T initialParams;
+  ::coder::array<double, 2U> b_world_points;
+  ::coder::array<double, 3U> image_points;
+};
+
+} // namespace ITER
 
 #endif
 //

@@ -5,7 +5,7 @@
 // File: xdlanv2.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -29,6 +29,7 @@
 //                double *b_sn
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace internal {
 namespace reflapack {
@@ -63,7 +64,7 @@ void xdlanv2(double *b_a, double *b, double *c, double *d, double *rt1r,
       double scale;
       double z;
       int b_b;
-      int c_c;
+      int b_c;
       p = 0.5 * c_d;
       bcmax_tmp = std::abs(*b);
       b_bcmax_tmp = std::abs(*c);
@@ -74,12 +75,12 @@ void xdlanv2(double *b_a, double *b, double *c, double *d, double *rt1r,
         b_b = -1;
       }
       if (!((*c) < 0.0)) {
-        c_c = 1;
+        b_c = 1;
       } else {
-        c_c = -1;
+        b_c = -1;
       }
       bcmis = (std::fmin(bcmax_tmp, b_bcmax_tmp) * (static_cast<double>(b_b))) *
-              (static_cast<double>(c_c));
+              (static_cast<double>(b_c));
       scale = std::fmax(std::abs(p), bcmax);
       z = ((p / scale) * p) + ((bcmax / scale) * bcmis);
       if (z >= 8.8817841970012523E-16) {
@@ -180,6 +181,7 @@ void xdlanv2(double *b_a, double *b, double *c, double *d, double *rt1r,
 } // namespace reflapack
 } // namespace internal
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for xdlanv2.cpp

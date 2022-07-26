@@ -5,7 +5,7 @@
 // File: compute_deltax.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -26,21 +26,22 @@
 // Function Definitions
 //
 // Arguments    : const double H[7][7]
-//                i_struct_T *solution
+//                m_struct_T *solution
 //                b_struct_T *memspace
 //                const struct_T *c_qrmanager
-//                s_struct_T *c_cholmanager
-//                const r_struct_T *b_objective
+//                y_struct_T *c_cholmanager
+//                const x_struct_T *b_objective
 //                bool alwaysPositiveDef
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace qpactiveset {
-void compute_deltax(const double H[7][7], i_struct_T *solution,
+void compute_deltax(const double H[7][7], m_struct_T *solution,
                     b_struct_T *memspace, const struct_T *c_qrmanager,
-                    s_struct_T *c_cholmanager, const r_struct_T *b_objective,
+                    y_struct_T *c_cholmanager, const x_struct_T *b_objective,
                     bool alwaysPositiveDef)
 {
   int i4;
@@ -162,48 +163,48 @@ void compute_deltax(const double H[7][7], i_struct_T *solution,
       nullStartIdx = nullStartIdx_tmp;
       if (b_objective->objtype == 5) {
         int b_m;
-        int c_m;
         int d_lda;
+        int m;
         for (int c_idx{0}; c_idx < mNull; c_idx++) {
           (&memspace->workspace_double[0][0])[c_idx] =
               -(&c_qrmanager->Q[0][0])[nVar + (c_qrmanager->ldq *
                                                (c_qrmanager->ncols + c_idx))];
         }
-        b_m = c_qrmanager->mrows - 1;
-        c_m = b_m;
+        m = c_qrmanager->mrows - 1;
+        b_m = m;
         d_lda = c_qrmanager->ldq;
         if (c_qrmanager->mrows != 0) {
-          int b_ix;
+          int c_ix;
           int i3;
           int iac;
-          if ((static_cast<int>((b_m + 1) < 4)) != 0) {
-            if (0 <= b_m) {
+          if ((static_cast<int>((m + 1) < 4)) != 0) {
+            if (0 <= m) {
               (void)std::memset(
                   &solution->searchDir[0], 0,
-                  (static_cast<unsigned int>(static_cast<int>(b_m + 1))) *
+                  (static_cast<unsigned int>(static_cast<int>(m + 1))) *
                       (sizeof(double)));
             }
           } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
-            for (int b_iy = 0; b_iy <= c_m; b_iy++) {
+            for (int b_iy = 0; b_iy <= b_m; b_iy++) {
               solution->searchDir[b_iy] = 0.0;
             }
           }
-          b_ix = 0;
+          c_ix = 0;
           i3 = nullStartIdx + (c_qrmanager->ldq * (mNull - 1));
           iac = nullStartIdx;
           while (((d_lda > 0) && (iac <= i3)) || ((d_lda < 0) && (iac >= i3))) {
             int i5;
-            i5 = iac + c_m;
+            i5 = iac + b_m;
             for (int ia{iac}; ia <= i5; ia++) {
               int i9;
               i9 = ia - iac;
               solution->searchDir[i9] +=
                   (&c_qrmanager->Q[0][0])[ia - 1] *
-                  (&memspace->workspace_double[0][0])[b_ix];
+                  (&memspace->workspace_double[0][0])[c_ix];
             }
-            b_ix++;
+            c_ix++;
             iac += d_lda;
           }
         }
@@ -332,34 +333,34 @@ void compute_deltax(const double H[7][7], i_struct_T *solution,
             }
           }
           if (alwaysPositiveDef) {
-            int i_n;
-            int u_n;
-            i_n = c_cholmanager->ndims;
+            int p_n;
+            int q_n;
+            p_n = c_cholmanager->ndims;
             if (c_cholmanager->ndims != 0) {
-              for (int b_j{0}; b_j < i_n; b_j++) {
+              for (int b_j{0}; b_j < p_n; b_j++) {
                 double temp;
-                int jA;
-                jA = b_j * c_cholmanager->ldm;
+                int b_jA;
+                b_jA = b_j * c_cholmanager->ldm;
                 temp = (&memspace->workspace_double[0][0])[b_j];
                 for (int d_i{0}; d_i < b_j; d_i++) {
-                  temp -= (&c_cholmanager->FMat[0][0])[jA + d_i] *
+                  temp -= (&c_cholmanager->FMat[0][0])[b_jA + d_i] *
                           (&memspace->workspace_double[0][0])[d_i];
                 }
                 (&memspace->workspace_double[0][0])[b_j] =
-                    temp / (&c_cholmanager->FMat[0][0])[jA + b_j];
+                    temp / (&c_cholmanager->FMat[0][0])[b_jA + b_j];
               }
             }
-            u_n = c_cholmanager->ndims;
+            q_n = c_cholmanager->ndims;
             if (c_cholmanager->ndims != 0) {
-              for (int c_j{u_n}; c_j >= 1; c_j--) {
+              for (int c_j{q_n}; c_j >= 1; c_j--) {
                 int b_jjA;
                 b_jjA = (c_j + ((c_j - 1) * c_cholmanager->ldm)) - 1;
                 (&memspace->workspace_double[0][0])[c_j - 1] /=
                     (&c_cholmanager->FMat[0][0])[b_jjA];
                 for (int e_i{0}; e_i <= (c_j - 2); e_i++) {
-                  int d_ix;
-                  d_ix = (c_j - e_i) - 2;
-                  (&memspace->workspace_double[0][0])[d_ix] -=
+                  int e_ix;
+                  e_ix = (c_j - e_i) - 2;
+                  (&memspace->workspace_double[0][0])[e_ix] -=
                       (&memspace->workspace_double[0][0])[c_j - 1] *
                       (&c_cholmanager->FMat[0][0])[(b_jjA - e_i) - 1];
                 }
@@ -368,7 +369,7 @@ void compute_deltax(const double H[7][7], i_struct_T *solution,
           } else {
             int h_n;
             int i6;
-            int v_n;
+            int s_n;
             h_n = c_cholmanager->ndims - 2;
             if (c_cholmanager->ndims != 0) {
               for (int j{0}; j <= (h_n + 1); j++) {
@@ -377,9 +378,9 @@ void compute_deltax(const double H[7][7], i_struct_T *solution,
                 jjA = j + (j * c_cholmanager->ldm);
                 b_i8 = h_n - j;
                 for (int c_i{0}; c_i <= b_i8; c_i++) {
-                  int c_ix;
-                  c_ix = (j + c_i) + 1;
-                  (&memspace->workspace_double[0][0])[c_ix] -=
+                  int d_ix;
+                  d_ix = (j + c_i) + 1;
+                  (&memspace->workspace_double[0][0])[d_ix] -=
                       (&memspace->workspace_double[0][0])[j] *
                       (&c_cholmanager->FMat[0][0])[(jjA + c_i) + 1];
                 }
@@ -391,17 +392,17 @@ void compute_deltax(const double H[7][7], i_struct_T *solution,
                   (&c_cholmanager
                         ->FMat[0][0])[g_idx + (c_cholmanager->ldm * g_idx)];
             }
-            v_n = c_cholmanager->ndims;
+            s_n = c_cholmanager->ndims;
             if (c_cholmanager->ndims != 0) {
-              for (int d_j{v_n}; d_j >= 1; d_j--) {
+              for (int d_j{s_n}; d_j >= 1; d_j--) {
                 double b_temp;
-                int b_jA;
+                int c_jA;
                 int i11;
-                b_jA = (d_j - 1) * c_cholmanager->ldm;
+                c_jA = (d_j - 1) * c_cholmanager->ldm;
                 b_temp = (&memspace->workspace_double[0][0])[d_j - 1];
                 i11 = d_j + 1;
-                for (int g_i{v_n}; g_i >= i11; g_i--) {
-                  b_temp -= (&c_cholmanager->FMat[0][0])[(b_jA + g_i) - 1] *
+                for (int g_i{s_n}; g_i >= i11; g_i--) {
+                  b_temp -= (&c_cholmanager->FMat[0][0])[(c_jA + g_i) - 1] *
                             (&memspace->workspace_double[0][0])[g_i - 1];
                 }
                 (&memspace->workspace_double[0][0])[d_j - 1] = b_temp;
@@ -411,7 +412,7 @@ void compute_deltax(const double H[7][7], i_struct_T *solution,
           f_lda = c_qrmanager->ldq;
           if (c_qrmanager->mrows != 0) {
             int c_iac;
-            int e_ix;
+            int g_ix;
             int i12;
             if ((static_cast<int>((nVar + 1) < 4)) != 0) {
               if (0 <= nVar) {
@@ -427,7 +428,7 @@ void compute_deltax(const double H[7][7], i_struct_T *solution,
                 solution->searchDir[e_iy] = 0.0;
               }
             }
-            e_ix = 0;
+            g_ix = 0;
             i12 = nullStartIdx + (c_qrmanager->ldq * (mNull - 1));
             c_iac = nullStartIdx;
             while (((f_lda > 0) && (c_iac <= i12)) ||
@@ -439,9 +440,9 @@ void compute_deltax(const double H[7][7], i_struct_T *solution,
                 i14 = c_ia - c_iac;
                 solution->searchDir[i14] +=
                     (&c_qrmanager->Q[0][0])[c_ia - 1] *
-                    (&memspace->workspace_double[0][0])[e_ix];
+                    (&memspace->workspace_double[0][0])[g_ix];
               }
-              e_ix++;
+              g_ix++;
               c_iac += f_lda;
             }
           }
@@ -455,6 +456,7 @@ void compute_deltax(const double H[7][7], i_struct_T *solution,
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for compute_deltax.cpp

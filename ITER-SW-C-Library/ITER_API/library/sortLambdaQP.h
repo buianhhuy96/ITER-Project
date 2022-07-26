@@ -5,7 +5,7 @@
 // File: sortLambdaQP.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef SORTLAMBDAQP_H
@@ -13,11 +13,14 @@
 
 // Include Files
 #include "rtwtypes.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Function Declarations
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
@@ -34,6 +37,7 @@ void sortLambdaQP(double lambda[15], int WorkingSet_nActiveConstr,
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 #endif
 //

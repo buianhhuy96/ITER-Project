@@ -5,7 +5,7 @@
 // File: fullColLDL2_.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef FULLCOLLDL2__H
@@ -13,24 +13,31 @@
 
 // Include Files
 #include "rtwtypes.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Type Declarations
-struct s_struct_T;
+namespace ITER {
+struct y_struct_T;
+
+}
 
 // Function Declarations
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace DynamicRegCholManager {
-void fullColLDL2_(s_struct_T *obj, int NColsRemain, double REG_PRIMAL);
+void fullColLDL2_(y_struct_T *obj, int NColsRemain, double REG_PRIMAL);
 
 }
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 #endif
 //

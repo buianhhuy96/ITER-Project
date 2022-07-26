@@ -5,7 +5,7 @@
 // File: updateWorkingSetForNewQP.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -17,19 +17,20 @@
 // Function Definitions
 //
 // Arguments    : const double b_xk[7]
-//                j_struct_T *WorkingSet
+//                o_struct_T *WorkingSet
 //                int mEq
 //                int mLB
 //                int mUB
 //                int mFixed
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace fminconsqp {
 namespace internal {
-void updateWorkingSetForNewQP(const double b_xk[7], j_struct_T *WorkingSet,
+void updateWorkingSetForNewQP(const double b_xk[7], o_struct_T *WorkingSet,
                               int mEq, int mLB, int mUB, int mFixed)
 {
   int b_i;
@@ -85,6 +86,7 @@ void updateWorkingSetForNewQP(const double b_xk[7], j_struct_T *WorkingSet,
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for updateWorkingSetForNewQP.cpp

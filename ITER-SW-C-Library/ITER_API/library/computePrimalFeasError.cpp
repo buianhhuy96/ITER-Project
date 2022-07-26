@@ -5,7 +5,7 @@
 // File: computePrimalFeasError.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -23,6 +23,7 @@
 //                int mUB
 // Return Type  : double
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
@@ -49,6 +50,7 @@ double computePrimalFeasError(const double b_x[7], const int finiteLB[8],
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for computePrimalFeasError.cpp

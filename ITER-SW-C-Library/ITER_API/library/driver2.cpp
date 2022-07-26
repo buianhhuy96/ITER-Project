@@ -5,7 +5,7 @@
 // File: driver2.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -30,27 +30,28 @@
 
 // Function Definitions
 //
-// Arguments    : i_struct_T *TrialState
-//                p_struct_T *MeritFunction
-//                const k_struct_T *FcnEvaluator
-//                o_struct_T *FiniteDifferences
+// Arguments    : m_struct_T *TrialState
+//                u_struct_T *MeritFunction
+//                const q_struct_T *FcnEvaluator
+//                t_struct_T *FiniteDifferences
 //                b_struct_T *memspace
-//                j_struct_T *WorkingSet
+//                o_struct_T *WorkingSet
 //                double Hessian[7][7]
 //                struct_T *b_QRManager
-//                s_struct_T *b_CholManager
-//                r_struct_T *QPObjective
+//                y_struct_T *b_CholManager
+//                x_struct_T *QPObjective
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace fminconsqp {
-void driver(i_struct_T *TrialState, p_struct_T *MeritFunction,
-            const k_struct_T *FcnEvaluator, o_struct_T *FiniteDifferences,
-            b_struct_T *memspace, j_struct_T *WorkingSet, double Hessian[7][7],
-            struct_T *b_QRManager, s_struct_T *b_CholManager,
-            r_struct_T *QPObjective)
+void driver(m_struct_T *TrialState, u_struct_T *MeritFunction,
+            const q_struct_T *FcnEvaluator, t_struct_T *FiniteDifferences,
+            b_struct_T *memspace, o_struct_T *WorkingSet, double Hessian[7][7],
+            struct_T *b_QRManager, y_struct_T *b_CholManager,
+            x_struct_T *QPObjective)
 {
   static const signed char b_iv[7][7]{
       {1, 0, 0, 0, 0, 0, 0}, {0, 1, 0, 0, 0, 0, 0}, {0, 0, 1, 0, 0, 0, 0},
@@ -58,8 +59,8 @@ void driver(i_struct_T *TrialState, p_struct_T *MeritFunction,
       {0, 0, 0, 0, 0, 0, 1}};
   static const char qpoptions_SolverName[7]{'f', 'm', 'i', 'n', 'c', 'o', 'n'};
   c_struct_T Flags;
-  d_struct_T b_expl_temp;
-  d_struct_T expl_temp;
+  e_struct_T b_expl_temp;
+  e_struct_T expl_temp;
   int b_u1;
   int i1;
   int mConstr;
@@ -380,15 +381,15 @@ void driver(i_struct_T *TrialState, p_struct_T *MeritFunction,
         }
       }
       if (TrialState->mNonlinEq > 0) {
-        ::coder::internal::blas::c_xgemv(
+        ::ITER::coder::internal::blas::e_xgemv(
             nVar, TrialState->mNonlinEq, WorkingSet->ldA, TrialState->lambdasqp,
             mFixed + TrialState->iNonEq0, TrialState->delta_gradLag);
       }
       if (TrialState->mNonlinIneq > 0) {
-        ::coder::internal::blas::c_xgemv(nVar, TrialState->mNonlinIneq,
-                                         WorkingSet->ldA, TrialState->lambdasqp,
-                                         (mFixed + mEq) + TrialState->iNonIneq0,
-                                         TrialState->delta_gradLag);
+        ::ITER::coder::internal::blas::e_xgemv(
+            nVar, TrialState->mNonlinIneq, WorkingSet->ldA,
+            TrialState->lambdasqp, (mFixed + mEq) + TrialState->iNonIneq0,
+            TrialState->delta_gradLag);
       }
       (void)BFGSUpdate(nVar, Hessian, TrialState->delta_x,
                        TrialState->delta_gradLag, memspace->workspace_double);
@@ -401,6 +402,7 @@ void driver(i_struct_T *TrialState, p_struct_T *MeritFunction,
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for driver2.cpp

@@ -5,7 +5,7 @@
 // File: projectBox.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -25,6 +25,7 @@
 //                const ::coder::array<bool, 1U> &hasUB
 // Return Type  : double
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
@@ -120,6 +121,50 @@ void c_projectBox(::coder::array<double, 1U> &b_dx,
 }
 
 //
+// Arguments    : double b_dx[6]
+//                const bool hasLB[6]
+//                const bool hasUB[6]
+// Return Type  : void
+//
+void d_projectBox(double b_dx[6], const bool hasLB[6], const bool hasUB[6])
+{
+#pragma omp parallel for num_threads(omp_get_max_threads())
+
+  for (int b_i = 0; b_i < 6; b_i++) {
+    if (hasLB[b_i]) {
+      b_dx[b_i] = std::fmax(-1.7976931348623157E+308, b_dx[b_i]);
+    }
+    if (hasUB[b_i]) {
+      b_dx[b_i] = std::fmin(1.7976931348623157E+308, b_dx[b_i]);
+    }
+  }
+}
+
+//
+// Arguments    : const double b_x[6]
+//                double b_dx[6]
+//                const bool hasLB[6]
+//                const bool hasUB[6]
+// Return Type  : double
+//
+double e_projectBox(const double b_x[6], double b_dx[6], const bool hasLB[6],
+                    const bool hasUB[6])
+{
+  double dxInfNorm;
+  dxInfNorm = 0.0;
+  for (int b_i{0}; b_i < 6; b_i++) {
+    if (hasLB[b_i]) {
+      b_dx[b_i] = std::fmax(-1.7976931348623157E+308 - b_x[b_i], b_dx[b_i]);
+    }
+    if (hasUB[b_i]) {
+      b_dx[b_i] = std::fmin(1.7976931348623157E+308 - b_x[b_i], b_dx[b_i]);
+    }
+    dxInfNorm = std::fmax(dxInfNorm, std::abs(b_dx[b_i]));
+  }
+  return dxInfNorm;
+}
+
+//
 // Arguments    : const ::coder::array<double, 1U> &b_x
 //                ::coder::array<double, 1U> &b_dx
 //                const ::coder::array<double, 1U> &lb
@@ -202,6 +247,7 @@ void projectBox(const ::coder::array<double, 1U> &b_x,
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for projectBox.cpp

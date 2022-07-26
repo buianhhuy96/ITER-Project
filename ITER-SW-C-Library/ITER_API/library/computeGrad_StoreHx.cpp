@@ -5,7 +5,7 @@
 // File: computeGrad_StoreHx.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -18,18 +18,19 @@
 
 // Function Definitions
 //
-// Arguments    : r_struct_T *obj
+// Arguments    : x_struct_T *obj
 //                const double H[7][7]
 //                const double f[8]
 //                const double b_x[8]
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace qpactiveset {
 namespace Objective {
-void computeGrad_StoreHx(r_struct_T *obj, const double H[7][7],
+void computeGrad_StoreHx(x_struct_T *obj, const double H[7][7],
                          const double f[8], const double b_x[8])
 {
   int i12;
@@ -54,15 +55,15 @@ void computeGrad_StoreHx(r_struct_T *obj, const double H[7][7],
     obj->grad[obj->b_nvar - 1] = obj->gammaScalar;
   } break;
   case 3: {
-    int b_m;
     int d_lda;
     int i1;
+    int m;
     int m_tmp_tmp;
     m_tmp_tmp = obj->b_nvar - 1;
-    b_m = m_tmp_tmp;
+    m = m_tmp_tmp;
     d_lda = obj->b_nvar;
     if (obj->b_nvar != 0) {
-      int b_ix;
+      int c_ix;
       int i4;
       int iac;
       if ((static_cast<int>((m_tmp_tmp + 1) < 4)) != 0) {
@@ -75,22 +76,22 @@ void computeGrad_StoreHx(r_struct_T *obj, const double H[7][7],
       } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
-        for (int b_iy = 0; b_iy <= b_m; b_iy++) {
+        for (int b_iy = 0; b_iy <= m; b_iy++) {
           obj->Hx[b_iy] = 0.0;
         }
       }
-      b_ix = 0;
+      c_ix = 0;
       i4 = (obj->b_nvar * (obj->b_nvar - 1)) + 1;
       iac = 1;
       while (((d_lda > 0) && (iac <= i4)) || ((d_lda < 0) && (iac >= i4))) {
         int i6;
-        i6 = iac + b_m;
+        i6 = iac + m;
         for (int ia{iac}; ia <= i6; ia++) {
           int b_i8;
           b_i8 = ia - iac;
-          obj->Hx[b_i8] += (&H[0][0])[ia - 1] * b_x[b_ix];
+          obj->Hx[b_i8] += (&H[0][0])[ia - 1] * b_x[c_ix];
         }
-        b_ix++;
+        c_ix++;
         iac += d_lda;
       }
     }
@@ -117,44 +118,44 @@ void computeGrad_StoreHx(r_struct_T *obj, const double H[7][7],
     }
   } break;
   case 4: {
-    int c_m;
+    int b_m;
     int e_lda;
     int h_n;
     int i2;
     int maxRegVar;
     maxRegVar = obj->maxVar - 1;
-    c_m = obj->b_nvar - 1;
+    b_m = obj->b_nvar - 1;
     e_lda = obj->b_nvar;
     if (obj->b_nvar != 0) {
       int b_iac;
-      int c_ix;
+      int d_ix;
       int i5;
-      if ((static_cast<int>((c_m + 1) < 4)) != 0) {
-        if (0 <= c_m) {
+      if ((static_cast<int>((b_m + 1) < 4)) != 0) {
+        if (0 <= b_m) {
           (void)std::memset(
               &obj->Hx[0], 0,
-              (static_cast<unsigned int>(static_cast<int>(c_m + 1))) *
+              (static_cast<unsigned int>(static_cast<int>(b_m + 1))) *
                   (sizeof(double)));
         }
       } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
-        for (int c_iy = 0; c_iy <= c_m; c_iy++) {
+        for (int c_iy = 0; c_iy <= b_m; c_iy++) {
           obj->Hx[c_iy] = 0.0;
         }
       }
-      c_ix = 0;
+      d_ix = 0;
       i5 = (obj->b_nvar * (obj->b_nvar - 1)) + 1;
       b_iac = 1;
       while (((e_lda > 0) && (b_iac <= i5)) || ((e_lda < 0) && (b_iac >= i5))) {
         int i7;
-        i7 = b_iac + c_m;
+        i7 = b_iac + b_m;
         for (int b_ia{b_iac}; b_ia <= i7; b_ia++) {
           int i9;
           i9 = b_ia - b_iac;
-          obj->Hx[i9] += (&H[0][0])[b_ia - 1] * b_x[c_ix];
+          obj->Hx[i9] += (&H[0][0])[b_ia - 1] * b_x[d_ix];
         }
-        c_ix++;
+        d_ix++;
         b_iac += e_lda;
       }
     }
@@ -221,6 +222,7 @@ void computeGrad_StoreHx(r_struct_T *obj, const double H[7][7],
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for computeGrad_StoreHx.cpp

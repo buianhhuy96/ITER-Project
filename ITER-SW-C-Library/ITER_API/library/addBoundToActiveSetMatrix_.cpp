@@ -5,7 +5,7 @@
 // File: addBoundToActiveSetMatrix_.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -17,17 +17,18 @@
 
 // Function Definitions
 //
-// Arguments    : j_struct_T *obj
+// Arguments    : o_struct_T *obj
 //                int TYPE
 //                int idx_local
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace qpactiveset {
 namespace WorkingSet {
-void addBoundToActiveSetMatrix_(j_struct_T *obj, int TYPE, int idx_local)
+void addBoundToActiveSetMatrix_(o_struct_T *obj, int TYPE, int idx_local)
 {
   int b_i;
   int colOffset;
@@ -89,6 +90,7 @@ void addBoundToActiveSetMatrix_(j_struct_T *obj, int TYPE, int idx_local)
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for addBoundToActiveSetMatrix_.cpp

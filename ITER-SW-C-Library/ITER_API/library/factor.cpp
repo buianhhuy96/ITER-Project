@@ -5,7 +5,7 @@
 // File: factor.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -19,17 +19,18 @@
 
 // Function Definitions
 //
-// Arguments    : s_struct_T *obj
+// Arguments    : y_struct_T *obj
 //                const double A[7][7]
 //                int ndims
 //                int ldA
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace DynamicRegCholManager {
-void factor(s_struct_T *obj, const double A[7][7], int ndims, int ldA)
+void factor(y_struct_T *obj, const double A[7][7], int ndims, int ldA)
 {
   double SCALED_REG_PRIMAL;
   SCALED_REG_PRIMAL =
@@ -76,6 +77,7 @@ void factor(s_struct_T *obj, const double A[7][7], int ndims, int ldA)
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for factor.cpp

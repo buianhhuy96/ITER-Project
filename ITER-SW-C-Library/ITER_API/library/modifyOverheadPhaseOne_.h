@@ -5,7 +5,7 @@
 // File: modifyOverheadPhaseOne_.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef MODIFYOVERHEADPHASEONE__H
@@ -13,26 +13,33 @@
 
 // Include Files
 #include "rtwtypes.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Type Declarations
-struct j_struct_T;
+namespace ITER {
+struct o_struct_T;
+
+}
 
 // Function Declarations
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace qpactiveset {
 namespace WorkingSet {
-void modifyOverheadPhaseOne_(j_struct_T *obj);
+void modifyOverheadPhaseOne_(o_struct_T *obj);
 
 }
 } // namespace qpactiveset
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 #endif
 //

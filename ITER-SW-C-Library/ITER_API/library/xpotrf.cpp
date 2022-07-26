@@ -5,7 +5,7 @@
 // File: xpotrf.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -21,6 +21,7 @@
 //                int d_lda
 // Return Type  : int
 //
+namespace ITER {
 namespace coder {
 namespace internal {
 namespace lapack {
@@ -105,6 +106,7 @@ int xpotrf(int h_n, double A[15][15], int d_lda)
 } // namespace lapack
 } // namespace internal
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for xpotrf.cpp

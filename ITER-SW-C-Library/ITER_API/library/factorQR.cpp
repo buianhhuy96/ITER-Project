@@ -5,7 +5,7 @@
 // File: factorQR.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -24,6 +24,7 @@
 //                int ldA
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
@@ -91,6 +92,7 @@ void factorQR(struct_T *obj, const double A[120], int mrows, int ncols, int ldA)
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for factorQR.cpp

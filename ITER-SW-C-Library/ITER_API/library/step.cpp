@@ -5,7 +5,7 @@
 // File: step.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -25,29 +25,30 @@
 //
 // Arguments    : int *b_STEP_TYPE
 //                double Hessian[7][7]
-//                i_struct_T *TrialState
-//                p_struct_T *MeritFunction
+//                m_struct_T *TrialState
+//                u_struct_T *MeritFunction
 //                b_struct_T *memspace
-//                j_struct_T *WorkingSet
+//                o_struct_T *WorkingSet
 //                struct_T *b_QRManager
-//                s_struct_T *b_CholManager
-//                r_struct_T *QPObjective
-//                d_struct_T *qpoptions
+//                y_struct_T *b_CholManager
+//                x_struct_T *QPObjective
+//                e_struct_T *qpoptions
 // Return Type  : bool
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace fminconsqp {
-bool b_step(int *b_STEP_TYPE, double Hessian[7][7], i_struct_T *TrialState,
-            p_struct_T *MeritFunction, b_struct_T *memspace,
-            j_struct_T *WorkingSet, struct_T *b_QRManager,
-            s_struct_T *b_CholManager, r_struct_T *QPObjective,
-            d_struct_T *qpoptions)
+bool b_step(int *b_STEP_TYPE, double Hessian[7][7], m_struct_T *TrialState,
+            u_struct_T *MeritFunction, b_struct_T *memspace,
+            o_struct_T *WorkingSet, struct_T *b_QRManager,
+            y_struct_T *b_CholManager, x_struct_T *QPObjective,
+            e_struct_T *qpoptions)
 {
-  d_struct_T b_qpoptions;
-  d_struct_T c_qpoptions;
-  double dv[8];
+  e_struct_T b_qpoptions;
+  e_struct_T c_qpoptions;
+  double b_dv[8];
   int nVar;
   int nVar_tmp_tmp;
   bool checkBoundViolation;
@@ -83,7 +84,7 @@ bool b_step(int *b_STEP_TYPE, double Hessian[7][7], i_struct_T *TrialState,
     switch (*b_STEP_TYPE) {
     case 1: {
       b_qpoptions = *qpoptions;
-      ::coder::optim::coder::qpactiveset::driver(
+      ::ITER::coder::optim::coder::qpactiveset::driver(
           Hessian, TrialState->grad, TrialState, memspace, WorkingSet,
           b_QRManager, b_CholManager, QPObjective, qpoptions, &b_qpoptions);
       if (TrialState->state > 0) {
@@ -173,26 +174,26 @@ bool b_step(int *b_STEP_TYPE, double Hessian[7][7], i_struct_T *TrialState,
       WorkingSet->nWConstr[4] = 0;
       WorkingSet->nActiveConstr =
           WorkingSet->nWConstr[0] + WorkingSet->nWConstr[1];
-      (void)std::copy(&TrialState->xstar[0], &TrialState->xstar[8], &dv[0]);
+      (void)std::copy(&TrialState->xstar[0], &TrialState->xstar[8], &b_dv[0]);
       mLB = WorkingSet->sizes[3];
       mUB = WorkingSet->sizes[4];
       for (int b_idx{0}; b_idx < mLB; b_idx++) {
         double d;
         d = WorkingSet->lb[WorkingSet->indexLB[b_idx] - 1];
-        if ((-dv[WorkingSet->indexLB[b_idx] - 1]) > d) {
-          dv[WorkingSet->indexLB[b_idx] - 1] =
+        if ((-b_dv[WorkingSet->indexLB[b_idx] - 1]) > d) {
+          b_dv[WorkingSet->indexLB[b_idx] - 1] =
               (WorkingSet->ub[WorkingSet->indexLB[b_idx] - 1] - d) / 2.0;
         }
       }
       for (int c_idx{0}; c_idx < mUB; c_idx++) {
         double b_d1;
         b_d1 = WorkingSet->ub[WorkingSet->indexUB[c_idx] - 1];
-        if (dv[WorkingSet->indexUB[c_idx] - 1] > b_d1) {
-          dv[WorkingSet->indexUB[c_idx] - 1] =
+        if (b_dv[WorkingSet->indexUB[c_idx] - 1] > b_d1) {
+          b_dv[WorkingSet->indexUB[c_idx] - 1] =
               (b_d1 - WorkingSet->lb[WorkingSet->indexUB[c_idx] - 1]) / 2.0;
         }
       }
-      (void)std::copy(&dv[0], &dv[8], &TrialState->xstar[0]);
+      (void)std::copy(&b_dv[0], &b_dv[8], &TrialState->xstar[0]);
       step::relaxed(Hessian, TrialState->grad, TrialState, MeritFunction,
                     memspace, WorkingSet, b_QRManager, b_CholManager,
                     QPObjective, qpoptions);
@@ -265,10 +266,10 @@ bool b_step(int *b_STEP_TYPE, double Hessian[7][7], i_struct_T *TrialState,
         (void)std::copy(&TrialState->xstarsqp[0],
                         &TrialState->xstarsqp[b_i + 1], &TrialState->xstar[0]);
       }
-      (void)std::copy(&TrialState->grad[0], &TrialState->grad[8], &dv[0]);
+      (void)std::copy(&TrialState->grad[0], &TrialState->grad[8], &b_dv[0]);
       c_qpoptions = *qpoptions;
-      ::coder::optim::coder::qpactiveset::driver(
-          Hessian, dv, TrialState, memspace, WorkingSet, b_QRManager,
+      ::ITER::coder::optim::coder::qpactiveset::driver(
+          Hessian, b_dv, TrialState, memspace, WorkingSet, b_QRManager,
           b_CholManager, QPObjective, qpoptions, &c_qpoptions);
       for (int f_idx{0}; f_idx <= b_i; f_idx++) {
         double oldDirIdx;
@@ -277,11 +278,10 @@ bool b_step(int *b_STEP_TYPE, double Hessian[7][7], i_struct_T *TrialState,
             TrialState->xstar[f_idx] - TrialState->socDirection[f_idx];
         TrialState->xstar[f_idx] = oldDirIdx;
       }
-      b_stepSuccess =
-          (::coder::internal::blas::h_xnrm2(b_i + 1,
-                                            TrialState->socDirection) <=
-           (2.0 *
-            ::coder::internal::blas::h_xnrm2(b_i + 1, TrialState->xstar)));
+      b_stepSuccess = (::ITER::coder::internal::blas::j_xnrm2(
+                           b_i + 1, TrialState->socDirection) <=
+                       (2.0 * ::ITER::coder::internal::blas::j_xnrm2(
+                                  b_i + 1, TrialState->xstar)));
       mIneq = WorkingSet->sizes[2];
       c_mLB = WorkingSet->sizes[3];
       if ((WorkingSet->sizes[2] > 0) && (!b_stepSuccess)) {
@@ -363,15 +363,15 @@ bool b_step(int *b_STEP_TYPE, double Hessian[7][7], i_struct_T *TrialState,
         }
         diagVal = std::fmax(2.2204460492503131E-16, nrmGradInf / nrmDirInf);
         for (int idx_col{0}; idx_col < 7; idx_col++) {
+          int b_iH0;
           int h_n;
-          int iH0;
           int iy0;
-          iH0 = 7 * idx_col;
+          b_iH0 = 7 * idx_col;
           for (int b_k{0}; b_k < idx_col; b_k++) {
-            (&Hessian[0][0])[iH0 + b_k] = 0.0;
+            (&Hessian[0][0])[b_iH0 + b_k] = 0.0;
           }
           Hessian[idx_col][idx_col] = diagVal;
-          iy0 = iH0 + idx_col;
+          iy0 = b_iH0 + idx_col;
           h_n = 5 - idx_col;
           for (int c_k{0}; c_k <= h_n; c_k++) {
             (&Hessian[0][0])[(iy0 + c_k) + 1] = 0.0;
@@ -389,28 +389,28 @@ bool b_step(int *b_STEP_TYPE, double Hessian[7][7], i_struct_T *TrialState,
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
     for (int c_i = 0; c_i < 8; c_i++) {
-      dv[c_i] = TrialState->delta_x[c_i];
+      b_dv[c_i] = TrialState->delta_x[c_i];
     }
     for (int g_idx{0}; g_idx < b_mLB; g_idx++) {
       double violationResid_tmp;
-      violationResid_tmp = dv[WorkingSet->indexLB[g_idx] - 1];
+      violationResid_tmp = b_dv[WorkingSet->indexLB[g_idx] - 1];
       violationResid = (TrialState->xstarsqp[WorkingSet->indexLB[g_idx] - 1] +
                         violationResid_tmp) -
                        -1.7976931348623157E+308;
       if (violationResid < 0.0) {
-        dv[WorkingSet->indexLB[g_idx] - 1] =
+        b_dv[WorkingSet->indexLB[g_idx] - 1] =
             violationResid_tmp - violationResid;
         TrialState->xstar[WorkingSet->indexLB[g_idx] - 1] -= violationResid;
       }
     }
     for (int h_idx{0}; h_idx < b_mUB; h_idx++) {
       double b_violationResid_tmp;
-      b_violationResid_tmp = dv[WorkingSet->indexUB[h_idx] - 1];
+      b_violationResid_tmp = b_dv[WorkingSet->indexUB[h_idx] - 1];
       violationResid = (1.7976931348623157E+308 -
                         TrialState->xstarsqp[WorkingSet->indexUB[h_idx] - 1]) -
                        b_violationResid_tmp;
       if (violationResid < 0.0) {
-        dv[WorkingSet->indexUB[h_idx] - 1] =
+        b_dv[WorkingSet->indexUB[h_idx] - 1] =
             b_violationResid_tmp + violationResid;
         TrialState->xstar[WorkingSet->indexUB[h_idx] - 1] += violationResid;
       }
@@ -418,7 +418,7 @@ bool b_step(int *b_STEP_TYPE, double Hessian[7][7], i_struct_T *TrialState,
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
     for (int d_i = 0; d_i < 8; d_i++) {
-      TrialState->delta_x[d_i] = dv[d_i];
+      TrialState->delta_x[d_i] = b_dv[d_i];
     }
   }
   return stepSuccess;
@@ -428,6 +428,7 @@ bool b_step(int *b_STEP_TYPE, double Hessian[7][7], i_struct_T *TrialState,
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for step.cpp

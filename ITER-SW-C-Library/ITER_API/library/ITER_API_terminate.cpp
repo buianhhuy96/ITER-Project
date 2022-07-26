@@ -5,7 +5,7 @@
 // File: ITER_API_terminate.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -19,13 +19,16 @@
 // Arguments    : void
 // Return Type  : void
 //
+namespace ITER {
 void ITER_API_terminate()
 {
 #if defined(_OPENMP)
   omp_destroy_nest_lock(&calibrateOneCamera_nestLockGlobal);
-#endif
+#endif	
   isInitialized_ITER_API = false;
 }
+
+} // namespace ITER
 
 //
 // File trailer for ITER_API_terminate.cpp

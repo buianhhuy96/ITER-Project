@@ -5,7 +5,7 @@
 // File: xgeqp3.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -28,6 +28,7 @@
 //                int jpvt[8]
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace internal {
 namespace lapack {
@@ -38,14 +39,14 @@ void b_xgeqp3(::coder::array<double, 2U> &A, ::coder::array<double, 1U> &tau,
   double vn2[8];
   double work[8];
   double d;
-  int b_m;
   int b_u0;
   int loop_ub;
+  int m;
   int minmana;
   int minmn;
   int u0;
   bool guard1{false};
-  b_m = A.size(0);
+  m = A.size(0);
   u0 = A.size(0);
   if (u0 <= 8) {
     minmana = u0;
@@ -110,7 +111,7 @@ void b_xgeqp3(::coder::array<double, 2U> &A, ::coder::array<double, 1U> &tau,
 
     for (int b_j = 0; b_j < 8; b_j++) {
       work[b_j] = 0.0;
-      d = blas::b_xnrm2(b_m, A, (b_j * ma) + 1);
+      d = blas::b_xnrm2(m, A, (b_j * ma) + 1);
       vn1[b_j] = d;
       vn2[b_j] = d;
     }
@@ -125,7 +126,7 @@ void b_xgeqp3(::coder::array<double, 2U> &A, ::coder::array<double, 1U> &tau,
       ip1 = c_i + 2;
       ii_tmp = c_i * ma;
       c_ii = ii_tmp + c_i;
-      b_mmi = b_m - c_i;
+      b_mmi = m - c_i;
       h_n = 8 - c_i;
       if ((8 - c_i) < 1) {
         idxmax = -1;
@@ -146,13 +147,13 @@ void b_xgeqp3(::coder::array<double, 2U> &A, ::coder::array<double, 1U> &tau,
       }
       pvt = c_i + idxmax;
       if ((pvt + 1) != (c_i + 1)) {
-        int b_ix;
-        b_ix = pvt * ma;
-        for (int c_k{0}; c_k < b_m; c_k++) {
+        int c_ix;
+        c_ix = pvt * ma;
+        for (int c_k{0}; c_k < m; c_k++) {
           double temp;
           int i2;
           int temp_tmp;
-          temp_tmp = b_ix + c_k;
+          temp_tmp = c_ix + c_k;
           temp = A[temp_tmp];
           i2 = ii_tmp + c_k;
           A[temp_tmp] = A[i2];
@@ -165,7 +166,7 @@ void b_xgeqp3(::coder::array<double, 2U> &A, ::coder::array<double, 1U> &tau,
         vn1[pvt] = vn1[c_i];
         vn2[pvt] = vn2[c_i];
       }
-      if ((c_i + 1) < b_m) {
+      if ((c_i + 1) < m) {
         double d_atmp;
         int ix0;
         d_atmp = A[c_ii];
@@ -306,8 +307,8 @@ void b_xgeqp3(::coder::array<double, 2U> &A, ::coder::array<double, 1U> &tau,
             }
           }
           if (!((-tau[c_i]) == 0.0)) {
-            int jA;
-            jA = ic0;
+            int b_jA;
+            b_jA = ic0;
             for (int d_j{0}; d_j <= lastc; d_j++) {
               double d3;
               d3 = work[d_j];
@@ -315,12 +316,12 @@ void b_xgeqp3(::coder::array<double, 2U> &A, ::coder::array<double, 1U> &tau,
                 double b_temp;
                 int i6;
                 b_temp = d3 * (-tau[c_i]);
-                i6 = lastv + jA;
-                for (int ijA{jA}; ijA <= i6; ijA++) {
-                  A[ijA - 1] = A[ijA - 1] + (A[(c_ii + ijA) - jA] * b_temp);
+                i6 = lastv + b_jA;
+                for (int ijA{b_jA}; ijA <= i6; ijA++) {
+                  A[ijA - 1] = A[ijA - 1] + (A[(c_ii + ijA) - b_jA] * b_temp);
                 }
               }
-              jA += ma;
+              b_jA += ma;
             }
           }
         }
@@ -342,7 +343,7 @@ void b_xgeqp3(::coder::array<double, 2U> &A, ::coder::array<double, 1U> &tau,
           temp2 = b_d1 / vn2[c_j - 1];
           temp2 = temp1 * (temp2 * temp2);
           if (temp2 <= 1.4901161193847656E-8) {
-            if ((c_i + 1) < b_m) {
+            if ((c_i + 1) < m) {
               double d2;
               d2 = blas::b_xnrm2(b_mmi - 1, A, ij + 2);
               vn1[c_j - 1] = d2;
@@ -369,13 +370,13 @@ void b_xgeqp3(::coder::array<double, 2U> &A, ::coder::array<double, 1U> &tau,
 
 //
 // Arguments    : double A[15][15]
-//                int b_m
+//                int m
 //                int h_n
 //                int jpvt[15]
 //                double tau[15]
 // Return Type  : void
 //
-void c_xgeqp3(double A[15][15], int b_m, int h_n, int jpvt[15], double tau[15])
+void c_xgeqp3(double A[15][15], int m, int h_n, int jpvt[15], double tau[15])
 {
   double vn1[15];
   double vn2[15];
@@ -383,8 +384,8 @@ void c_xgeqp3(double A[15][15], int b_m, int h_n, int jpvt[15], double tau[15])
   double d;
   double d_atmp;
   int minmn;
-  if (b_m <= h_n) {
-    minmn = b_m;
+  if (m <= h_n) {
+    minmn = m;
   } else {
     minmn = h_n;
   }
@@ -412,15 +413,15 @@ void c_xgeqp3(double A[15][15], int b_m, int h_n, int jpvt[15], double tau[15])
       if (jpvt[j] != 0) {
         nfxd++;
         if ((j + 1) != nfxd) {
-          int b_ix;
           int b_iy;
-          b_ix = j * 15;
+          int c_ix;
+          c_ix = j * 15;
           b_iy = (nfxd - 1) * 15;
-          for (int k{0}; k < b_m; k++) {
+          for (int k{0}; k < m; k++) {
             double temp;
             int i1;
             int temp_tmp;
-            temp_tmp = b_ix + k;
+            temp_tmp = c_ix + k;
             temp = (&A[0][0])[temp_tmp];
             i1 = b_iy + k;
             (&A[0][0])[temp_tmp] = (&A[0][0])[i1];
@@ -438,14 +439,14 @@ void c_xgeqp3(double A[15][15], int b_m, int h_n, int jpvt[15], double tau[15])
     if (nfxd > minmn) {
       nfxd = minmn;
     }
-    reflapack::qrf(A, b_m, h_n, nfxd, tau);
+    reflapack::qrf(A, m, h_n, nfxd, tau);
     if (nfxd < minmn) {
       int b_minmn;
       int d_i;
       int i2;
       int i3;
-      if (b_m <= h_n) {
-        b_minmn = b_m;
+      if (m <= h_n) {
+        b_minmn = m;
       } else {
         b_minmn = h_n;
       }
@@ -460,7 +461,7 @@ void c_xgeqp3(double A[15][15], int b_m, int h_n, int jpvt[15], double tau[15])
       i2 = nfxd + 1;
       if ((static_cast<int>((h_n - nfxd) < 4)) != 0) {
         for (int c_j{d_i}; c_j <= h_n; c_j++) {
-          d = blas::xnrm2(b_m - nfxd, A, (nfxd + ((c_j - 1) * 15)) + 1);
+          d = blas::xnrm2(m - nfxd, A, (nfxd + ((c_j - 1) * 15)) + 1);
           vn1[c_j - 1] = d;
           vn2[c_j - 1] = d;
         }
@@ -468,7 +469,7 @@ void c_xgeqp3(double A[15][15], int b_m, int h_n, int jpvt[15], double tau[15])
 #pragma omp parallel for num_threads(omp_get_max_threads()) private(d)
 
         for (int c_j = i2; c_j <= h_n; c_j++) {
-          d = blas::xnrm2(b_m - nfxd, A, (nfxd + ((c_j - 1) * 15)) + 1);
+          d = blas::xnrm2(m - nfxd, A, (nfxd + ((c_j - 1) * 15)) + 1);
           vn1[c_j - 1] = d;
           vn2[c_j - 1] = d;
         }
@@ -487,7 +488,7 @@ void c_xgeqp3(double A[15][15], int b_m, int h_n, int jpvt[15], double tau[15])
         ii_tmp = (e_i - 1) * 15;
         c_ii = (ii_tmp + e_i) - 1;
         nmi = (h_n - e_i) + 1;
-        b_mmi = b_m - e_i;
+        b_mmi = m - e_i;
         if (nmi < 1) {
           idxmax = -2;
         } else {
@@ -507,13 +508,13 @@ void c_xgeqp3(double A[15][15], int b_m, int h_n, int jpvt[15], double tau[15])
         }
         pvt = e_i + idxmax;
         if ((pvt + 1) != e_i) {
-          int c_ix;
-          c_ix = pvt * 15;
-          for (int c_k{0}; c_k < b_m; c_k++) {
+          int d_ix;
+          d_ix = pvt * 15;
+          for (int c_k{0}; c_k < m; c_k++) {
             double b_temp;
             int b_temp_tmp;
             int i4;
-            b_temp_tmp = c_ix + c_k;
+            b_temp_tmp = d_ix + c_k;
             b_temp = (&A[0][0])[b_temp_tmp];
             i4 = ii_tmp + c_k;
             (&A[0][0])[b_temp_tmp] = (&A[0][0])[i4];
@@ -526,9 +527,9 @@ void c_xgeqp3(double A[15][15], int b_m, int h_n, int jpvt[15], double tau[15])
           vn1[pvt] = vn1[e_i - 1];
           vn2[pvt] = vn2[e_i - 1];
         }
-        if (e_i < b_m) {
+        if (e_i < m) {
           d_atmp = (&A[0][0])[c_ii];
-          b_d1 = reflapack::b_xzlarfg(b_mmi + 1, &d_atmp, A, c_ii + 2);
+          b_d1 = reflapack::c_xzlarfg(b_mmi + 1, &d_atmp, A, c_ii + 2);
           tau[e_i - 1] = b_d1;
           (&A[0][0])[c_ii] = d_atmp;
         } else {
@@ -539,7 +540,7 @@ void c_xgeqp3(double A[15][15], int b_m, int h_n, int jpvt[15], double tau[15])
           double e_atmp;
           e_atmp = (&A[0][0])[c_ii];
           (&A[0][0])[c_ii] = 1.0;
-          reflapack::c_xzlarf(b_mmi + 1, nmi - 1, c_ii + 1, b_d1, A, c_ii + 16,
+          reflapack::d_xzlarf(b_mmi + 1, nmi - 1, c_ii + 1, b_d1, A, c_ii + 16,
                               work);
           (&A[0][0])[c_ii] = e_atmp;
         }
@@ -559,7 +560,7 @@ void c_xgeqp3(double A[15][15], int b_m, int h_n, int jpvt[15], double tau[15])
             temp2 = d2 / vn2[d_j - 1];
             temp2 = temp1 * (temp2 * temp2);
             if (temp2 <= 1.4901161193847656E-8) {
-              if (e_i < b_m) {
+              if (e_i < m) {
                 double d3;
                 d3 = blas::xnrm2(b_mmi, A, ij + 1);
                 vn1[d_j - 1] = d3;
@@ -587,23 +588,23 @@ void c_xgeqp3(double A[15][15], int b_m, int h_n, int jpvt[15], double tau[15])
 void xgeqp3(::coder::array<double, 2U> &A, ::coder::array<double, 1U> &tau,
             ::coder::array<int, 2U> &jpvt)
 {
-  array<double, 1U> vn1;
-  array<double, 1U> vn2;
-  array<double, 1U> work;
+  ::coder::array<double, 1U> vn1;
+  ::coder::array<double, 1U> vn2;
+  ::coder::array<double, 1U> work;
   double d;
   double d_atmp;
-  int b_m;
   int b_u0;
   int b_u1;
   int c_u1;
   int h_n;
   int loop_ub;
+  int m;
   int minmana;
   int minmn;
   int u0;
   int unnamed_idx_1;
   bool guard1{false};
-  b_m = A.size(0);
+  m = A.size(0);
   h_n = A.size(1);
   u0 = A.size(0);
   b_u1 = A.size(1);
@@ -643,10 +644,10 @@ void xgeqp3(::coder::array<double, 2U> &A, ::coder::array<double, 1U> &tau,
     int c_u0;
     int d_loop_ub;
     int d_u1;
-    int e_A;
     int e_loop_ub;
     int f_loop_ub;
     int g_loop_ub;
+    int j_A;
     int ma;
     unnamed_idx_1 = A.size(1);
     jpvt.set_size(1, unnamed_idx_1);
@@ -694,11 +695,11 @@ void xgeqp3(::coder::array<double, 2U> &A, ::coder::array<double, 1U> &tau,
     } else {
       b_minmn = d_u1;
     }
-    e_A = A.size(1);
-    work.set_size(e_A);
-    e_loop_ub = e_A;
-    if ((static_cast<int>(e_A < 4)) != 0) {
-      for (int i4{0}; i4 < e_A; i4++) {
+    j_A = A.size(1);
+    work.set_size(j_A);
+    e_loop_ub = j_A;
+    if ((static_cast<int>(j_A < 4)) != 0) {
+      for (int i4{0}; i4 < j_A; i4++) {
         work[i4] = 0.0;
       }
     } else {
@@ -708,11 +709,11 @@ void xgeqp3(::coder::array<double, 2U> &A, ::coder::array<double, 1U> &tau,
         work[i4] = 0.0;
       }
     }
-    e_A = A.size(1);
-    vn1.set_size(e_A);
-    f_loop_ub = e_A;
-    if ((static_cast<int>(e_A < 4)) != 0) {
-      for (int i5{0}; i5 < e_A; i5++) {
+    j_A = A.size(1);
+    vn1.set_size(j_A);
+    f_loop_ub = j_A;
+    if ((static_cast<int>(j_A < 4)) != 0) {
+      for (int i5{0}; i5 < j_A; i5++) {
         vn1[i5] = 0.0;
       }
     } else {
@@ -722,11 +723,11 @@ void xgeqp3(::coder::array<double, 2U> &A, ::coder::array<double, 1U> &tau,
         vn1[i5] = 0.0;
       }
     }
-    e_A = A.size(1);
-    vn2.set_size(e_A);
-    g_loop_ub = e_A;
-    if ((static_cast<int>(e_A < 4)) != 0) {
-      for (int i6{0}; i6 < e_A; i6++) {
+    j_A = A.size(1);
+    vn2.set_size(j_A);
+    g_loop_ub = j_A;
+    if ((static_cast<int>(j_A < 4)) != 0) {
+      for (int i6{0}; i6 < j_A; i6++) {
         vn2[i6] = 0.0;
       }
     } else {
@@ -738,7 +739,7 @@ void xgeqp3(::coder::array<double, 2U> &A, ::coder::array<double, 1U> &tau,
     }
     if ((static_cast<int>(h_n < 4)) != 0) {
       for (int b_j{0}; b_j < h_n; b_j++) {
-        d = blas::b_xnrm2(b_m, A, (b_j * ma) + 1);
+        d = blas::b_xnrm2(m, A, (b_j * ma) + 1);
         vn1[b_j] = d;
         vn2[b_j] = d;
       }
@@ -746,7 +747,7 @@ void xgeqp3(::coder::array<double, 2U> &A, ::coder::array<double, 1U> &tau,
 #pragma omp parallel for num_threads(omp_get_max_threads()) private(d)
 
       for (int b_j = 0; b_j < h_n; b_j++) {
-        d = blas::b_xnrm2(b_m, A, (b_j * ma) + 1);
+        d = blas::b_xnrm2(m, A, (b_j * ma) + 1);
         vn1[b_j] = d;
         vn2[b_j] = d;
       }
@@ -764,7 +765,7 @@ void xgeqp3(::coder::array<double, 2U> &A, ::coder::array<double, 1U> &tau,
       ii_tmp = c_i * ma;
       c_ii = ii_tmp + c_i;
       nmi = h_n - c_i;
-      b_mmi = b_m - c_i;
+      b_mmi = m - c_i;
       if (nmi < 1) {
         idxmax = -1;
       } else {
@@ -784,13 +785,13 @@ void xgeqp3(::coder::array<double, 2U> &A, ::coder::array<double, 1U> &tau,
       }
       pvt = c_i + idxmax;
       if ((pvt + 1) != (c_i + 1)) {
-        int b_ix;
-        b_ix = pvt * ma;
-        for (int c_k{0}; c_k < b_m; c_k++) {
+        int c_ix;
+        c_ix = pvt * ma;
+        for (int c_k{0}; c_k < m; c_k++) {
           double temp;
           int i7;
           int temp_tmp;
-          temp_tmp = b_ix + c_k;
+          temp_tmp = c_ix + c_k;
           temp = A[temp_tmp];
           i7 = ii_tmp + c_k;
           A[temp_tmp] = A[i7];
@@ -803,7 +804,7 @@ void xgeqp3(::coder::array<double, 2U> &A, ::coder::array<double, 1U> &tau,
         vn1[pvt] = vn1[c_i];
         vn2[pvt] = vn2[c_i];
       }
-      if ((c_i + 1) < b_m) {
+      if ((c_i + 1) < m) {
         d_atmp = A[c_ii];
         b_d1 = reflapack::xzlarfg(b_mmi, &d_atmp, A, c_ii + 2);
         tau[c_i] = b_d1;
@@ -836,7 +837,7 @@ void xgeqp3(::coder::array<double, 2U> &A, ::coder::array<double, 1U> &tau,
           temp2 = d2 / vn2[c_j - 1];
           temp2 = temp1 * (temp2 * temp2);
           if (temp2 <= 1.4901161193847656E-8) {
-            if ((c_i + 1) < b_m) {
+            if ((c_i + 1) < m) {
               double d3;
               d3 = blas::b_xnrm2(b_mmi - 1, A, ij + 2);
               vn1[c_j - 1] = d3;
@@ -885,6 +886,7 @@ void xgeqp3(::coder::array<double, 2U> &A, ::coder::array<double, 1U> &tau,
 } // namespace lapack
 } // namespace internal
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for xgeqp3.cpp

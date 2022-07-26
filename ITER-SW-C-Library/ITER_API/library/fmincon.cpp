@@ -5,7 +5,7 @@
 // File: fmincon.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -25,13 +25,14 @@
 
 // Function Definitions
 //
-// Arguments    : const anonymous_function *fun
+// Arguments    : const b_anonymous_function *fun
 //                const double x0[7]
 //                double b_x[7]
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
-void fmincon(const anonymous_function *fun, const double x0[7], double b_x[7])
+void fmincon(const b_anonymous_function *fun, const double x0[7], double b_x[7])
 {
   static const signed char b_iv[8]{1, 2, 3, 4, 5, 6, 7, 0};
   static const signed char t5_indexLB[8]{1, 2, 3, 4, 5, 6, 7, 0};
@@ -47,14 +48,14 @@ void fmincon(const anonymous_function *fun, const double x0[7], double b_x[7])
   static const signed char t5_sizesRegPhaseOne[5]{0, 0, 0, 8, 7};
   static const signed char t5_sizesRegularized[5]{0, 0, 0, 7, 7};
   b_struct_T memspace;
-  i_struct_T TrialState;
-  j_struct_T WorkingSet;
-  k_struct_T FcnEvaluator;
-  o_struct_T FiniteDifferences;
-  p_struct_T MeritFunction;
-  r_struct_T QPObjective;
-  s_struct_T CholManager;
+  m_struct_T TrialState;
+  o_struct_T WorkingSet;
+  q_struct_T FcnEvaluator;
   struct_T QRManager;
+  t_struct_T FiniteDifferences;
+  u_struct_T MeritFunction;
+  x_struct_T QPObjective;
+  y_struct_T CholManager;
   double Hessian[7][7];
   double fval;
   int i2;
@@ -308,6 +309,7 @@ void fmincon(const anonymous_function *fun, const double x0[7], double b_x[7])
 }
 
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for fmincon.cpp

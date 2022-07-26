@@ -5,7 +5,7 @@
 // File: xunormqr.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -17,22 +17,23 @@
 // Function Definitions
 //
 // Arguments    : const ::coder::array<double, 2U> &Q
-//                ::coder::array<double, 1U> &b_C
+//                ::coder::array<double, 1U> &c_C
 //                const ::coder::array<double, 1U> &tau
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace internal {
 namespace lapack {
 void xunormqr(const ::coder::array<double, 2U> &Q,
-              ::coder::array<double, 1U> &b_C,
+              ::coder::array<double, 1U> &c_C,
               const ::coder::array<double, 1U> &tau)
 {
-  int b_m;
   int b_mn;
   int b_u1;
+  int m;
   int u0;
-  b_m = Q.size(0);
+  m = Q.size(0);
   u0 = Q.size(0);
   b_u1 = Q.size(1);
   if (u0 <= b_u1) {
@@ -44,16 +45,16 @@ void xunormqr(const ::coder::array<double, 2U> &Q,
     if (tau[j] != 0.0) {
       double wj;
       int b_i;
-      wj = b_C[j];
+      wj = c_C[j];
       b_i = j + 2;
-      for (int c_i{b_i}; c_i <= b_m; c_i++) {
-        wj += Q[(c_i + (Q.size(0) * j)) - 1] * b_C[c_i - 1];
+      for (int c_i{b_i}; c_i <= m; c_i++) {
+        wj += Q[(c_i + (Q.size(0) * j)) - 1] * c_C[c_i - 1];
       }
       wj *= tau[j];
       if (wj != 0.0) {
-        b_C[j] = b_C[j] - wj;
-        for (int d_i{b_i}; d_i <= b_m; d_i++) {
-          b_C[d_i - 1] = b_C[d_i - 1] - (Q[(d_i + (Q.size(0) * j)) - 1] * wj);
+        c_C[j] = c_C[j] - wj;
+        for (int d_i{b_i}; d_i <= m; d_i++) {
+          c_C[d_i - 1] = c_C[d_i - 1] - (Q[(d_i + (Q.size(0) * j)) - 1] * wj);
         }
       }
     }
@@ -63,6 +64,7 @@ void xunormqr(const ::coder::array<double, 2U> &Q,
 } // namespace lapack
 } // namespace internal
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for xunormqr.cpp

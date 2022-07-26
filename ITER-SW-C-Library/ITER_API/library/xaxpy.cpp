@@ -5,7 +5,7 @@
 // File: xaxpy.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -18,24 +18,85 @@
 //
 // Arguments    : int h_n
 //                double b_a
-//                const ::coder::array<double, 1U> &b_x
+//                const double b_x[29][29]
 //                int ix0
-//                ::coder::array<double, 2U> &y
+//                double y[29]
 //                int iy0
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace internal {
 namespace blas {
-void b_xaxpy(int h_n, double b_a, const ::coder::array<double, 1U> &b_x,
-             int ix0, ::coder::array<double, 2U> &y, int iy0)
+void b_xaxpy(int h_n, double b_a, const double b_x[29][29], int ix0,
+             double y[29], int iy0)
 {
   int i2;
   if ((h_n >= 1) && (!(b_a == 0.0))) {
     int b_i;
-    int b_ix;
     int b_iy;
-    b_ix = ix0 - 1;
+    int c_ix;
+    c_ix = ix0 - 1;
+    b_iy = iy0 - 1;
+    b_i = h_n - 1;
+    if ((static_cast<int>(h_n < 4)) != 0) {
+      for (int k{0}; k <= b_i; k++) {
+        int i1;
+        i1 = (iy0 + k) - 1;
+        y[i1] += b_a * (&b_x[0][0])[(ix0 + k) - 1];
+      }
+    } else {
+#pragma omp parallel for num_threads(omp_get_max_threads()) private(i2)
+
+      for (int k = 0; k <= b_i; k++) {
+        i2 = b_iy + k;
+        y[i2] += b_a * (&b_x[0][0])[c_ix + k];
+      }
+    }
+  }
+}
+
+//
+// Arguments    : int h_n
+//                double b_a
+//                const double b_x[29]
+//                int ix0
+//                double y[29][29]
+//                int iy0
+// Return Type  : void
+//
+void c_xaxpy(int h_n, double b_a, const double b_x[29], int ix0,
+             double y[29][29], int iy0)
+{
+  if ((h_n >= 1) && (!(b_a == 0.0))) {
+    int b_i;
+    b_i = h_n - 1;
+    for (int k{0}; k <= b_i; k++) {
+      int i1;
+      i1 = (iy0 + k) - 1;
+      (&y[0][0])[i1] += b_a * b_x[(ix0 + k) - 1];
+    }
+  }
+}
+
+//
+// Arguments    : int h_n
+//                double b_a
+//                const ::coder::array<double, 2U> &b_x
+//                int ix0
+//                ::coder::array<double, 1U> &y
+//                int iy0
+// Return Type  : void
+//
+void d_xaxpy(int h_n, double b_a, const ::coder::array<double, 2U> &b_x,
+             int ix0, ::coder::array<double, 1U> &y, int iy0)
+{
+  int i2;
+  if ((h_n >= 1) && (!(b_a == 0.0))) {
+    int b_i;
+    int b_iy;
+    int c_ix;
+    c_ix = ix0 - 1;
     b_iy = iy0 - 1;
     b_i = h_n - 1;
     if ((static_cast<int>(h_n < 4)) != 0) {
@@ -49,7 +110,44 @@ void b_xaxpy(int h_n, double b_a, const ::coder::array<double, 1U> &b_x,
 
       for (int k = 0; k <= b_i; k++) {
         i2 = b_iy + k;
-        y[i2] = y[i2] + (b_a * b_x[b_ix + k]);
+        y[i2] = y[i2] + (b_a * b_x[c_ix + k]);
+      }
+    }
+  }
+}
+
+//
+// Arguments    : int h_n
+//                double b_a
+//                const ::coder::array<double, 1U> &b_x
+//                int ix0
+//                ::coder::array<double, 2U> &y
+//                int iy0
+// Return Type  : void
+//
+void e_xaxpy(int h_n, double b_a, const ::coder::array<double, 1U> &b_x,
+             int ix0, ::coder::array<double, 2U> &y, int iy0)
+{
+  int i2;
+  if ((h_n >= 1) && (!(b_a == 0.0))) {
+    int b_i;
+    int b_iy;
+    int c_ix;
+    c_ix = ix0 - 1;
+    b_iy = iy0 - 1;
+    b_i = h_n - 1;
+    if ((static_cast<int>(h_n < 4)) != 0) {
+      for (int k{0}; k <= b_i; k++) {
+        int i1;
+        i1 = (iy0 + k) - 1;
+        y[i1] = y[i1] + (b_a * b_x[(ix0 + k) - 1]);
+      }
+    } else {
+#pragma omp parallel for num_threads(omp_get_max_threads()) private(i2)
+
+      for (int k = 0; k <= b_i; k++) {
+        i2 = b_iy + k;
+        y[i2] = y[i2] + (b_a * b_x[c_ix + k]);
       }
     }
   }
@@ -63,7 +161,7 @@ void b_xaxpy(int h_n, double b_a, const ::coder::array<double, 1U> &b_x,
 //                int iy0
 // Return Type  : void
 //
-void c_xaxpy(int h_n, double b_a, int ix0, ::coder::array<double, 2U> &y,
+void f_xaxpy(int h_n, double b_a, int ix0, ::coder::array<double, 2U> &y,
              int iy0)
 {
   if ((h_n >= 1) && (!(b_a == 0.0))) {
@@ -85,7 +183,7 @@ void c_xaxpy(int h_n, double b_a, int ix0, ::coder::array<double, 2U> &y,
 //                int iy0
 // Return Type  : void
 //
-void d_xaxpy(int h_n, double b_a, int ix0, double y[6][6], int iy0)
+void g_xaxpy(int h_n, double b_a, int ix0, double y[6][6], int iy0)
 {
   if ((h_n >= 1) && (!(b_a == 0.0))) {
     int b_i;
@@ -106,7 +204,7 @@ void d_xaxpy(int h_n, double b_a, int ix0, double y[6][6], int iy0)
 //                int iy0
 // Return Type  : void
 //
-void e_xaxpy(int h_n, double b_a, int ix0, double y[3][3], int iy0)
+void h_xaxpy(int h_n, double b_a, int ix0, double y[3][3], int iy0)
 {
   if ((h_n >= 1) && (!(b_a == 0.0))) {
     int b_i;
@@ -127,7 +225,7 @@ void e_xaxpy(int h_n, double b_a, int ix0, double y[3][3], int iy0)
 //                int iy0
 // Return Type  : void
 //
-void f_xaxpy(int h_n, double b_a, int ix0, double y[9][9], int iy0)
+void i_xaxpy(int h_n, double b_a, int ix0, double y[9][9], int iy0)
 {
   if ((h_n >= 1) && (!(b_a == 0.0))) {
     int b_i;
@@ -149,15 +247,15 @@ void f_xaxpy(int h_n, double b_a, int ix0, double y[9][9], int iy0)
 //                int iy0
 // Return Type  : void
 //
-void g_xaxpy(int h_n, double b_a, const double b_x[9][9], int ix0, double y[9],
+void j_xaxpy(int h_n, double b_a, const double b_x[9][9], int ix0, double y[9],
              int iy0)
 {
   int i2;
   if ((h_n >= 1) && (!(b_a == 0.0))) {
     int b_i;
-    int b_ix;
     int b_iy;
-    b_ix = ix0 - 1;
+    int c_ix;
+    c_ix = ix0 - 1;
     b_iy = iy0 - 1;
     b_i = h_n - 1;
     if ((static_cast<int>(h_n < 4)) != 0) {
@@ -171,7 +269,7 @@ void g_xaxpy(int h_n, double b_a, const double b_x[9][9], int ix0, double y[9],
 
       for (int k = 0; k <= b_i; k++) {
         i2 = b_iy + k;
-        y[i2] += b_a * (&b_x[0][0])[b_ix + k];
+        y[i2] += b_a * (&b_x[0][0])[c_ix + k];
       }
     }
   }
@@ -186,7 +284,7 @@ void g_xaxpy(int h_n, double b_a, const double b_x[9][9], int ix0, double y[9],
 //                int iy0
 // Return Type  : void
 //
-void h_xaxpy(int h_n, double b_a, const double b_x[9], int ix0, double y[9][9],
+void k_xaxpy(int h_n, double b_a, const double b_x[9], int ix0, double y[9][9],
              int iy0)
 {
   if ((h_n >= 1) && (!(b_a == 0.0))) {
@@ -207,7 +305,7 @@ void h_xaxpy(int h_n, double b_a, const double b_x[9], int ix0, double y[9][9],
 //                double y[3]
 // Return Type  : void
 //
-void i_xaxpy(double b_a, const double b_x[3][3], int ix0, double y[3])
+void m_xaxpy(double b_a, const double b_x[3][3], int ix0, double y[3])
 {
   if (!(b_a == 0.0)) {
     for (int k{0}; k < 2; k++) {
@@ -223,7 +321,7 @@ void i_xaxpy(double b_a, const double b_x[3][3], int ix0, double y[3])
 //                int iy0
 // Return Type  : void
 //
-void j_xaxpy(double b_a, const double b_x[3], double y[3][3], int iy0)
+void o_xaxpy(double b_a, const double b_x[3], double y[3][3], int iy0)
 {
   if (!(b_a == 0.0)) {
     for (int k{0}; k < 2; k++) {
@@ -240,33 +338,85 @@ void j_xaxpy(double b_a, const double b_x[3], double y[3][3], int iy0)
 //                const ::coder::array<double, 2U> &b_x
 //                int ix0
 //                ::coder::array<double, 1U> &y
-//                int iy0
 // Return Type  : void
 //
-void xaxpy(int h_n, double b_a, const ::coder::array<double, 2U> &b_x, int ix0,
-           ::coder::array<double, 1U> &y, int iy0)
+void p_xaxpy(int h_n, double b_a, const ::coder::array<double, 2U> &b_x,
+             int ix0, ::coder::array<double, 1U> &y)
 {
   int i2;
   if ((h_n >= 1) && (!(b_a == 0.0))) {
     int b_i;
-    int b_ix;
-    int b_iy;
-    b_ix = ix0 - 1;
-    b_iy = iy0 - 1;
+    int c_ix;
+    c_ix = ix0 - 1;
     b_i = h_n - 1;
     if ((static_cast<int>(h_n < 4)) != 0) {
       for (int k{0}; k <= b_i; k++) {
         int i1;
-        i1 = (iy0 + k) - 1;
+        i1 = k + 1;
         y[i1] = y[i1] + (b_a * b_x[(ix0 + k) - 1]);
       }
     } else {
 #pragma omp parallel for num_threads(omp_get_max_threads()) private(i2)
 
       for (int k = 0; k <= b_i; k++) {
-        i2 = b_iy + k;
-        y[i2] = y[i2] + (b_a * b_x[b_ix + k]);
+        i2 = k + 1;
+        y[i2] = y[i2] + (b_a * b_x[c_ix + k]);
       }
+    }
+  }
+}
+
+//
+// Arguments    : int h_n
+//                double b_a
+//                const ::coder::array<double, 1U> &b_x
+//                ::coder::array<double, 2U> &y
+//                int iy0
+// Return Type  : void
+//
+void q_xaxpy(int h_n, double b_a, const ::coder::array<double, 1U> &b_x,
+             ::coder::array<double, 2U> &y, int iy0)
+{
+  int i2;
+  if ((h_n >= 1) && (!(b_a == 0.0))) {
+    int b_i;
+    int b_iy;
+    b_iy = iy0 - 1;
+    b_i = h_n - 1;
+    if ((static_cast<int>(h_n < 4)) != 0) {
+      for (int k{0}; k <= b_i; k++) {
+        int i1;
+        i1 = (iy0 + k) - 1;
+        y[i1] = y[i1] + (b_a * b_x[k + 1]);
+      }
+    } else {
+#pragma omp parallel for num_threads(omp_get_max_threads()) private(i2)
+
+      for (int k = 0; k <= b_i; k++) {
+        i2 = b_iy + k;
+        y[i2] = y[i2] + (b_a * b_x[k + 1]);
+      }
+    }
+  }
+}
+
+//
+// Arguments    : int h_n
+//                double b_a
+//                int ix0
+//                double y[29][29]
+//                int iy0
+// Return Type  : void
+//
+void xaxpy(int h_n, double b_a, int ix0, double y[29][29], int iy0)
+{
+  if ((h_n >= 1) && (!(b_a == 0.0))) {
+    int b_i;
+    b_i = h_n - 1;
+    for (int k{0}; k <= b_i; k++) {
+      int i1;
+      i1 = (iy0 + k) - 1;
+      (&y[0][0])[i1] += b_a * (&y[0][0])[(ix0 + k) - 1];
     }
   }
 }
@@ -274,6 +424,7 @@ void xaxpy(int h_n, double b_a, const ::coder::array<double, 2U> &b_x, int ix0,
 } // namespace blas
 } // namespace internal
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for xaxpy.cpp

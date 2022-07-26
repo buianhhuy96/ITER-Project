@@ -5,7 +5,7 @@
 // File: ITER_API_internal_types1.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef ITER_API_INTERNAL_TYPES1_H
@@ -15,20 +15,29 @@
 #include "anonymous_function1.h"
 #include "rtwtypes.h"
 #include "coder_array.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Type Definitions
-struct f_struct_T {
-  coder::array<double, 2U> undist_imgMarkerPts;
-  coder::array<double, 2U> WptsTrio;
+namespace ITER {
+struct g_struct_T {
+  ::coder::array<double, 2U> undist_imgMarkerPts;
+  ::coder::array<double, 2U> WptsTrio;
   double K11[4][3];
 };
 
-struct q_struct_T {
-  coder::b_anonymous_function fun;
+struct r_struct_T {
+  coder::anonymous_function fun;
 };
+
+struct v_struct_T {
+  coder::d_anonymous_function fun;
+};
+
+} // namespace ITER
 
 #endif
 //

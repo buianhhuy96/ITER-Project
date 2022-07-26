@@ -5,7 +5,7 @@
 // File: computeInitialParameterEstimate.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -14,10 +14,9 @@
 #include "cameraParameters.h"
 #include "fitgeotrans.h"
 #include "inv.h"
-#include "mod.h"
 #include "projective2d.h"
+#include "rodriguesMatrixToVector.h"
 #include "rt_nonfinite.h"
-#include "svd.h"
 #include "svd1.h"
 #include "coder_array.h"
 #include <cmath>
@@ -28,96 +27,59 @@
 // Solve for the camera intriniscs and extrinsics in closed form ignoring
 //  distortion.
 //
-// Arguments    : const coder::array<double, 2U> &c_worldPoints
-//                const coder::array<double, 3U> &b_imagePoints
+// Arguments    : const ::coder::array<double, 2U> &c_worldPoints
+//                const ::coder::array<double, 3U> &b_imagePoints
 //                const double c_imageSize[2]
-//                h_struct_T *initialParams
-//                coder::array<bool, 1U> &validIdx
+//                k_struct_T *initialParams
+//                ::coder::array<bool, 1U> &validIdx
 //                int *err
 // Return Type  : void
 //
+namespace ITER {
 void computeInitialParameterEstimate(
-    const coder::array<double, 2U> &c_worldPoints,
-    const coder::array<double, 3U> &b_imagePoints, const double c_imageSize[2],
-    h_struct_T *initialParams, coder::array<bool, 1U> &validIdx, int *err)
+    const ::coder::array<double, 2U> &c_worldPoints,
+    const ::coder::array<double, 3U> &b_imagePoints,
+    const double c_imageSize[2], k_struct_T *initialParams,
+    ::coder::array<bool, 1U> &validIdx, int *err)
 {
   coder::cameraParameters lobj_1[2];
   coder::projective2d c_H;
-  coder::array<double, 3U> H;
-  coder::array<double, 3U> b_H;
-  coder::array<double, 2U> U1;
-  coder::array<double, 2U> V;
-  coder::array<double, 2U> a__1;
-  coder::array<double, 2U> b_rotationVectors;
-  coder::array<double, 2U> b_translationVectors;
-  coder::array<double, 2U> c_imagePoints;
-  coder::array<double, 2U> d_imagePoints;
-  coder::array<double, 2U> d_worldPoints;
-  coder::array<double, 2U> r3;
-  coder::array<double, 1U> s;
-  coder::array<double, 1U> s1;
-  coder::array<int, 1U> r;
-  coder::array<int, 1U> r2;
-  coder::array<bool, 1U> r1;
-  coder::array<bool, 1U> validPointsIdx;
-  double U[6][6];
+  ::coder::array<double, 3U> H;
+  ::coder::array<double, 3U> b_H;
+  ::coder::array<double, 2U> U;
+  ::coder::array<double, 2U> U1;
+  ::coder::array<double, 2U> V;
+  ::coder::array<double, 2U> b_rotationVectors;
+  ::coder::array<double, 2U> b_translationVectors;
+  ::coder::array<double, 2U> c_imagePoints;
+  ::coder::array<double, 2U> d_imagePoints;
+  ::coder::array<double, 2U> d_worldPoints;
+  ::coder::array<double, 2U> r3;
+  ::coder::array<double, 1U> s;
+  ::coder::array<double, 1U> s1;
+  ::coder::array<int, 1U> r;
+  ::coder::array<int, 1U> r2;
+  ::coder::array<bool, 1U> r1;
+  ::coder::array<bool, 1U> validPointsIdx;
   double V1[6][6];
+  double b_U[6][6];
   double A[3][3];
   double Ainv[3][3];
-  double b_U[3][3];
-  double b_a__1[3][3];
   double b_r1[3][3];
-  double c_R[3][3];
   double e_H[3][3];
-  double e_V[3][3];
   double r1_tmp[3][3];
   double f_H[6];
   double g_H[6];
-  double b_r[3];
+  double b_dv[3];
   double b_r2[3];
-  double b_v[3];
   double c_r1[3];
-  double varargin_1[3];
-  double absxk;
-  double b;
-  double b_a;
-  double b_absxk;
-  double b_b;
-  double b_d1;
-  double b_s;
-  double b_scale;
-  double b_t;
-  double b_y;
-  double c;
-  double c_a;
-  double c_t;
-  double d10;
-  double d11;
-  double d12;
-  double d13;
-  double d2;
-  double d3;
-  double d4;
-  double d5;
-  double d6;
-  double d7;
-  double d8;
-  double d9;
-  double d_t;
-  double ex;
-  double scale;
-  double t8_NumRadialDistortionCoefficients;
-  double theta;
-  double y;
+  double t9_NumRadialDistortionCoefficients;
   int b_err;
   int b_i8;
   int b_loop_ub;
   int c_err;
-  int c_k;
   int c_loop_ub;
-  int d_k;
   int d_loop_ub;
-  int e_k;
   int e_loop_ub;
   int end;
   int f_loop_ub;
@@ -128,22 +90,13 @@ void computeInitialParameterEstimate(
   int i2;
   int i24;
   int i26;
-  int i29;
-  int i30;
-  int i31;
-  int i33;
-  int i34;
-  int i39;
   int i_loop_ub;
-  int idx;
-  int iindx;
   int k_loop_ub;
   int loop_ub;
   int trueCount;
-  char t8_WorldUnits[2];
-  bool exitg1;
-  bool t8_EstimateSkew;
-  bool t8_EstimateTangentialDistortion;
+  char t9_WorldUnits[2];
+  bool t9_EstimateSkew;
+  bool t9_EstimateTangentialDistortion;
   //  Compute homographies for all images
   // --------------------------------------------------------------------------
   b_err = 0;
@@ -389,7 +342,7 @@ void computeInitialParameterEstimate(
       double f_H_tmp;
       // --------------------------------------------------------------------------
       i_tmp = static_cast<int>(static_cast<unsigned int>(
-          (static_cast<unsigned int>(static_cast<int>(k_i + 1))) << 1UL));
+          (static_cast<unsigned int>(static_cast<int>(k_i + 1))) << 1U));
       V[i_tmp - 2] = e_H[0][0] * e_H[0][1];
       V[(i_tmp + V.size(0)) - 2] =
           (e_H[0][0] * e_H[1][1]) + (e_H[1][0] * e_H[0][1]);
@@ -440,7 +393,7 @@ void computeInitialParameterEstimate(
       }
     }
     if (p) {
-      coder::internal::c_svd(V, a__1, s, U);
+      coder::internal::e_svd(V, U, s, b_U);
     } else {
       int p_loop_ub;
       r3.set_size(V.size(0), 6);
@@ -460,12 +413,12 @@ void computeInitialParameterEstimate(
           }
         }
       }
-      coder::internal::c_svd(r3, U1, s1, V1);
+      coder::internal::e_svd(r3, U1, s1, V1);
 #pragma omp parallel for num_threads(omp_get_max_threads()) private(i26)
 
       for (int i25 = 0; i25 < 6; i25++) {
         for (i26 = 0; i26 < 6; i26++) {
-          U[i25][i26] = rtNaN;
+          b_U[i25][i26] = rtNaN;
         }
       }
     }
@@ -473,23 +426,24 @@ void computeInitialParameterEstimate(
     //  Compute the intrinsic matrix
     // --------------------------------------------------------------------------
     d_err = 0;
-    cy_tmp = (U[5][1] * U[5][3]) - (U[5][0] * U[5][4]);
-    b_cy_tmp = (U[5][0] * U[5][2]) - (U[5][1] * U[5][1]);
+    cy_tmp = (b_U[5][1] * b_U[5][3]) - (b_U[5][0] * b_U[5][4]);
+    b_cy_tmp = (b_U[5][0] * b_U[5][2]) - (b_U[5][1] * b_U[5][1]);
     b_cy = cy_tmp / b_cy_tmp;
-    lambda = U[5][5] - (((U[5][3] * U[5][3]) + (b_cy * cy_tmp)) / U[5][0]);
-    d = lambda / U[5][0];
-    if ((d < 0.0) || (((lambda * U[5][0]) / b_cy_tmp) < 0.0)) {
+    lambda =
+        b_U[5][5] - (((b_U[5][3] * b_U[5][3]) + (b_cy * cy_tmp)) / b_U[5][0]);
+    d = lambda / b_U[5][0];
+    if ((d < 0.0) || (((lambda * b_U[5][0]) / b_cy_tmp) < 0.0)) {
       // error(message('vision:calibrate:complexCameraMatrix'));
       d_err = -301;
     }
     fx = std::sqrt(d);
-    fy = std::sqrt((lambda * U[5][0]) /
-                   ((U[5][0] * U[5][2]) - (U[5][1] * U[5][1])));
+    fy = std::sqrt((lambda * b_U[5][0]) /
+                   ((b_U[5][0] * b_U[5][2]) - (b_U[5][1] * b_U[5][1])));
     skew_tmp = fx * fx;
-    skew = (((-U[5][1]) * skew_tmp) * fy) / lambda;
+    skew = (((-b_U[5][1]) * skew_tmp) * fy) / lambda;
     A[0][0] = fx;
     A[1][0] = skew;
-    A[2][0] = ((skew * b_cy) / fx) - ((U[5][3] * skew_tmp) / lambda);
+    A[2][0] = ((skew * b_cy) / fx) - ((b_U[5][3] * skew_tmp) / lambda);
     A[0][1] = 0.0;
     A[1][1] = fy;
     A[2][1] = b_cy;
@@ -508,171 +462,68 @@ void computeInitialParameterEstimate(
       b_translationVectors.set_size(3, H.size(2));
       coder::inv(A, Ainv);
       i28 = H.size(2);
-#pragma omp parallel for num_threads(omp_get_max_threads()) private(           \
-    b_d1, i29, b_t, absxk, c_k, d2, i30, i31, d3, d4, i33, i34, c_t, b_absxk,  \
-    d5, d_k, b, b_a, scale, y, b_v, b_s, c, b_b, i39, iindx, ex, e_k, idx,     \
-    varargin_1, b_r, theta, d_t, c_R, b_U, b_a__1, e_V, b_r1, b_r2, c_r1,      \
-    r1_tmp, c_a, b_scale, b_y, d6, d7, d8, d9, d10, d11, d12, d13, exitg1)
-
-      for (int m_i = 0; m_i < i28; m_i++) {
-        b_y = 0.0;
-        b_scale = 3.3121686421112381E-170;
-        for (d_k = 0; d_k < 3; d_k++) {
-          d5 = ((Ainv[0][d_k] * H[9 * m_i]) +
-                (Ainv[1][d_k] * H[(9 * m_i) + 1])) +
-               (Ainv[2][d_k] * H[(9 * m_i) + 2]);
-          b_absxk = std::abs(d5);
-          if (b_absxk > b_scale) {
-            c_t = b_scale / b_absxk;
-            b_y = ((b_y * c_t) * c_t) + 1.0;
-            b_scale = b_absxk;
+      for (int m_i{0}; m_i < i28; m_i++) {
+        double b_a;
+        double scale;
+        double y;
+        y = 0.0;
+        scale = 3.3121686421112381E-170;
+        for (int c_k{0}; c_k < 3; c_k++) {
+          double absxk;
+          absxk = std::abs(((Ainv[0][c_k] * H[9 * m_i]) +
+                            (Ainv[1][c_k] * H[(9 * m_i) + 1])) +
+                           (Ainv[2][c_k] * H[(9 * m_i) + 2]));
+          if (absxk > scale) {
+            double b_t;
+            b_t = scale / absxk;
+            y = ((y * b_t) * b_t) + 1.0;
+            scale = absxk;
           } else {
-            c_t = b_absxk / b_scale;
-            b_y += c_t * c_t;
+            double b_t;
+            b_t = absxk / scale;
+            y += b_t * b_t;
           }
         }
-        b_y = b_scale * std::sqrt(b_y);
-        c_a = 1.0 / b_y;
+        y = scale * std::sqrt(y);
+        b_a = 1.0 / y;
         //  3D rotation matrix
-        for (i34 = 0; i34 < 3; i34++) {
-          r1_tmp[i34][0] = c_a * Ainv[i34][0];
-          r1_tmp[i34][1] = c_a * Ainv[i34][1];
-          r1_tmp[i34][2] = c_a * Ainv[i34][2];
+        for (int i29{0}; i29 < 3; i29++) {
+          r1_tmp[i29][0] = b_a * Ainv[i29][0];
+          r1_tmp[i29][1] = b_a * Ainv[i29][1];
+          r1_tmp[i29][2] = b_a * Ainv[i29][2];
         }
-        for (i33 = 0; i33 < 3; i33++) {
-          d6 = r1_tmp[0][i33];
-          d7 = r1_tmp[1][i33];
-          d8 = r1_tmp[2][i33];
-          d4 = ((d6 * H[9 * m_i]) + (d7 * H[(9 * m_i) + 1])) +
-               (d8 * H[(9 * m_i) + 2]);
-          d3 = ((d6 * H[(9 * m_i) + 3]) + (d7 * H[(9 * m_i) + 4])) +
-               (d8 * H[(9 * m_i) + 5]);
-          b_r2[i33] = d3;
-          c_r1[i33] = d4;
-          b_r1[0][i33] = d4;
-          b_r1[1][i33] = d3;
+        for (int i30{0}; i30 < 3; i30++) {
+          double b_d1;
+          double d2;
+          double d3;
+          double d4;
+          double d5;
+          b_d1 = r1_tmp[0][i30];
+          d2 = r1_tmp[1][i30];
+          d3 = r1_tmp[2][i30];
+          d4 = ((b_d1 * H[9 * m_i]) + (d2 * H[(9 * m_i) + 1])) +
+               (d3 * H[(9 * m_i) + 2]);
+          d5 = ((b_d1 * H[(9 * m_i) + 3]) + (d2 * H[(9 * m_i) + 4])) +
+               (d3 * H[(9 * m_i) + 5]);
+          b_r2[i30] = d5;
+          c_r1[i30] = d4;
+          b_r1[0][i30] = d4;
+          b_r1[1][i30] = d5;
         }
         b_r1[2][0] = (c_r1[1] * b_r2[2]) - (b_r2[1] * c_r1[2]);
         b_r1[2][1] = (b_r2[0] * c_r1[2]) - (c_r1[0] * b_r2[2]);
         b_r1[2][2] = (c_r1[0] * b_r2[1]) - (b_r2[0] * c_r1[1]);
-        coder::svd(b_r1, b_U, b_a__1, e_V);
-        for (i31 = 0; i31 < 3; i31++) {
-          d9 = b_U[0][i31];
-          d10 = b_U[1][i31];
-          d11 = b_U[2][i31];
-          for (i30 = 0; i30 < 3; i30++) {
-            d2 = ((d9 * e_V[0][i30]) + (d10 * e_V[1][i30])) +
-                 (d11 * e_V[2][i30]);
-            c_R[i30][i31] = d2;
-          }
-        }
-        d_t = (c_R[0][0] + c_R[1][1]) + c_R[2][2];
-        theta = std::acos((d_t - 1.0) / 2.0);
-        b_r[0] = c_R[1][2] - c_R[2][1];
-        b_r[1] = c_R[2][0] - c_R[0][2];
-        b_r[2] = c_R[0][1] - c_R[1][0];
-        d12 = std::sin(theta);
-        if (d12 >= 0.0001) {
-          b = 1.0 / (2.0 * d12);
-          b_rotationVectors[3 * m_i] = theta * (b_r[0] * b);
-          b_rotationVectors[(3 * m_i) + 1] = theta * (b_r[1] * b);
-          b_rotationVectors[(3 * m_i) + 2] = theta * (b_r[2] * b);
-        } else if ((d_t - 1.0) > 0.0) {
-          b_a = 0.5 - ((d_t - 3.0) / 12.0);
-          b_rotationVectors[3 * m_i] = b_a * b_r[0];
-          b_rotationVectors[(3 * m_i) + 1] = b_a * b_r[1];
-          b_rotationVectors[(3 * m_i) + 2] = b_a * b_r[2];
-        } else {
-          varargin_1[0] = c_R[0][0];
-          varargin_1[1] = c_R[1][1];
-          varargin_1[2] = c_R[2][2];
-          if (!std::isnan(c_R[0][0])) {
-            idx = 1;
-          } else {
-            idx = 0;
-            e_k = 2;
-            exitg1 = false;
-            while ((!exitg1) && (e_k < 4)) {
-              if (!std::isnan(varargin_1[e_k - 1])) {
-                idx = e_k;
-                exitg1 = true;
-              } else {
-                e_k++;
-              }
-            }
-          }
-          if (idx == 0) {
-            iindx = 0;
-          } else {
-            ex = varargin_1[idx - 1];
-            iindx = idx - 1;
-            i39 = idx + 1;
-            for (c_k = i39; c_k < 4; c_k++) {
-              d13 = varargin_1[c_k - 1];
-              if (ex < d13) {
-                ex = d13;
-                iindx = c_k - 1;
-              }
-            }
-          }
-          b_b = coder::b_mod((static_cast<double>(iindx)) + 1.0, 3.0) + 1.0;
-          c = coder::b_mod(((static_cast<double>(iindx)) + 1.0) + 1.0, 3.0) +
-              1.0;
-          b_s = std::sqrt(
-              ((c_R[iindx][iindx] -
-                c_R[(static_cast<int>(b_b)) - 1][(static_cast<int>(b_b)) - 1]) -
-               c_R[(static_cast<int>(c)) - 1][(static_cast<int>(c)) - 1]) +
-              1.0);
-          b_v[0] = 0.0;
-          b_v[1] = 0.0;
-          b_v[2] = 0.0;
-          b_v[iindx] = b_s / 2.0;
-          b_v[(static_cast<int>(b_b)) - 1] =
-              (c_R[iindx][(static_cast<int>(b_b)) - 1] +
-               c_R[(static_cast<int>(b_b)) - 1][iindx]) /
-              (2.0 * b_s);
-          b_v[(static_cast<int>(c)) - 1] =
-              (c_R[iindx][(static_cast<int>(c)) - 1] +
-               c_R[(static_cast<int>(c)) - 1][iindx]) /
-              (2.0 * b_s);
-          scale = 3.3121686421112381E-170;
-          absxk = std::abs(b_v[0]);
-          if (absxk > 3.3121686421112381E-170) {
-            y = 1.0;
-            scale = absxk;
-          } else {
-            b_t = absxk / 3.3121686421112381E-170;
-            y = b_t * b_t;
-          }
-          absxk = std::abs(b_v[1]);
-          if (absxk > scale) {
-            b_t = scale / absxk;
-            y = ((y * b_t) * b_t) + 1.0;
-            scale = absxk;
-          } else {
-            b_t = absxk / scale;
-            y += b_t * b_t;
-          }
-          absxk = std::abs(b_v[2]);
-          if (absxk > scale) {
-            b_t = scale / absxk;
-            y = ((y * b_t) * b_t) + 1.0;
-            scale = absxk;
-          } else {
-            b_t = absxk / scale;
-            y += b_t * b_t;
-          }
-          y = scale * std::sqrt(y);
-          b_rotationVectors[3 * m_i] = (theta * b_v[0]) / y;
-          b_rotationVectors[(3 * m_i) + 1] = (theta * b_v[1]) / y;
-          b_rotationVectors[(3 * m_i) + 2] = (theta * b_v[2]) / y;
-        }
+        coder::vision::internal::calibration::rodriguesMatrixToVector(b_r1,
+                                                                      b_dv);
+        (*((double(*)[3])(&b_rotationVectors[3 * m_i])))[0] = b_dv[0];
+        (*((double(*)[3])(&b_rotationVectors[3 * m_i])))[1] = b_dv[1];
+        (*((double(*)[3])(&b_rotationVectors[3 * m_i])))[2] = b_dv[2];
         //  translation vector
-        for (i29 = 0; i29 < 3; i29++) {
-          b_d1 = ((r1_tmp[0][i29] * H[(9 * m_i) + 6]) +
-                  (r1_tmp[1][i29] * H[(9 * m_i) + 7])) +
-                 (r1_tmp[2][i29] * H[(9 * m_i) + 8]);
-          b_translationVectors[i29 + (3 * m_i)] = b_d1;
+        for (int i33{0}; i33 < 3; i33++) {
+          b_translationVectors[i33 + (3 * m_i)] =
+              ((r1_tmp[0][i33] * H[(9 * m_i) + 6]) +
+               (r1_tmp[1][i33] * H[(9 * m_i) + 7])) +
+              (r1_tmp[2][i33] * H[(9 * m_i) + 8]);
         }
       }
       // iniltialParams =
@@ -688,13 +539,13 @@ void computeInitialParameterEstimate(
       initialParams->WorldPoints.set_size(c_worldPoints.size(0),
                                           c_worldPoints.size(1));
       q_loop_ub = c_worldPoints.size(1);
-      for (int i32{0}; i32 < q_loop_ub; i32++) {
+      for (int i31{0}; i31 < q_loop_ub; i31++) {
         int r_loop_ub;
         r_loop_ub = c_worldPoints.size(0);
-        for (int i35{0}; i35 < r_loop_ub; i35++) {
+        for (int i32{0}; i32 < r_loop_ub; i32++) {
           initialParams
-              ->WorldPoints[i35 + (initialParams->WorldPoints.size(0) * i32)] =
-              c_worldPoints[i35 + (c_worldPoints.size(0) * i32)];
+              ->WorldPoints[i32 + (initialParams->WorldPoints.size(0) * i31)] =
+              c_worldPoints[i32 + (c_worldPoints.size(0) * i31)];
         }
       }
       initialParams->WorldUnits.set_size(1, 1);
@@ -707,40 +558,40 @@ void computeInitialParameterEstimate(
                                                  3);
       s_loop_ub = b_rotationVectors.size(1);
       t_loop_ub = b_translationVectors.size(1);
-      for (int i36{0}; i36 < 3; i36++) {
-        for (int i37{0}; i37 < s_loop_ub; i37++) {
+      for (int i34{0}; i34 < 3; i34++) {
+        for (int i35{0}; i35 < s_loop_ub; i35++) {
           initialParams
-              ->RotationVectors[i37 + (initialParams->RotationVectors.size(0) *
-                                       i36)] =
-              b_rotationVectors[i36 + (3 * i37)];
+              ->RotationVectors[i35 + (initialParams->RotationVectors.size(0) *
+                                       i34)] =
+              b_rotationVectors[i34 + (3 * i35)];
         }
-        for (int i38{0}; i38 < t_loop_ub; i38++) {
+        for (int i36{0}; i36 < t_loop_ub; i36++) {
           initialParams->TranslationVectors
-              [i38 + (initialParams->TranslationVectors.size(0) * i36)] =
-              b_translationVectors[i36 + (3 * i38)];
+              [i36 + (initialParams->TranslationVectors.size(0) * i34)] =
+              b_translationVectors[i34 + (3 * i36)];
         }
-        initialParams->IntrinsicMatrix[i36][0] = A[0][i36];
-        initialParams->IntrinsicMatrix[i36][1] = A[1][i36];
-        initialParams->IntrinsicMatrix[i36][2] = A[2][i36];
+        initialParams->IntrinsicMatrix[i34][0] = A[0][i34];
+        initialParams->IntrinsicMatrix[i34][1] = A[1][i34];
+        initialParams->IntrinsicMatrix[i34][2] = A[2][i34];
       }
     } else {
       lobj_1[1]
           .init(c_imageSize)
           ->toStruct(initialParams->RadialDistortion,
                      initialParams->TangentialDistortion,
-                     initialParams->ImageSize, t8_WorldUnits, &t8_EstimateSkew,
-                     &t8_NumRadialDistortionCoefficients,
-                     &t8_EstimateTangentialDistortion,
+                     initialParams->ImageSize, t9_WorldUnits, &t9_EstimateSkew,
+                     &t9_NumRadialDistortionCoefficients,
+                     &t9_EstimateTangentialDistortion,
                      initialParams->IntrinsicMatrix);
       initialParams->WorldPoints.set_size(0, 2);
       initialParams->WorldUnits.set_size(1, 2);
-      initialParams->WorldUnits[0] = t8_WorldUnits[0];
-      initialParams->WorldUnits[1] = t8_WorldUnits[1];
-      initialParams->EstimateSkew = t8_EstimateSkew;
+      initialParams->WorldUnits[0] = t9_WorldUnits[0];
+      initialParams->WorldUnits[1] = t9_WorldUnits[1];
+      initialParams->EstimateSkew = t9_EstimateSkew;
       initialParams->NumRadialDistortionCoefficients =
-          t8_NumRadialDistortionCoefficients;
+          t9_NumRadialDistortionCoefficients;
       initialParams->EstimateTangentialDistortion =
-          t8_EstimateTangentialDistortion;
+          t9_EstimateTangentialDistortion;
       initialParams->RotationVectors.set_size(0, 3);
       initialParams->TranslationVectors.set_size(0, 3);
     }
@@ -749,24 +600,26 @@ void computeInitialParameterEstimate(
         .init(c_imageSize)
         ->toStruct(initialParams->RadialDistortion,
                    initialParams->TangentialDistortion,
-                   initialParams->ImageSize, t8_WorldUnits, &t8_EstimateSkew,
-                   &t8_NumRadialDistortionCoefficients,
-                   &t8_EstimateTangentialDistortion,
+                   initialParams->ImageSize, t9_WorldUnits, &t9_EstimateSkew,
+                   &t9_NumRadialDistortionCoefficients,
+                   &t9_EstimateTangentialDistortion,
                    initialParams->IntrinsicMatrix);
     initialParams->WorldPoints.set_size(0, 2);
     initialParams->WorldUnits.set_size(1, 2);
-    initialParams->WorldUnits[0] = t8_WorldUnits[0];
-    initialParams->WorldUnits[1] = t8_WorldUnits[1];
-    initialParams->EstimateSkew = t8_EstimateSkew;
+    initialParams->WorldUnits[0] = t9_WorldUnits[0];
+    initialParams->WorldUnits[1] = t9_WorldUnits[1];
+    initialParams->EstimateSkew = t9_EstimateSkew;
     initialParams->NumRadialDistortionCoefficients =
-        t8_NumRadialDistortionCoefficients;
+        t9_NumRadialDistortionCoefficients;
     initialParams->EstimateTangentialDistortion =
-        t8_EstimateTangentialDistortion;
+        t9_EstimateTangentialDistortion;
     initialParams->RotationVectors.set_size(0, 3);
     initialParams->TranslationVectors.set_size(0, 3);
   }
   *err = c_err;
 }
+
+} // namespace ITER
 
 //
 // File trailer for computeInitialParameterEstimate.cpp

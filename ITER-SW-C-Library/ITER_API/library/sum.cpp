@@ -5,7 +5,7 @@
 // File: sum.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -16,11 +16,29 @@
 
 // Function Definitions
 //
+// Arguments    : const double b_x[3][4]
+//                double y[4]
+// Return Type  : void
+//
+namespace ITER {
+namespace coder {
+void b_sum(const double b_x[3][4], double y[4])
+{
+  for (int k{0}; k < 4; k++) {
+    y[k] = b_x[0][k];
+  }
+  for (int b_k{0}; b_k < 2; b_k++) {
+    for (int c_k{0}; c_k < 4; c_k++) {
+      y[c_k] += b_x[b_k + 1][c_k];
+    }
+  }
+}
+
+//
 // Arguments    : const ::coder::array<double, 2U> &b_x
 //                ::coder::array<double, 1U> &y
 // Return Type  : void
 //
-namespace coder {
 void sum(const ::coder::array<double, 2U> &b_x, ::coder::array<double, 1U> &y)
 {
   if (b_x.size(0) == 0) {
@@ -49,6 +67,7 @@ void sum(const ::coder::array<double, 2U> &b_x, ::coder::array<double, 1U> &y)
 }
 
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for sum.cpp

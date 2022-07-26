@@ -31,7 +31,7 @@ void convertDataType4ArrayInputs(const double4x4 initialRobotPose, const double4
 
 void validateInputs(const imageWrap &images, const double4x4 initialRobotPose, const double4x4 handEyeEstimate,
 					const double &roughDistance, const double2x3 angularBounds, const calibrationPatternParameters &calibPatternParam,
-					const cam_struct_t *factoryCamParam, const int &requestedNumPoses);
+					const ITER::cam_struct_t *factoryCamParam, const int &requestedNumPoses);
 
 }
 void computeCalibrationPoses(const imageWrap &initialImage,

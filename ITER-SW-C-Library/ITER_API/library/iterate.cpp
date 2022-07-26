@@ -5,7 +5,7 @@
 // File: iterate.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -37,39 +37,40 @@
 //
 // Arguments    : const double H[7][7]
 //                const double f[8]
-//                i_struct_T *solution
+//                m_struct_T *solution
 //                b_struct_T *memspace
-//                j_struct_T *d_workingset
+//                o_struct_T *d_workingset
 //                struct_T *c_qrmanager
-//                s_struct_T *c_cholmanager
-//                r_struct_T *b_objective
+//                y_struct_T *c_cholmanager
+//                x_struct_T *b_objective
 //                const char options_SolverName[7]
 //                double options_StepTolerance
 //                double options_ConstraintTolerance
 //                double options_ObjectiveLimit
 //                double options_PricingTolerance
 //                bool options_IterDisplayQP
-//                const d_struct_T *runTimeOptions
+//                const e_struct_T *runTimeOptions
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace qpactiveset {
-void iterate(const double H[7][7], const double f[8], i_struct_T *solution,
-             b_struct_T *memspace, j_struct_T *d_workingset,
-             struct_T *c_qrmanager, s_struct_T *c_cholmanager,
-             r_struct_T *b_objective, const char options_SolverName[7],
+void iterate(const double H[7][7], const double f[8], m_struct_T *solution,
+             b_struct_T *memspace, o_struct_T *d_workingset,
+             struct_T *c_qrmanager, y_struct_T *c_cholmanager,
+             x_struct_T *b_objective, const char options_SolverName[7],
              double options_StepTolerance, double options_ConstraintTolerance,
              double options_ObjectiveLimit, double options_PricingTolerance,
-             bool options_IterDisplayQP, const d_struct_T *runTimeOptions)
+             bool options_IterDisplayQP, const e_struct_T *runTimeOptions)
 {
   static const char b_cv[13]{'N', 'o', 'r', 'm', 'a', 'l', ' ',
                              ' ', ' ', ' ', ' ', ' ', ' '};
-  static const char cv1[13]{'P', 'h', 'a', 's', 'e', ' ', 'O',
-                            'n', 'e', ' ', ' ', ' ', ' '};
-  static const char cv2[13]{'R', 'e', 'g', 'u', 'l', 'a', 'r',
-                            'i', 'z', 'e', 'd', ' ', ' '};
+  static const char b_cv1[13]{'P', 'h', 'a', 's', 'e', ' ', 'O',
+                              'n', 'e', ' ', ' ', ' ', ' '};
+  static const char b_cv2[13]{'R', 'e', 'g', 'u', 'l', 'a', 'r',
+                              'i', 'z', 'e', 'd', ' ', ' '};
   static const char cv3[13]{'P', 'h', 'a', 's', 'e', ' ', 'O',
                             'n', 'e', ' ', 'R', 'e', 'g'};
   static const char b[7]{'f', 'm', 'i', 'n', 'c', 'o', 'n'};
@@ -135,14 +136,14 @@ void iterate(const double H[7][7], const double f[8], i_struct_T *solution,
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
       for (int i1 = 0; i1 < 13; i1++) {
-        stepType_str[i1] = cv1[i1];
+        stepType_str[i1] = b_cv1[i1];
       }
       break;
     case 2:
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
       for (int i2 = 0; i2 < 13; i2++) {
-        stepType_str[i2] = cv2[i2];
+        stepType_str[i2] = b_cv2[i2];
       }
       break;
     case 4:
@@ -206,7 +207,7 @@ void iterate(const double H[7][7], const double f[8], i_struct_T *solution,
         if (solution->state != -5) {
           exitg1 = 1;
         } else {
-          normDelta = internal::blas::h_xnrm2(nVar, solution->searchDir);
+          normDelta = internal::blas::j_xnrm2(nVar, solution->searchDir);
           if ((normDelta < options_StepTolerance) ||
               (d_workingset->nActiveConstr >= nVar)) {
             guard2 = true;
@@ -260,7 +261,7 @@ void iterate(const double H[7][7], const double f[8], i_struct_T *solution,
               activeSetChangeID = 1;
             } else {
               if (b_objective->objtype == 5) {
-                if (internal::blas::h_xnrm2(b_objective->b_nvar,
+                if (internal::blas::j_xnrm2(b_objective->b_nvar,
                                             solution->searchDir) >
                     ((100.0 * (static_cast<double>(b_objective->b_nvar))) *
                      1.4901161193847656E-8)) {
@@ -362,7 +363,7 @@ void iterate(const double H[7][7], const double f[8], i_struct_T *solution,
             b_guard1 = true;
           }
           if (b_guard1) {
-            internal::blas::b_xgemv(c_qrmanager->mrows, c_qrmanager->ncols,
+            internal::blas::d_xgemv(c_qrmanager->mrows, c_qrmanager->ncols,
                                     c_qrmanager->Q, c_qrmanager->ldq,
                                     b_objective->grad,
                                     memspace->workspace_double);
@@ -373,9 +374,9 @@ void iterate(const double H[7][7], const double f[8], i_struct_T *solution,
                 (&memspace->workspace_double[0][0])[j - 1] /=
                     (&c_qrmanager->QR[0][0])[jjA];
                 for (int c_i{0}; c_i <= (j - 2); c_i++) {
-                  int c_ix;
-                  c_ix = (j - c_i) - 2;
-                  (&memspace->workspace_double[0][0])[c_ix] -=
+                  int d_ix;
+                  d_ix = (j - c_i) - 2;
+                  (&memspace->workspace_double[0][0])[d_ix] -=
                       (&memspace->workspace_double[0][0])[j - 1] *
                       (&c_qrmanager->QR[0][0])[(jjA - c_i) - 1];
                 }
@@ -473,9 +474,9 @@ void iterate(const double H[7][7], const double f[8], i_struct_T *solution,
           }
           if ((d_workingset->nVar != 0) && (d_workingset->nActiveConstr != 0)) {
             int b_i8;
-            int b_ix;
+            int c_ix;
             int iac;
-            b_ix = 0;
+            c_ix = 0;
             b_i8 = (d_workingset->ldA * (d_workingset->nActiveConstr - 1)) + 1;
             iac = 1;
             while (((d_lda > 0) && (iac <= b_i8)) ||
@@ -486,9 +487,9 @@ void iterate(const double H[7][7], const double f[8], i_struct_T *solution,
                 int i10;
                 i10 = ia - iac;
                 (&memspace->workspace_double[0][0])[i10] +=
-                    d_workingset->ATwset[ia - 1] * solution->lambda[b_ix];
+                    d_workingset->ATwset[ia - 1] * solution->lambda[c_ix];
               }
-              b_ix++;
+              c_ix++;
               iac += d_lda;
             }
           }
@@ -533,6 +534,7 @@ void iterate(const double H[7][7], const double f[8], i_struct_T *solution,
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for iterate.cpp

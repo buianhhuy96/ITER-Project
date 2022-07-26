@@ -5,7 +5,7 @@
 // File: squareQ_appendCol.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -22,6 +22,7 @@
 //                int iv0
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
@@ -68,14 +69,14 @@ void squareQ_appendCol(struct_T *obj, const double vec[120], int iv0)
     b_i = (obj->ldq * (obj->mrows - 1)) + 1;
     iac = 1;
     while (((d_lda > 0) && (iac <= b_i)) || ((d_lda < 0) && (iac >= b_i))) {
-      double c_c;
+      double b_c;
       int i2;
-      c_c = 0.0;
+      b_c = 0.0;
       i2 = (iac + obj->mrows) - 1;
       for (int ia{iac}; ia <= i2; ia++) {
-        c_c += (&obj->Q[0][0])[ia - 1] * vec[((iv0 + ia) - iac) - 1];
+        b_c += (&obj->Q[0][0])[ia - 1] * vec[((iv0 + ia) - iac) - 1];
       }
-      (&obj->QR[0][0])[c_iy] += c_c;
+      (&obj->QR[0][0])[c_iy] += b_c;
       c_iy++;
       iac += d_lda;
     }
@@ -119,6 +120,7 @@ void squareQ_appendCol(struct_T *obj, const double vec[120], int iv0)
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for squareQ_appendCol.cpp

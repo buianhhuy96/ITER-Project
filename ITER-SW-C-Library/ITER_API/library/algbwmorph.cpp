@@ -5,18 +5,21 @@
 // File: algbwmorph.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
 #include "algbwmorph.h"
-#include "bwlookup.h"
 #include "rt_nonfinite.h"
 #include "coder_array.h"
+#include "libmwbwlookup_tbb.h"
 #include <string.h>
 
 // Function Declarations
+namespace ITER {
 static int div_s32_floor(int numerator, int denominator);
+
+}
 
 // Function Definitions
 //
@@ -24,6 +27,7 @@ static int div_s32_floor(int numerator, int denominator);
 //                int denominator
 // Return Type  : int
 //
+namespace ITER {
 static int div_s32_floor(int numerator, int denominator)
 {
   int quotient;
@@ -64,16 +68,70 @@ static int div_s32_floor(int numerator, int denominator)
 }
 
 //
-// Arguments    : ::coder::array<bool, 2U> &bw
+// Arguments    : ::coder::array<bool, 2U> &b_bw
 // Return Type  : void
 //
 namespace coder {
 namespace images {
 namespace internal {
-void bwmorphApplyOnce(::coder::array<bool, 2U> &bw)
+void bwmorphApplyOnce(::coder::array<bool, 2U> &b_bw)
 {
-  array<bool, 2U> b_m;
-  array<bool, 2U> sub;
+  static const bool lut[512]{
+      false, false, false, false, false, false, false, false, false, false,
+      false, false, false, false, false, false, false, true,  true,  true,
+      true,  false, true,  true,  true,  true,  true,  true,  false, false,
+      true,  true,  false, false, false, false, false, false, false, false,
+      false, false, false, false, false, false, false, false, true,  false,
+      true,  true,  true,  false, true,  true,  false, false, true,  true,
+      false, false, true,  true,  false, false, false, false, false, false,
+      false, false, false, false, false, false, false, false, false, false,
+      true,  false, false, false, false, false, false, false, true,  true,
+      true,  true,  false, false, true,  true,  false, false, false, false,
+      false, false, false, false, false, false, false, false, false, false,
+      false, false, false, false, false, false, false, false, false, false,
+      false, false, true,  true,  false, false, true,  true,  false, false,
+      false, false, false, false, false, false, false, false, false, false,
+      false, false, false, false, true,  false, false, false, false, false,
+      false, false, true,  true,  true,  true,  false, false, true,  true,
+      false, false, false, false, false, false, false, false, false, false,
+      false, false, false, false, false, false, true,  false, true,  true,
+      true,  false, true,  true,  true,  true,  false, false, true,  true,
+      false, false, false, false, false, false, false, false, false, false,
+      false, false, false, false, false, false, false, false, true,  false,
+      false, false, false, false, false, false, true,  true,  true,  true,
+      false, false, true,  true,  false, false, false, false, false, false,
+      false, false, false, false, false, false, false, false, false, false,
+      true,  false, true,  true,  true,  false, true,  true,  true,  true,
+      false, false, true,  true,  false, false, false, false, false, false,
+      false, false, false, false, false, false, false, false, false, false,
+      false, false, true,  false, false, false, false, false, false, false,
+      false, false, false, false, false, false, false, false, false, false,
+      false, false, false, false, false, false, false, false, false, false,
+      false, false, false, false, true,  false, true,  true,  true,  false,
+      true,  true,  false, false, true,  true,  false, false, true,  true,
+      false, false, false, false, false, false, false, false, false, false,
+      false, false, false, false, false, false, false, false, false, false,
+      false, false, false, false, false, false, false, false, false, false,
+      false, false, false, false, false, false, false, false, false, false,
+      false, false, false, false, false, false, false, false, false, false,
+      false, false, false, false, false, false, false, false, true,  true,
+      false, false, true,  true,  false, false, false, false, false, false,
+      false, false, false, false, false, false, false, false, false, false,
+      true,  false, false, false, false, false, false, false, true,  true,
+      true,  true,  false, false, true,  true,  false, false, false, false,
+      false, false, false, false, false, false, false, false, false, false,
+      false, false, true,  false, true,  true,  true,  false, true,  true,
+      true,  true,  false, false, true,  true,  false, false, false, false,
+      false, false, false, false, false, false, false, false, false, false,
+      false, false, false, false, true,  false, false, false, false, false,
+      false, false, true,  true,  true,  true,  false, false, true,  true,
+      false, false, false, false, false, false, false, false, false, false,
+      false, false, false, false, false, false, true,  false, true,  true,
+      true,  false, true,  true,  true,  true,  false, false, true,  true,
+      false, false};
+  ::coder::array<bool, 2U> m;
+  ::coder::array<bool, 2U> sub;
+  double sizeIn[2];
   int b_loop_ub;
   int c_loop_ub;
   int e_loop_ub;
@@ -122,17 +180,22 @@ void bwmorphApplyOnce(::coder::array<bool, 2U> &bw)
   int o_loop_ub;
   int p_loop_ub;
   int q_loop_ub;
-  bwlookup(bw, b_m);
-  sub.set_size(bw.size(0), bw.size(1));
-  loop_ub = bw.size(1);
+  m.set_size(b_bw.size(0), b_bw.size(1));
+  if ((b_bw.size(0) != 0) && (b_bw.size(1) != 0)) {
+    sizeIn[0] = static_cast<double>(b_bw.size(0));
+    sizeIn[1] = static_cast<double>(b_bw.size(1));
+    bwlookup_tbb_boolean(&b_bw[0], &sizeIn[0], 2.0, &lut[0], 512.0, &m[0]);
+  }
+  sub.set_size(b_bw.size(0), b_bw.size(1));
+  loop_ub = b_bw.size(1);
 #pragma omp parallel for num_threads(omp_get_max_threads()) private(i3,        \
                                                                     b_loop_ub)
 
   for (int b_i = 0; b_i < loop_ub; b_i++) {
-    b_loop_ub = bw.size(0);
+    b_loop_ub = b_bw.size(0);
     for (i3 = 0; i3 < b_loop_ub; i3++) {
       sub[i3 + (sub.size(0) * b_i)] =
-          ((bw[i3 + (bw.size(0) * b_i)]) && (!b_m[i3 + (b_m.size(0) * b_i)]));
+          ((b_bw[i3 + (b_bw.size(0) * b_i)]) && (!m[i3 + (m.size(0) * b_i)]));
     }
   }
   if (1 > sub.size(0)) {
@@ -149,12 +212,12 @@ void bwmorphApplyOnce(::coder::array<bool, 2U> &bw)
     i4 = 2;
     i5 = sub.size(1);
   }
-  if (1 > bw.size(0)) {
+  if (1 > b_bw.size(0)) {
     i6 = 1;
   } else {
     i6 = 2;
   }
-  if (1 > bw.size(1)) {
+  if (1 > b_bw.size(1)) {
     i7 = 1;
   } else {
     i7 = 2;
@@ -164,21 +227,26 @@ void bwmorphApplyOnce(::coder::array<bool, 2U> &bw)
     int d_loop_ub;
     d_loop_ub = div_s32_floor(i2 - 1, i1);
     for (int i9{0}; i9 <= d_loop_ub; i9++) {
-      bw[(i6 * i9) + (bw.size(0) * (i7 * b_i8))] =
+      b_bw[(i6 * i9) + (b_bw.size(0) * (i7 * b_i8))] =
           sub[(i1 * i9) + (sub.size(0) * (i4 * b_i8))];
     }
   }
-  bwlookup(bw, b_m);
-  sub.set_size(bw.size(0), bw.size(1));
-  e_loop_ub = bw.size(1);
+  m.set_size(b_bw.size(0), b_bw.size(1));
+  if ((b_bw.size(0) != 0) && (b_bw.size(1) != 0)) {
+    sizeIn[0] = static_cast<double>(b_bw.size(0));
+    sizeIn[1] = static_cast<double>(b_bw.size(1));
+    bwlookup_tbb_boolean(&b_bw[0], &sizeIn[0], 2.0, &lut[0], 512.0, &m[0]);
+  }
+  sub.set_size(b_bw.size(0), b_bw.size(1));
+  e_loop_ub = b_bw.size(1);
 #pragma omp parallel for num_threads(omp_get_max_threads()) private(i13,       \
                                                                     f_loop_ub)
 
   for (int i10 = 0; i10 < e_loop_ub; i10++) {
-    f_loop_ub = bw.size(0);
+    f_loop_ub = b_bw.size(0);
     for (i13 = 0; i13 < f_loop_ub; i13++) {
       sub[i13 + (sub.size(0) * i10)] =
-          ((bw[i13 + (bw.size(0) * i10)]) && (!b_m[i13 + (b_m.size(0) * i10)]));
+          ((b_bw[i13 + (b_bw.size(0) * i10)]) && (!m[i13 + (m.size(0) * i10)]));
     }
   }
   if (2 > sub.size(0)) {
@@ -199,14 +267,14 @@ void bwmorphApplyOnce(::coder::array<bool, 2U> &bw)
     i16 = 2;
     i17 = sub.size(1);
   }
-  if (2 > bw.size(0)) {
+  if (2 > b_bw.size(0)) {
     i18 = 0;
     i19 = 1;
   } else {
     i18 = 1;
     i19 = 2;
   }
-  if (2 > bw.size(1)) {
+  if (2 > b_bw.size(1)) {
     i20 = 0;
     i21 = 1;
   } else {
@@ -218,21 +286,26 @@ void bwmorphApplyOnce(::coder::array<bool, 2U> &bw)
     int h_loop_ub;
     h_loop_ub = div_s32_floor((i14 - i11) - 1, i12);
     for (int i23{0}; i23 <= h_loop_ub; i23++) {
-      bw[(i18 + (i19 * i23)) + (bw.size(0) * (i20 + (i21 * i22)))] =
+      b_bw[(i18 + (i19 * i23)) + (b_bw.size(0) * (i20 + (i21 * i22)))] =
           sub[(i11 + (i12 * i23)) + (sub.size(0) * (i15 + (i16 * i22)))];
     }
   }
-  bwlookup(bw, b_m);
-  sub.set_size(bw.size(0), bw.size(1));
-  i_loop_ub = bw.size(1);
+  m.set_size(b_bw.size(0), b_bw.size(1));
+  if ((b_bw.size(0) != 0) && (b_bw.size(1) != 0)) {
+    sizeIn[0] = static_cast<double>(b_bw.size(0));
+    sizeIn[1] = static_cast<double>(b_bw.size(1));
+    bwlookup_tbb_boolean(&b_bw[0], &sizeIn[0], 2.0, &lut[0], 512.0, &m[0]);
+  }
+  sub.set_size(b_bw.size(0), b_bw.size(1));
+  i_loop_ub = b_bw.size(1);
 #pragma omp parallel for num_threads(omp_get_max_threads()) private(i27,       \
                                                                     j_loop_ub)
 
   for (int i24 = 0; i24 < i_loop_ub; i24++) {
-    j_loop_ub = bw.size(0);
+    j_loop_ub = b_bw.size(0);
     for (i27 = 0; i27 < j_loop_ub; i27++) {
       sub[i27 + (sub.size(0) * i24)] =
-          ((bw[i27 + (bw.size(0) * i24)]) && (!b_m[i27 + (b_m.size(0) * i24)]));
+          ((b_bw[i27 + (b_bw.size(0) * i24)]) && (!m[i27 + (m.size(0) * i24)]));
     }
   }
   if (1 > sub.size(0)) {
@@ -251,12 +324,12 @@ void bwmorphApplyOnce(::coder::array<bool, 2U> &bw)
     i29 = 2;
     i30 = sub.size(1);
   }
-  if (1 > bw.size(0)) {
+  if (1 > b_bw.size(0)) {
     i31 = 1;
   } else {
     i31 = 2;
   }
-  if (2 > bw.size(1)) {
+  if (2 > b_bw.size(1)) {
     i32 = 0;
     i33 = 1;
   } else {
@@ -268,21 +341,26 @@ void bwmorphApplyOnce(::coder::array<bool, 2U> &bw)
     int m_loop_ub;
     m_loop_ub = div_s32_floor(i26 - 1, i25);
     for (int i35{0}; i35 <= m_loop_ub; i35++) {
-      bw[(i31 * i35) + (bw.size(0) * (i32 + (i33 * i34)))] =
+      b_bw[(i31 * i35) + (b_bw.size(0) * (i32 + (i33 * i34)))] =
           sub[(i25 * i35) + (sub.size(0) * (i28 + (i29 * i34)))];
     }
   }
-  bwlookup(bw, b_m);
-  sub.set_size(bw.size(0), bw.size(1));
-  o_loop_ub = bw.size(1);
+  m.set_size(b_bw.size(0), b_bw.size(1));
+  if ((b_bw.size(0) != 0) && (b_bw.size(1) != 0)) {
+    sizeIn[0] = static_cast<double>(b_bw.size(0));
+    sizeIn[1] = static_cast<double>(b_bw.size(1));
+    bwlookup_tbb_boolean(&b_bw[0], &sizeIn[0], 2.0, &lut[0], 512.0, &m[0]);
+  }
+  sub.set_size(b_bw.size(0), b_bw.size(1));
+  o_loop_ub = b_bw.size(1);
 #pragma omp parallel for num_threads(omp_get_max_threads()) private(i39,       \
                                                                     p_loop_ub)
 
   for (int i36 = 0; i36 < o_loop_ub; i36++) {
-    p_loop_ub = bw.size(0);
+    p_loop_ub = b_bw.size(0);
     for (i39 = 0; i39 < p_loop_ub; i39++) {
       sub[i39 + (sub.size(0) * i36)] =
-          ((bw[i39 + (bw.size(0) * i36)]) && (!b_m[i39 + (b_m.size(0) * i36)]));
+          ((b_bw[i39 + (b_bw.size(0) * i36)]) && (!m[i39 + (m.size(0) * i36)]));
     }
   }
   if (2 > sub.size(0)) {
@@ -301,14 +379,14 @@ void bwmorphApplyOnce(::coder::array<bool, 2U> &bw)
     i41 = 2;
     i42 = sub.size(1);
   }
-  if (2 > bw.size(0)) {
+  if (2 > b_bw.size(0)) {
     i43 = 0;
     i44 = 1;
   } else {
     i43 = 1;
     i44 = 2;
   }
-  if (1 > bw.size(1)) {
+  if (1 > b_bw.size(1)) {
     i45 = 1;
   } else {
     i45 = 2;
@@ -318,7 +396,7 @@ void bwmorphApplyOnce(::coder::array<bool, 2U> &bw)
     int r_loop_ub;
     r_loop_ub = div_s32_floor((i40 - i37) - 1, i38);
     for (int i47{0}; i47 <= r_loop_ub; i47++) {
-      bw[(i43 + (i44 * i47)) + (bw.size(0) * (i45 * i46))] =
+      b_bw[(i43 + (i44 * i47)) + (b_bw.size(0) * (i45 * i46))] =
           sub[(i37 + (i38 * i47)) + (sub.size(0) * (i41 * i46))];
     }
   }
@@ -327,6 +405,7 @@ void bwmorphApplyOnce(::coder::array<bool, 2U> &bw)
 } // namespace internal
 } // namespace images
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for algbwmorph.cpp

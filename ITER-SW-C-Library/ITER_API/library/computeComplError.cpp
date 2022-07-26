@@ -5,7 +5,7 @@
 // File: computeComplError.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -26,6 +26,7 @@
 //                int c_iL0
 // Return Type  : double
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
@@ -73,6 +74,7 @@ double computeComplError(const double xCurrent[7], int mIneq,
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for computeComplError.cpp

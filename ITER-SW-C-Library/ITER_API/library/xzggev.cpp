@@ -5,7 +5,7 @@
 // File: xzggev.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -27,6 +27,7 @@
 //                creal_T V[4][4]
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace internal {
 namespace reflapack {
@@ -79,9 +80,9 @@ void xzggev(creal_T A[4][4], int *info, creal_T alpha1[4], creal_T beta1[4],
     double anrmto;
     double atmp_im;
     double atmp_re;
+    int b_ihi;
     int b_ilo;
     int exitg3;
-    int ihi;
     bool exitg4;
     bool guard1{false};
     bool ilascl;
@@ -134,7 +135,7 @@ void xzggev(creal_T A[4][4], int *info, creal_T alpha1[4], creal_T beta1[4],
       rscale[d_i] = 1;
     }
     b_ilo = 1;
-    ihi = 4;
+    b_ihi = 4;
     int c_ii;
     int e_i;
     int j;
@@ -144,17 +145,17 @@ void xzggev(creal_T A[4][4], int *info, creal_T alpha1[4], creal_T beta1[4],
       e_i = 0;
       j = 0;
       found = false;
-      c_ii = ihi;
+      c_ii = b_ihi;
       exitg1 = false;
       while ((!exitg1) && (c_ii > 0)) {
         int jj;
         int nzcount;
         nzcount = 0;
         e_i = c_ii;
-        j = ihi;
+        j = b_ihi;
         jj = 0;
         exitg4 = false;
-        while ((!exitg4) && (jj <= (ihi - 1))) {
+        while ((!exitg4) && (jj <= (b_ihi - 1))) {
           if (((A[jj][c_ii - 1].re != 0.0) || (A[jj][c_ii - 1].im != 0.0)) ||
               (c_ii == (jj + 1))) {
             if (nzcount == 0) {
@@ -179,27 +180,27 @@ void xzggev(creal_T A[4][4], int *info, creal_T alpha1[4], creal_T beta1[4],
       if (!found) {
         exitg3 = 2;
       } else {
-        if (e_i != ihi) {
+        if (e_i != b_ihi) {
           for (int b_k{0}; b_k < 4; b_k++) {
             atmp_re = A[b_k][e_i - 1].re;
             atmp_im = A[b_k][e_i - 1].im;
-            A[b_k][e_i - 1] = A[b_k][ihi - 1];
-            A[b_k][ihi - 1].re = atmp_re;
-            A[b_k][ihi - 1].im = atmp_im;
+            A[b_k][e_i - 1] = A[b_k][b_ihi - 1];
+            A[b_k][b_ihi - 1].re = atmp_re;
+            A[b_k][b_ihi - 1].im = atmp_im;
           }
         }
-        if (j != ihi) {
-          for (int c_k{0}; c_k < ihi; c_k++) {
+        if (j != b_ihi) {
+          for (int c_k{0}; c_k < b_ihi; c_k++) {
             atmp_re = A[j - 1][c_k].re;
             atmp_im = A[j - 1][c_k].im;
-            A[j - 1][c_k] = A[ihi - 1][c_k];
-            A[ihi - 1][c_k].re = atmp_re;
-            A[ihi - 1][c_k].im = atmp_im;
+            A[j - 1][c_k] = A[b_ihi - 1][c_k];
+            A[b_ihi - 1][c_k].re = atmp_re;
+            A[b_ihi - 1][c_k].im = atmp_im;
           }
         }
-        rscale[ihi - 1] = j;
-        ihi--;
-        if (ihi == 1) {
+        rscale[b_ihi - 1] = j;
+        b_ihi--;
+        if (b_ihi == 1) {
           rscale[0] = 1;
           exitg3 = 1;
         }
@@ -218,15 +219,15 @@ void xzggev(creal_T A[4][4], int *info, creal_T alpha1[4], creal_T beta1[4],
         b_found = false;
         b_jj = b_ilo;
         exitg1 = false;
-        while ((!exitg1) && (b_jj <= ihi)) {
+        while ((!exitg1) && (b_jj <= b_ihi)) {
           int b_nzcount;
           int e_ii;
           b_nzcount = 0;
-          g_i = ihi;
+          g_i = b_ihi;
           b_j = b_jj;
           e_ii = b_ilo;
           exitg4 = false;
-          while ((!exitg4) && (e_ii <= ihi)) {
+          while ((!exitg4) && (e_ii <= b_ihi)) {
             if (((A[b_jj - 1][e_ii - 1].re != 0.0) ||
                  (A[b_jj - 1][e_ii - 1].im != 0.0)) ||
                 (e_ii == b_jj)) {
@@ -262,7 +263,7 @@ void xzggev(creal_T A[4][4], int *info, creal_T alpha1[4], creal_T beta1[4],
             }
           }
           if (b_j != b_ilo) {
-            for (int g_k{0}; g_k < ihi; g_k++) {
+            for (int g_k{0}; g_k < b_ihi; g_k++) {
               atmp_re = A[b_j - 1][g_k].re;
               atmp_im = A[b_j - 1][g_k].im;
               A[b_j - 1][g_k] = A[b_ilo - 1][g_k];
@@ -272,7 +273,7 @@ void xzggev(creal_T A[4][4], int *info, creal_T alpha1[4], creal_T beta1[4],
           }
           rscale[b_ilo - 1] = b_j;
           b_ilo++;
-          if (b_ilo == ihi) {
+          if (b_ilo == b_ihi) {
             rscale[b_ilo - 1] = b_ilo;
             exitg2 = 1;
           }
@@ -291,14 +292,14 @@ void xzggev(creal_T A[4][4], int *info, creal_T alpha1[4], creal_T beta1[4],
       V[d_k][d_k].re = 1.0;
       V[d_k][d_k].im = 0.0;
     }
-    if (ihi >= (b_ilo + 2)) {
+    if (b_ihi >= (b_ilo + 2)) {
       int jcol;
       jcol = b_ilo - 1;
-      while ((jcol + 1) < (ihi - 1)) {
+      while ((jcol + 1) < (b_ihi - 1)) {
         int jcolp1;
         int jrow;
         jcolp1 = jcol + 2;
-        jrow = ihi - 1;
+        jrow = b_ihi - 1;
         while ((jrow + 1) > (jcol + 2)) {
           xzlartg(A[jcol][jrow - 1], A[jcol][jrow], &c, &s, &A[jcol][jrow - 1]);
           A[jcol][jrow].re = 0.0;
@@ -326,7 +327,7 @@ void xzggev(creal_T A[4][4], int *info, creal_T alpha1[4], creal_T beta1[4],
           }
           s.re = -s.re;
           s.im = -s.im;
-          for (int m_i{1}; m_i <= ihi; m_i++) {
+          for (int m_i{1}; m_i <= b_ihi; m_i++) {
             double b_s_re_tmp;
             double b_s_re_tmp_tmp;
             double b_stemp_im_tmp;
@@ -371,7 +372,7 @@ void xzggev(creal_T A[4][4], int *info, creal_T alpha1[4], creal_T beta1[4],
         jcol++;
       }
     }
-    xzhgeqz(A, b_ilo, ihi, V, &b_info, alpha1, beta1);
+    b_xzhgeqz(A, b_ilo, b_ihi, V, &b_info, alpha1, beta1);
     *info = b_info;
     if (b_info == 0) {
       double tmp_im;
@@ -395,9 +396,9 @@ void xzggev(creal_T A[4][4], int *info, creal_T alpha1[4], creal_T beta1[4],
           h_i--;
         }
       }
-      if (ihi < 4) {
+      if (b_ihi < 4) {
         int i5;
-        i5 = ihi + 1;
+        i5 = b_ihi + 1;
         for (int k_i{i5}; k_i < 5; k_i++) {
           int i6;
           i6 = rscale[k_i - 1];
@@ -473,6 +474,7 @@ void xzggev(creal_T A[4][4], int *info, creal_T alpha1[4], creal_T beta1[4],
 } // namespace reflapack
 } // namespace internal
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for xzggev.cpp

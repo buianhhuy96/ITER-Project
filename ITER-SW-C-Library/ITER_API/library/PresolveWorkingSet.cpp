@@ -5,7 +5,7 @@
 // File: PresolveWorkingSet.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -24,21 +24,22 @@
 
 // Function Definitions
 //
-// Arguments    : i_struct_T *solution
+// Arguments    : m_struct_T *solution
 //                b_struct_T *memspace
-//                j_struct_T *d_workingset
+//                o_struct_T *d_workingset
 //                struct_T *c_qrmanager
-//                const d_struct_T *options
+//                const e_struct_T *options
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace qpactiveset {
 namespace initialize {
-void PresolveWorkingSet(i_struct_T *solution, b_struct_T *memspace,
-                        j_struct_T *d_workingset, struct_T *c_qrmanager,
-                        const d_struct_T *options)
+void PresolveWorkingSet(m_struct_T *solution, b_struct_T *memspace,
+                        o_struct_T *d_workingset, struct_T *c_qrmanager,
+                        const e_struct_T *options)
 {
   int b_i;
   int mTotalWorkingEq;
@@ -132,11 +133,11 @@ void PresolveWorkingSet(i_struct_T *solution, b_struct_T *memspace,
       exitg1 = false;
       while ((!exitg1) && (b_idx <= (nDepInd - 1))) {
         double qtb;
-        int b_ix;
+        int c_ix;
         qtb = 0.0;
-        b_ix = c_qrmanager->ldq * ((mTotalWorkingEq - b_idx) - 1);
+        c_ix = c_qrmanager->ldq * ((mTotalWorkingEq - b_idx) - 1);
         for (int b_k{0}; b_k < mTotalWorkingEq; b_k++) {
-          qtb += (&c_qrmanager->Q[0][0])[b_ix + b_k] * d_workingset->bwset[b_k];
+          qtb += (&c_qrmanager->Q[0][0])[c_ix + b_k] * d_workingset->bwset[b_k];
         }
         if (std::abs(qtb) >= tol) {
           nDepInd = -1;
@@ -315,6 +316,7 @@ void PresolveWorkingSet(i_struct_T *solution, b_struct_T *memspace,
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for PresolveWorkingSet.cpp

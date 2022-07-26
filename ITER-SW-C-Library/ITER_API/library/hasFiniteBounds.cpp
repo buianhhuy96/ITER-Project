@@ -5,7 +5,7 @@
 // File: hasFiniteBounds.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -24,14 +24,15 @@
 //                const ::coder::array<double, 1U> &ub
 // Return Type  : bool
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace utils {
-bool hasFiniteBounds(int b_nvar, ::coder::array<bool, 1U> &hasLB,
-                     ::coder::array<bool, 1U> &hasUB,
-                     const ::coder::array<double, 1U> &lb,
-                     const ::coder::array<double, 1U> &ub)
+bool b_hasFiniteBounds(int b_nvar, ::coder::array<bool, 1U> &hasLB,
+                       ::coder::array<bool, 1U> &hasUB,
+                       const ::coder::array<double, 1U> &lb,
+                       const ::coder::array<double, 1U> &ub)
 {
   int emptyLB;
   int emptyUB;
@@ -40,7 +41,7 @@ bool hasFiniteBounds(int b_nvar, ::coder::array<bool, 1U> &hasLB,
   hasBounds = false;
   idx = 0;
   emptyUB = static_cast<int>(static_cast<unsigned int>(
-      (static_cast<unsigned int>(ub.size(0) == 0)) << 1UL));
+      (static_cast<unsigned int>(ub.size(0) == 0)) << 1U));
   emptyLB = static_cast<int>(lb.size(0) == 0);
   switch ((static_cast<unsigned int>(emptyUB)) |
           (static_cast<unsigned int>(emptyLB))) {
@@ -100,10 +101,38 @@ bool hasFiniteBounds(int b_nvar, ::coder::array<bool, 1U> &hasLB,
   return hasBounds;
 }
 
+//
+// Arguments    : bool hasLB[6]
+//                bool hasUB[6]
+// Return Type  : bool
+//
+bool hasFiniteBounds(bool hasLB[6], bool hasUB[6])
+{
+  int idx;
+  bool hasBounds;
+  hasBounds = false;
+  idx = 0;
+  while ((!hasBounds) && ((idx + 1) <= 6)) {
+    hasLB[idx] = true;
+    hasUB[idx] = true;
+    if ((hasLB[idx]) || (hasUB[idx])) {
+      hasBounds = true;
+    }
+    idx++;
+  }
+  while ((idx + 1) <= 6) {
+    hasLB[idx] = true;
+    hasUB[idx] = true;
+    idx++;
+  }
+  return hasBounds;
+}
+
 } // namespace utils
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for hasFiniteBounds.cpp

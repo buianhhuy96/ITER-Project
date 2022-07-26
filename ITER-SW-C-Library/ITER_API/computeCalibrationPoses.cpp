@@ -99,10 +99,10 @@ void validateInputs(const imageWrap &initialImage,
 	if ((initialImage.numChannels != 1) && (initialImage.numChannels != 3)) {
 		throw std::runtime_error(API_error_codes.at(0001));
 	}
-	if (!isT(initialRobotPose)) {
+	if (!ITER::isT(initialRobotPose)) {
 		throw std::runtime_error(API_error_codes.at(0002));
 	}
-	if (!isT(handEyeEstimate)) {
+	if (!ITER::isT(handEyeEstimate)) {
 		throw std::runtime_error(API_error_codes.at(0003));
 	}
 
@@ -196,7 +196,7 @@ void computeCalibrationPoses(const imageWrap &initialImage,
 	double angularBounds_l[3][2];
 	double squareSize;
 	int boardSize[2];
-	cam_struct_t factoryCamParam_l;
+	ITER::cam_struct_t factoryCamParam_l;
 	int requestedNumPoses_l[3];
 	int err = ITER::NO_ERROR;
 	coder::array<double, 3U> robotPoses_l;
@@ -219,14 +219,14 @@ void computeCalibrationPoses(const imageWrap &initialImage,
 			requestedNumPoses);
 			
 	// Compute Calibration Poses
-	computeCalibrationPoses_internal(initialImage_l, initialRobotPose_l,
+	ITER::computeCalibrationPoses_internal(initialImage_l, initialRobotPose_l,
 			handEyeEstimate_l, roughDistance, angularBounds_l, squareSize,
 			boardSize, &factoryCamParam_l, requestedNumPoses_l, robotPoses_l,
 			&err);
 			
 	// Error check
 	if (err != ITER::NO_ERROR) {
-		ITER_API_terminate();
+		ITER::ITER_API_terminate();
 		throw std::runtime_error(computeCalibrationPoses_ns::API_error_codes.at(-err));
 	}
 	
@@ -242,7 +242,7 @@ void computeCalibrationPoses(const imageWrap &initialImage,
 					|| std::isnan(robotPoses_l[1 + 4 * i0 + 4 * 4 * i1])
 					|| std::isnan(robotPoses_l[2 + 4 * i0 + 4 * 4 * i1])
 					|| std::isnan(robotPoses_l[3 + 4 * i0 + 4 * 4 * i1])) {
-							ITER_API_terminate();
+							ITER::ITER_API_terminate();
 							throw std::runtime_error(
 									computeCalibrationPoses_ns::API_error_codes.at(10));
 				}
@@ -253,5 +253,5 @@ void computeCalibrationPoses(const imageWrap &initialImage,
 		}
 		robotPoses.push_back(robotPose);
 	}
-	ITER_API_terminate();
+	ITER::ITER_API_terminate();
 }

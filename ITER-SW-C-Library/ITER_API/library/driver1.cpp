@@ -5,7 +5,7 @@
 // File: driver1.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -25,27 +25,28 @@
 //
 // Arguments    : const double H[7][7]
 //                const double f[8]
-//                i_struct_T *solution
+//                m_struct_T *solution
 //                b_struct_T *memspace
-//                j_struct_T *d_workingset
+//                o_struct_T *d_workingset
 //                struct_T *c_qrmanager
-//                s_struct_T *c_cholmanager
-//                r_struct_T *b_objective
-//                const d_struct_T *options
-//                d_struct_T *runTimeOptions
+//                y_struct_T *c_cholmanager
+//                x_struct_T *b_objective
+//                const e_struct_T *options
+//                e_struct_T *runTimeOptions
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace qpactiveset {
-void driver(const double H[7][7], const double f[8], i_struct_T *solution,
-            b_struct_T *memspace, j_struct_T *d_workingset,
-            struct_T *c_qrmanager, s_struct_T *c_cholmanager,
-            r_struct_T *b_objective, const d_struct_T *options,
-            d_struct_T *runTimeOptions)
+void driver(const double H[7][7], const double f[8], m_struct_T *solution,
+            b_struct_T *memspace, o_struct_T *d_workingset,
+            struct_T *c_qrmanager, y_struct_T *c_cholmanager,
+            x_struct_T *b_objective, const e_struct_T *options,
+            e_struct_T *runTimeOptions)
 {
-  j_struct_T e_workingset;
+  o_struct_T e_workingset;
   int nVar;
   bool guard1{false};
   solution->iterations = 0;
@@ -282,6 +283,7 @@ void driver(const double H[7][7], const double f[8], i_struct_T *solution,
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for driver1.cpp

@@ -5,7 +5,7 @@
 // File: optimizeCamPose.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -21,28 +21,29 @@
 
 // Function Definitions
 //
-// Arguments    : const coder::array<double, 2U> &undist_imgMarkerPts
-//                const coder::array<double, 2U> &WptsTrio
+// Arguments    : const ::coder::array<double, 2U> &undist_imgMarkerPts
+//                const ::coder::array<double, 2U> &WptsTrio
 //                const double K11[4][3]
 //                const double est[7]
 // Return Type  : double
 //
+namespace ITER {
 double
-optimizeCamPose_anonFcn1(const coder::array<double, 2U> &undist_imgMarkerPts,
-                         const coder::array<double, 2U> &WptsTrio,
+optimizeCamPose_anonFcn1(const ::coder::array<double, 2U> &undist_imgMarkerPts,
+                         const ::coder::array<double, 2U> &WptsTrio,
                          const double K11[4][3], const double est[7])
 {
   static const signed char b_iv[4]{0, 0, 0, 1};
-  static const signed char iv1[3]{2, 1, 3};
-  coder::array<double, 2U> b_x;
-  coder::array<double, 2U> c_y;
-  coder::array<double, 2U> err;
-  coder::array<double, 2U> r;
-  coder::array<double, 2U> y;
-  coder::array<double, 1U> r1;
-  double dv1[4][4];
+  static const signed char b_iv1[3]{2, 1, 3};
+  ::coder::array<double, 2U> b_x;
+  ::coder::array<double, 2U> c_y;
+  ::coder::array<double, 2U> err;
+  ::coder::array<double, 2U> r;
+  ::coder::array<double, 2U> y;
+  ::coder::array<double, 1U> r1;
+  double b_dv1[4][4];
   double b_y[4][3];
-  double dv[3][3];
+  double b_dv[3][3];
   double b_varargin_1;
   double d;
   double s;
@@ -64,17 +65,17 @@ optimizeCamPose_anonFcn1(const coder::array<double, 2U> &undist_imgMarkerPts,
   bool b;
   //  % Divide with Z to complete the perspective projection and the removing
   //  the unit 1  as a resultant of the division either inv(Z)*A*X
-  coder::quat2rotm(*((double(*)[4])(&est[0])), dv);
+  coder::quat2rotm(*((double(*)[4])(&est[0])), b_dv);
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
   for (int b_i = 0; b_i < 3; b_i++) {
-    dv1[b_i][0] = dv[b_i][0];
-    dv1[b_i][1] = dv[b_i][1];
-    dv1[b_i][2] = dv[b_i][2];
-    dv1[3][b_i] = est[b_i + 4];
+    b_dv1[b_i][0] = b_dv[b_i][0];
+    b_dv1[b_i][1] = b_dv[b_i][1];
+    b_dv1[b_i][2] = b_dv[b_i][2];
+    b_dv1[3][b_i] = est[b_i + 4];
   }
   for (int i1{0}; i1 < 4; i1++) {
-    dv1[i1][3] = static_cast<double>(b_iv[i1]);
+    b_dv1[i1][3] = static_cast<double>(b_iv[i1]);
   }
 #pragma omp parallel for num_threads(omp_get_max_threads()) private(i3, d, i4)
 
@@ -82,7 +83,7 @@ optimizeCamPose_anonFcn1(const coder::array<double, 2U> &undist_imgMarkerPts,
     for (i4 = 0; i4 < 4; i4++) {
       d = 0.0;
       for (i3 = 0; i3 < 4; i3++) {
-        d += K11[i3][i2] * dv1[i4][i3];
+        d += K11[i3][i2] * b_dv1[i4][i3];
       }
       b_y[i4][i2] = d;
     }
@@ -126,7 +127,7 @@ optimizeCamPose_anonFcn1(const coder::array<double, 2U> &undist_imgMarkerPts,
       c_y[i5] = y[(3 * i5) + 2];
     }
   }
-  coder::b_bsxfun(y, c_y, b_x);
+  coder::c_bsxfun(y, c_y, b_x);
   // need to invert HT befor invR, if the representation change of whole inverse
   // is followed
   if (undist_imgMarkerPts.size(0) == b_x.size(1)) {
@@ -153,7 +154,7 @@ optimizeCamPose_anonFcn1(const coder::array<double, 2U> &undist_imgMarkerPts,
       }
     }
   } else {
-    c_binary_expand_op(err, undist_imgMarkerPts, b_x);
+    d_binary_expand_op(err, undist_imgMarkerPts, b_x);
   }
   b = true;
   if (err.size(0) != 0) {
@@ -165,17 +166,17 @@ optimizeCamPose_anonFcn1(const coder::array<double, 2U> &undist_imgMarkerPts,
     exitg1 = false;
     while ((!exitg1) && (b_k < 3)) {
       int i10;
-      if (iv1[b_k] <= 2) {
-        i10 = err.size((static_cast<int>(iv1[b_k])) - 1);
+      if (b_iv1[b_k] <= 2) {
+        i10 = err.size((static_cast<int>(b_iv1[b_k])) - 1);
       } else {
         i10 = 1;
       }
       if (i10 != 1) {
-        if (plast > (static_cast<int>(iv1[b_k]))) {
+        if (plast > (static_cast<int>(b_iv1[b_k]))) {
           b = false;
           exitg1 = true;
         } else {
-          plast = static_cast<int>(iv1[b_k]);
+          plast = static_cast<int>(b_iv1[b_k]);
           b_k++;
         }
       } else {
@@ -252,11 +253,13 @@ optimizeCamPose_anonFcn1(const coder::array<double, 2U> &undist_imgMarkerPts,
       r1[i13] = b_varargin_1 * b_varargin_1;
     }
   }
-  varargout_1 = std::sqrt(coder::combineVectorElements(r1));
+  varargout_1 = std::sqrt(coder::b_combineVectorElements(r1));
   // This is forbenius norm (L2), extra line for the fmincon. Remove this line
   // if using lsqnonlin
   return varargout_1;
 }
+
+} // namespace ITER
 
 //
 // File trailer for optimizeCamPose.cpp

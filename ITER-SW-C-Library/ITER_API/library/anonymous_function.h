@@ -5,7 +5,7 @@
 // File: anonymous_function.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef ANONYMOUS_FUNCTION_H
@@ -14,23 +14,32 @@
 // Include Files
 #include "ITER_API_internal_types1.h"
 #include "rtwtypes.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Type Definitions
+namespace ITER {
 namespace coder {
-class anonymous_function {
+class b_anonymous_function {
 public:
-  f_struct_T workspace;
+  g_struct_T workspace;
 };
 
 class c_anonymous_function {
 public:
-  q_struct_T workspace;
+  r_struct_T workspace;
+};
+
+class e_anonymous_function {
+public:
+  v_struct_T workspace;
 };
 
 } // namespace coder
+} // namespace ITER
 
 #endif
 //

@@ -5,7 +5,7 @@
 // File: jacobianFiniteDifference.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -26,12 +26,13 @@
 //                const ::coder::array<double, 1U> &lb
 //                const ::coder::array<double, 1U> &ub
 //                const char options_FiniteDifferenceType[7]
-//                const t_struct_T *FiniteDifferences
+//                const ab_struct_T *FiniteDifferences
 //                const ::coder::array<double, 1U> &runTimeOptions_TypicalX
 //                const ::coder::array<double, 1U>
 //                &runTimeOptions_FiniteDifferenceStepSize
 // Return Type  : bool
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
@@ -42,15 +43,15 @@ bool b_jacobianFiniteDifference(
     const ::coder::array<double, 1U> &b_x, const ::coder::array<double, 1U> &lb,
     const ::coder::array<double, 1U> &ub,
     const char options_FiniteDifferenceType[7],
-    const t_struct_T *FiniteDifferences,
+    const ab_struct_T *FiniteDifferences,
     const ::coder::array<double, 1U> &runTimeOptions_TypicalX,
     const ::coder::array<double, 1U> &runTimeOptions_FiniteDifferenceStepSize)
 {
   static const char b_cv[7]{'f', 'o', 'r', 'w', 'a', 'r', 'd'};
-  static const char cv1[7]{'c', 'e', 'n', 't', 'r', 'a', 'l'};
-  array<double, 2U> JacCeqTrans;
-  array<double, 1U> a__3;
-  t_struct_T b_FiniteDifferences;
+  static const char b_cv1[7]{'c', 'e', 'n', 't', 'r', 'a', 'l'};
+  ::coder::array<double, 2U> JacCeqTrans;
+  ::coder::array<double, 1U> a__3;
+  ab_struct_T b_FiniteDifferences;
   int b_loop_ub;
   int c_loop_ub;
   int exitg1;
@@ -74,7 +75,7 @@ bool b_jacobianFiniteDifference(
     }
   }
   b_FiniteDifferences = *FiniteDifferences;
-  evalOK = utils::FiniteDifferences::computeFiniteDifferences(
+  evalOK = utils::FiniteDifferences::b_computeFiniteDifferences(
       &b_FiniteDifferences, fCurrent, a__3, JacCeqTrans, b_x.size(0), lb, ub,
       runTimeOptions_TypicalX, runTimeOptions_FiniteDifferenceStepSize);
   b_bool = false;
@@ -82,9 +83,9 @@ bool b_jacobianFiniteDifference(
   do {
     exitg1 = 0;
     if (kstr < 7) {
-      if (cv[(static_cast<unsigned char>(options_FiniteDifferenceType[kstr])) &
-             (static_cast<unsigned char>(127))] !=
-          cv[static_cast<int>(b_cv[kstr])]) {
+      if (cv1[(static_cast<unsigned char>(options_FiniteDifferenceType[kstr])) &
+              (static_cast<unsigned char>(127))] !=
+          cv1[static_cast<int>(b_cv[kstr])]) {
         exitg1 = 1;
       } else {
         kstr++;
@@ -104,10 +105,10 @@ bool b_jacobianFiniteDifference(
     do {
       exitg1 = 0;
       if (b_kstr < 7) {
-        if (cv[(static_cast<unsigned char>(
-                   options_FiniteDifferenceType[b_kstr])) &
-               (static_cast<unsigned char>(127))] !=
-            cv[static_cast<int>(cv1[b_kstr])]) {
+        if (cv1[(static_cast<unsigned char>(
+                    options_FiniteDifferenceType[b_kstr])) &
+                (static_cast<unsigned char>(127))] !=
+            cv1[static_cast<int>(b_cv1[b_kstr])]) {
           exitg1 = 1;
         } else {
           b_kstr++;
@@ -142,7 +143,7 @@ bool b_jacobianFiniteDifference(
 //                const ::coder::array<double, 1U> &lb
 //                const ::coder::array<double, 1U> &ub
 //                const char options_FiniteDifferenceType[7]
-//                t_struct_T *FiniteDifferences
+//                ab_struct_T *FiniteDifferences
 //                const ::coder::array<double, 1U> &runTimeOptions_TypicalX
 //                const ::coder::array<double, 1U>
 //                &runTimeOptions_FiniteDifferenceStepSize int *funcCount bool
@@ -154,15 +155,15 @@ void jacobianFiniteDifference(
     const ::coder::array<double, 1U> &fCurrent,
     const ::coder::array<double, 1U> &b_x, const ::coder::array<double, 1U> &lb,
     const ::coder::array<double, 1U> &ub,
-    const char options_FiniteDifferenceType[7], t_struct_T *FiniteDifferences,
+    const char options_FiniteDifferenceType[7], ab_struct_T *FiniteDifferences,
     const ::coder::array<double, 1U> &runTimeOptions_TypicalX,
     const ::coder::array<double, 1U> &runTimeOptions_FiniteDifferenceStepSize,
     int *funcCount, bool *evalOK)
 {
   static const char b_cv[7]{'f', 'o', 'r', 'w', 'a', 'r', 'd'};
-  static const char cv1[7]{'c', 'e', 'n', 't', 'r', 'a', 'l'};
-  array<double, 2U> JacCeqTrans;
-  array<double, 1U> a__3;
+  static const char b_cv1[7]{'c', 'e', 'n', 't', 'r', 'a', 'l'};
+  ::coder::array<double, 2U> JacCeqTrans;
+  ::coder::array<double, 1U> a__3;
   int b_loop_ub;
   int c_loop_ub;
   int exitg1;
@@ -185,7 +186,7 @@ void jacobianFiniteDifference(
       a__3[b_i] = b_x[b_i];
     }
   }
-  *evalOK = utils::FiniteDifferences::computeFiniteDifferences(
+  *evalOK = utils::FiniteDifferences::b_computeFiniteDifferences(
       FiniteDifferences, fCurrent, a__3, JacCeqTrans, b_x.size(0), lb, ub,
       runTimeOptions_TypicalX, runTimeOptions_FiniteDifferenceStepSize);
   b_bool = false;
@@ -193,9 +194,9 @@ void jacobianFiniteDifference(
   do {
     exitg1 = 0;
     if (kstr < 7) {
-      if (cv[(static_cast<unsigned char>(options_FiniteDifferenceType[kstr])) &
-             (static_cast<unsigned char>(127))] !=
-          cv[static_cast<int>(b_cv[kstr])]) {
+      if (cv1[(static_cast<unsigned char>(options_FiniteDifferenceType[kstr])) &
+              (static_cast<unsigned char>(127))] !=
+          cv1[static_cast<int>(b_cv[kstr])]) {
         exitg1 = 1;
       } else {
         kstr++;
@@ -215,10 +216,10 @@ void jacobianFiniteDifference(
     do {
       exitg1 = 0;
       if (b_kstr < 7) {
-        if (cv[(static_cast<unsigned char>(
-                   options_FiniteDifferenceType[b_kstr])) &
-               (static_cast<unsigned char>(127))] !=
-            cv[static_cast<int>(cv1[b_kstr])]) {
+        if (cv1[(static_cast<unsigned char>(
+                    options_FiniteDifferenceType[b_kstr])) &
+                (static_cast<unsigned char>(127))] !=
+            cv1[static_cast<int>(b_cv1[b_kstr])]) {
           exitg1 = 1;
         } else {
           b_kstr++;
@@ -249,6 +250,7 @@ void jacobianFiniteDifference(
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for jacobianFiniteDifference.cpp

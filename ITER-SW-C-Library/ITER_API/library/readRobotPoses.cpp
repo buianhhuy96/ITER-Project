@@ -5,7 +5,7 @@
 // File: readRobotPoses.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -20,14 +20,15 @@
 //
 // Initialize arrays of poses and extrinsics
 //
-// Arguments    : const coder::array<double, 3U> &robotPosesVec
-//                coder::array<double, 3U> &poses
-//                coder::array<double, 3U> &extrinsics
+// Arguments    : const ::coder::array<double, 3U> &robotPosesVec
+//                ::coder::array<double, 3U> &poses
+//                ::coder::array<double, 3U> &extrinsics
 // Return Type  : void
 //
-void readRobotPoses(const coder::array<double, 3U> &robotPosesVec,
-                    coder::array<double, 3U> &poses,
-                    coder::array<double, 3U> &extrinsics)
+namespace ITER {
+void readRobotPoses(const ::coder::array<double, 3U> &robotPosesVec,
+                    ::coder::array<double, 3U> &poses,
+                    ::coder::array<double, 3U> &extrinsics)
 {
   static const signed char b_iv[4]{0, 0, 0, 1};
   double b_poses[3][3];
@@ -111,6 +112,8 @@ void readRobotPoses(const coder::array<double, 3U> &robotPosesVec,
     }
   }
 }
+
+} // namespace ITER
 
 //
 // File trailer for readRobotPoses.cpp

@@ -5,7 +5,7 @@
 // File: quat2rotm.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef QUAT2ROTM_H
@@ -13,15 +13,19 @@
 
 // Include Files
 #include "rtwtypes.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Function Declarations
+namespace ITER {
 namespace coder {
-void quat2rotm(const double b_q[4], double c_R[3][3]);
+void quat2rotm(const double b_q[4], double b_R[3][3]);
 
 }
+} // namespace ITER
 
 #endif
 //

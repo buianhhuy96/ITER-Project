@@ -5,7 +5,7 @@
 // File: ITER_API_rtwutil.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -20,16 +20,16 @@
 //                unsigned int h_n
 // Return Type  : int
 //
+namespace ITER {
 int asr_s32(int c_u, unsigned int h_n)
 {
   int y;
   if (c_u >= 0) {
-    y = static_cast<int>(static_cast<unsigned int>(
-        (static_cast<unsigned int>(c_u)) >> (static_cast<unsigned long>(h_n))));
+    y = static_cast<int>(
+        static_cast<unsigned int>((static_cast<unsigned int>(c_u)) >> h_n));
   } else {
     y = (-(static_cast<int>(static_cast<unsigned int>(
-            (static_cast<unsigned int>(static_cast<int>(-1 - c_u))) >>
-            (static_cast<unsigned long>(h_n)))))) -
+            (static_cast<unsigned int>(static_cast<int>(-1 - c_u))) >> h_n)))) -
         1;
   }
   return y;
@@ -71,6 +71,100 @@ int div_s32(int numerator, int denominator)
     }
   }
   return quotient;
+}
+
+//
+// Arguments    : int b_a
+//                int b
+// Return Type  : int
+//
+int mul_s32_sat(int b_a, int b)
+{
+  int result;
+  unsigned int u32_chi;
+  unsigned int u32_clo;
+  mul_wide_s32(b_a, b, &u32_chi, &u32_clo);
+  if (((static_cast<int>(u32_chi)) > 0) ||
+      ((u32_chi == 0U) && (u32_clo >= 2147483648U))) {
+    result = MAX_int32_T;
+  } else if (((static_cast<int>(u32_chi)) < -1) ||
+             (((static_cast<int>(u32_chi)) == -1) && (u32_clo < 2147483648U))) {
+    result = MIN_int32_T;
+  } else {
+    result = static_cast<int>(u32_clo);
+  }
+  return result;
+}
+
+//
+// Arguments    : int in0
+//                int in1
+//                unsigned int *ptrOutBitsHi
+//                unsigned int *ptrOutBitsLo
+// Return Type  : void
+//
+void mul_wide_s32(int in0, int in1, unsigned int *ptrOutBitsHi,
+                  unsigned int *ptrOutBitsLo)
+{
+  unsigned int absIn0;
+  unsigned int absIn1;
+  int carry;
+  int in0Hi;
+  int in0Lo;
+  int in1Hi;
+  int in1Lo;
+  unsigned int outBitsHi;
+  unsigned int outBitsLo;
+  unsigned int productHiLo;
+  unsigned int productLoHi;
+  unsigned int productLoLo;
+  if (in0 < 0) {
+    absIn0 = (~(static_cast<unsigned int>(in0))) + 1U;
+  } else {
+    absIn0 = static_cast<unsigned int>(in0);
+  }
+  if (in1 < 0) {
+    absIn1 = (~(static_cast<unsigned int>(in1))) + 1U;
+  } else {
+    absIn1 = static_cast<unsigned int>(in1);
+  }
+  in0Hi = static_cast<int>(static_cast<unsigned int>(absIn0 >> 16U));
+  in0Lo = static_cast<int>(static_cast<unsigned int>(absIn0 & 65535U));
+  in1Hi = static_cast<int>(static_cast<unsigned int>(absIn1 >> 16U));
+  in1Lo = static_cast<int>(static_cast<unsigned int>(absIn1 & 65535U));
+  productHiLo =
+      (static_cast<unsigned int>(in0Hi)) * (static_cast<unsigned int>(in1Lo));
+  productLoHi =
+      (static_cast<unsigned int>(in0Lo)) * (static_cast<unsigned int>(in1Hi));
+  productLoLo =
+      (static_cast<unsigned int>(in0Lo)) * (static_cast<unsigned int>(in1Lo));
+  carry = 0;
+  outBitsLo = productLoLo + (productLoHi << 16U);
+  if (outBitsLo < productLoLo) {
+    carry = 1;
+  }
+  productLoLo = outBitsLo;
+  outBitsLo += (productHiLo << 16U);
+  if (outBitsLo < productLoLo) {
+    carry = static_cast<int>(
+        static_cast<unsigned int>((static_cast<unsigned int>(carry)) + 1U));
+  }
+  outBitsHi = (((static_cast<unsigned int>(carry)) +
+                ((static_cast<unsigned int>(in0Hi)) *
+                 (static_cast<unsigned int>(in1Hi)))) +
+               (productLoHi >> 16U)) +
+              (productHiLo >> 16U);
+  if ((static_cast<int>((in0 != 0) &&
+                        ((in1 != 0) && ((in0 > 0) != (in1 > 0))))) != 0) {
+    outBitsHi = ~outBitsHi;
+    outBitsLo = ~outBitsLo;
+    outBitsLo++;
+    if (outBitsLo == 0U) {
+      outBitsHi++;
+    }
+  }
+  *ptrOutBitsHi = outBitsHi;
+  *ptrOutBitsLo = outBitsLo;
 }
 
 //
@@ -224,6 +318,8 @@ float rt_powf_snf(float u0, float b_u1)
   }
   return y;
 }
+
+} // namespace ITER
 
 //
 // File trailer for ITER_API_rtwutil.cpp

@@ -5,7 +5,7 @@
 // File: isequal.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef ISEQUAL_H
@@ -14,20 +14,21 @@
 // Include Files
 #include "rtwtypes.h"
 #include "coder_array.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Function Declarations
+namespace ITER {
 namespace coder {
-bool b_isequal(const ::coder::array<bool, 2U> &varargin_1,
-               const ::coder::array<bool, 2U> &varargin_2);
-
-bool c_isequal(const ::coder::array<double, 2U> &varargin_1, double varargin_2);
+bool b_isequal(const ::coder::array<double, 2U> &varargin_1, double varargin_2);
 
 bool isequal(const double varargin_1[2], const double varargin_2[2]);
 
 } // namespace coder
+} // namespace ITER
 
 #endif
 //

@@ -5,7 +5,7 @@
 // File: fitgeotrans.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -26,32 +26,33 @@
 //                projective2d *tform
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 void fitgeotrans(const ::coder::array<double, 2U> &movingPoints,
                  const ::coder::array<double, 2U> &fixedPoints,
                  projective2d *tform)
 {
-  array<double, 2U> d_X;
-  array<double, 2U> uv;
-  array<double, 2U> xy;
-  array<double, 1U> b_v;
-  array<double, 1U> b_x;
-  array<double, 1U> c_u;
-  array<double, 1U> d_u;
-  array<double, 1U> r;
-  array<double, 1U> r1;
-  array<double, 1U> y;
+  ::coder::array<double, 2U> d_X;
+  ::coder::array<double, 2U> uv;
+  ::coder::array<double, 2U> xy;
+  ::coder::array<double, 1U> b_x;
+  ::coder::array<double, 1U> c_u;
+  ::coder::array<double, 1U> d_u;
+  ::coder::array<double, 1U> e_v;
+  ::coder::array<double, 1U> r;
+  ::coder::array<double, 1U> r1;
+  ::coder::array<double, 1U> y;
   double T[3][3];
   double Tvec[9];
   double b_Tvec[3][3];
-  double dv[3][3];
+  double b_dv[3][3];
   double normMatrix1[3][3];
   double normMatrix2[3][3];
   double b_d1;
+  double c_T;
   double d;
   double d2;
   double d3;
-  double e_T;
   int ab_loop_ub;
   int b_loop_ub;
   int b_xy_idx_0;
@@ -136,17 +137,17 @@ void fitgeotrans(const ::coder::array<double, 2U> &movingPoints,
     }
   }
   g_loop_ub = uv.size(0);
-  b_v.set_size(uv.size(0));
+  e_v.set_size(uv.size(0));
   h_loop_ub = uv.size(0);
   if ((static_cast<int>(uv.size(0) < 4)) != 0) {
     for (int i3{0}; i3 < g_loop_ub; i3++) {
-      b_v[i3] = uv[i3 + uv.size(0)];
+      e_v[i3] = uv[i3 + uv.size(0)];
     }
   } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
     for (int i3 = 0; i3 < h_loop_ub; i3++) {
-      b_v[i3] = uv[i3 + uv.size(0)];
+      e_v[i3] = uv[i3 + uv.size(0)];
     }
   }
   r.set_size(c_u.size(0));
@@ -162,17 +163,17 @@ void fitgeotrans(const ::coder::array<double, 2U> &movingPoints,
       r[i4] = -c_u[i4];
     }
   }
-  r1.set_size(b_v.size(0));
-  j_loop_ub = b_v.size(0);
-  if ((static_cast<int>(b_v.size(0) < 4)) != 0) {
+  r1.set_size(e_v.size(0));
+  j_loop_ub = e_v.size(0);
+  if ((static_cast<int>(e_v.size(0) < 4)) != 0) {
     for (int i5{0}; i5 < j_loop_ub; i5++) {
-      r1[i5] = -b_v[i5];
+      r1[i5] = -e_v[i5];
     }
   } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
     for (int i5 = 0; i5 < j_loop_ub; i5++) {
-      r1[i5] = -b_v[i5];
+      r1[i5] = -e_v[i5];
     }
   }
   xy_idx_0 = xy.size(0);
@@ -377,7 +378,7 @@ void fitgeotrans(const ::coder::array<double, 2U> &movingPoints,
     }
   }
   (void)local_rank(d_X);
-  d_u.set_size(c_u.size(0) + b_v.size(0));
+  d_u.set_size(c_u.size(0) + e_v.size(0));
   db_loop_ub = c_u.size(0);
   if ((static_cast<int>(c_u.size(0) < 4)) != 0) {
     for (int i22{0}; i22 < db_loop_ub; i22++) {
@@ -390,16 +391,16 @@ void fitgeotrans(const ::coder::array<double, 2U> &movingPoints,
       d_u[i22] = c_u[i22];
     }
   }
-  eb_loop_ub = b_v.size(0);
-  if ((static_cast<int>(b_v.size(0) < 4)) != 0) {
+  eb_loop_ub = e_v.size(0);
+  if ((static_cast<int>(e_v.size(0) < 4)) != 0) {
     for (int i23{0}; i23 < eb_loop_ub; i23++) {
-      d_u[i23 + c_u.size(0)] = b_v[i23];
+      d_u[i23 + c_u.size(0)] = e_v[i23];
     }
   } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
     for (int i23 = 0; i23 < eb_loop_ub; i23++) {
-      d_u[i23 + c_u.size(0)] = b_v[i23];
+      d_u[i23 + c_u.size(0)] = e_v[i23];
     }
   }
   mldivide(d_X, d_u, r);
@@ -422,19 +423,20 @@ void fitgeotrans(const ::coder::array<double, 2U> &movingPoints,
       b_Tvec[i27][i25] = d;
     }
   }
-  b_mldivide(normMatrix2, b_Tvec, dv);
-  inv(dv, T);
-  e_T = T[2][2];
+  b_mldivide(normMatrix2, b_Tvec, b_dv);
+  inv(b_dv, T);
+  c_T = T[2][2];
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
   for (int i26 = 0; i26 < 3; i26++) {
-    tform->T[i26][0] = T[i26][0] / e_T;
-    tform->T[i26][1] = T[i26][1] / e_T;
-    tform->T[i26][2] = T[i26][2] / e_T;
+    tform->T[i26][0] = T[i26][0] / c_T;
+    tform->T[i26][1] = T[i26][1] / c_T;
+    tform->T[i26][2] = T[i26][2] / c_T;
   }
 }
 
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for fitgeotrans.cpp

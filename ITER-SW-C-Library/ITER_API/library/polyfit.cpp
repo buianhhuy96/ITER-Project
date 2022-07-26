@@ -5,7 +5,7 @@
 // File: polyfit.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -23,14 +23,15 @@
 //                ::coder::array<double, 2U> &p
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 void b_polyfit(const ::coder::array<double, 2U> &b_x,
                const ::coder::array<double, 2U> &y, double h_n,
                ::coder::array<double, 2U> &p)
 {
-  array<double, 2U> V;
-  array<double, 1U> b_p1;
-  array<double, 1U> c_y;
+  ::coder::array<double, 2U> V;
+  ::coder::array<double, 1U> b_p1;
+  ::coder::array<double, 1U> c_y;
   int b_y;
   int loop_ub;
   int rr;
@@ -103,8 +104,8 @@ void polyfit(const ::coder::array<double, 1U> &b_x,
              const ::coder::array<double, 1U> &y, double h_n,
              ::coder::array<double, 2U> &p)
 {
-  array<double, 2U> V;
-  array<double, 1U> b_p1;
+  ::coder::array<double, 2U> V;
+  ::coder::array<double, 1U> b_p1;
   int loop_ub;
   int rr;
   V.set_size(b_x.size(0), static_cast<int>(static_cast<double>(h_n + 1.0)));
@@ -164,6 +165,7 @@ void polyfit(const ::coder::array<double, 1U> &b_x,
 }
 
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for polyfit.cpp

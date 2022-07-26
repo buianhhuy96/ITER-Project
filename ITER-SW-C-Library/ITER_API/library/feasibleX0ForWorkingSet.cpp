@@ -5,7 +5,7 @@
 // File: feasibleX0ForWorkingSet.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -23,20 +23,21 @@
 //
 // Arguments    : double workspace[8][15]
 //                double xCurrent[8]
-//                const j_struct_T *d_workingset
+//                const o_struct_T *d_workingset
 //                struct_T *c_qrmanager
 // Return Type  : bool
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace qpactiveset {
 namespace initialize {
 bool feasibleX0ForWorkingSet(double workspace[8][15], double xCurrent[8],
-                             const j_struct_T *d_workingset,
+                             const o_struct_T *d_workingset,
                              struct_T *c_qrmanager)
 {
-  double c_B[8][15];
+  double e_B[8][15];
   int b_i8;
   int i3;
   int mWConstr;
@@ -136,7 +137,7 @@ bool feasibleX0ForWorkingSet(double workspace[8][15], double xCurrent[8],
 
       for (int i4 = 0; i4 < 8; i4++) {
         for (b_i8 = 0; b_i8 < 15; b_i8++) {
-          c_B[i4][b_i8] = workspace[i4][b_i8];
+          e_B[i4][b_i8] = workspace[i4][b_i8];
         }
       }
       if (nVar != 0) {
@@ -163,7 +164,7 @@ bool feasibleX0ForWorkingSet(double workspace[8][15], double xCurrent[8],
             b_temp = 0.0;
             for (int w{0}; w < mWConstr; w++) {
               b_temp += (&c_qrmanager->Q[0][0])[(w + b_ar) + 1] *
-                        (&c_B[0][0])[(w + c_br) + 1];
+                        (&e_B[0][0])[(w + c_br) + 1];
             }
             (&workspace[0][0])[d_ic - 1] += b_temp;
             b_ar += ldq;
@@ -221,7 +222,7 @@ bool feasibleX0ForWorkingSet(double workspace[8][15], double xCurrent[8],
 
       for (int i2 = 0; i2 < 8; i2++) {
         for (i3 = 0; i3 < 15; i3++) {
-          c_B[i2][i3] = workspace[i2][i3];
+          e_B[i2][i3] = workspace[i2][i3];
         }
       }
       if (nVar != 0) {
@@ -250,7 +251,7 @@ bool feasibleX0ForWorkingSet(double workspace[8][15], double xCurrent[8],
             i15 = c_cr + nVar;
             for (int c_ic{i13}; c_ic <= i15; c_ic++) {
               (&workspace[0][0])[c_ic - 1] +=
-                  (&c_B[0][0])[c_ib - 1] *
+                  (&e_B[0][0])[c_ib - 1] *
                   (&c_qrmanager->Q[0][0])[(ar + c_ic) - c_cr];
             }
             ar += ldq;
@@ -311,6 +312,7 @@ bool feasibleX0ForWorkingSet(double workspace[8][15], double xCurrent[8],
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for feasibleX0ForWorkingSet.cpp

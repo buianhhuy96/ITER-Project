@@ -5,7 +5,7 @@
 // File: imfilter.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef IMFILTER_H
@@ -14,28 +14,28 @@
 // Include Files
 #include "rtwtypes.h"
 #include "coder_array.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Function Declarations
+namespace ITER {
 namespace coder {
-void b_conv2_separable_valid(const double hCol[29], const double hRow[29],
-                             const ::coder::array<double, 2U> &inImg,
-                             const double finalSize[2],
-                             ::coder::array<double, 2U> &outImg);
+void b_imfilter(::coder::array<float, 2U> &varargin_1);
 
-void conv2_separable_valid(const double hCol[15], const double hRow[15],
-                           const ::coder::array<double, 2U> &inImg,
-                           const double finalSize[2],
-                           ::coder::array<double, 2U> &outImg);
+void c_imfilter(::coder::array<float, 2U> &varargin_1);
+
+void d_imfilter(::coder::array<float, 2U> &varargin_1);
 
 void imfilter(::coder::array<float, 2U> &varargin_1);
 
-void padImage_outSize(const ::coder::array<float, 2U> &a_tmp,
-                      const double pad[2], ::coder::array<float, 2U> &b_a);
+void padImage(const ::coder::array<float, 2U> &a_tmp, const double pad[2],
+              ::coder::array<float, 2U> &b_a);
 
 } // namespace coder
+} // namespace ITER
 
 #endif
 //

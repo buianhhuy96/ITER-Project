@@ -5,7 +5,7 @@
 // File: ixamax.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -21,6 +21,7 @@
 //                int incx
 // Return Type  : int
 //
+namespace ITER {
 namespace coder {
 namespace internal {
 namespace blas {
@@ -50,6 +51,7 @@ int ixamax(int h_n, const double b_x[15][15], int incx)
 } // namespace blas
 } // namespace internal
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for ixamax.cpp

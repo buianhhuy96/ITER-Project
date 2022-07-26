@@ -41,25 +41,25 @@ const std::map<int, char const*> API_error_codes = {
 };
 
 const std::map<std::string, std::vector<paramInfo>> algorithmParamInfo = {
-		{ "Blob_det",{ 
-			{ "delta", 1, 10 }, 
-			{ "min_area_pixel", 10, 1000 }, 
-			{ "max_area_percentage", 0.1, 5 }, 
-			{ "max_variation", 0.01, 0.25 } } }, 
+		{ "Blob_det",{
+			{ "delta", 1, 10 },
+			{ "min_area_pixel", 10, 1000 },
+			{ "max_area_percentage", 0.1, 5 },
+			{ "max_variation", 0.01, 0.25 } } },
 		{ "Blob_filter", {
-			{ "min_aspect_ratio", 0.1, 1 }, 
-			{ "max_aspect_ratio", 1, 5 }, 
-			{ "solidity", 0.1, 1 }, 
-			{ "min_extent", 0, 1 }, 
-			{ "max_extent", 0, 1 }, 
+			{ "min_aspect_ratio", 0.1, 1 },
+			{ "max_aspect_ratio", 1, 5 },
+			{ "solidity", 0.1, 1 },
+			{ "min_extent", 0, 1 },
+			{ "max_extent", 0, 1 },
 			{ "max_Subregions", 1, 10 } } },
 		{ "ellipse_fit", {
-			{ "min_size", 1, 50 }, 
+			{ "min_size", 1, 50 },
 			{ "max_aspect_ratio", 1, 15 } } },
 		{ "TaglenAng", {
-			{ "minAng", 10, 80 }, 
-			{ "maxAng", 100, 150 }, 
-			{ "minRatio", 0.1, 1 }, 
+			{ "minAng", 10, 80 },
+			{ "maxAng", 100, 150 },
+			{ "minRatio", 0.1, 1 },
 			{ "maxRatio", 1, 8 } } } };
 
 const std::vector<std::string> tagElement = {{

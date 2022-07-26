@@ -5,7 +5,7 @@
 // File: BFGSUpdate.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -16,17 +16,18 @@
 // Function Definitions
 //
 // Arguments    : int b_nvar
-//                double g_Bk[7][7]
+//                double f_Bk[7][7]
 //                const double b_sk[8]
 //                double b_yk[8]
 //                double workspace[8][15]
 // Return Type  : bool
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace fminconsqp {
-bool BFGSUpdate(int b_nvar, double g_Bk[7][7], const double b_sk[8],
+bool BFGSUpdate(int b_nvar, double f_Bk[7][7], const double b_sk[8],
                 double b_yk[8], double workspace[8][15])
 {
   double curvatureS;
@@ -41,7 +42,7 @@ bool BFGSUpdate(int b_nvar, double g_Bk[7][7], const double b_sk[8],
   }
   if (b_nvar != 0) {
     int b_i;
-    int b_ix;
+    int c_ix;
     if ((static_cast<int>(b_nvar < 4)) != 0) {
       for (int b_iy{0}; b_iy < b_nvar; b_iy++) {
         (&workspace[0][0])[b_iy] = 0.0;
@@ -53,7 +54,7 @@ bool BFGSUpdate(int b_nvar, double g_Bk[7][7], const double b_sk[8],
         (&workspace[0][0])[b_iy] = 0.0;
       }
     }
-    b_ix = 0;
+    c_ix = 0;
     b_i = (7 * (b_nvar - 1)) + 1;
     for (int iac{1}; iac <= b_i; iac += 7) {
       int i1;
@@ -61,9 +62,9 @@ bool BFGSUpdate(int b_nvar, double g_Bk[7][7], const double b_sk[8],
       for (int ia{iac}; ia <= i1; ia++) {
         int i2;
         i2 = ia - iac;
-        (&workspace[0][0])[i2] += (&g_Bk[0][0])[ia - 1] * b_sk[b_ix];
+        (&workspace[0][0])[i2] += (&f_Bk[0][0])[ia - 1] * b_sk[c_ix];
       }
-      b_ix++;
+      c_ix++;
     }
   }
   curvatureS = 0.0;
@@ -112,40 +113,41 @@ bool BFGSUpdate(int b_nvar, double g_Bk[7][7], const double b_sk[8],
     double b_alpha1;
     alpha1 = -1.0 / curvatureS;
     if (!(alpha1 == 0.0)) {
-      int jA;
-      jA = 0;
+      int b_jA;
+      b_jA = 0;
       for (int j{0}; j < b_nvar; j++) {
         if ((&workspace[0][0])[j] != 0.0) {
           double temp;
           int i3;
           int i4;
           temp = (&workspace[0][0])[j] * alpha1;
-          i3 = jA + 1;
-          i4 = b_nvar + jA;
+          i3 = b_jA + 1;
+          i4 = b_nvar + b_jA;
           for (int ijA{i3}; ijA <= i4; ijA++) {
-            (&g_Bk[0][0])[ijA - 1] += (&workspace[0][0])[(ijA - jA) - 1] * temp;
+            (&f_Bk[0][0])[ijA - 1] +=
+                (&workspace[0][0])[(ijA - b_jA) - 1] * temp;
           }
         }
-        jA += 7;
+        b_jA += 7;
       }
     }
     b_alpha1 = 1.0 / dotSY;
     if (!(b_alpha1 == 0.0)) {
-      int b_jA;
-      b_jA = 0;
+      int c_jA;
+      c_jA = 0;
       for (int b_j{0}; b_j < b_nvar; b_j++) {
         if (b_yk[b_j] != 0.0) {
           double b_temp;
           int i5;
           int i6;
           b_temp = b_yk[b_j] * b_alpha1;
-          i5 = b_jA + 1;
-          i6 = b_nvar + b_jA;
+          i5 = c_jA + 1;
+          i6 = b_nvar + c_jA;
           for (int b_ijA{i5}; b_ijA <= i6; b_ijA++) {
-            (&g_Bk[0][0])[b_ijA - 1] += b_yk[(b_ijA - b_jA) - 1] * b_temp;
+            (&f_Bk[0][0])[b_ijA - 1] += b_yk[(b_ijA - c_jA) - 1] * b_temp;
           }
         }
-        b_jA += 7;
+        c_jA += 7;
       }
     }
   }
@@ -156,6 +158,7 @@ bool BFGSUpdate(int b_nvar, double g_Bk[7][7], const double b_sk[8],
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for BFGSUpdate.cpp

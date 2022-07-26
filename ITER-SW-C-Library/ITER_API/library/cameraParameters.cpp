@@ -5,7 +5,7 @@
 // File: cameraParameters.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -26,6 +26,7 @@
 //                const double varargin_1_IntrinsicMatrix[3][3]
 // Return Type  : cameraParameters *
 //
+namespace ITER {
 namespace coder {
 cameraParameters *
 cameraParameters::b_init(const double varargin_1_RadialDistortion[3],
@@ -37,31 +38,47 @@ cameraParameters::b_init(const double varargin_1_RadialDistortion[3],
                          bool varargin_1_EstimateTangentialDistortion,
                          const double varargin_1_IntrinsicMatrix[3][3])
 {
-  cameraParameters *c_this_;
-  c_this_ = this;
+  cameraParameters *d_this_;
+  d_this_ = this;
   for (int b_i{0}; b_i < 3; b_i++) {
-    c_this_->IntrinsicMatrixInternal[b_i][0] =
+    d_this_->IntrinsicMatrixInternal[b_i][0] =
         varargin_1_IntrinsicMatrix[0][b_i];
-    c_this_->IntrinsicMatrixInternal[b_i][1] =
+    d_this_->IntrinsicMatrixInternal[b_i][1] =
         varargin_1_IntrinsicMatrix[1][b_i];
-    c_this_->IntrinsicMatrixInternal[b_i][2] =
+    d_this_->IntrinsicMatrixInternal[b_i][2] =
         varargin_1_IntrinsicMatrix[2][b_i];
   }
-  c_this_->RadialDistortion[0] = varargin_1_RadialDistortion[0];
-  c_this_->RadialDistortion[1] = varargin_1_RadialDistortion[1];
-  c_this_->RadialDistortion[2] = varargin_1_RadialDistortion[2];
-  c_this_->TangentialDistortion[0] = varargin_1_TangentialDistortion[0];
-  c_this_->TangentialDistortion[1] = varargin_1_TangentialDistortion[1];
-  c_this_->ImageSize[0] = varargin_1_ImageSize[0];
-  c_this_->ImageSize[1] = varargin_1_ImageSize[1];
-  c_this_->WorldUnits[0] = varargin_1_WorldUnits[0];
-  c_this_->WorldUnits[1] = varargin_1_WorldUnits[1];
-  c_this_->EstimateSkew = varargin_1_EstimateSkew;
-  c_this_->NumRadialDistortionCoefficients =
+  d_this_->RadialDistortion[0] = varargin_1_RadialDistortion[0];
+  d_this_->RadialDistortion[1] = varargin_1_RadialDistortion[1];
+  d_this_->RadialDistortion[2] = varargin_1_RadialDistortion[2];
+  d_this_->TangentialDistortion[0] = varargin_1_TangentialDistortion[0];
+  d_this_->TangentialDistortion[1] = varargin_1_TangentialDistortion[1];
+  d_this_->ImageSize[0] = varargin_1_ImageSize[0];
+  d_this_->ImageSize[1] = varargin_1_ImageSize[1];
+  d_this_->WorldUnits[0] = varargin_1_WorldUnits[0];
+  d_this_->WorldUnits[1] = varargin_1_WorldUnits[1];
+  d_this_->EstimateSkew = varargin_1_EstimateSkew;
+  d_this_->NumRadialDistortionCoefficients =
       varargin_1_NumRadialDistortionCoefficients;
-  c_this_->EstimateTangentialDistortion =
+  d_this_->EstimateTangentialDistortion =
       varargin_1_EstimateTangentialDistortion;
-  return c_this_;
+  return d_this_;
+}
+
+//
+// Arguments    : void
+// Return Type  : cameraParameters
+//
+cameraParameters::cameraParameters()
+{
+}
+
+//
+// Arguments    : void
+// Return Type  : void
+//
+cameraParameters::~cameraParameters()
+{
 }
 
 //
@@ -70,26 +87,26 @@ cameraParameters::b_init(const double varargin_1_RadialDistortion[3],
 //
 cameraParameters *cameraParameters::init(const double varargin_2[2])
 {
-  cameraParameters *c_this_;
-  c_this_ = this;
+  cameraParameters *d_this_;
+  d_this_ = this;
   for (int b_i{0}; b_i < 3; b_i++) {
-    c_this_->IntrinsicMatrixInternal[b_i][0] = static_cast<double>(iv[b_i][0]);
-    c_this_->IntrinsicMatrixInternal[b_i][1] = static_cast<double>(iv[b_i][1]);
-    c_this_->IntrinsicMatrixInternal[b_i][2] = static_cast<double>(iv[b_i][2]);
+    d_this_->IntrinsicMatrixInternal[b_i][0] = static_cast<double>(iv[b_i][0]);
+    d_this_->IntrinsicMatrixInternal[b_i][1] = static_cast<double>(iv[b_i][1]);
+    d_this_->IntrinsicMatrixInternal[b_i][2] = static_cast<double>(iv[b_i][2]);
   }
-  c_this_->RadialDistortion[0] = 0.0;
-  c_this_->RadialDistortion[1] = 0.0;
-  c_this_->RadialDistortion[2] = 0.0;
-  c_this_->TangentialDistortion[0] = 0.0;
-  c_this_->TangentialDistortion[1] = 0.0;
-  c_this_->ImageSize[0] = varargin_2[0];
-  c_this_->ImageSize[1] = varargin_2[1];
-  c_this_->WorldUnits[0] = 'm';
-  c_this_->WorldUnits[1] = 'm';
-  c_this_->EstimateSkew = false;
-  c_this_->NumRadialDistortionCoefficients = 2.0;
-  c_this_->EstimateTangentialDistortion = false;
-  return c_this_;
+  d_this_->RadialDistortion[0] = 0.0;
+  d_this_->RadialDistortion[1] = 0.0;
+  d_this_->RadialDistortion[2] = 0.0;
+  d_this_->TangentialDistortion[0] = 0.0;
+  d_this_->TangentialDistortion[1] = 0.0;
+  d_this_->ImageSize[0] = varargin_2[0];
+  d_this_->ImageSize[1] = varargin_2[1];
+  d_this_->WorldUnits[0] = 'm';
+  d_this_->WorldUnits[1] = 'm';
+  d_this_->EstimateSkew = false;
+  d_this_->NumRadialDistortionCoefficients = 2.0;
+  d_this_->EstimateTangentialDistortion = false;
+  return d_this_;
 }
 
 //
@@ -134,6 +151,7 @@ void cameraParameters::toStruct(
 }
 
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for cameraParameters.cpp

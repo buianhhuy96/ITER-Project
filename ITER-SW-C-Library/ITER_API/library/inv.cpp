@@ -5,7 +5,7 @@
 // File: inv.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -20,6 +20,7 @@
 //                double y[4][4]
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 void b_inv(const double b_x[4][4], double y[4][4])
 {
@@ -40,9 +41,9 @@ void b_inv(const double b_x[4][4], double y[4][4])
   for (int j{0}; j < 3; j++) {
     double smax;
     int b_a;
+    int b_jA;
     int b_tmp;
     int h_n;
-    int jA;
     int jp1j;
     int mmj_tmp;
     mmj_tmp = 2 - j;
@@ -83,21 +84,21 @@ void b_inv(const double b_x[4][4], double y[4][4])
         (&A[0][0])[c_i - 1] /= (&A[0][0])[b_tmp];
       }
     }
-    jA = b_tmp;
+    b_jA = b_tmp;
     for (int c_j{0}; c_j <= mmj_tmp; c_j++) {
       double yjy_tmp;
       yjy_tmp = (&A[0][0])[(b_tmp + (c_j * 4)) + 4];
       if (yjy_tmp != 0.0) {
         int i5;
         int i7;
-        i5 = jA + 6;
-        i7 = (jA - j) + 8;
+        i5 = b_jA + 6;
+        i7 = (b_jA - j) + 8;
         for (int ijA{i5}; ijA <= i7; ijA++) {
           (&A[0][0])[ijA - 1] +=
-              (&A[0][0])[((b_tmp + ijA) - jA) - 5] * (-yjy_tmp);
+              (&A[0][0])[((b_tmp + ijA) - b_jA) - 5] * (-yjy_tmp);
         }
       }
-      jA += 4;
+      b_jA += 4;
     }
   }
   for (int i1{0}; i1 < 4; i1++) {
@@ -161,7 +162,7 @@ void b_inv(const double b_x[4][4], double y[4][4])
 //
 void inv(const double b_x[3][3], double y[3][3])
 {
-  double g_x[3][3];
+  double e_x[3][3];
   double absx11;
   double absx21;
   double absx31;
@@ -173,9 +174,9 @@ void inv(const double b_x[3][3], double y[3][3])
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
   for (int b_i = 0; b_i < 3; b_i++) {
-    g_x[b_i][0] = b_x[b_i][0];
-    g_x[b_i][1] = b_x[b_i][1];
-    g_x[b_i][2] = b_x[b_i][2];
+    e_x[b_i][0] = b_x[b_i][0];
+    e_x[b_i][1] = b_x[b_i][1];
+    e_x[b_i][2] = b_x[b_i][2];
   }
   b_p1 = 0;
   p2 = 3;
@@ -186,66 +187,67 @@ void inv(const double b_x[3][3], double y[3][3])
   if ((absx21 > absx11) && (absx21 > absx31)) {
     b_p1 = 3;
     p2 = 0;
-    g_x[0][0] = b_x[0][1];
-    g_x[0][1] = b_x[0][0];
-    g_x[1][0] = b_x[1][1];
-    g_x[1][1] = b_x[1][0];
-    g_x[2][0] = b_x[2][1];
-    g_x[2][1] = b_x[2][0];
+    e_x[0][0] = b_x[0][1];
+    e_x[0][1] = b_x[0][0];
+    e_x[1][0] = b_x[1][1];
+    e_x[1][1] = b_x[1][0];
+    e_x[2][0] = b_x[2][1];
+    e_x[2][1] = b_x[2][0];
   } else if (absx31 > absx11) {
     b_p1 = 6;
     p3 = 0;
-    g_x[0][0] = b_x[0][2];
-    g_x[0][2] = b_x[0][0];
-    g_x[1][0] = b_x[1][2];
-    g_x[1][2] = b_x[1][0];
-    g_x[2][0] = b_x[2][2];
-    g_x[2][2] = b_x[2][0];
+    e_x[0][0] = b_x[0][2];
+    e_x[0][2] = b_x[0][0];
+    e_x[1][0] = b_x[1][2];
+    e_x[1][2] = b_x[1][0];
+    e_x[2][0] = b_x[2][2];
+    e_x[2][2] = b_x[2][0];
   } else {
     /* no actions */
   }
-  g_x[0][1] /= g_x[0][0];
-  g_x[0][2] /= g_x[0][0];
-  g_x[1][1] -= g_x[1][0] * g_x[0][1];
-  g_x[1][2] -= g_x[1][0] * g_x[0][2];
-  g_x[2][1] -= g_x[2][0] * g_x[0][1];
-  g_x[2][2] -= g_x[2][0] * g_x[0][2];
-  if (std::abs(g_x[1][2]) > std::abs(g_x[1][1])) {
+  e_x[0][1] /= e_x[0][0];
+  e_x[0][2] /= e_x[0][0];
+  e_x[1][1] -= e_x[1][0] * e_x[0][1];
+  e_x[1][2] -= e_x[1][0] * e_x[0][2];
+  e_x[2][1] -= e_x[2][0] * e_x[0][1];
+  e_x[2][2] -= e_x[2][0] * e_x[0][2];
+  if (std::abs(e_x[1][2]) > std::abs(e_x[1][1])) {
     double b_t1;
     int b_itmp;
     b_itmp = p2;
     p2 = p3;
     p3 = b_itmp;
-    b_t1 = g_x[0][1];
-    g_x[0][1] = g_x[0][2];
-    g_x[0][2] = b_t1;
-    b_t1 = g_x[1][1];
-    g_x[1][1] = g_x[1][2];
-    g_x[1][2] = b_t1;
-    b_t1 = g_x[2][1];
-    g_x[2][1] = g_x[2][2];
-    g_x[2][2] = b_t1;
+    b_t1 = e_x[0][1];
+    e_x[0][1] = e_x[0][2];
+    e_x[0][2] = b_t1;
+    b_t1 = e_x[1][1];
+    e_x[1][1] = e_x[1][2];
+    e_x[1][2] = b_t1;
+    b_t1 = e_x[2][1];
+    e_x[2][1] = e_x[2][2];
+    e_x[2][2] = b_t1;
   }
-  g_x[1][2] /= g_x[1][1];
-  g_x[2][2] -= g_x[2][1] * g_x[1][2];
-  t3 = ((g_x[0][1] * g_x[1][2]) - g_x[0][2]) / g_x[2][2];
-  t2 = (-(g_x[0][1] + (g_x[2][1] * t3))) / g_x[1][1];
-  (&y[0][0])[b_p1] = ((1.0 - (g_x[1][0] * t2)) - (g_x[2][0] * t3)) / g_x[0][0];
+  e_x[1][2] /= e_x[1][1];
+  e_x[2][2] -= e_x[2][1] * e_x[1][2];
+  t3 = ((e_x[0][1] * e_x[1][2]) - e_x[0][2]) / e_x[2][2];
+  t2 = (-(e_x[0][1] + (e_x[2][1] * t3))) / e_x[1][1];
+  (&y[0][0])[b_p1] = ((1.0 - (e_x[1][0] * t2)) - (e_x[2][0] * t3)) / e_x[0][0];
   (&y[0][0])[b_p1 + 1] = t2;
   (&y[0][0])[b_p1 + 2] = t3;
-  t3 = (-g_x[1][2]) / g_x[2][2];
-  t2 = (1.0 - (g_x[2][1] * t3)) / g_x[1][1];
-  (&y[0][0])[p2] = (-((g_x[1][0] * t2) + (g_x[2][0] * t3))) / g_x[0][0];
+  t3 = (-e_x[1][2]) / e_x[2][2];
+  t2 = (1.0 - (e_x[2][1] * t3)) / e_x[1][1];
+  (&y[0][0])[p2] = (-((e_x[1][0] * t2) + (e_x[2][0] * t3))) / e_x[0][0];
   (&y[0][0])[p2 + 1] = t2;
   (&y[0][0])[p2 + 2] = t3;
-  t3 = 1.0 / g_x[2][2];
-  t2 = ((-g_x[2][1]) * t3) / g_x[1][1];
-  (&y[0][0])[p3] = (-((g_x[1][0] * t2) + (g_x[2][0] * t3))) / g_x[0][0];
+  t3 = 1.0 / e_x[2][2];
+  t2 = ((-e_x[2][1]) * t3) / e_x[1][1];
+  (&y[0][0])[p3] = (-((e_x[1][0] * t2) + (e_x[2][0] * t3))) / e_x[0][0];
   (&y[0][0])[p3 + 1] = t2;
   (&y[0][0])[p3 + 2] = t3;
 }
 
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for inv.cpp

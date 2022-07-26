@@ -18,9 +18,10 @@ using linalg::aliases::double3;
 using linalg::aliases::double4;
 using linalg::aliases::double2x3;
 using linalg::aliases::double4x4;
+typedef linalg::mat<double,3,5> double3x5;
 
 
-typedef struct1_T cam_struct_t;
+
 
 struct imageWrap {
   unsigned char *imageData;
@@ -57,11 +58,13 @@ convertDataType4Image							- convert user input image (type imageWrap) into
 convertDataType4CalibParams 			   		- Generate calibration data based on input 
 												Calibration Pattern Parameters.
 **/
+
 namespace ITER {
 #ifndef NO_ERROR
 	const int NO_ERROR = 0;
 #endif // NO_ERROR
 
+typedef ITER::struct1_T cam_struct_t;
 
 void generateCameraParameters(const intrinsicParameters &camParam,
 							cam_struct_t &camera_params);

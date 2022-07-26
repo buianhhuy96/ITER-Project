@@ -5,7 +5,7 @@
 // File: jacobianFiniteDifference.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef JACOBIANFINITEDIFFERENCE_H
@@ -14,14 +14,20 @@
 // Include Files
 #include "rtwtypes.h"
 #include "coder_array.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Type Declarations
-struct t_struct_T;
+namespace ITER {
+struct ab_struct_T;
+
+}
 
 // Function Declarations
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
@@ -32,7 +38,7 @@ bool b_jacobianFiniteDifference(
     const ::coder::array<double, 1U> &b_x, const ::coder::array<double, 1U> &lb,
     const ::coder::array<double, 1U> &ub,
     const char options_FiniteDifferenceType[7],
-    const t_struct_T *FiniteDifferences,
+    const ab_struct_T *FiniteDifferences,
     const ::coder::array<double, 1U> &runTimeOptions_TypicalX,
     const ::coder::array<double, 1U> &runTimeOptions_FiniteDifferenceStepSize);
 
@@ -41,7 +47,7 @@ void jacobianFiniteDifference(
     const ::coder::array<double, 1U> &fCurrent,
     const ::coder::array<double, 1U> &b_x, const ::coder::array<double, 1U> &lb,
     const ::coder::array<double, 1U> &ub,
-    const char options_FiniteDifferenceType[7], t_struct_T *FiniteDifferences,
+    const char options_FiniteDifferenceType[7], ab_struct_T *FiniteDifferences,
     const ::coder::array<double, 1U> &runTimeOptions_TypicalX,
     const ::coder::array<double, 1U> &runTimeOptions_FiniteDifferenceStepSize,
     int *funcCount, bool *evalOK);
@@ -50,6 +56,7 @@ void jacobianFiniteDifference(
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 #endif
 //

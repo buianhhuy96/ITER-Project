@@ -5,7 +5,7 @@
 // File: computeLambdaLSQ.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -31,6 +31,7 @@
 //                double workspace[8][15]
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
@@ -93,12 +94,12 @@ void computeLambdaLSQ(int nVar, int mConstr, struct_T *b_QRManager,
       b_y = mConstr;
     }
     b_QRManager->minRowCol = b_y;
-    ::coder::internal::lapack::c_xgeqp3(b_QRManager->QR, nVar, mConstr,
-                                        b_QRManager->jpvt, b_QRManager->tau);
+    ::ITER::coder::internal::lapack::c_xgeqp3(
+        b_QRManager->QR, nVar, mConstr, b_QRManager->jpvt, b_QRManager->tau);
   }
   QRManager::computeQ_(b_QRManager, b_QRManager->mrows);
-  ::coder::internal::blas::b_xgemv(nVar, nVar, b_QRManager->Q, b_QRManager->ldq,
-                                   grad, workspace);
+  ::ITER::coder::internal::blas::d_xgemv(nVar, nVar, b_QRManager->Q,
+                                         b_QRManager->ldq, grad, workspace);
   if (nVar >= mConstr) {
     y = nVar;
   } else {
@@ -129,9 +130,9 @@ void computeLambdaLSQ(int nVar, int mConstr, struct_T *b_QRManager,
       jjA = (j + ((j - 1) * b_QRManager->ldq)) - 1;
       (&workspace[0][0])[j - 1] /= (&b_QRManager->QR[0][0])[jjA];
       for (int c_i{0}; c_i <= (j - 2); c_i++) {
-        int b_ix;
-        b_ix = (j - c_i) - 2;
-        (&workspace[0][0])[b_ix] -= (&workspace[0][0])[j - 1] *
+        int c_ix;
+        c_ix = (j - c_i) - 2;
+        (&workspace[0][0])[c_ix] -= (&workspace[0][0])[j - 1] *
                                     (&b_QRManager->QR[0][0])[(jjA - c_i) - 1];
       }
     }
@@ -151,6 +152,7 @@ void computeLambdaLSQ(int nVar, int mConstr, struct_T *b_QRManager,
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for computeLambdaLSQ.cpp

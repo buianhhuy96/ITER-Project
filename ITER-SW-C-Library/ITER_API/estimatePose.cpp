@@ -176,10 +176,10 @@ void validateInputs(const imageWrap &inputImage, const double robotPose[4][4],
 	if ((inputImage.numChannels != 1) && (inputImage.numChannels != 3)) {
 		throw std::runtime_error(API_error_codes.at(0001));
 	}
-	if (!isT(robotPose)) {
+	if (!ITER::isT(robotPose)) {
 		throw std::runtime_error(API_error_codes.at(0002));
 	}
-	if (!isT(handEyeCalibration)) {
+	if (!ITER::isT(handEyeCalibration)) {
 		throw std::runtime_error(API_error_codes.at(0003));
 	}
 
@@ -314,7 +314,7 @@ void estimatePose(const imageWrap &inputImage, const double4x4 &robotPose,
 
 	coder::array<uint8_T, 4U> image;
 	coder::array<uint8_T, 4U> grayImage;
-	cam_struct_t cameraParams;
+	ITER::cam_struct_t cameraParams;
 	std::vector<ipa_Fiducials::t_points> vec_points;
 	estimatePose_ns::algorithmParameters algorithmParams;
 
@@ -341,7 +341,7 @@ void estimatePose(const imageWrap &inputImage, const double4x4 &robotPose,
 	ITER::generateCameraParameters(camParam, cameraParams);
 
 	// Undistort the image
-	preprocessImages(image, &cameraParams, true, grayImage);
+	ITER::preprocessImages(image, &cameraParams, true, grayImage);
 
 	// Detect markers
 	estimatePose_ns::pitagDetector(grayImage, constellation, algorithmParams, vec_points, &err);
@@ -368,7 +368,7 @@ void estimatePose(const imageWrap &inputImage, const double4x4 &robotPose,
 	estimatePose_ns::loadTagWorldPoints(constellation, worldPts);
 
 	// Perform calculation using detected marker points
-	estimatePitagPose(imagePoints, robotPose_l, worldPts, handEyeCalibration_l,
+	ITER::estimatePitagPose(imagePoints, robotPose_l, worldPts, handEyeCalibration_l,
 			&cameraParams, poseCamera, poseRobot);
 
 	for (int i1 = 0; i1 < 4; i1++) {
@@ -380,12 +380,12 @@ void estimatePose(const imageWrap &inputImage, const double4x4 &robotPose,
 					|| std::isnan(targetPoseCamera[i1][i0])
 					|| std::isinf(targetPoseRobot[i1][i0])
 					|| std::isnan(targetPoseRobot[i1][i0])) {
-				ITER_API_terminate();
+				ITER::ITER_API_terminate();
 				throw std::runtime_error(
 						estimatePose_ns::API_error_codes.at(9));
 			}
 		}
 	}
 
-	ITER_API_terminate();
+	ITER::ITER_API_terminate();
 }

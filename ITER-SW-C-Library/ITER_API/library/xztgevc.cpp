@@ -5,7 +5,7 @@
 // File: xztgevc.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -22,6 +22,7 @@
 //                creal_T V[4][4]
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace internal {
 namespace reflapack {
@@ -60,8 +61,8 @@ void xztgevc(const creal_T A[4][4], creal_T V[4][4])
     double bcoeff_re;
     double c_y;
     double dmin;
+    double e_x;
     double e_y;
-    double g_x;
     double salpha_im;
     double salpha_re;
     double scale;
@@ -73,11 +74,11 @@ void xztgevc(const creal_T A[4][4], creal_T V[4][4])
     bool lscaleb;
     x_tmp = A[je][je].re;
     b_x_tmp = A[je][je].im;
-    g_x = (std::abs(x_tmp) + std::abs(b_x_tmp)) * ascale;
-    if (1.0 > g_x) {
-      g_x = 1.0;
+    e_x = (std::abs(x_tmp) + std::abs(b_x_tmp)) * ascale;
+    if (1.0 > e_x) {
+      e_x = 1.0;
     }
-    temp = 1.0 / g_x;
+    temp = 1.0 / e_x;
     salpha_re = ascale * (temp * x_tmp);
     salpha_im = ascale * (temp * b_x_tmp);
     acoeff = temp * ascale;
@@ -97,12 +98,12 @@ void xztgevc(const creal_T A[4][4], creal_T V[4][4])
     }
     scale = 1.0;
     if (lscalea) {
-      double j_x;
-      j_x = anorm;
+      double g_x;
+      g_x = anorm;
       if (2.4948003869184E+291 < anorm) {
-        j_x = 2.4948003869184E+291;
+        g_x = 2.4948003869184E+291;
       }
-      scale = (4.0083367200179456E-292 / temp) * j_x;
+      scale = (4.0083367200179456E-292 / temp) * g_x;
     }
     if (lscaleb) {
       double b_y;
@@ -113,15 +114,15 @@ void xztgevc(const creal_T A[4][4], creal_T V[4][4])
     }
     if (lscalea || lscaleb) {
       double d_y;
-      double k_x;
-      k_x = acoeff;
+      double i_x;
+      i_x = acoeff;
       if (1.0 > acoeff) {
-        k_x = 1.0;
+        i_x = 1.0;
       }
-      if (z > k_x) {
-        k_x = z;
+      if (z > i_x) {
+        i_x = z;
       }
-      d_y = 1.0 / (2.2250738585072014E-308 * k_x);
+      d_y = 1.0 / (2.2250738585072014E-308 * i_x);
       if (d_y < scale) {
         scale = d_y;
       }
@@ -308,6 +309,7 @@ void xztgevc(const creal_T A[4][4], creal_T V[4][4])
 } // namespace reflapack
 } // namespace internal
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for xztgevc.cpp

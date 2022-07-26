@@ -5,7 +5,7 @@
 // File: isT.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -25,9 +25,10 @@
 // Arguments    : const double T[4][4]
 // Return Type  : bool
 //
+namespace ITER {
 bool isT(const double T[4][4])
 {
-  double e_T[3][3];
+  double c_T[3][3];
   double z1[3];
   int k;
   bool exitg1;
@@ -55,13 +56,15 @@ bool isT(const double T[4][4])
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
   for (int b_i = 0; b_i < 3; b_i++) {
-    e_T[b_i][0] = T[b_i][0];
-    e_T[b_i][1] = T[b_i][1];
-    e_T[b_i][2] = T[b_i][2];
+    c_T[b_i][0] = T[b_i][0];
+    c_T[b_i][1] = T[b_i][1];
+    c_T[b_i][2] = T[b_i][2];
   }
-  ret = ((!(std::abs(coder::det(e_T) - 1.0) > 1.0E-6)) && ret);
+  ret = ((!(std::abs(coder::det(c_T) - 1.0) > 1.0E-6)) && ret);
   return ret;
 }
+
+} // namespace ITER
 
 //
 // File trailer for isT.cpp

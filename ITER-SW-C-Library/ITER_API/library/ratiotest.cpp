@@ -5,7 +5,7 @@
 // File: ratiotest.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -37,6 +37,7 @@
 //                int *constrIdx
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
@@ -70,7 +71,7 @@ void ratiotest(const double solution_xstar[8],
   *constrIdx = 0;
   b_p_max = 0.0;
   denomTol = 2.2204460492503131E-13 *
-             internal::blas::h_xnrm2(workingset_nVar, solution_searchDir);
+             internal::blas::j_xnrm2(workingset_nVar, solution_searchDir);
   if (workingset_nWConstr[2] < workingset_sizes[2]) {
     for (int idx{0}; idx < totalIneq; idx++) {
       double d;
@@ -214,6 +215,7 @@ void ratiotest(const double solution_xstar[8],
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for ratiotest.cpp

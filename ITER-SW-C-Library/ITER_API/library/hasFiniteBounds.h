@@ -5,7 +5,7 @@
 // File: hasFiniteBounds.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef HASFINITEBOUNDS_H
@@ -14,24 +14,30 @@
 // Include Files
 #include "rtwtypes.h"
 #include "coder_array.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Function Declarations
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace utils {
-bool hasFiniteBounds(int b_nvar, ::coder::array<bool, 1U> &hasLB,
-                     ::coder::array<bool, 1U> &hasUB,
-                     const ::coder::array<double, 1U> &lb,
-                     const ::coder::array<double, 1U> &ub);
+bool b_hasFiniteBounds(int b_nvar, ::coder::array<bool, 1U> &hasLB,
+                       ::coder::array<bool, 1U> &hasUB,
+                       const ::coder::array<double, 1U> &lb,
+                       const ::coder::array<double, 1U> &ub);
 
-}
+bool hasFiniteBounds(bool hasLB[6], bool hasUB[6]);
+
+} // namespace utils
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 #endif
 //

@@ -5,7 +5,7 @@
 // File: find.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -20,6 +20,7 @@
 //                ::coder::array<int, 1U> &b_i
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 void b_eml_find(const ::coder::array<bool, 1U> &b_x,
                 ::coder::array<int, 1U> &b_i)
@@ -69,7 +70,7 @@ void b_eml_find(const ::coder::array<bool, 1U> &b_x,
 void c_eml_find(const ::coder::array<double, 2U> &b_x,
                 ::coder::array<int, 2U> &b_i)
 {
-  array<int, 2U> c_i;
+  ::coder::array<int, 2U> c_i;
   int b_nx;
   int c_ii;
   int idx;
@@ -180,6 +181,7 @@ void eml_find(const ::coder::array<double, 1U> &b_x,
 }
 
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for find.cpp

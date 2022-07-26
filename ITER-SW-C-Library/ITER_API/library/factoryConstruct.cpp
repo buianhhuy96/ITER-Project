@@ -5,7 +5,7 @@
 // File: factoryConstruct.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -20,25 +20,26 @@
 
 // Function Definitions
 //
-// Arguments    : const c_anonymous_function *nonlin
+// Arguments    : const e_anonymous_function *nonlin
 //                int nVar
 //                int mCeq
 //                const ::coder::array<double, 1U> &lb
 //                const ::coder::array<double, 1U> &ub
 //                const char options_FiniteDifferenceType[7]
-//                t_struct_T *obj
+//                ab_struct_T *obj
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace utils {
 namespace FiniteDifferences {
-void factoryConstruct(const c_anonymous_function *nonlin, int nVar, int mCeq,
+void factoryConstruct(const e_anonymous_function *nonlin, int nVar, int mCeq,
                       const ::coder::array<double, 1U> &lb,
                       const ::coder::array<double, 1U> &ub,
                       const char options_FiniteDifferenceType[7],
-                      t_struct_T *obj)
+                      ab_struct_T *obj)
 {
   static const char b_cv[7]{'f', 'o', 'r', 'w', 'a', 'r', 'd'};
   int kstr;
@@ -63,9 +64,9 @@ void factoryConstruct(const c_anonymous_function *nonlin, int nVar, int mCeq,
   do {
     exitg1 = 0;
     if (kstr < 7) {
-      if (cv[(static_cast<unsigned char>(options_FiniteDifferenceType[kstr])) &
-             (static_cast<unsigned char>(127))] !=
-          cv[static_cast<int>(b_cv[kstr])]) {
+      if (cv1[(static_cast<unsigned char>(options_FiniteDifferenceType[kstr])) &
+              (static_cast<unsigned char>(127))] !=
+          cv1[static_cast<int>(b_cv[kstr])]) {
         exitg1 = 1;
       } else {
         kstr++;
@@ -76,7 +77,7 @@ void factoryConstruct(const c_anonymous_function *nonlin, int nVar, int mCeq,
     }
   } while (exitg1 == 0);
   obj->FiniteDifferenceType = static_cast<int>(!b_bool);
-  obj->hasBounds = hasFiniteBounds(nVar, obj->hasLB, obj->hasUB, lb, ub);
+  obj->hasBounds = b_hasFiniteBounds(nVar, obj->hasLB, obj->hasUB, lb, ub);
 }
 
 } // namespace FiniteDifferences
@@ -84,6 +85,7 @@ void factoryConstruct(const c_anonymous_function *nonlin, int nVar, int mCeq,
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for factoryConstruct.cpp

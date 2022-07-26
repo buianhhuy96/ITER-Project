@@ -5,7 +5,7 @@
 // File: xrot.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -15,6 +15,35 @@
 
 // Function Definitions
 //
+// Arguments    : double b_x[6][6]
+//                int ix0
+//                int iy0
+//                double c
+//                double s
+// Return Type  : void
+//
+namespace ITER {
+namespace coder {
+namespace internal {
+namespace blas {
+void b_xrot(double b_x[6][6], int ix0, int iy0, double c, double s)
+{
+  for (int k{0}; k < 6; k++) {
+    double b_temp_tmp;
+    double d_temp_tmp;
+    int c_temp_tmp;
+    int temp_tmp;
+    temp_tmp = (iy0 + k) - 1;
+    b_temp_tmp = (&b_x[0][0])[temp_tmp];
+    c_temp_tmp = (ix0 + k) - 1;
+    d_temp_tmp = (&b_x[0][0])[c_temp_tmp];
+    (&b_x[0][0])[temp_tmp] =
+        (c * (&b_x[0][0])[temp_tmp]) - (s * (&b_x[0][0])[c_temp_tmp]);
+    (&b_x[0][0])[c_temp_tmp] = (c * d_temp_tmp) + (s * b_temp_tmp);
+  }
+}
+
+//
 // Arguments    : double b_x[3][3]
 //                int ix0
 //                int iy0
@@ -22,10 +51,7 @@
 //                double s
 // Return Type  : void
 //
-namespace coder {
-namespace internal {
-namespace blas {
-void b_xrot(double b_x[3][3], int ix0, int iy0, double c, double s)
+void c_xrot(double b_x[3][3], int ix0, int iy0, double c, double s)
 {
   double b_temp_tmp_tmp;
   double c_temp_tmp_tmp;
@@ -45,34 +71,6 @@ void b_xrot(double b_x[3][3], int ix0, int iy0, double c, double s)
   (&b_x[0][0])[iy0 + 1] =
       (c * (&b_x[0][0])[iy0 + 1]) - (s * (&b_x[0][0])[ix0 + 1]);
   (&b_x[0][0])[ix0 + 1] = (c * d_temp_tmp_tmp) + (s * c_temp_tmp_tmp);
-}
-
-//
-// Arguments    : int h_n
-//                double b_x[4][4]
-//                int ix0
-//                int iy0
-//                double c
-//                double s
-// Return Type  : void
-//
-void c_xrot(int h_n, double b_x[4][4], int ix0, int iy0, double c, double s)
-{
-  if (h_n >= 1) {
-    for (int k{0}; k < h_n; k++) {
-      double b_temp_tmp;
-      double d_temp_tmp;
-      int c_temp_tmp;
-      int temp_tmp;
-      temp_tmp = (iy0 + k) - 1;
-      b_temp_tmp = (&b_x[0][0])[temp_tmp];
-      c_temp_tmp = (ix0 + k) - 1;
-      d_temp_tmp = (&b_x[0][0])[c_temp_tmp];
-      (&b_x[0][0])[temp_tmp] =
-          (c * (&b_x[0][0])[temp_tmp]) - (s * (&b_x[0][0])[c_temp_tmp]);
-      (&b_x[0][0])[c_temp_tmp] = (c * d_temp_tmp) + (s * b_temp_tmp);
-    }
-  }
 }
 
 //
@@ -101,16 +99,16 @@ void d_xrot(double b_x[9][9], int ix0, int iy0, double c, double s)
 }
 
 //
-// Arguments    : double b_x[6][6]
+// Arguments    : double b_x[29][29]
 //                int ix0
 //                int iy0
 //                double c
 //                double s
 // Return Type  : void
 //
-void xrot(double b_x[6][6], int ix0, int iy0, double c, double s)
+void xrot(double b_x[29][29], int ix0, int iy0, double c, double s)
 {
-  for (int k{0}; k < 6; k++) {
+  for (int k{0}; k < 29; k++) {
     double b_temp_tmp;
     double d_temp_tmp;
     int c_temp_tmp;
@@ -128,6 +126,7 @@ void xrot(double b_x[6][6], int ix0, int iy0, double c, double s)
 } // namespace blas
 } // namespace internal
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for xrot.cpp

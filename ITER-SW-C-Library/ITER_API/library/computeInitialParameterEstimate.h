@@ -5,7 +5,7 @@
 // File: computeInitialParameterEstimate.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef COMPUTEINITIALPARAMETERESTIMATE_H
@@ -14,18 +14,27 @@
 // Include Files
 #include "rtwtypes.h"
 #include "coder_array.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Type Declarations
-struct h_struct_T;
+namespace ITER {
+struct k_struct_T;
+
+}
 
 // Function Declarations
+namespace ITER {
 void computeInitialParameterEstimate(
-    const coder::array<double, 2U> &c_worldPoints,
-    const coder::array<double, 3U> &b_imagePoints, const double c_imageSize[2],
-    h_struct_T *initialParams, coder::array<bool, 1U> &validIdx, int *err);
+    const ::coder::array<double, 2U> &c_worldPoints,
+    const ::coder::array<double, 3U> &b_imagePoints,
+    const double c_imageSize[2], k_struct_T *initialParams,
+    ::coder::array<bool, 1U> &validIdx, int *err);
+
+}
 
 #endif
 //

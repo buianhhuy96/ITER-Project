@@ -5,7 +5,7 @@
 // File: ComputeCamExtrinsics.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -22,7 +22,7 @@
 #include "mldivide.h"
 #include "projective2d.h"
 #include "rt_nonfinite.h"
-#include "svd1.h"
+#include "svd.h"
 #include "coder_array.h"
 #include <cmath>
 #include <string.h>
@@ -31,36 +31,37 @@
 //
 // Initialize error and camera parameters
 //
-// Arguments    : const coder::array<unsigned char, 4U> &images
+// Arguments    : const ::coder::array<unsigned char, 4U> &images
 //                double squareSize
 //                const struct1_T *cameraParams
-//                coder::array<double, 3U> &b_imagePoints
-//                coder::array<bool, 1U> &validIdx
-//                coder::array<double, 3U> &camExtrinsics
-//                coder::array<double, 3U> &cameraPoses
-//                coder::array<double, 2U> &c_worldPoints
+//                ::coder::array<double, 3U> &b_imagePoints
+//                ::coder::array<bool, 1U> &validIdx
+//                ::coder::array<double, 3U> &camExtrinsics
+//                ::coder::array<double, 3U> &cameraPoses
+//                ::coder::array<double, 2U> &c_worldPoints
 //                int *err
 // Return Type  : void
 //
-void ComputeCamExtrinsics(const coder::array<unsigned char, 4U> &images,
+namespace ITER {
+void ComputeCamExtrinsics(const ::coder::array<unsigned char, 4U> &images,
                           double squareSize, const struct1_T *cameraParams,
-                          coder::array<double, 3U> &b_imagePoints,
-                          coder::array<bool, 1U> &validIdx,
-                          coder::array<double, 3U> &camExtrinsics,
-                          coder::array<double, 3U> &cameraPoses,
-                          coder::array<double, 2U> &c_worldPoints, int *err)
+                          ::coder::array<double, 3U> &b_imagePoints,
+                          ::coder::array<bool, 1U> &validIdx,
+                          ::coder::array<double, 3U> &camExtrinsics,
+                          ::coder::array<double, 3U> &cameraPoses,
+                          ::coder::array<double, 2U> &c_worldPoints, int *err)
 {
   static const signed char b_iv[4]{0, 0, 0, 1};
   coder::cameraParameters b_cameraParams;
   coder::projective2d H;
-  coder::array<cell_wrap_19, 2U> board_points;
-  coder::array<double, 2U> c_imagePoints;
-  coder::array<double, 2U> current_board_points;
-  coder::array<double, 2U> d_worldPoints;
-  coder::array<unsigned char, 2U> b_images;
-  coder::array<signed char, 1U> c_r1;
-  coder::array<signed char, 1U> r;
-  coder::array<bool, 1U> b_x;
+  ::coder::array<cell_wrap_19, 2U> board_points;
+  ::coder::array<double, 2U> c_imagePoints;
+  ::coder::array<double, 2U> current_board_points;
+  ::coder::array<double, 2U> d_worldPoints;
+  ::coder::array<unsigned char, 2U> b_images;
+  ::coder::array<signed char, 1U> c_r1;
+  ::coder::array<signed char, 1U> r;
+  ::coder::array<bool, 1U> b_x;
   double c_orientation_matrix[4][4];
   double dv3[4][4];
   double A[3][3];
@@ -68,20 +69,20 @@ void ComputeCamExtrinsics(const coder::array<unsigned char, 4U> &images,
   double V[3][3];
   double a__1[3][3];
   double b_H[3][3];
+  double b_dv2[3][3];
   double b_orientation_matrix[3][3];
   double b_r1[3][3];
-  double dv2[3][3];
   double intrinsics[3][3];
   double orientation_matrix[3][3];
+  double b_dv1[3];
   double b_lambda[3];
   double b_translation_vector[3];
-  double dv1[3];
-  double g_x[3];
+  double e_x[3];
   double r1[3];
   double r2[3];
+  double b_dv[2];
   double board_size_detected[2];
   double board_size_valid[2];
-  double dv[2];
   int translation_vector[3];
   int b_err;
   int b_i;
@@ -138,14 +139,14 @@ void ComputeCamExtrinsics(const coder::array<unsigned char, 4U> &images,
     coder::detectCheckerboardPoints(b_images, current_board_points,
                                     board_size_detected);
     //  mark if checkerboards is detected or not
-    dv[0] = 0.0;
-    dv[1] = 0.0;
-    if (coder::isequal(board_size_detected, dv)) {
+    b_dv[0] = 0.0;
+    b_dv[1] = 0.0;
+    if (coder::isequal(board_size_detected, b_dv)) {
       validIdx[c_i] = false;
     } else {
-      dv[0] = 0.0;
-      dv[1] = 0.0;
-      if (coder::isequal(board_size_valid, dv)) {
+      b_dv[0] = 0.0;
+      b_dv[1] = 0.0;
+      if (coder::isequal(board_size_valid, b_dv)) {
         board_size_valid[0] = board_size_detected[0];
         image_point_valid_size_idx_0 = current_board_points.size(0);
         board_size_valid[1] = board_size_detected[1];
@@ -304,13 +305,13 @@ void ComputeCamExtrinsics(const coder::array<unsigned char, 4U> &images,
         i27 = static_cast<int>(
             static_cast<double>((board_size_valid[0] - 1.0) + 1.0));
         for (int g_i{0}; g_i < i27; g_i++) {
-          int worldPoints_tmp;
-          worldPoints_tmp = (static_cast<int>(static_cast<unsigned int>(
-                                c_k + (static_cast<unsigned int>(g_i))))) -
-                            1;
-          d_worldPoints[worldPoints_tmp] =
+          int b_worldPoints_tmp;
+          b_worldPoints_tmp = (static_cast<int>(static_cast<unsigned int>(
+                                  c_k + (static_cast<unsigned int>(g_i))))) -
+                              1;
+          d_worldPoints[b_worldPoints_tmp] =
               (static_cast<double>(b_j)) * squareSize;
-          d_worldPoints[worldPoints_tmp + d_worldPoints.size(0)] =
+          d_worldPoints[b_worldPoints_tmp + d_worldPoints.size(0)] =
               (static_cast<double>(g_i)) * squareSize;
         }
         c_k += static_cast<unsigned int>(static_cast<int>(
@@ -438,9 +439,9 @@ void ComputeCamExtrinsics(const coder::array<unsigned char, 4U> &images,
         b_H[i24][1] = H.T[1][i24];
         b_H[i24][2] = H.T[2][i24];
       }
-      coder::c_mldivide(A, *((double(*)[3])(&b_H[0][0])), g_x);
+      coder::c_mldivide(A, *((double(*)[3])(&b_H[0][0])), e_x);
       scale = 3.3121686421112381E-170;
-      absxk = std::abs(g_x[0]);
+      absxk = std::abs(e_x[0]);
       if (absxk > 3.3121686421112381E-170) {
         d_y = 1.0;
         scale = absxk;
@@ -448,7 +449,7 @@ void ComputeCamExtrinsics(const coder::array<unsigned char, 4U> &images,
         b_t = absxk / 3.3121686421112381E-170;
         d_y = b_t * b_t;
       }
-      absxk = std::abs(g_x[1]);
+      absxk = std::abs(e_x[1]);
       if (absxk > scale) {
         b_t = scale / absxk;
         d_y = ((d_y * b_t) * b_t) + 1.0;
@@ -457,7 +458,7 @@ void ComputeCamExtrinsics(const coder::array<unsigned char, 4U> &images,
         b_t = absxk / scale;
         d_y += b_t * b_t;
       }
-      absxk = std::abs(g_x[2]);
+      absxk = std::abs(e_x[2]);
       if (absxk > scale) {
         b_t = scale / absxk;
         d_y = ((d_y * b_t) * b_t) + 1.0;
@@ -485,7 +486,7 @@ void ComputeCamExtrinsics(const coder::array<unsigned char, 4U> &images,
       b_r1[0][2] = (r1[1] * r2[2]) - (r2[1] * r1[2]);
       b_r1[1][2] = (r2[0] * r1[2]) - (r1[0] * r2[2]);
       b_r1[2][2] = (r1[0] * r2[1]) - (r2[0] * r1[1]);
-      coder::svd(b_r1, U, a__1, V);
+      coder::b_svd(b_r1, U, a__1, V);
       for (int i30{0}; i30 < 3; i30++) {
         double b_d1;
         double d;
@@ -499,21 +500,21 @@ void ComputeCamExtrinsics(const coder::array<unsigned char, 4U> &images,
         }
         b_lambda[i30] = lambda * b_H[2][i30];
       }
-      coder::c_mldivide(A, b_lambda, dv1);
-      b_translation_vector[0] = dv1[0];
-      b_translation_vector[1] = dv1[1];
-      b_translation_vector[2] = dv1[2];
+      coder::c_mldivide(A, b_lambda, b_dv1);
+      b_translation_vector[0] = b_dv1[0];
+      b_translation_vector[1] = b_dv1[1];
+      b_translation_vector[2] = b_dv1[2];
       r.set_size(4);
       c_r1.set_size(4);
       for (int i32{0}; i32 < 4; i32++) {
         r[i32] = static_cast<signed char>(i32);
         c_r1[i32] = static_cast<signed char>(i32);
       }
-      coder::inv(orientation_matrix, dv2);
+      coder::inv(orientation_matrix, b_dv2);
       for (int i33{0}; i33 < 3; i33++) {
-        dv3[i33][0] = dv2[i33][0];
-        dv3[i33][1] = dv2[i33][1];
-        dv3[i33][2] = dv2[i33][2];
+        dv3[i33][0] = b_dv2[i33][0];
+        dv3[i33][1] = b_dv2[i33][1];
+        dv3[i33][2] = b_dv2[i33][2];
         dv3[3][i33] = b_translation_vector[i33];
       }
       for (int i34{0}; i34 < 4; i34++) {
@@ -540,9 +541,9 @@ void ComputeCamExtrinsics(const coder::array<unsigned char, 4U> &images,
         b_orientation_matrix[i38][1] = -orientation_matrix[i38][1];
         b_orientation_matrix[i38][2] = -orientation_matrix[i38][2];
       }
-      d3 = dv1[0];
-      d4 = dv1[1];
-      d5 = dv1[2];
+      d3 = b_dv1[0];
+      d4 = b_dv1[1];
+      d5 = b_dv1[2];
       for (int i39{0}; i39 < 3; i39++) {
         c_orientation_matrix[i39][0] = orientation_matrix[i39][0];
         c_orientation_matrix[i39][1] = orientation_matrix[i39][1];
@@ -566,6 +567,8 @@ void ComputeCamExtrinsics(const coder::array<unsigned char, 4U> &images,
   }
   *err = c_err;
 }
+
+} // namespace ITER
 
 //
 // File trailer for ComputeCamExtrinsics.cpp

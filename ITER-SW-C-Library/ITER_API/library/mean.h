@@ -5,7 +5,7 @@
 // File: mean.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef MEAN_H
@@ -14,17 +14,24 @@
 // Include Files
 #include "rtwtypes.h"
 #include "coder_array.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Function Declarations
+namespace ITER {
 namespace coder {
-float b_mean(const ::coder::array<float, 1U> &b_x);
+void b_mean(const ::coder::array<double, 2U> &b_x,
+            ::coder::array<double, 2U> &y);
 
-double mean(const ::coder::array<double, 2U> &b_x);
+void c_mean(const ::coder::array<double, 2U> &b_x, double y[2]);
+
+float mean(const ::coder::array<float, 1U> &b_x);
 
 } // namespace coder
+} // namespace ITER
 
 #endif
 //

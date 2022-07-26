@@ -5,7 +5,7 @@
 // File: costFunc1.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -16,14 +16,15 @@
 
 // Function Definitions
 //
-// Arguments    : coder::array<double, 2U> &err
-//                const coder::array<double, 2U> &undist_imgMarkerPts
-//                const coder::array<double, 2U> &b_x
+// Arguments    : ::coder::array<double, 2U> &err
+//                const ::coder::array<double, 2U> &undist_imgMarkerPts
+//                const ::coder::array<double, 2U> &b_x
 // Return Type  : void
 //
-void c_binary_expand_op(coder::array<double, 2U> &err,
-                        const coder::array<double, 2U> &undist_imgMarkerPts,
-                        const coder::array<double, 2U> &b_x)
+namespace ITER {
+void d_binary_expand_op(::coder::array<double, 2U> &err,
+                        const ::coder::array<double, 2U> &undist_imgMarkerPts,
+                        const ::coder::array<double, 2U> &b_x)
 {
   int b_i;
   int i1;
@@ -67,6 +68,8 @@ void c_binary_expand_op(coder::array<double, 2U> &err,
     }
   }
 }
+
+} // namespace ITER
 
 //
 // File trailer for costFunc1.cpp

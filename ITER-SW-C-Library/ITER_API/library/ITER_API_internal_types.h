@@ -5,7 +5,7 @@
 // File: ITER_API_internal_types.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef ITER_API_INTERNAL_TYPES_H
@@ -18,6 +18,7 @@
 #include "coder_array.h"
 
 // Type Definitions
+namespace ITER {
 struct struct_T {
   int ldq;
   double QR[15][15];
@@ -45,7 +46,7 @@ struct c_struct_T {
   int stepType;
 };
 
-struct d_struct_T {
+struct e_struct_T {
   char SolverName[7];
   int MaxIterations;
   double StepTolerance;
@@ -59,15 +60,26 @@ struct d_struct_T {
   bool IterDisplayQP;
 };
 
+struct f_struct_T {
+  unsigned char MinIntensity;
+  double MeanIntensity;
+  unsigned char MaxIntensity;
+  double WeightedCentroid[2];
+};
+
 struct cell_wrap_19 {
-  coder::array<double, 2U> f1;
+  ::coder::array<double, 2U> f1;
 };
 
-struct e_struct_T {
-  coder::array<bool, 2U> bw;
+struct h_struct_T {
+  double Area;
+  double Circularity;
+  double Extent;
+  double BoundingBox[4];
+  ::coder::array<double, 2U> PixelList;
 };
 
-struct i_struct_T {
+struct m_struct_T {
   int nVarMax;
   int mNonlinIneq;
   int mNonlinEq;
@@ -103,7 +115,7 @@ struct i_struct_T {
   double searchDir[8];
 };
 
-struct j_struct_T {
+struct o_struct_T {
   int mConstr;
   int mConstrOrig;
   int mConstrMax;
@@ -139,8 +151,8 @@ struct j_struct_T {
   double SLACK0;
 };
 
-struct k_struct_T {
-  coder::anonymous_function objfun;
+struct q_struct_T {
+  coder::b_anonymous_function objfun;
   int nVar;
   int mCineq;
   int mCeq;
@@ -150,8 +162,8 @@ struct k_struct_T {
   bool ScaleProblem;
 };
 
-struct o_struct_T {
-  coder::anonymous_function objfun;
+struct t_struct_T {
+  coder::b_anonymous_function objfun;
   double b_f_1;
   double f_2;
   int nVar;
@@ -167,7 +179,7 @@ struct o_struct_T {
   int FiniteDifferenceType;
 };
 
-struct p_struct_T {
+struct u_struct_T {
   double penaltyParam;
   double threshold;
   int nPenaltyDecreases;
@@ -186,7 +198,47 @@ struct p_struct_T {
   bool hasObjective;
 };
 
-struct r_struct_T {
+namespace coder {
+namespace classreg {
+namespace learning {
+namespace coderutils {
+enum Transform : int
+{
+  Logit = 0, // Default value
+  Doublelogit,
+  Invlogit,
+  Ismax,
+  b_Sign,
+  Symmetric,
+  Symmetricismax,
+  Symmetriclogit,
+  Identity
+};
+
+}
+} // namespace learning
+} // namespace classreg
+} // namespace coder
+struct w_struct_T {
+  coder::c_anonymous_function nonlin;
+  double b_f_1;
+  ::coder::array<double, 1U> cEq_1;
+  double f_2;
+  ::coder::array<double, 1U> cEq_2;
+  int nVar;
+  int mIneq;
+  int mEq;
+  int numEvals;
+  bool SpecifyObjectiveGradient;
+  bool SpecifyConstraintGradient;
+  bool isEmptyNonlcon;
+  bool hasLB[6];
+  bool hasUB[6];
+  bool hasBounds;
+  int FiniteDifferenceType;
+};
+
+struct x_struct_T {
   double grad[8];
   double Hx[7];
   bool hasLinear;
@@ -201,7 +253,7 @@ struct r_struct_T {
   double gammaScalar;
 };
 
-struct s_struct_T {
+struct y_struct_T {
   double FMat[15][15];
   int ldm;
   int ndims;
@@ -213,12 +265,12 @@ struct s_struct_T {
   double workspace2_;
 };
 
-struct t_struct_T {
-  coder::c_anonymous_function nonlin;
+struct ab_struct_T {
+  coder::e_anonymous_function nonlin;
   double b_f_1;
-  coder::array<double, 1U> cEq_1;
+  ::coder::array<double, 1U> cEq_1;
   double f_2;
-  coder::array<double, 1U> cEq_2;
+  ::coder::array<double, 1U> cEq_2;
   int nVar;
   int mIneq;
   int mEq;
@@ -226,11 +278,13 @@ struct t_struct_T {
   bool SpecifyObjectiveGradient;
   bool SpecifyConstraintGradient;
   bool isEmptyNonlcon;
-  coder::array<bool, 1U> hasLB;
-  coder::array<bool, 1U> hasUB;
+  ::coder::array<bool, 1U> hasLB;
+  ::coder::array<bool, 1U> hasUB;
   bool hasBounds;
   int FiniteDifferenceType;
 };
+
+} // namespace ITER
 
 #endif
 //

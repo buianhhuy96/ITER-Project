@@ -5,7 +5,7 @@
 // File: Checkerboard.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef CHECKERBOARD_H
@@ -14,11 +14,14 @@
 // Include Files
 #include "rtwtypes.h"
 #include "coder_array.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Type Definitions
+namespace ITER {
 namespace coder {
 namespace vision {
 namespace internal {
@@ -27,7 +30,7 @@ namespace checkerboard {
 class b_Checkerboard {
 public:
   void initialize(double seedIdx, const ::coder::array<float, 2U> &b_points,
-                  const float b_v1[2], const float v2[2]);
+                  const float e_v1[2], const float v2[2]);
   bool expandBoardOnce();
   void expandPartialBoard();
   static void arrayFind(const ::coder::array<bool, 2U> &arr,
@@ -36,10 +39,10 @@ public:
 private:
   double findNeighbor(const ::coder::array<float, 2U> &pointVectors,
                       const ::coder::array<float, 1U> &euclideanDists,
-                      const float b_v[2]) const;
+                      const float e_v[2]) const;
   double findNeighbor(const ::coder::array<float, 2U> &pointVectors,
                       const ::coder::array<float, 1U> &euclideanDists,
-                      const ::coder::array<float, 2U> &b_v) const;
+                      const ::coder::array<float, 2U> &e_v) const;
   void findIndependentVar(double coordsToUse[2]) const;
   void findClosestOnCurve(const double predictedPoint[2], double radius,
                           const ::coder::array<double, 2U> &curve,
@@ -98,9 +101,9 @@ private:
 public:
   bool isValid;
   float Energy;
-  array<double, 3U> BoardCoords;
-  array<double, 2U> BoardIdx;
-  array<float, 2U> Points;
+  ::coder::array<double, 3U> BoardCoords;
+  ::coder::array<double, 2U> BoardIdx;
+  ::coder::array<float, 2U> Points;
   bool IsDistortionHigh;
 
 private:
@@ -114,6 +117,7 @@ private:
 } // namespace internal
 } // namespace vision
 } // namespace coder
+} // namespace ITER
 
 #endif
 //

@@ -5,7 +5,7 @@
 // File: fullColLDL2_.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -17,16 +17,17 @@
 
 // Function Definitions
 //
-// Arguments    : s_struct_T *obj
+// Arguments    : y_struct_T *obj
 //                int NColsRemain
 //                double REG_PRIMAL
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace DynamicRegCholManager {
-void fullColLDL2_(s_struct_T *obj, int NColsRemain, double REG_PRIMAL)
+void fullColLDL2_(y_struct_T *obj, int NColsRemain, double REG_PRIMAL)
 {
   int LDimSizeP1;
   int lastDiag;
@@ -47,21 +48,21 @@ void fullColLDL2_(s_struct_T *obj, int NColsRemain, double REG_PRIMAL)
     }
     y = obj->b_workspace_;
     if (!(alpha1 == 0.0)) {
-      int jA;
-      jA = LD_diagOffset + LDimSizeP1;
+      int b_jA;
+      b_jA = LD_diagOffset + LDimSizeP1;
       for (int j{0}; j <= subMatrixDim; j++) {
         if (y != 0.0) {
           double temp;
           int i1;
           int i2;
           temp = y * alpha1;
-          i1 = jA + 2;
-          i2 = subMatrixDim + jA;
+          i1 = b_jA + 2;
+          i2 = subMatrixDim + b_jA;
           for (int ijA{i1}; ijA <= (i2 + 2); ijA++) {
             (&obj->FMat[0][0])[ijA - 1] += obj->b_workspace_ * temp;
           }
         }
-        jA += obj->ldm;
+        b_jA += obj->ldm;
       }
     }
     for (int b_idx{0}; b_idx <= subMatrixDim; b_idx++) {
@@ -80,6 +81,7 @@ void fullColLDL2_(s_struct_T *obj, int NColsRemain, double REG_PRIMAL)
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for fullColLDL2_.cpp

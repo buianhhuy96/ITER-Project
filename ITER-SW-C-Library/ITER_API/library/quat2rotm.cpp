@@ -5,7 +5,7 @@
 // File: quat2rotm.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -18,11 +18,12 @@
 // Function Definitions
 //
 // Arguments    : const double b_q[4]
-//                double c_R[3][3]
+//                double b_R[3][3]
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
-void quat2rotm(const double b_q[4], double c_R[3][3])
+void quat2rotm(const double b_q[4], double b_R[3][3])
 {
   double tempR[9];
   double normRowMatrix[4];
@@ -65,20 +66,21 @@ void quat2rotm(const double b_q[4], double c_R[3][3])
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
   for (int b_i = 0; b_i < 3; b_i++) {
-    c_R[b_i][0] = tempR[3 * b_i];
-    c_R[b_i][1] = tempR[(3 * b_i) + 1];
-    c_R[b_i][2] = tempR[(3 * b_i) + 2];
+    b_R[b_i][0] = tempR[3 * b_i];
+    b_R[b_i][1] = tempR[(3 * b_i) + 1];
+    b_R[b_i][2] = tempR[(3 * b_i) + 2];
   }
   for (int c_k{0}; c_k < 3; c_k++) {
     int R_tmp;
     R_tmp = 3 * c_k;
-    c_R[0][c_k] = tempR[R_tmp];
-    c_R[1][c_k] = tempR[R_tmp + 1];
-    c_R[2][c_k] = tempR[R_tmp + 2];
+    b_R[0][c_k] = tempR[R_tmp];
+    b_R[1][c_k] = tempR[R_tmp + 1];
+    b_R[2][c_k] = tempR[R_tmp + 2];
   }
 }
 
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for quat2rotm.cpp

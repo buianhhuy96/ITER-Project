@@ -5,7 +5,7 @@
 // File: estimatePitagPose.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef ESTIMATEPITAGPOSE_H
@@ -15,17 +15,22 @@
 #include "ITER_API_types.h"
 #include "rtwtypes.h"
 #include "coder_array.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Function Declarations
-extern void estimatePitagPose(const coder::array<double, 2U> &b_imagePoints,
-                              const double robotpose[4][4],
-                              const coder::array<double, 2U> &b_worldpts,
+namespace ITER {
+extern void estimatePitagPose(const ::coder::array<double, 2U> &b_imagePoints,
+                              const double b_robotpose[4][4],
+                              const ::coder::array<double, 2U> &b_worldpts,
                               const double handeye[4][4],
                               const struct1_T *cameraParams,
                               double poseCamera[4][4], double poseRobot[4][4]);
+
+}
 
 #endif
 //

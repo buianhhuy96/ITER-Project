@@ -5,7 +5,7 @@
 // File: linspace.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -24,15 +24,16 @@
 //                ::coder::array<double, 2U> &y
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 void linspace(double b_d1, double d2, int h_n, ::coder::array<double, 2U> &y)
 {
   if (h_n < 0) {
     y.set_size(1, 0);
   } else {
-    int i_n;
+    int p_n;
     y.set_size(1, h_n);
-    i_n = h_n;
+    p_n = h_n;
     if (h_n >= 1) {
       y[h_n - 1] = d2;
       if (y.size(1) >= 2) {
@@ -54,12 +55,12 @@ void linspace(double b_d1, double d2, int h_n, ::coder::array<double, 2U> &y)
 
               for (int k = 2; k <= b_i; k++) {
                 y[k - 1] = (static_cast<double>(
-                               static_cast<int>(((k * 2) - i_n) - 1))) *
+                               static_cast<int>(((k * 2) - p_n) - 1))) *
                            d2scaled;
               }
             }
-            if ((i_n & 1) == 1) {
-              y[asr_s32(i_n, 1U)] = 0.0;
+            if ((p_n & 1) == 1) {
+              y[asr_s32(p_n, 1U)] = 0.0;
             }
           } else {
             double delta1;
@@ -126,6 +127,7 @@ void linspace(double b_d1, double d2, int h_n, ::coder::array<double, 2U> &y)
 }
 
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for linspace.cpp

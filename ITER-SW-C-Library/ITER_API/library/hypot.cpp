@@ -5,7 +5,7 @@
 // File: hypot.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -22,6 +22,7 @@
 //                ::coder::array<float, 1U> &r
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 void b_hypot(const ::coder::array<float, 1U> &b_x,
              const ::coder::array<float, 1U> &y, ::coder::array<float, 1U> &r)
@@ -31,7 +32,7 @@ void b_hypot(const ::coder::array<float, 1U> &b_x,
   int b_y;
   int c_u1;
   int csz_idx_0;
-  int k_N;
+  int i_N;
   int u0;
   u0 = b_x.size(0);
   b_u1 = y.size(0);
@@ -41,7 +42,7 @@ void b_hypot(const ::coder::array<float, 1U> &b_x,
     csz_idx_0 = b_u1;
   }
   r.set_size(csz_idx_0);
-  k_N = csz_idx_0;
+  i_N = csz_idx_0;
   b_u0 = b_x.size(0);
   c_u1 = y.size(0);
   if (b_u0 <= c_u1) {
@@ -56,7 +57,7 @@ void b_hypot(const ::coder::array<float, 1U> &b_x,
   } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
-    for (int k = 0; k < k_N; k++) {
+    for (int k = 0; k < i_N; k++) {
       r[k] = rt_hypotf_snf(b_x[k], y[k]);
     }
   }
@@ -76,7 +77,7 @@ void c_hypot(const ::coder::array<double, 1U> &b_x,
   int b_y;
   int c_u1;
   int csz_idx_0;
-  int k_N;
+  int i_N;
   int u0;
   u0 = b_x.size(0);
   b_u1 = y.size(0);
@@ -86,7 +87,7 @@ void c_hypot(const ::coder::array<double, 1U> &b_x,
     csz_idx_0 = b_u1;
   }
   r.set_size(csz_idx_0);
-  k_N = csz_idx_0;
+  i_N = csz_idx_0;
   b_u0 = b_x.size(0);
   c_u1 = y.size(0);
   if (b_u0 <= c_u1) {
@@ -101,13 +102,14 @@ void c_hypot(const ::coder::array<double, 1U> &b_x,
   } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
-    for (int k = 0; k < k_N; k++) {
+    for (int k = 0; k < i_N; k++) {
       r[k] = rt_hypotd_snf(b_x[k], y[k]);
     }
   }
 }
 
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for hypot.cpp

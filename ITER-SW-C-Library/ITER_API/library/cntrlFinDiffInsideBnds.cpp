@@ -5,7 +5,7 @@
 // File: cntrlFinDiffInsideBnds.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -22,6 +22,7 @@
 //                double *b_delta_i
 // Return Type  : int
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
@@ -96,6 +97,7 @@ int cntrlFinDiffInsideBnds(double xC_i, double b_lb_i, double ub_i,
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for cntrlFinDiffInsideBnds.cpp

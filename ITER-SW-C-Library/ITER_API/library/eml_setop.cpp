@@ -5,7 +5,7 @@
 // File: eml_setop.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -19,21 +19,60 @@
 #include <string.h>
 
 // Function Declarations
+namespace ITER {
 namespace coder {
+static void skip_to_last_equal_row(int *k, const ::coder::array<int, 2U> &b_x);
+
 static double skip_to_last_equal_value(int *k,
                                        const ::coder::array<double, 2U> &b_x,
                                        const ::coder::array<int, 2U> &perm);
 
-}
+} // namespace coder
+} // namespace ITER
 
 // Function Definitions
+//
+// Arguments    : int *k
+//                const ::coder::array<int, 2U> &b_x
+// Return Type  : void
+//
+namespace ITER {
+namespace coder {
+static void skip_to_last_equal_row(int *k, const ::coder::array<int, 2U> &b_x)
+{
+  int j;
+  bool exitg2;
+  j = (*k) - 1;
+  exitg2 = false;
+  while ((!exitg2) && ((*k) < b_x.size(0))) {
+    int b_k;
+    int exitg1;
+    b_k = 0;
+    do {
+      exitg1 = 0;
+      if (b_k <= (b_x.size(1) - 1)) {
+        if (b_x[j + (b_x.size(0) * b_k)] == b_x[(*k) + (b_x.size(0) * b_k)]) {
+          b_k++;
+        } else {
+          exitg1 = 1;
+        }
+      } else {
+        (*k)++;
+        exitg1 = 2;
+      }
+    } while (exitg1 == 0);
+    if (exitg1 == 1) {
+      exitg2 = true;
+    }
+  }
+}
+
 //
 // Arguments    : int *k
 //                const ::coder::array<double, 2U> &b_x
 //                const ::coder::array<int, 2U> &perm
 // Return Type  : double
 //
-namespace coder {
 static double skip_to_last_equal_value(int *k,
                                        const ::coder::array<double, 2U> &b_x,
                                        const ::coder::array<int, 2U> &perm)
@@ -91,9 +130,9 @@ void b_do_vectors(const ::coder::array<double, 2U> &b_a,
                   ::coder::array<double, 2U> &c, ::coder::array<int, 1U> &ia,
                   ::coder::array<int, 1U> &c_ib)
 {
-  array<int, 2U> aperm;
-  array<int, 2U> bperm;
-  array<int, 1U> b_ia;
+  ::coder::array<int, 2U> aperm;
+  ::coder::array<int, 2U> bperm;
+  ::coder::array<int, 1U> b_ia;
   int b_ialast;
   int b_iblast;
   int c_a;
@@ -122,7 +161,7 @@ void b_do_vectors(const ::coder::array<double, 2U> &b_a,
       if (iblast <= b.size(1)) {
         double absx;
         double ak;
-        double b_bk;
+        double e_bk;
         double r;
         bool guard1{false};
         bool guard2{false};
@@ -130,9 +169,9 @@ void b_do_vectors(const ::coder::array<double, 2U> &b_a,
         ak = skip_to_last_equal_value(&b_ialast, b_a, aperm);
         ialast = b_ialast;
         b_iblast = iblast;
-        b_bk = skip_to_last_equal_value(&b_iblast, b, bperm);
+        e_bk = skip_to_last_equal_value(&b_iblast, b, bperm);
         iblast = b_iblast;
-        absx = std::abs(b_bk / 2.0);
+        absx = std::abs(e_bk / 2.0);
         if ((!std::isinf(absx)) && (!std::isnan(absx))) {
           if (absx <= 2.2250738585072014E-308) {
             r = 4.94065645841247E-324;
@@ -145,11 +184,11 @@ void b_do_vectors(const ::coder::array<double, 2U> &b_a,
         }
         guard1 = false;
         guard2 = false;
-        if (std::abs(b_bk - ak) < r) {
+        if (std::abs(e_bk - ak) < r) {
           guard2 = true;
         } else if (std::isinf(ak)) {
-          if (std::isinf(b_bk)) {
-            if ((ak > 0.0) == (b_bk > 0.0)) {
+          if (std::isinf(e_bk)) {
+            if ((ak > 0.0) == (e_bk > 0.0)) {
               guard2 = true;
             } else {
               guard1 = true;
@@ -167,12 +206,12 @@ void b_do_vectors(const ::coder::array<double, 2U> &b_a,
         }
         if (guard1) {
           bool p;
-          if (std::isnan(b_bk)) {
+          if (std::isnan(e_bk)) {
             p = !std::isnan(ak);
           } else if (std::isnan(ak)) {
             p = false;
           } else {
-            p = (ak < b_bk);
+            p = (ak < e_bk);
           }
           if (p) {
             nc++;
@@ -233,6 +272,134 @@ void b_do_vectors(const ::coder::array<double, 2U> &b_a,
 }
 
 //
+// Arguments    : const ::coder::array<int, 2U> &b_a
+//                const ::coder::array<int, 2U> &b
+//                ::coder::array<int, 2U> &c
+//                ::coder::array<int, 1U> &ia
+//                ::coder::array<int, 1U> &c_ib
+// Return Type  : void
+//
+void do_rows(const ::coder::array<int, 2U> &b_a,
+             const ::coder::array<int, 2U> &b, ::coder::array<int, 2U> &c,
+             ::coder::array<int, 1U> &ia, ::coder::array<int, 1U> &c_ib)
+{
+  int b_c;
+  int b_i;
+  int b_u0;
+  int b_u1;
+  int c_u1;
+  int i2;
+  int iafirst;
+  int ialast;
+  int ibfirst;
+  int iblast;
+  int loop_ub;
+  int nacols;
+  int nc;
+  int ncmax;
+  int u0;
+  int y;
+  nacols = b_a.size(1);
+  u0 = b_a.size(0);
+  b_u1 = b.size(0);
+  if (u0 <= b_u1) {
+    ncmax = u0;
+  } else {
+    ncmax = b_u1;
+  }
+  b_u0 = b_a.size(1);
+  c_u1 = b.size(1);
+  if (b_u0 <= c_u1) {
+    y = b_u0;
+  } else {
+    y = c_u1;
+  }
+  c.set_size(ncmax, y);
+  nc = 0;
+  ia.set_size(ncmax);
+  c_ib.set_size(ncmax);
+  iafirst = 1;
+  ibfirst = 1;
+  ialast = 1;
+  iblast = 1;
+  int exitg2;
+  do {
+    exitg2 = 0;
+    if (iafirst <= b_a.size(0)) {
+      if (ibfirst <= b.size(0)) {
+        int k;
+        skip_to_last_equal_row(&ialast, b_a);
+        skip_to_last_equal_row(&iblast, b);
+        k = 0;
+        int exitg1;
+        do {
+          exitg1 = 0;
+          if (k <= (b_a.size(1) - 1)) {
+            int i1;
+            int i3;
+            i1 = b_a[(iafirst + (b_a.size(0) * k)) - 1];
+            i3 = b[(ibfirst + (b.size(0) * k)) - 1];
+            if (i1 == i3) {
+              k++;
+            } else {
+              if (i1 < i3) {
+                ialast++;
+                iafirst = ialast;
+              } else {
+                iblast++;
+                ibfirst = iblast;
+              }
+              exitg1 = 1;
+            }
+          } else {
+            nc++;
+            for (int b_k{0}; b_k < nacols; b_k++) {
+              c[(nc + (c.size(0) * b_k)) - 1] =
+                  b_a[(iafirst + (b_a.size(0) * b_k)) - 1];
+            }
+            ia[nc - 1] = iafirst;
+            c_ib[nc - 1] = ibfirst;
+            ialast++;
+            iafirst = ialast;
+            iblast++;
+            ibfirst = iblast;
+            exitg1 = 1;
+          }
+        } while (exitg1 == 0);
+      } else {
+        exitg2 = 1;
+      }
+    } else {
+      exitg2 = 1;
+    }
+  } while (exitg2 == 0);
+  if (1 > nc) {
+    b_i = 0;
+  } else {
+    b_i = nc;
+  }
+  ia.set_size(b_i);
+  if (1 > nc) {
+    i2 = 0;
+  } else {
+    i2 = nc;
+  }
+  c_ib.set_size(i2);
+  if (1 > nc) {
+    loop_ub = 0;
+  } else {
+    loop_ub = nc;
+  }
+  b_c = c.size(1) - 1;
+  for (int i4{0}; i4 <= b_c; i4++) {
+    for (int i5{0}; i5 < loop_ub; i5++) {
+      c[i5 + (loop_ub * i4)] = c[i5 + (c.size(0) * i4)];
+    }
+  }
+  c.set_size(loop_ub, b_c + 1);
+}
+
+//
 // Arguments    : const ::coder::array<double, 2U> &b_a
 //                const ::coder::array<double, 1U> &b
 //                ::coder::array<double, 2U> &c
@@ -245,162 +412,25 @@ void do_vectors(const ::coder::array<double, 2U> &b_a,
                 ::coder::array<double, 2U> &c, ::coder::array<int, 1U> &ia,
                 ::coder::array<int, 1U> &c_ib)
 {
-  array<int, 2U> aperm;
-  array<int, 1U> b_ia;
-  array<int, 1U> bperm;
-  array<int, 1U> iwork;
-  array<int, 1U> r;
+  ::coder::array<int, 2U> aperm;
+  ::coder::array<int, 1U> b_ia;
+  ::coder::array<int, 1U> bperm;
   int b_exponent;
   int b_ialast;
   int c_a;
   int exponent;
-  int h_n;
   int iafirst;
   int ialast;
   int iblast;
-  int loop_ub;
   int na;
   int nc;
   int nia;
-  unsigned int unnamed_idx_0;
   na = b_a.size(1);
   c.set_size(1, b_a.size(1));
   ia.set_size(b_a.size(1));
   c_ib.set_size(0);
   internal::sortIdx(b_a, aperm);
-  h_n = b.size(0) + 1;
-  unnamed_idx_0 = static_cast<unsigned int>(b.size(0));
-  bperm.set_size(b.size(0));
-  loop_ub = b.size(0);
-  if ((static_cast<int>(b.size(0) < 4)) != 0) {
-    for (int b_i{0}; b_i < loop_ub; b_i++) {
-      bperm[b_i] = 0;
-    }
-  } else {
-#pragma omp parallel for num_threads(omp_get_max_threads())
-
-    for (int b_i = 0; b_i < loop_ub; b_i++) {
-      bperm[b_i] = 0;
-    }
-  }
-  if (b.size(0) != 0) {
-    int b_loop_ub;
-    int c_i;
-    int c_loop_ub;
-    int i2;
-    int loop_ub_tmp_tmp;
-    bool guard1{false};
-    loop_ub_tmp_tmp = static_cast<int>(unnamed_idx_0);
-    r.set_size(static_cast<int>(unnamed_idx_0));
-    b_loop_ub = static_cast<int>(unnamed_idx_0);
-    if ((static_cast<int>((static_cast<int>(unnamed_idx_0)) < 4)) != 0) {
-      for (int i1{0}; i1 < loop_ub_tmp_tmp; i1++) {
-        r[i1] = 0;
-      }
-    } else {
-#pragma omp parallel for num_threads(omp_get_max_threads())
-
-      for (int i1 = 0; i1 < b_loop_ub; i1++) {
-        r[i1] = 0;
-      }
-    }
-    iwork.set_size(static_cast<int>(unnamed_idx_0));
-    i2 = b.size(0) - 1;
-    for (int k{1}; k <= i2; k += 2) {
-      guard1 = false;
-      if (b[k - 1] <= b[k]) {
-        guard1 = true;
-      } else if (std::isnan(b[k])) {
-        guard1 = true;
-      } else {
-        r[k - 1] = k + 1;
-        r[k] = k;
-      }
-      if (guard1) {
-        r[k - 1] = k;
-        r[k] = k + 1;
-      }
-    }
-    if ((b.size(0) & 1) != 0) {
-      r[b.size(0) - 1] = b.size(0);
-    }
-    c_i = 2;
-    while (c_i < (h_n - 1)) {
-      int b_i2;
-      int j;
-      int pEnd;
-      b_i2 = c_i * 2;
-      j = 1;
-      pEnd = c_i + 1;
-      while (pEnd < h_n) {
-        int b_q;
-        int c_k;
-        int kEnd;
-        int p;
-        int qEnd;
-        p = j;
-        b_q = pEnd - 1;
-        qEnd = j + b_i2;
-        if (qEnd > h_n) {
-          qEnd = h_n;
-        }
-        c_k = 0;
-        kEnd = qEnd - j;
-        while ((c_k + 1) <= kEnd) {
-          double b_d1;
-          int i6;
-          b_d1 = b[r[b_q] - 1];
-          i6 = r[p - 1];
-          guard1 = false;
-          if (b[i6 - 1] <= b_d1) {
-            guard1 = true;
-          } else if (std::isnan(b_d1)) {
-            guard1 = true;
-          } else {
-            iwork[c_k] = r[b_q];
-            b_q++;
-            if ((b_q + 1) == qEnd) {
-              while (p < pEnd) {
-                c_k++;
-                iwork[c_k] = r[p - 1];
-                p++;
-              }
-            }
-          }
-          if (guard1) {
-            iwork[c_k] = i6;
-            p++;
-            if (p == pEnd) {
-              while ((b_q + 1) < qEnd) {
-                c_k++;
-                iwork[c_k] = r[b_q];
-                b_q++;
-              }
-            }
-          }
-          c_k++;
-        }
-        for (int d_k{0}; d_k < kEnd; d_k++) {
-          r[(j + d_k) - 1] = iwork[d_k];
-        }
-        j = qEnd;
-        pEnd = qEnd + c_i;
-      }
-      c_i = b_i2;
-    }
-    c_loop_ub = r.size(0);
-    if ((static_cast<int>(r.size(0) < 4)) != 0) {
-      for (int i4{0}; i4 < c_loop_ub; i4++) {
-        bperm[i4] = r[i4];
-      }
-    } else {
-#pragma omp parallel for num_threads(omp_get_max_threads())
-
-      for (int i4 = 0; i4 < c_loop_ub; i4++) {
-        bperm[i4] = r[i4];
-      }
-    }
-  }
+  internal::b_sortIdx(b, bperm);
   nc = 0;
   nia = -1;
   iafirst = 0;
@@ -413,39 +443,39 @@ void do_vectors(const ::coder::array<double, 2U> &b_a,
       if (iblast <= b.size(0)) {
         double ak;
         double b_absx;
-        double b_bk;
-        double d_r;
+        double c_r;
+        double e_bk;
         int b_iblast;
-        bool b_guard1{false};
         bool exitg2;
+        bool guard1{false};
         bool guard2{false};
         b_ialast = ialast;
         ak = skip_to_last_equal_value(&b_ialast, b_a, aperm);
         ialast = b_ialast;
         b_iblast = iblast;
-        b_bk = b[bperm[iblast - 1] - 1];
+        e_bk = b[bperm[iblast - 1] - 1];
         exitg2 = false;
         while ((!exitg2) && (b_iblast < b.size(0))) {
           double absx;
-          double b_r;
           double d;
-          absx = std::abs(b_bk / 2.0);
+          double r;
+          absx = std::abs(e_bk / 2.0);
           if ((!std::isinf(absx)) && (!std::isnan(absx))) {
             if (absx <= 2.2250738585072014E-308) {
-              b_r = 4.94065645841247E-324;
+              r = 4.94065645841247E-324;
             } else {
               (void)frexp(absx, &exponent);
-              b_r = std::ldexp(1.0, exponent - 53);
+              r = std::ldexp(1.0, exponent - 53);
             }
           } else {
-            b_r = rtNaN;
+            r = rtNaN;
           }
           d = b[bperm[b_iblast] - 1];
-          if (std::abs(b_bk - d) < b_r) {
+          if (std::abs(e_bk - d) < r) {
             b_iblast++;
           } else if (std::isinf(d)) {
-            if (std::isinf(b_bk)) {
-              if ((d > 0.0) == (b_bk > 0.0)) {
+            if (std::isinf(e_bk)) {
+              if ((d > 0.0) == (e_bk > 0.0)) {
                 b_iblast++;
               } else {
                 exitg2 = true;
@@ -458,49 +488,49 @@ void do_vectors(const ::coder::array<double, 2U> &b_a,
           }
         }
         iblast = b_iblast;
-        b_absx = std::abs(b_bk / 2.0);
+        b_absx = std::abs(e_bk / 2.0);
         if ((!std::isinf(b_absx)) && (!std::isnan(b_absx))) {
           if (b_absx <= 2.2250738585072014E-308) {
-            d_r = 4.94065645841247E-324;
+            c_r = 4.94065645841247E-324;
           } else {
             (void)frexp(b_absx, &b_exponent);
-            d_r = std::ldexp(1.0, b_exponent - 53);
+            c_r = std::ldexp(1.0, b_exponent - 53);
           }
         } else {
-          d_r = rtNaN;
+          c_r = rtNaN;
         }
-        b_guard1 = false;
+        guard1 = false;
         guard2 = false;
-        if (std::abs(b_bk - ak) < d_r) {
+        if (std::abs(e_bk - ak) < c_r) {
           guard2 = true;
         } else if (std::isinf(ak)) {
-          if (std::isinf(b_bk)) {
-            if ((ak > 0.0) == (b_bk > 0.0)) {
+          if (std::isinf(e_bk)) {
+            if ((ak > 0.0) == (e_bk > 0.0)) {
               guard2 = true;
             } else {
-              b_guard1 = true;
+              guard1 = true;
             }
           } else {
-            b_guard1 = true;
+            guard1 = true;
           }
         } else {
-          b_guard1 = true;
+          guard1 = true;
         }
         if (guard2) {
           ialast = b_ialast + 1;
           iafirst = b_ialast;
           iblast = b_iblast + 1;
         }
-        if (b_guard1) {
-          bool b_p;
-          if (std::isnan(b_bk)) {
-            b_p = !std::isnan(ak);
+        if (guard1) {
+          bool p;
+          if (std::isnan(e_bk)) {
+            p = !std::isnan(ak);
           } else if (std::isnan(ak)) {
-            b_p = false;
+            p = false;
           } else {
-            b_p = (ak < b_bk);
+            p = (ak < e_bk);
           }
-          if (b_p) {
+          if (p) {
             nc++;
             nia++;
             ia[nia] = aperm[iafirst];
@@ -527,38 +557,39 @@ void do_vectors(const ::coder::array<double, 2U> &b_a,
     iafirst = c_a;
   }
   if (b_a.size(1) > 0) {
-    int i3;
+    int b_i;
     if (1 > (nia + 1)) {
-      i3 = -1;
+      b_i = -1;
     } else {
-      i3 = nia;
+      b_i = nia;
     }
-    ia.set_size(i3 + 1);
+    ia.set_size(b_i + 1);
   }
   internal::b_sort(ia, b_ia);
   if ((static_cast<int>((nia + 1) < 4)) != 0) {
-    for (int b_k{0}; b_k <= nia; b_k++) {
-      c[b_k] = b_a[ia[b_k] - 1];
+    for (int k{0}; k <= nia; k++) {
+      c[k] = b_a[ia[k] - 1];
     }
   } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
-    for (int b_k = 0; b_k <= nia; b_k++) {
-      c[b_k] = b_a[ia[b_k] - 1];
+    for (int k = 0; k <= nia; k++) {
+      c[k] = b_a[ia[k] - 1];
     }
   }
   if (b_a.size(1) > 0) {
-    int i5;
+    int i1;
     if (1 > nc) {
-      i5 = 0;
+      i1 = 0;
     } else {
-      i5 = nc;
+      i1 = nc;
     }
-    c.set_size(c.size(0), i5);
+    c.set_size(c.size(0), i1);
   }
 }
 
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for eml_setop.cpp

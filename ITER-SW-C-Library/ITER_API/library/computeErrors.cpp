@@ -5,7 +5,7 @@
 // File: computeErrors.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -25,43 +25,44 @@
 
 // Function Definitions
 //
-// Arguments    : const coder::array<double, 3U> &Hhand2base
+// Arguments    : const ::coder::array<double, 3U> &Hhand2base
 //                const double Hhand2eye[4][4]
 //                const double Hbase2grid[4][4]
-//                const coder::array<double, 3U> &Hcam2grid
-//                const coder::array<double, 3U> &imgPts
-//                const coder::array<double, 2U> &Worldpts
+//                const ::coder::array<double, 3U> &Hcam2grid
+//                const ::coder::array<double, 3U> &imgPts
+//                const ::coder::array<double, 2U> &Worldpts
 //                const double f_K[4][3]
 //                double errors[3]
 // Return Type  : void
 //
-void computeErrors(const coder::array<double, 3U> &Hhand2base,
+namespace ITER {
+void computeErrors(const ::coder::array<double, 3U> &Hhand2base,
                    const double Hhand2eye[4][4], const double Hbase2grid[4][4],
-                   const coder::array<double, 3U> &Hcam2grid,
-                   const coder::array<double, 3U> &imgPts,
-                   const coder::array<double, 2U> &Worldpts,
+                   const ::coder::array<double, 3U> &Hcam2grid,
+                   const ::coder::array<double, 3U> &imgPts,
+                   const ::coder::array<double, 2U> &Worldpts,
                    const double f_K[4][3], double errors[3])
 {
-  coder::array<double, 3U> PoseErrR;
-  coder::array<double, 2U> PoseErrt;
-  coder::array<double, 2U> b_y;
-  coder::array<double, 2U> c_y;
-  coder::array<double, 2U> d_y;
-  coder::array<double, 2U> e_y;
-  coder::array<double, 2U> err;
-  coder::array<double, 2U> g_x;
-  coder::array<double, 2U> r;
-  coder::array<double, 2U> r1;
-  coder::array<double, 1U> angR;
-  coder::array<double, 1U> b_x;
-  coder::array<double, 1U> r2;
-  coder::array<double, 1U> y;
+  ::coder::array<double, 3U> PoseErrR;
+  ::coder::array<double, 2U> PoseErrt;
+  ::coder::array<double, 2U> b_y;
+  ::coder::array<double, 2U> c_y;
+  ::coder::array<double, 2U> d_y;
+  ::coder::array<double, 2U> e_x;
+  ::coder::array<double, 2U> e_y;
+  ::coder::array<double, 2U> err;
+  ::coder::array<double, 2U> r;
+  ::coder::array<double, 2U> r1;
+  ::coder::array<double, 1U> angR;
+  ::coder::array<double, 1U> b_x;
+  ::coder::array<double, 1U> r2;
+  ::coder::array<double, 1U> y;
   double HT[4][4];
-  double dv1[4][4];
-  double dv2[4][4];
+  double b_dv1[4][4];
+  double b_dv2[4][4];
   double b_Hhand2base[3][3];
   double b_Hhand2eye[3][3];
-  double dv[3][3];
+  double b_dv[3][3];
   double AxAngVec[4];
   double b_varargin_1;
   double d10;
@@ -257,7 +258,7 @@ void computeErrors(const coder::array<double, 3U> &Hhand2base,
             (d2 * Hcam2grid[((4 * i15) + (16 * j)) + 2]);
       }
     }
-    coder::inv(b_Hhand2eye, dv);
+    coder::inv(b_Hhand2eye, b_dv);
     for (int i12{0}; i12 < 3; i12++) {
       for (int i14{0}; i14 < 3; i14++) {
         b_Hhand2base[i14][i12] =
@@ -270,9 +271,9 @@ void computeErrors(const coder::array<double, 3U> &Hhand2base,
       double d3;
       double d4;
       double d5;
-      d3 = dv[0][i13];
-      d4 = dv[1][i13];
-      d5 = dv[2][i13];
+      d3 = b_dv[0][i13];
+      d4 = b_dv[1][i13];
+      d5 = b_dv[2][i13];
       for (int i17{0}; i17 < 3; i17++) {
         PoseErrR[(i13 + (3 * i17)) + (9 * j)] =
             ((d3 * b_Hhand2base[i17][0]) + (d4 * b_Hhand2base[i17][1])) +
@@ -462,12 +463,12 @@ void computeErrors(const coder::array<double, 3U> &Hhand2base,
   }
   i28 = imgPts.size(2);
   if (0 <= (imgPts.size(2) - 1)) {
-    coder::b_inv(Hhand2eye, dv1);
+    coder::b_inv(Hhand2eye, b_dv1);
     h_n = r.size(0);
   }
   for (int c_j{0}; c_j < i28; c_j++) {
-    int i_n;
     int p_loop_ub;
+    int p_n;
     int q_loop_ub;
     int r_loop_ub;
     for (int i30{0}; i30 < 4; i30++) {
@@ -475,15 +476,15 @@ void computeErrors(const coder::array<double, 3U> &Hhand2base,
         double d14;
         d14 = 0.0;
         for (int i33{0}; i33 < 4; i33++) {
-          d14 += dv1[i33][i30] * Hhand2base[(i33 + (4 * i31)) + (16 * c_j)];
+          d14 += b_dv1[i33][i30] * Hhand2base[(i33 + (4 * i31)) + (16 * c_j)];
         }
-        dv2[i31][i30] = d14;
+        b_dv2[i31][i30] = d14;
       }
       for (int i32{0}; i32 < 4; i32++) {
         double d15;
         d15 = 0.0;
         for (int i34{0}; i34 < 4; i34++) {
-          d15 += dv2[i34][i30] * Hbase2grid[i32][i34];
+          d15 += b_dv2[i34][i30] * Hbase2grid[i32][i34];
         }
         HT[i32][i30] = d15;
       }
@@ -500,9 +501,9 @@ void computeErrors(const coder::array<double, 3U> &Hhand2base,
         c_y[c_i + (4 * d_j)] = s;
       }
     }
-    i_n = c_y.size(1);
+    p_n = c_y.size(1);
     d_y.set_size(3, c_y.size(1));
-    for (int e_j{0}; e_j < i_n; e_j++) {
+    for (int e_j{0}; e_j < p_n; e_j++) {
       for (int d_i{0}; d_i < 3; d_i++) {
         double b_s;
         b_s = 0.0;
@@ -517,23 +518,23 @@ void computeErrors(const coder::array<double, 3U> &Hhand2base,
     for (int i35{0}; i35 < p_loop_ub; i35++) {
       e_y[i35] = d_y[(3 * i35) + 2];
     }
-    coder::b_bsxfun(d_y, e_y, g_x);
+    coder::c_bsxfun(d_y, e_y, e_x);
     // need to invert HT befor invR, if the representation change of whole
     // inverse is followed
     q_loop_ub = imgPts.size(0);
-    if (imgPts.size(0) == g_x.size(1)) {
+    if (imgPts.size(0) == e_x.size(1)) {
       r1.set_size(imgPts.size(0), 2);
       for (int i36{0}; i36 < 2; i36++) {
         for (int i37{0}; i37 < q_loop_ub; i37++) {
           double e_varargin_1;
           e_varargin_1 = imgPts[(i37 + (imgPts.size(0) * i36)) +
                                 ((imgPts.size(0) * 2) * c_j)] -
-                         g_x[i36 + (3 * i37)];
+                         e_x[i36 + (3 * i37)];
           r1[i37 + (r1.size(0) * i36)] = e_varargin_1 * e_varargin_1;
         }
       }
     } else {
-      b_binary_expand_op(r1, imgPts, c_j, g_x);
+      b_binary_expand_op(r1, imgPts, c_j, e_x);
     }
     coder::sum(r1, r2);
     r_loop_ub = r2.size(0);
@@ -542,19 +543,21 @@ void computeErrors(const coder::array<double, 3U> &Hhand2base,
     }
     //  adopted approach
   }
-  coder::array<double, 1U> c_err;
+  ::coder::array<double, 1U> c_err;
   int b_err;
   // rrmse
   b_err = err.size(0) * err.size(1);
   errors[0] =
-      coder::combineVectorElements(b_x) / (static_cast<double>(b_x.size(0)));
+      coder::b_combineVectorElements(b_x) / (static_cast<double>(b_x.size(0)));
   errors[1] =
-      coder::combineVectorElements(y) / (static_cast<double>(y.size(0)));
+      coder::b_combineVectorElements(y) / (static_cast<double>(y.size(0)));
   c_err = err.reshape(b_err);
   errors[2] = std::sqrt(
-      coder::combineVectorElements(c_err) /
+      coder::b_combineVectorElements(c_err) /
       (static_cast<double>(static_cast<int>(err.size(0) * err.size(1)))));
 }
+
+} // namespace ITER
 
 //
 // File trailer for computeErrors.cpp

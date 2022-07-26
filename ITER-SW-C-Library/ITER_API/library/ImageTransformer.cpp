@@ -5,7 +5,7 @@
 // File: ImageTransformer.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -19,6 +19,27 @@
 
 // Function Definitions
 //
+// Arguments    : void
+// Return Type  : ImageTransformer
+//
+namespace ITER {
+namespace coder {
+namespace vision {
+namespace internal {
+namespace calibration {
+ImageTransformer::ImageTransformer()
+{
+}
+
+//
+// Arguments    : void
+// Return Type  : void
+//
+ImageTransformer::~ImageTransformer()
+{
+}
+
+//
 // Arguments    : const ::coder::array<unsigned char, 3U> &o_I
 //                const double b_intrinsicMatrix[3][3]
 //                const double radialDist[3]
@@ -27,10 +48,6 @@
 //                const double b_yBounds[2]
 // Return Type  : void
 //
-namespace coder {
-namespace vision {
-namespace internal {
-namespace calibration {
 void b_ImageTransformer::update(const ::coder::array<unsigned char, 3U> &o_I,
                                 const double b_intrinsicMatrix[3][3],
                                 const double radialDist[3],
@@ -38,32 +55,32 @@ void b_ImageTransformer::update(const ::coder::array<unsigned char, 3U> &o_I,
                                 const double b_xBounds[2],
                                 const double b_yBounds[2])
 {
-  static const char cv1[6]{'d', 'o', 'u', 'b', 'l', 'e'};
+  static const char b_cv1[6]{'d', 'o', 'u', 'b', 'l', 'e'};
   static const char b_cv[5]{'u', 'i', 'n', 't', '8'};
   static const char b_outputView[4]{'s', 'a', 'm', 'e'};
-  array<double, 2U> b_normalizedPoints;
-  array<double, 2U> b_points;
-  array<double, 2U> b_y;
-  array<double, 2U> centeredPoints;
-  array<double, 2U> d_X;
-  array<double, 2U> distortedNormalizedPoints;
-  array<double, 2U> g_Y;
-  array<double, 2U> g_a;
-  array<double, 2U> normalizedPoints;
-  array<double, 2U> ptsOut;
-  array<double, 2U> y;
-  array<double, 1U> alpha;
-  array<double, 1U> b_ptsOut;
-  array<double, 1U> b_z1;
-  array<double, 1U> g_b;
-  array<double, 1U> h_b;
-  array<double, 1U> r2;
-  array<double, 1U> r4;
-  array<double, 1U> xNorm;
-  array<double, 1U> xyProduct;
-  array<double, 1U> yNorm;
-  array<double, 1U> z1;
-  double e_b[2];
+  ::coder::array<double, 2U> b_normalizedPoints;
+  ::coder::array<double, 2U> b_points;
+  ::coder::array<double, 2U> b_y;
+  ::coder::array<double, 2U> centeredPoints;
+  ::coder::array<double, 2U> d_X;
+  ::coder::array<double, 2U> distortedNormalizedPoints;
+  ::coder::array<double, 2U> f_a;
+  ::coder::array<double, 2U> g_Y;
+  ::coder::array<double, 2U> normalizedPoints;
+  ::coder::array<double, 2U> ptsOut;
+  ::coder::array<double, 2U> y;
+  ::coder::array<double, 1U> alpha;
+  ::coder::array<double, 1U> b_ptsOut;
+  ::coder::array<double, 1U> b_z1;
+  ::coder::array<double, 1U> g_b;
+  ::coder::array<double, 1U> j_b;
+  ::coder::array<double, 1U> r2;
+  ::coder::array<double, 1U> r4;
+  ::coder::array<double, 1U> xNorm;
+  ::coder::array<double, 1U> xyProduct;
+  ::coder::array<double, 1U> yNorm;
+  ::coder::array<double, 1U> z1;
+  double c_b[2];
   double b;
   double b_a;
   double b_b;
@@ -76,9 +93,9 @@ void b_ImageTransformer::update(const ::coder::array<unsigned char, 3U> &o_I,
   double d;
   double d_a;
   double d_intrinsicMatrix;
+  double e_a;
   double e_intrinsicMatrix;
   double e_k;
-  double f_a;
   double f_intrinsicMatrix;
   double g_intrinsicMatrix;
   double g_k;
@@ -102,21 +119,21 @@ void b_ImageTransformer::update(const ::coder::array<unsigned char, 3U> &o_I,
   int i27;
   int i30;
   int i7;
+  int i_N;
   int i_loop_ub;
+  int j_X;
   int j_Y;
   int j_loop_ub;
   int jb_loop_ub;
   int k_N;
   int k_loop_ub;
   int m_N;
-  int m_X;
   int m_loop_ub;
   int mb_loop_ub;
   int normalizedPoints_idx_0;
   int ny;
   int o_N;
   int o_loop_ub;
-  int p_N;
   int p_loop_ub;
   int q_loop_ub;
   int r_loop_ub;
@@ -278,12 +295,12 @@ void b_ImageTransformer::update(const ::coder::array<unsigned char, 3U> &o_I,
       }
     }
   }
-  m_X = d_X.size(0) * d_X.size(1);
+  j_X = d_X.size(0) * d_X.size(1);
   j_Y = g_Y.size(0) * g_Y.size(1);
-  b_points.set_size(m_X, 2);
-  e_loop_ub = m_X;
-  if ((static_cast<int>(m_X < 4)) != 0) {
-    for (int i4{0}; i4 < m_X; i4++) {
+  b_points.set_size(j_X, 2);
+  e_loop_ub = j_X;
+  if ((static_cast<int>(j_X < 4)) != 0) {
+    for (int i4{0}; i4 < j_X; i4++) {
       b_points[i4] = d_X[i4];
     }
   } else {
@@ -305,8 +322,8 @@ void b_ImageTransformer::update(const ::coder::array<unsigned char, 3U> &o_I,
       b_points[i5 + b_points.size(0)] = g_Y[i5];
     }
   }
-  e_b[0] = b_intrinsicMatrix[0][2];
-  e_b[1] = b_intrinsicMatrix[1][2];
+  c_b[0] = b_intrinsicMatrix[0][2];
+  c_b[1] = b_intrinsicMatrix[1][2];
   centeredPoints.set_size(b_points.size(0), 2);
   if (b_points.size(0) != 0) {
     int acoef;
@@ -317,7 +334,7 @@ void b_ImageTransformer::update(const ::coder::array<unsigned char, 3U> &o_I,
       i7 = centeredPoints.size(0) - 1;
       for (b_k = 0; b_k <= i7; b_k++) {
         centeredPoints[b_k + (centeredPoints.size(0) * k)] =
-            b_points[(acoef * b_k) + (b_points.size(0) * k)] - e_b[k];
+            b_points[(acoef * b_k) + (b_points.size(0) * k)] - c_b[k];
       }
     }
   }
@@ -354,28 +371,28 @@ void b_ImageTransformer::update(const ::coder::array<unsigned char, 3U> &o_I,
     }
   }
   z1.set_size(xNorm.size(0));
-  k_N = xNorm.size(0);
+  i_N = xNorm.size(0);
   if ((static_cast<int>(xNorm.size(0) < 4)) != 0) {
-    for (int c_k{0}; c_k < k_N; c_k++) {
+    for (int c_k{0}; c_k < i_N; c_k++) {
       z1[c_k] = rt_powd_snf(xNorm[c_k], 2.0);
     }
   } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
-    for (int c_k = 0; c_k < k_N; c_k++) {
+    for (int c_k = 0; c_k < i_N; c_k++) {
       z1[c_k] = rt_powd_snf(xNorm[c_k], 2.0);
     }
   }
   b_z1.set_size(yNorm.size(0));
-  m_N = yNorm.size(0);
+  k_N = yNorm.size(0);
   if ((static_cast<int>(yNorm.size(0) < 4)) != 0) {
-    for (int d_k{0}; d_k < m_N; d_k++) {
+    for (int d_k{0}; d_k < k_N; d_k++) {
       b_z1[d_k] = rt_powd_snf(yNorm[d_k], 2.0);
     }
   } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
-    for (int d_k = 0; d_k < m_N; d_k++) {
+    for (int d_k = 0; d_k < k_N; d_k++) {
       b_z1[d_k] = rt_powd_snf(yNorm[d_k], 2.0);
     }
   }
@@ -452,46 +469,46 @@ void b_ImageTransformer::update(const ::coder::array<unsigned char, 3U> &o_I,
       z1[i13] = g_b[i13];
     }
   }
-  o_N = g_b.size(0);
+  m_N = g_b.size(0);
   if ((static_cast<int>(g_b.size(0) < 4)) != 0) {
-    for (int h_k{0}; h_k < o_N; h_k++) {
+    for (int h_k{0}; h_k < m_N; h_k++) {
       z1[h_k] = rt_powd_snf(xNorm[h_k], 2.0);
     }
   } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
-    for (int h_k = 0; h_k < o_N; h_k++) {
+    for (int h_k = 0; h_k < m_N; h_k++) {
       z1[h_k] = rt_powd_snf(xNorm[h_k], 2.0);
     }
   }
   d_a = 2.0 * tangentialDist[0];
-  h_b.set_size(yNorm.size(0));
+  j_b.set_size(yNorm.size(0));
   b_z1.set_size(yNorm.size(0));
   r_loop_ub = yNorm.size(0);
   if ((static_cast<int>(yNorm.size(0) < 4)) != 0) {
     for (int i14{0}; i14 < r_loop_ub; i14++) {
-      b_z1[i14] = h_b[i14];
+      b_z1[i14] = j_b[i14];
     }
   } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
     for (int i14 = 0; i14 < r_loop_ub; i14++) {
-      b_z1[i14] = h_b[i14];
+      b_z1[i14] = j_b[i14];
     }
   }
-  p_N = h_b.size(0);
-  if ((static_cast<int>(h_b.size(0) < 4)) != 0) {
-    for (int i_k{0}; i_k < p_N; i_k++) {
+  o_N = j_b.size(0);
+  if ((static_cast<int>(j_b.size(0) < 4)) != 0) {
+    for (int i_k{0}; i_k < o_N; i_k++) {
       b_z1[i_k] = rt_powd_snf(yNorm[i_k], 2.0);
     }
   } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
-    for (int i_k = 0; i_k < p_N; i_k++) {
+    for (int i_k = 0; i_k < o_N; i_k++) {
       b_z1[i_k] = rt_powd_snf(yNorm[i_k], 2.0);
     }
   }
-  f_a = 2.0 * tangentialDist[1];
+  e_a = 2.0 * tangentialDist[1];
   normalizedPoints.set_size(xNorm.size(0), 2);
   s_loop_ub = xNorm.size(0);
   if ((static_cast<int>(xNorm.size(0) < 4)) != 0) {
@@ -551,35 +568,35 @@ void b_ImageTransformer::update(const ::coder::array<unsigned char, 3U> &o_I,
           b_d1 + (b_d1 * alpha[i18]);
     }
   }
-  g_a.set_size(xyProduct.size(0), 2);
+  f_a.set_size(xyProduct.size(0), 2);
   w_loop_ub = xyProduct.size(0);
   if ((static_cast<int>(xyProduct.size(0) < 4)) != 0) {
     for (int i19{0}; i19 < w_loop_ub; i19++) {
-      g_a[i19] = (d_a * xyProduct[i19]) +
+      f_a[i19] = (d_a * xyProduct[i19]) +
                  (b_tangentialDist * (r2[i19] + (2.0 * z1[i19])));
     }
   } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
     for (int i19 = 0; i19 < w_loop_ub; i19++) {
-      g_a[i19] = (d_a * xyProduct[i19]) +
+      f_a[i19] = (d_a * xyProduct[i19]) +
                  (b_tangentialDist * (r2[i19] + (2.0 * z1[i19])));
     }
   }
   x_loop_ub = r2.size(0);
   if ((static_cast<int>(r2.size(0) < 4)) != 0) {
     for (int i20{0}; i20 < x_loop_ub; i20++) {
-      g_a[i20 + g_a.size(0)] =
+      f_a[i20 + f_a.size(0)] =
           (c_tangentialDist * (r2[i20] + (2.0 * b_z1[i20]))) +
-          (f_a * xyProduct[i20]);
+          (e_a * xyProduct[i20]);
     }
   } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
     for (int i20 = 0; i20 < x_loop_ub; i20++) {
-      g_a[i20 + g_a.size(0)] =
+      f_a[i20 + f_a.size(0)] =
           (c_tangentialDist * (r2[i20] + (2.0 * b_z1[i20]))) +
-          (f_a * xyProduct[i20]);
+          (e_a * xyProduct[i20]);
     }
   }
   distortedNormalizedPoints.set_size(b_normalizedPoints.size(0), 2);
@@ -590,7 +607,7 @@ void b_ImageTransformer::update(const ::coder::array<unsigned char, 3U> &o_I,
         distortedNormalizedPoints[i22 +
                                   (distortedNormalizedPoints.size(0) * i21)] =
             b_normalizedPoints[i22 + (b_normalizedPoints.size(0) * i21)] +
-            g_a[i22 + (g_a.size(0) * i21)];
+            f_a[i22 + (f_a.size(0) * i21)];
       }
     }
   } else {
@@ -601,7 +618,7 @@ void b_ImageTransformer::update(const ::coder::array<unsigned char, 3U> &o_I,
         distortedNormalizedPoints[i22 +
                                   (distortedNormalizedPoints.size(0) * i21)] =
             b_normalizedPoints[i22 + (b_normalizedPoints.size(0) * i21)] +
-            g_a[i22 + (g_a.size(0) * i21)];
+            f_a[i22 + (f_a.size(0) * i21)];
       }
     }
   }
@@ -659,7 +676,7 @@ void b_ImageTransformer::update(const ::coder::array<unsigned char, 3U> &o_I,
     do {
       exitg1 = 0;
       if (kstr < 6) {
-        if (ClassOfImage[kstr] != cv1[kstr]) {
+        if (ClassOfImage[kstr] != b_cv1[kstr]) {
           exitg1 = 1;
         } else {
           kstr++;
@@ -748,6 +765,7 @@ void b_ImageTransformer::update(const ::coder::array<unsigned char, 3U> &o_I,
 } // namespace internal
 } // namespace vision
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for ImageTransformer.cpp

@@ -5,7 +5,7 @@
 // File: computeForwardDifferences.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef COMPUTEFORWARDDIFFERENCES_H
@@ -13,21 +13,27 @@
 
 // Include Files
 #include "rtwtypes.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Type Declarations
-struct o_struct_T;
+namespace ITER {
+struct t_struct_T;
+
+}
 
 // Function Declarations
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace utils {
 namespace FiniteDifferences {
 namespace internal {
-bool computeForwardDifferences(o_struct_T *obj, double fCurrent, double b_xk[7],
+bool computeForwardDifferences(t_struct_T *obj, double fCurrent, double b_xk[7],
                                double gradf[8]);
 
 }
@@ -36,6 +42,7 @@ bool computeForwardDifferences(o_struct_T *obj, double fCurrent, double b_xk[7],
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 #endif
 //

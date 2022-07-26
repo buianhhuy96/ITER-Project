@@ -5,7 +5,7 @@
 // File: detectCheckerboard.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -25,6 +25,7 @@
 #include <string.h>
 
 // Function Declarations
+namespace ITER {
 namespace coder {
 namespace vision {
 namespace internal {
@@ -33,7 +34,7 @@ namespace checkerboard {
 static void cornerOrientations(const ::coder::array<float, 2U> &Ix2,
                                const ::coder::array<float, 2U> &Iy2,
                                const ::coder::array<float, 2U> &Ixy,
-                               const float p[2], float b_v1[2], float v2[2]);
+                               const float p[2], float e_v1[2], float v2[2]);
 
 static void poly2RectMask(double d_X[4], double g_Y[4], double height,
                           double width, ::coder::array<bool, 2U> &mask);
@@ -45,16 +46,19 @@ static void poly2RectMask(double d_X[4], double g_Y[4], double height,
 } // namespace coder
 static float rt_atan2f_snf(float u0, float b_u1);
 
+} // namespace ITER
+
 // Function Definitions
 //
 // Arguments    : const ::coder::array<float, 2U> &Ix2
 //                const ::coder::array<float, 2U> &Iy2
 //                const ::coder::array<float, 2U> &Ixy
 //                const float p[2]
-//                float b_v1[2]
+//                float e_v1[2]
 //                float v2[2]
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace vision {
 namespace internal {
@@ -63,7 +67,7 @@ namespace checkerboard {
 static void cornerOrientations(const ::coder::array<float, 2U> &Ix2,
                                const ::coder::array<float, 2U> &Iy2,
                                const ::coder::array<float, 2U> &Ixy,
-                               const float p[2], float b_v1[2], float v2[2])
+                               const float p[2], float e_v1[2], float v2[2])
 {
   static const float b_fv[2][2]{{0.707106769F, 0.707106769F},
                                 {-0.707106769F, 0.707106769F}};
@@ -74,11 +78,11 @@ static void cornerOrientations(const ::coder::array<float, 2U> &Ix2,
   float b;
   float b_a;
   float b_cs;
+  float b_df;
   float b_f2;
   float b_tn;
   float c;
   float cs1;
-  float df;
   float f;
   float f1;
   float f3;
@@ -96,8 +100,8 @@ static void cornerOrientations(const ::coder::array<float, 2U> &Ix2,
   c = Iy2[((static_cast<int>(p[1])) +
            (Iy2.size(0) * ((static_cast<int>(p[0])) - 1))) -
           1];
-  df = b_a - c;
-  adf = std::abs(df);
+  b_df = b_a - c;
+  adf = std::abs(b_df);
   tb = b + b;
   ab = std::abs(tb);
   if (adf > ab) {
@@ -107,11 +111,11 @@ static void cornerOrientations(const ::coder::array<float, 2U> &Ix2,
   } else {
     rt = ab * 1.41421354F;
   }
-  if (df > 0.0F) {
-    b_cs = df + rt;
+  if (b_df > 0.0F) {
+    b_cs = b_df + rt;
     sgn2 = 1;
   } else {
-    b_cs = df - rt;
+    b_cs = b_df - rt;
     sgn2 = -1;
   }
   if (std::abs(b_cs) > ab) {
@@ -150,7 +154,7 @@ static void cornerOrientations(const ::coder::array<float, 2U> &Ix2,
     f1 = (b_sn1[0] * b_f2) + (b_sn1[1] * f3);
     f = (b_cs1[0] * b_f2) + (b_cs1[1] * f3);
     v2[b_i] = f;
-    b_v1[b_i] = f1;
+    e_v1[b_i] = f1;
   }
 }
 
@@ -178,8 +182,8 @@ static void poly2RectMask(double d_X[4], double g_Y[4], double height,
   int i5;
   int i7;
   int loop_ub;
-  ::coder::internal::d_sort(d_X);
-  ::coder::internal::d_sort(g_Y);
+  ::ITER::coder::internal::d_sort(d_X);
+  ::ITER::coder::internal::d_sort(g_Y);
   height_tmp = static_cast<int>(height);
   b_height[0] = static_cast<int>(height);
   mask.set_size(height_tmp, static_cast<int>(width));
@@ -290,12 +294,12 @@ b_Checkerboard *b_growCheckerboard(const ::coder::array<float, 2U> &b_points,
   b_Checkerboard *currentBoard;
   b_Checkerboard *previousBoard;
   b_Checkerboard *tmpBoard;
-  array<double, 2U> b_seedIdx;
-  array<double, 2U> seedIdx;
-  array<float, 1U> b_x;
-  array<int, 1U> iidx;
-  float b_v1[2];
-  float g_x[2];
+  ::coder::array<double, 2U> b_seedIdx;
+  ::coder::array<double, 2U> seedIdx;
+  ::coder::array<float, 1U> b_x;
+  ::coder::array<int, 1U> iidx;
+  float e_v1[2];
+  float e_x[2];
   float v2[2];
   if (scores.size(0) == 0) {
     c_iobj_0[0].isValid = false;
@@ -370,7 +374,7 @@ b_Checkerboard *b_growCheckerboard(const ::coder::array<float, 2U> &b_points,
         b_x[i1] = scores[(static_cast<int>(seedIdx[i1])) - 1];
       }
     }
-    ::coder::internal::sort(b_x, iidx);
+    ::ITER::coder::internal::sort(b_x, iidx);
     b_seedIdx.set_size(1, iidx.size(0));
     c_loop_ub = iidx.size(0);
     if ((static_cast<int>(iidx.size(0) < 4)) != 0) {
@@ -519,16 +523,16 @@ b_Checkerboard *b_growCheckerboard(const ::coder::array<float, 2U> &b_points,
       double d;
       bool guard1{false};
       d = seedIdx[c_i];
-      g_x[0] = std::round(
+      e_x[0] = std::round(
           b_points[(static_cast<int>(static_cast<unsigned int>(d))) - 1]);
-      g_x[1] = std::round(
+      e_x[1] = std::round(
           b_points[((static_cast<int>(static_cast<unsigned int>(d))) +
                     b_points.size(0)) -
                    1]);
-      cornerOrientations(Ix2, Iy2, Ixy, g_x, b_v1, v2);
+      cornerOrientations(Ix2, Iy2, Ixy, e_x, e_v1, v2);
       guard1 = false;
       if ((static_cast<double>(
-              std::abs(std::abs(std::abs(rt_atan2f_snf(b_v1[1], b_v1[0])) -
+              std::abs(std::abs(std::abs(rt_atan2f_snf(e_v1[1], e_v1[0])) -
                                 3.14159274F) -
                        (static_cast<float>(theta))))) > 0.58904862254808621) {
         if (!((static_cast<double>(std::abs(
@@ -542,7 +546,7 @@ b_Checkerboard *b_growCheckerboard(const ::coder::array<float, 2U> &b_points,
       }
       if (guard1) {
         currentBoard->initialize(
-            static_cast<double>(static_cast<unsigned int>(d)), b_points, b_v1,
+            static_cast<double>(static_cast<unsigned int>(d)), b_points, e_v1,
             v2);
         if (currentBoard->isValid) {
           bool hasExpanded;
@@ -587,12 +591,12 @@ b_Checkerboard *growCheckerboard(const ::coder::array<float, 2U> &b_points,
   b_Checkerboard *currentBoard;
   b_Checkerboard *previousBoard;
   b_Checkerboard *tmpBoard;
-  array<double, 2U> b_seedIdx;
-  array<double, 2U> seedIdx;
-  array<float, 1U> b_x;
-  array<int, 1U> iidx;
-  float b_v1[2];
-  float g_x[2];
+  ::coder::array<double, 2U> b_seedIdx;
+  ::coder::array<double, 2U> seedIdx;
+  ::coder::array<float, 1U> b_x;
+  ::coder::array<int, 1U> iidx;
+  float e_v1[2];
+  float e_x[2];
   float v2[2];
   if (scores.size(0) == 0) {
     c_iobj_0[0].isValid = false;
@@ -667,7 +671,7 @@ b_Checkerboard *growCheckerboard(const ::coder::array<float, 2U> &b_points,
         b_x[i1] = scores[(static_cast<int>(seedIdx[i1])) - 1];
       }
     }
-    ::coder::internal::sort(b_x, iidx);
+    ::ITER::coder::internal::sort(b_x, iidx);
     b_seedIdx.set_size(1, iidx.size(0));
     c_loop_ub = iidx.size(0);
     if ((static_cast<int>(iidx.size(0) < 4)) != 0) {
@@ -816,16 +820,16 @@ b_Checkerboard *growCheckerboard(const ::coder::array<float, 2U> &b_points,
       double d;
       bool guard1{false};
       d = seedIdx[c_i];
-      g_x[0] = std::round(
+      e_x[0] = std::round(
           b_points[(static_cast<int>(static_cast<unsigned int>(d))) - 1]);
-      g_x[1] = std::round(
+      e_x[1] = std::round(
           b_points[((static_cast<int>(static_cast<unsigned int>(d))) +
                     b_points.size(0)) -
                    1]);
-      cornerOrientations(Ix2, Iy2, Ixy, g_x, b_v1, v2);
+      cornerOrientations(Ix2, Iy2, Ixy, e_x, e_v1, v2);
       guard1 = false;
       if ((static_cast<double>(
-              std::abs(std::abs(std::abs(rt_atan2f_snf(b_v1[1], b_v1[0])) -
+              std::abs(std::abs(std::abs(rt_atan2f_snf(e_v1[1], e_v1[0])) -
                                 3.14159274F) -
                        (static_cast<float>(theta))))) > 0.58904862254808621) {
         if (!((static_cast<double>(std::abs(
@@ -839,7 +843,7 @@ b_Checkerboard *growCheckerboard(const ::coder::array<float, 2U> &b_points,
       }
       if (guard1) {
         currentBoard->initialize(
-            static_cast<double>(static_cast<unsigned int>(d)), b_points, b_v1,
+            static_cast<double>(static_cast<unsigned int>(d)), b_points, e_v1,
             v2);
         if (currentBoard->isValid) {
           bool hasExpanded;
@@ -869,33 +873,33 @@ b_Checkerboard *orient(b_Checkerboard *board,
                        const ::coder::array<float, 2U> &o_I)
 {
   b_Checkerboard *b_board;
-  array<double, 3U> r1;
-  array<double, 3U> r6;
-  array<double, 3U> r7;
-  array<double, 2U> c_board;
-  array<double, 2U> d_board;
-  array<double, 2U> e_board;
-  array<double, 2U> g_x;
-  array<double, 2U> h_board;
-  array<double, 2U> i_board;
-  array<double, 2U> newBoardCoords1;
-  array<double, 2U> newBoardCoords2;
-  array<double, 2U> numRot;
-  array<double, 2U> r;
-  array<double, 2U> r3;
-  array<double, 2U> r5;
-  array<double, 2U> r8;
-  array<double, 2U> r9;
-  array<float, 1U> fb_I;
-  array<float, 1U> p_I;
-  array<int, 1U> r2;
-  array<int, 1U> r4;
-  array<signed char, 2U> c_ii;
-  array<bool, 3U> p_x;
-  array<bool, 2U> j_x;
-  array<bool, 2U> nextSquareMask;
-  array<bool, 2U> upperLeftMask;
-  array<bool, 2U> y;
+  ::coder::array<double, 3U> r1;
+  ::coder::array<double, 3U> r6;
+  ::coder::array<double, 3U> r7;
+  ::coder::array<double, 2U> c_board;
+  ::coder::array<double, 2U> d_board;
+  ::coder::array<double, 2U> e_board;
+  ::coder::array<double, 2U> e_x;
+  ::coder::array<double, 2U> h_board;
+  ::coder::array<double, 2U> i_board;
+  ::coder::array<double, 2U> newBoardCoords1;
+  ::coder::array<double, 2U> newBoardCoords2;
+  ::coder::array<double, 2U> numRot;
+  ::coder::array<double, 2U> r;
+  ::coder::array<double, 2U> r3;
+  ::coder::array<double, 2U> r5;
+  ::coder::array<double, 2U> r8;
+  ::coder::array<double, 2U> r9;
+  ::coder::array<float, 1U> hb_I;
+  ::coder::array<float, 1U> p_I;
+  ::coder::array<int, 1U> r2;
+  ::coder::array<int, 1U> r4;
+  ::coder::array<signed char, 2U> c_ii;
+  ::coder::array<bool, 3U> o_x;
+  ::coder::array<bool, 2U> g_x;
+  ::coder::array<bool, 2U> nextSquareMask;
+  ::coder::array<bool, 2U> upperLeftMask;
+  ::coder::array<bool, 2U> y;
   double cornerIdx[4];
   double nextSquarePolyX[4];
   double nextSquarePolyY[4];
@@ -907,11 +911,11 @@ b_Checkerboard *orient(b_Checkerboard *board,
   if (!std::isinf(b_x)) {
     int b_hi;
     int b_loop_ub;
-    int b_r;
+    int c_r;
     int d_r;
     int g_loop_ub;
-    int k_x;
-    int o_x;
+    int i_x;
+    int m_x;
     int szy_idx_1;
     bool b_y;
     bool exitg1;
@@ -973,20 +977,20 @@ b_Checkerboard *orient(b_Checkerboard *board,
         }
       }
     }
-    g_x.set_size(b_board->BoardIdx.size(0), b_board->BoardIdx.size(1));
+    e_x.set_size(b_board->BoardIdx.size(0), b_board->BoardIdx.size(1));
     b_loop_ub = b_board->BoardIdx.size(1);
     for (int i1{0}; i1 < b_loop_ub; i1++) {
       int d_loop_ub;
       d_loop_ub = b_board->BoardIdx.size(0);
       for (int i3{0}; i3 < d_loop_ub; i3++) {
-        g_x[i3 + (g_x.size(0) * i1)] =
+        e_x[i3 + (e_x.size(0) * i1)] =
             b_board->BoardIdx[i3 + (b_board->BoardIdx.size(0) * i1)];
       }
     }
-    szy_idx_1 = g_x.size(1);
-    y.set_size(1, g_x.size(1));
-    g_loop_ub = g_x.size(1);
-    if ((static_cast<int>(g_x.size(1) < 4)) != 0) {
+    szy_idx_1 = e_x.size(1);
+    y.set_size(1, e_x.size(1));
+    g_loop_ub = e_x.size(1);
+    if ((static_cast<int>(e_x.size(1) < 4)) != 0) {
       for (int i5{0}; i5 < szy_idx_1; i5++) {
         y[i5] = false;
       }
@@ -997,14 +1001,14 @@ b_Checkerboard *orient(b_Checkerboard *board,
         y[i5] = false;
       }
     }
-    b_hi = g_x.size(1);
+    b_hi = e_x.size(1);
     for (int k{0}; k < b_hi; k++) {
       int b_k;
       y[k] = true;
       b_k = 0;
       exitg1 = false;
-      while ((!exitg1) && (b_k <= (g_x.size(0) - 1))) {
-        if (g_x[b_k + (g_x.size(0) * k)] == 0.0) {
+      while ((!exitg1) && (b_k <= (e_x.size(0) - 1))) {
+        if (e_x[b_k + (e_x.size(0) * k)] == 0.0) {
           y[k] = false;
           exitg1 = true;
         } else {
@@ -1126,20 +1130,20 @@ b_Checkerboard *orient(b_Checkerboard *board,
           p_I[i24] = o_I[r2[i24] - 1];
         }
       }
-      fb_I.set_size(r4.size(0));
+      hb_I.set_size(r4.size(0));
       gb_loop_ub = r4.size(0);
       if ((static_cast<int>(r4.size(0) < 4)) != 0) {
         for (int i30{0}; i30 < gb_loop_ub; i30++) {
-          fb_I[i30] = o_I[r4[i30] - 1];
+          hb_I[i30] = o_I[r4[i30] - 1];
         }
       } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
         for (int i30 = 0; i30 < gb_loop_ub; i30++) {
-          fb_I[i30] = o_I[r4[i30] - 1];
+          hb_I[i30] = o_I[r4[i30] - 1];
         }
       }
-      if (!(b_mean(p_I) < b_mean(fb_I))) {
+      if (!(mean(p_I) < mean(hb_I))) {
         int mb_loop_ub;
         int pb_loop_ub;
         int rb_loop_ub;
@@ -1236,13 +1240,13 @@ b_Checkerboard *orient(b_Checkerboard *board,
         numRot.set_size(1, 1);
         numRot[0] = 0.0;
       }
-      j_x.set_size(1, 1);
-      j_x[0] = (numRot[0] == 2.0);
-      if (!j_x[0]) {
+      g_x.set_size(1, 1);
+      g_x[0] = (numRot[0] == 2.0);
+      if (!g_x[0]) {
         int direction;
-        if (c_isequal(numRot, 1.0)) {
+        if (b_isequal(numRot, 1.0)) {
           direction = 1;
-        } else if (c_isequal(numRot, 3.0)) {
+        } else if (b_isequal(numRot, 3.0)) {
           direction = 2;
         } else {
           direction = 0;
@@ -1380,33 +1384,33 @@ b_Checkerboard *orient(b_Checkerboard *board,
         }
       }
     }
-    k_x = b_board->BoardCoords.size(0);
-    if (k_x == 0) {
-      b_r = 0;
+    i_x = b_board->BoardCoords.size(0);
+    if (i_x == 0) {
+      c_r = 0;
     } else {
-      b_r = static_cast<int>(std::fmod(static_cast<double>(k_x), 2.0));
-      if (b_r == 0) {
-        b_r = 0;
-      } else if (k_x < 0) {
-        b_r += 2;
+      c_r = static_cast<int>(std::fmod(static_cast<double>(i_x), 2.0));
+      if (c_r == 0) {
+        c_r = 0;
+      } else if (i_x < 0) {
+        c_r += 2;
       } else {
         /* no actions */
       }
     }
-    o_x = b_board->BoardCoords.size(1);
-    if (o_x == 0) {
+    m_x = b_board->BoardCoords.size(1);
+    if (m_x == 0) {
       d_r = 0;
     } else {
-      d_r = static_cast<int>(std::fmod(static_cast<double>(o_x), 2.0));
+      d_r = static_cast<int>(std::fmod(static_cast<double>(m_x), 2.0));
       if (d_r == 0) {
         d_r = 0;
-      } else if (o_x < 0) {
+      } else if (m_x < 0) {
         d_r += 2;
       } else {
         /* no actions */
       }
     }
-    if ((b_r == 0) == (d_r == 0)) {
+    if ((c_r == 0) == (d_r == 0)) {
       int cb_loop_ub;
       int d_k;
       int f_board;
@@ -1434,24 +1438,24 @@ b_Checkerboard *orient(b_Checkerboard *board,
                                    i31)) -
                                  1];
       }
-      p_x.set_size(1, 1, r6.size(2));
+      o_x.set_size(1, 1, r6.size(2));
       jb_loop_ub = r6.size(2);
       if ((static_cast<int>(r6.size(2) < 4)) != 0) {
         for (int i36{0}; i36 < jb_loop_ub; i36++) {
-          p_x[i36] = (r6[i36] > r7[i36]);
+          o_x[i36] = (r6[i36] > r7[i36]);
         }
       } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
         for (int i36 = 0; i36 < jb_loop_ub; i36++) {
-          p_x[i36] = (r6[i36] > r7[i36]);
+          o_x[i36] = (r6[i36] > r7[i36]);
         }
       }
       c_y = false;
       d_k = 0;
       exitg1 = false;
-      while ((!exitg1) && (d_k <= (p_x.size(2) - 1))) {
-        if (p_x[d_k]) {
+      while ((!exitg1) && (d_k <= (o_x.size(2) - 1))) {
+        if (o_x[d_k]) {
           c_y = true;
           exitg1 = true;
         } else {
@@ -1459,12 +1463,12 @@ b_Checkerboard *orient(b_Checkerboard *board,
         }
       }
       if (c_y) {
-        double q_x;
-        q_x = b_board->BoardCoords[(b_board->BoardCoords.size(0) +
+        double p_x;
+        p_x = b_board->BoardCoords[(b_board->BoardCoords.size(0) +
                                     (b_board->BoardCoords.size(0) *
                                      (b_board->BoardCoords.size(1) - 1))) -
                                    1];
-        if (q_x != 0.0) {
+        if (p_x != 0.0) {
           int bc_loop_ub;
           int cc_loop_ub;
           int dc_loop_ub;
@@ -1541,10 +1545,10 @@ b_Checkerboard *orient(b_Checkerboard *board,
 void toPoints(const b_Checkerboard *b_this,
               ::coder::array<double, 2U> &b_points, double boardSize[2])
 {
-  array<double, 2U> g_x;
-  array<double, 2U> y;
-  array<bool, 1U> b_x;
-  int d_this;
+  ::coder::array<double, 2U> e_x;
+  ::coder::array<double, 2U> y;
+  ::coder::array<bool, 1U> b_x;
+  int c_this;
   int i2;
   int i5;
   int i9;
@@ -1552,11 +1556,11 @@ void toPoints(const b_Checkerboard *b_this,
   int loop_ub;
   bool exitg1;
   bool varargout_1;
-  d_this = b_this->BoardIdx.size(0) * b_this->BoardIdx.size(1);
-  b_x.set_size(d_this);
-  loop_ub = d_this;
-  if ((static_cast<int>(d_this < 4)) != 0) {
-    for (int b_i{0}; b_i < d_this; b_i++) {
+  c_this = b_this->BoardIdx.size(0) * b_this->BoardIdx.size(1);
+  b_x.set_size(c_this);
+  loop_ub = c_this;
+  if ((static_cast<int>(c_this < 4)) != 0) {
+    for (int b_i{0}; b_i < c_this; b_i++) {
       b_x[b_i] = (b_this->BoardIdx[b_i] == 0.0);
     }
   } else {
@@ -1590,10 +1594,10 @@ void toPoints(const b_Checkerboard *b_this,
     int e_loop_ub;
     int f_loop_ub;
     int g_loop_ub;
+    int g_x;
     int h_loop_ub;
     int i3;
     int i7;
-    int j_x;
     numPoints = (static_cast<double>(b_this->BoardCoords.size(0))) *
                 (static_cast<double>(b_this->BoardCoords.size(1)));
     b_points.set_size(static_cast<int>(numPoints), 2);
@@ -1619,27 +1623,27 @@ void toPoints(const b_Checkerboard *b_this,
     }
     i3 = b_this->BoardCoords.size(0);
     c_loop_ub = b_this->BoardCoords.size(1);
-    g_x.set_size(c_loop_ub, i3);
+    e_x.set_size(c_loop_ub, i3);
     d_loop_ub = i3;
 #pragma omp parallel for num_threads(omp_get_max_threads()) private(i5)
 
     for (int i4 = 0; i4 < d_loop_ub; i4++) {
       for (i5 = 0; i5 < c_loop_ub; i5++) {
-        g_x[i5 + (g_x.size(0) * i4)] =
+        e_x[i5 + (e_x.size(0) * i4)] =
             b_this->BoardCoords[i4 + (b_this->BoardCoords.size(0) * i5)];
       }
     }
-    j_x = g_x.size(0) * g_x.size(1);
-    e_loop_ub = j_x;
-    if ((static_cast<int>(j_x < 4)) != 0) {
-      for (int i6{0}; i6 < j_x; i6++) {
-        b_points[i6] = g_x[i6];
+    g_x = e_x.size(0) * e_x.size(1);
+    e_loop_ub = g_x;
+    if ((static_cast<int>(g_x < 4)) != 0) {
+      for (int i6{0}; i6 < g_x; i6++) {
+        b_points[i6] = e_x[i6];
       }
     } else {
 #pragma omp parallel for num_threads(omp_get_max_threads())
 
       for (int i6 = 0; i6 < e_loop_ub; i6++) {
-        b_points[i6] = g_x[i6];
+        b_points[i6] = e_x[i6];
       }
     }
     i7 = b_this->BoardCoords.size(0);
@@ -1679,6 +1683,7 @@ void toPoints(const b_Checkerboard *b_this,
 } // namespace internal
 } // namespace vision
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for detectCheckerboard.cpp

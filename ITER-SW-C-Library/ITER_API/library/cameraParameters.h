@@ -5,7 +5,7 @@
 // File: cameraParameters.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef CAMERAPARAMETERS_H
@@ -15,11 +15,14 @@
 #include "ImageTransformer.h"
 #include "rtwtypes.h"
 #include "coder_array.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Type Definitions
+namespace ITER {
 namespace coder {
 class cameraParameters {
 public:
@@ -39,6 +42,8 @@ public:
                            double varargin_1_NumRadialDistortionCoefficients,
                            bool varargin_1_EstimateTangentialDistortion,
                            const double varargin_1_IntrinsicMatrix[3][3]);
+  cameraParameters();
+  ~cameraParameters();
   double ImageSize[2];
   double RadialDistortion[3];
   double TangentialDistortion[2];
@@ -57,11 +62,11 @@ public:
   double ImageSize[2];
   double RadialDistortion[3];
   double TangentialDistortion[2];
-  array<double, 2U> WorldPoints;
-  array<char, 2U> WorldUnits;
+  ::coder::array<double, 2U> WorldPoints;
+  ::coder::array<char, 2U> WorldUnits;
   double NumRadialDistortionCoefficients;
-  array<double, 2U> TranslationVectors;
-  array<double, 2U> RotationVectors;
+  ::coder::array<double, 2U> TranslationVectors;
+  ::coder::array<double, 2U> RotationVectors;
   double IntrinsicMatrixInternal[3][3];
 
 protected:
@@ -71,14 +76,14 @@ protected:
 class c_cameraParameters {
 public:
   double ImageSize[2];
-  array<double, 2U> RadialDistortion;
+  ::coder::array<double, 2U> RadialDistortion;
   double TangentialDistortion[2];
   char WorldUnits[2];
   bool EstimateSkew;
   double NumRadialDistortionCoefficients;
   bool EstimateTangentialDistortion;
-  array<double, 2U> TranslationVectors;
-  array<double, 2U> RotationVectors;
+  ::coder::array<double, 2U> TranslationVectors;
+  ::coder::array<double, 2U> RotationVectors;
   double IntrinsicMatrixInternal[3][3];
 
 protected:
@@ -96,6 +101,7 @@ public:
 };
 
 } // namespace coder
+} // namespace ITER
 
 #endif
 //

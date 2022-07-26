@@ -5,7 +5,7 @@
 // File: xzlartg.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -23,6 +23,7 @@
 //                creal_T *b_sn
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace internal {
 namespace reflapack {
@@ -304,6 +305,7 @@ void xzlartg(const creal_T f, const creal_T g, double *b_cs, creal_T *b_sn,
 } // namespace reflapack
 } // namespace internal
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for xzlartg.cpp

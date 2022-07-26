@@ -5,7 +5,7 @@
 // File: squareQ_appendCol.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef SQUAREQ_APPENDCOL_H
@@ -13,14 +13,20 @@
 
 // Include Files
 #include "rtwtypes.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Type Declarations
+namespace ITER {
 struct struct_T;
 
+}
+
 // Function Declarations
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
@@ -31,6 +37,7 @@ void squareQ_appendCol(struct_T *obj, const double vec[120], int iv0);
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 #endif
 //

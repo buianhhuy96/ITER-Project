@@ -5,13 +5,13 @@
 // File: rank.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
 #include "rank.h"
 #include "rt_nonfinite.h"
-#include "svd.h"
+#include "svd1.h"
 #include "coder_array.h"
 #include <cmath>
 #include <math.h>
@@ -22,10 +22,11 @@
 // Arguments    : const ::coder::array<double, 2U> &A
 // Return Type  : int
 //
+namespace ITER {
 namespace coder {
 int local_rank(const ::coder::array<double, 2U> &A)
 {
-  array<double, 1U> s;
+  ::coder::array<double, 1U> s;
   int exponent;
   int irank;
   irank = 0;
@@ -57,7 +58,7 @@ int local_rank(const ::coder::array<double, 2U> &A)
     }
     h_n = static_cast<int>(std::fmin(static_cast<double>(A.size(0)), 8.0));
     if (p) {
-      internal::b_svd(A, s);
+      internal::d_svd(A, s);
     } else {
       int loop_ub;
       s.set_size(h_n);
@@ -108,6 +109,7 @@ int local_rank(const ::coder::array<double, 2U> &A)
 }
 
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for rank.cpp

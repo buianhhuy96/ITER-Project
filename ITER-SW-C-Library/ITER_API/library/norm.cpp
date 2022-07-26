@@ -5,7 +5,7 @@
 // File: norm.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -20,6 +20,7 @@
 // Arguments    : const ::coder::array<double, 1U> &b_x
 // Return Type  : double
 //
+namespace ITER {
 namespace coder {
 double b_norm(const ::coder::array<double, 1U> &b_x)
 {
@@ -32,10 +33,10 @@ double b_norm(const ::coder::array<double, 1U> &b_x)
       y = std::abs(b_x[0]);
     } else {
       double scale;
-      int b_kend;
+      int kend;
       scale = 3.3121686421112381E-170;
-      b_kend = b_x.size(0);
-      for (int k{0}; k < b_kend; k++) {
+      kend = b_x.size(0);
+      for (int k{0}; k < kend; k++) {
         double absxk;
         absxk = std::abs(b_x[k]);
         if (absxk > scale) {
@@ -56,6 +57,7 @@ double b_norm(const ::coder::array<double, 1U> &b_x)
 }
 
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for norm.cpp

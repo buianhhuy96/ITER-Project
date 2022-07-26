@@ -5,7 +5,7 @@
 // File: flip.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -21,6 +21,7 @@
 //                double dim
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 void flip(::coder::array<double, 2U> &b_x, double dim)
 {
@@ -61,6 +62,7 @@ void flip(::coder::array<double, 2U> &b_x, double dim)
 }
 
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for flip.cpp

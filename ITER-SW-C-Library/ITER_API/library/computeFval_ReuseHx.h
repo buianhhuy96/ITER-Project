@@ -5,7 +5,7 @@
 // File: computeFval_ReuseHx.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef COMPUTEFVAL_REUSEHX_H
@@ -13,20 +13,26 @@
 
 // Include Files
 #include "rtwtypes.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Type Declarations
-struct r_struct_T;
+namespace ITER {
+struct x_struct_T;
+
+}
 
 // Function Declarations
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace qpactiveset {
 namespace Objective {
-double computeFval_ReuseHx(const r_struct_T *obj, double workspace[8][15],
+double computeFval_ReuseHx(const x_struct_T *obj, double workspace[8][15],
                            const double f[8], const double b_x[8]);
 
 }
@@ -34,6 +40,7 @@ double computeFval_ReuseHx(const r_struct_T *obj, double workspace[8][15],
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 #endif
 //

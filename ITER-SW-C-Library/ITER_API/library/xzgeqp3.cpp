@@ -5,7 +5,7 @@
 // File: xzgeqp3.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -18,16 +18,17 @@
 // Function Definitions
 //
 // Arguments    : double A[15][15]
-//                int b_m
+//                int m
 //                int h_n
 //                int nfxd
 //                double tau[15]
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace internal {
 namespace reflapack {
-void qrf(double A[15][15], int b_m, int h_n, int nfxd, double tau[15])
+void qrf(double A[15][15], int m, int h_n, int nfxd, double tau[15])
 {
   double work[15];
   double d_atmp;
@@ -42,10 +43,10 @@ void qrf(double A[15][15], int b_m, int h_n, int nfxd, double tau[15])
     int b_mmi;
     int c_ii;
     c_ii = (c_i * 15) + c_i;
-    b_mmi = b_m - c_i;
-    if ((c_i + 1) < b_m) {
+    b_mmi = m - c_i;
+    if ((c_i + 1) < m) {
       d_atmp = (&A[0][0])[c_ii];
-      d = b_xzlarfg(b_mmi, &d_atmp, A, c_ii + 2);
+      d = c_xzlarfg(b_mmi, &d_atmp, A, c_ii + 2);
       tau[c_i] = d;
       (&A[0][0])[c_ii] = d_atmp;
     } else {
@@ -56,7 +57,7 @@ void qrf(double A[15][15], int b_m, int h_n, int nfxd, double tau[15])
       double e_atmp;
       e_atmp = (&A[0][0])[c_ii];
       (&A[0][0])[c_ii] = 1.0;
-      c_xzlarf(b_mmi, (h_n - c_i) - 1, c_ii + 1, d, A, c_ii + 16, work);
+      d_xzlarf(b_mmi, (h_n - c_i) - 1, c_ii + 1, d, A, c_ii + 16, work);
       (&A[0][0])[c_ii] = e_atmp;
     }
   }
@@ -65,6 +66,7 @@ void qrf(double A[15][15], int b_m, int h_n, int nfxd, double tau[15])
 } // namespace reflapack
 } // namespace internal
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for xzgeqp3.cpp

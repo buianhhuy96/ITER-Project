@@ -5,7 +5,7 @@
 // File: HandeyeShah.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef HANDEYESHAH_H
@@ -14,14 +14,19 @@
 // Include Files
 #include "rtwtypes.h"
 #include "coder_array.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Function Declarations
-extern void HandeyeShah(const coder::array<double, 3U> &As,
-                        const coder::array<double, 3U> &b_Bs, double d_X[4][4],
-                        double g_Y[4][4], int *err);
+namespace ITER {
+extern void HandeyeShah(const ::coder::array<double, 3U> &As,
+                        const ::coder::array<double, 3U> &b_Bs,
+                        double d_X[4][4], double g_Y[4][4], int *err);
+
+}
 
 #endif
 //

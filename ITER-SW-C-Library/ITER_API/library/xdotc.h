@@ -5,7 +5,7 @@
 // File: xdotc.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef XDOTC_H
@@ -13,26 +13,33 @@
 
 // Include Files
 #include "rtwtypes.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Function Declarations
+namespace ITER {
 namespace coder {
 namespace internal {
 namespace blas {
-double b_xdotc(int h_n, const double b_x[3][3], int ix0, const double y[3][3],
+double b_xdotc(int h_n, const double b_x[6][6], int ix0, const double y[6][6],
                int iy0);
 
-double c_xdotc(int h_n, const double b_x[9][9], int ix0, const double y[9][9],
+double c_xdotc(int h_n, const double b_x[3][3], int ix0, const double y[3][3],
                int iy0);
 
-double xdotc(int h_n, const double b_x[6][6], int ix0, const double y[6][6],
+double d_xdotc(int h_n, const double b_x[9][9], int ix0, const double y[9][9],
+               int iy0);
+
+double xdotc(int h_n, const double b_x[29][29], int ix0, const double y[29][29],
              int iy0);
 
 } // namespace blas
 } // namespace internal
 } // namespace coder
+} // namespace ITER
 
 #endif
 //

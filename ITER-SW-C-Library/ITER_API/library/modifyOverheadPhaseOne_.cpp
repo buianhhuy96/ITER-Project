@@ -5,7 +5,7 @@
 // File: modifyOverheadPhaseOne_.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -16,15 +16,16 @@
 
 // Function Definitions
 //
-// Arguments    : j_struct_T *obj
+// Arguments    : o_struct_T *obj
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace qpactiveset {
 namespace WorkingSet {
-void modifyOverheadPhaseOne_(j_struct_T *obj)
+void modifyOverheadPhaseOne_(o_struct_T *obj)
 {
   int b_i;
   int i1;
@@ -55,6 +56,7 @@ void modifyOverheadPhaseOne_(j_struct_T *obj)
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for modifyOverheadPhaseOne_.cpp

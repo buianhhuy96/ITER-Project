@@ -5,7 +5,7 @@
 // File: finDiffEvalAndChkErr.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef FINDIFFEVALANDCHKERR_H
@@ -14,33 +14,45 @@
 // Include Files
 #include "rtwtypes.h"
 #include "coder_array.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Type Declarations
+namespace ITER {
 namespace coder {
-class anonymous_function;
-
 class c_anonymous_function;
 
+class b_anonymous_function;
+
+class e_anonymous_function;
+
 } // namespace coder
+} // namespace ITER
 
 // Function Declarations
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace utils {
 namespace FiniteDifferences {
 namespace internal {
-bool b_finDiffEvalAndChkErr(const c_anonymous_function *obj_nonlin, int obj_mEq,
+bool b_finDiffEvalAndChkErr(const b_anonymous_function *obj_objfun,
+                            bool obj_SpecifyObjectiveGradient, double *fplus,
+                            int dim, double delta, double b_xk[7]);
+
+bool c_finDiffEvalAndChkErr(const e_anonymous_function *obj_nonlin, int obj_mEq,
                             bool obj_SpecifyConstraintGradient,
                             ::coder::array<double, 1U> &cEqPlus, int dim,
                             double delta, ::coder::array<double, 1U> &b_xk);
 
-bool finDiffEvalAndChkErr(const anonymous_function *obj_objfun,
-                          bool obj_SpecifyObjectiveGradient, double *fplus,
-                          int dim, double delta, double b_xk[7]);
+bool finDiffEvalAndChkErr(const c_anonymous_function *obj_nonlin, int obj_mEq,
+                          bool obj_SpecifyConstraintGradient,
+                          ::coder::array<double, 1U> &cEqPlus, int dim,
+                          double delta, double b_xk[6]);
 
 } // namespace internal
 } // namespace FiniteDifferences
@@ -48,6 +60,7 @@ bool finDiffEvalAndChkErr(const anonymous_function *obj_objfun,
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 #endif
 //

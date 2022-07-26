@@ -5,7 +5,7 @@
 // File: detectCheckerboardPoints.h
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 #ifndef DETECTCHECKERBOARDPOINTS_H
@@ -14,11 +14,14 @@
 // Include Files
 #include "rtwtypes.h"
 #include "coder_array.h"
+#if defined(_OPENMP) 
 #include "omp.h"
+#endif
 #include <cstddef>
 #include <cstdlib>
 
 // Function Declarations
+namespace ITER {
 namespace coder {
 void b_detectCheckerboardPoints(const ::coder::array<unsigned char, 2U> &o_I,
                                 ::coder::array<double, 2U> &b_imagePoints,
@@ -29,6 +32,7 @@ void detectCheckerboardPoints(const ::coder::array<unsigned char, 2U> &o_I,
                               double boardSize[2]);
 
 } // namespace coder
+} // namespace ITER
 
 #endif
 //

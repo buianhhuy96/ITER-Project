@@ -5,7 +5,7 @@
 // File: computeForwardDifferences.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -20,19 +20,20 @@
 
 // Function Definitions
 //
-// Arguments    : o_struct_T *obj
+// Arguments    : t_struct_T *obj
 //                double fCurrent
 //                double b_xk[7]
 //                double gradf[8]
 // Return Type  : bool
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace utils {
 namespace FiniteDifferences {
 namespace internal {
-bool computeForwardDifferences(o_struct_T *obj, double fCurrent, double b_xk[7],
+bool computeForwardDifferences(t_struct_T *obj, double fCurrent, double b_xk[7],
                                double gradf[8])
 {
   double b_deltaX;
@@ -75,8 +76,9 @@ bool computeForwardDifferences(o_struct_T *obj, double fCurrent, double b_xk[7],
         b_deltaX = c_deltaX;
       }
     }
-    b_evalOK = finDiffEvalAndChkErr(&obj->objfun, obj->SpecifyObjectiveGradient,
-                                    &obj->b_f_1, idx + 1, b_deltaX, b_xk);
+    b_evalOK =
+        b_finDiffEvalAndChkErr(&obj->objfun, obj->SpecifyObjectiveGradient,
+                               &obj->b_f_1, idx + 1, b_deltaX, b_xk);
     evalOK = b_evalOK;
     obj->numEvals++;
     guard1 = false;
@@ -97,9 +99,9 @@ bool computeForwardDifferences(o_struct_T *obj, double fCurrent, double b_xk[7],
           insideBnds = false;
         }
         if ((!obj->hasBounds) || insideBnds) {
-          evalOK =
-              finDiffEvalAndChkErr(&obj->objfun, obj->SpecifyObjectiveGradient,
-                                   &obj->b_f_1, idx + 1, b_deltaX, b_xk);
+          evalOK = b_finDiffEvalAndChkErr(&obj->objfun,
+                                          obj->SpecifyObjectiveGradient,
+                                          &obj->b_f_1, idx + 1, b_deltaX, b_xk);
           obj->numEvals++;
         }
       }
@@ -125,6 +127,7 @@ bool computeForwardDifferences(o_struct_T *obj, double fCurrent, double b_xk[7],
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for computeForwardDifferences.cpp

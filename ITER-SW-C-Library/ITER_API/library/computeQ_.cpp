@@ -5,7 +5,7 @@
 // File: computeQ_.cpp
 //
 // MATLAB Coder version            : 5.3
-// C/C++ source code generated on  : 05-Apr-2022 09:07:06
+// C/C++ source code generated on  : 21-Jul-2022 16:01:17
 //
 
 // Include Files
@@ -18,20 +18,21 @@
 // Function Definitions
 //
 // Arguments    : struct_T *obj
-//                int b_nrows
+//                int nrows
 // Return Type  : void
 //
+namespace ITER {
 namespace coder {
 namespace optim {
 namespace coder {
 namespace QRManager {
-void computeQ_(struct_T *obj, int b_nrows)
+void computeQ_(struct_T *obj, int nrows)
 {
   double work[15];
   int b_i;
-  int b_m;
   int d_lda;
   int k;
+  int m;
   b_i = obj->minRowCol;
   for (int idx{0}; idx < b_i; idx++) {
     int h_n;
@@ -44,18 +45,18 @@ void computeQ_(struct_T *obj, int b_nrows)
       (&obj->Q[0][0])[i2] = (&obj->QR[0][0])[i2];
     }
   }
-  b_m = obj->mrows;
+  m = obj->mrows;
   k = obj->minRowCol;
   d_lda = obj->ldq;
-  if (b_nrows >= 1) {
+  if (nrows >= 1) {
     int i1;
     int itau;
-    i1 = b_nrows - 1;
+    i1 = nrows - 1;
     for (int j{k}; j <= i1; j++) {
       int i3;
       int ia;
       ia = j * d_lda;
-      i3 = b_m - 1;
+      i3 = m - 1;
       for (int d_i{0}; d_i <= i3; d_i++) {
         (&obj->Q[0][0])[ia + d_i] = 0.0;
       }
@@ -70,7 +71,7 @@ void computeQ_(struct_T *obj, int b_nrows)
     for (int e_i = obj->minRowCol; e_i >= 1; e_i--) {
       int iaii;
       iaii = (e_i + ((e_i - 1) * d_lda)) - 1;
-      if (e_i < b_nrows) {
+      if (e_i < nrows) {
         int ic0;
         int lastc;
         int lastv;
@@ -80,13 +81,13 @@ void computeQ_(struct_T *obj, int b_nrows)
           int b_lastc;
           int g_i;
           bool exitg2;
-          lastv = b_m - e_i;
-          g_i = (iaii + b_m) - e_i;
+          lastv = m - e_i;
+          g_i = (iaii + m) - e_i;
           while (((lastv + 1) > 0) && ((&obj->Q[0][0])[g_i] == 0.0)) {
             lastv--;
             g_i--;
           }
-          b_lastc = (b_nrows - e_i) - 1;
+          b_lastc = (nrows - e_i) - 1;
           exitg2 = false;
           while ((!exitg2) && ((b_lastc + 1) > 0)) {
             int b_ia;
@@ -146,8 +147,8 @@ void computeQ_(struct_T *obj, int b_nrows)
             }
           }
           if (!((-obj->tau[itau]) == 0.0)) {
-            int jA;
-            jA = ic0;
+            int b_jA;
+            b_jA = ic0;
             for (int c_j{0}; c_j <= lastc; c_j++) {
               double d;
               d = work[c_j];
@@ -155,22 +156,22 @@ void computeQ_(struct_T *obj, int b_nrows)
                 double temp;
                 int i6;
                 temp = d * (-obj->tau[itau]);
-                i6 = lastv + jA;
-                for (int ijA{jA}; ijA <= i6; ijA++) {
+                i6 = lastv + b_jA;
+                for (int ijA{b_jA}; ijA <= i6; ijA++) {
                   (&obj->Q[0][0])[ijA - 1] +=
-                      (&obj->Q[0][0])[(iaii + ijA) - jA] * temp;
+                      (&obj->Q[0][0])[(iaii + ijA) - b_jA] * temp;
                 }
               }
-              jA += d_lda;
+              b_jA += d_lda;
             }
           }
         }
       }
-      if (e_i < b_m) {
+      if (e_i < m) {
         int i4;
         int ix0;
         ix0 = iaii + 2;
-        i4 = ((iaii + b_m) - e_i) + 1;
+        i4 = ((iaii + m) - e_i) + 1;
         for (int c_k{ix0}; c_k <= i4; c_k++) {
           (&obj->Q[0][0])[c_k - 1] *= -obj->tau[itau];
         }
@@ -188,6 +189,7 @@ void computeQ_(struct_T *obj, int b_nrows)
 } // namespace coder
 } // namespace optim
 } // namespace coder
+} // namespace ITER
 
 //
 // File trailer for computeQ_.cpp
